@@ -37,7 +37,7 @@ after_initialize do
         return 0
       end
     end
-    
+
   end
 
   class ::Category

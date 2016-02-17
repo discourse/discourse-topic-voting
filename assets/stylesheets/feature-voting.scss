@@ -22,7 +22,8 @@
 }
 .vote-button{
 	background-color: $tertiary;
+	display: block;
     margin-top: 5px;
     padding: 2px 0px;
-    color: #ffffff;
+    color: #ffffff !important;
 }
