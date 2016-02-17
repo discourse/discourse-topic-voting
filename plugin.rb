@@ -14,8 +14,41 @@ load File.expand_path('../lib/discourse_feature_voting/engine.rb', __FILE__)
 
 after_initialize do
 
+  require_dependency 'topic_view_serializer'
+  class ::TopicViewSerializer
+    attributes :can_vote
 
-	Discourse::Application.routes.append do
-		mount ::DiscourseFeatureVoting::Engine, at: "/vote"
-	end
+    def can_vote
+      return object.topic.category.custom_fields["enable_topic_voting"]
+    end
+  end
+
+  class ::Category
+      after_save :reset_voting_cache
+
+      protected
+      def reset_voting_cache
+        ::Guardian.reset_voting_cache
+      end
+  end
+
+  class ::Guardian
+
+    @@allowed_voting_cache = DistributedCache.new("allowed_voting")
+
+    def self.reset_voting_cache
+      @@allowed_voting_cache["allowed"] =
+        begin
+          Set.new(
+            CategoryCustomField
+              .where(name: "enable_topic_voting", value: "true")
+              .pluck(:category_id)
+          )
+        end
+    end
+  end
+
+  Discourse::Application.routes.append do
+    mount ::DiscourseFeatureVoting::Engine, at: "/vote"
+  end
 end
