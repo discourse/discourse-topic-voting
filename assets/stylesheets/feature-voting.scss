@@ -1,0 +1,28 @@
+.voting{
+    min-width: 70px;
+    float: left;
+    text-align: center;
+    margin: 0px 20px 0px 0px;
+    max-width: 10%;
+}
+.voting-wrapper{
+    border: 3px solid #e9e9e9;
+}
+.vote-count{
+	height:20px;
+	line-height:20px;
+	font-weight: bold;
+}
+.vote-label{
+	height:20px;
+	line-height:20px;
+}
+.header-voting{
+	margin: 0px 20px 0px 5px;
+}
+.vote-button{
+	background-color: $tertiary;
+    margin-top: 5px;
+    padding: 2px 0px;
+    color: #ffffff;
+}

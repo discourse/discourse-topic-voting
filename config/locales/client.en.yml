@@ -2,4 +2,8 @@ en:
   js:
     feature_voting:
       allow_topic_voting: "Allow users to vote on topics in this category"
-      title: "Vote"
+      vote_title: "Vote"
+      unvote_title: "Unvote"
+      vote:
+        one: "vote"
+        multiple: "votes"

@@ -1,0 +1,15 @@
+{{#if model.can_vote}}
+<div class="voting">
+	<div class="voting-wrapper">
+		<div class="vote-count">{{model.vote_count}}</div>
+		<div class="vote-label">
+			{{#if model.single_vote}}
+				{{i18n 'feature_voting.vote.one'}}
+			{{else}}
+				{{i18n 'feature_voting.vote.multiple'}}
+			{{/if}}
+		</div>	
+	</div>
+	<div class="vote-button">{{i18n 'feature_voting.vote_title'}}</div>
+</div>
+{{/if}}
