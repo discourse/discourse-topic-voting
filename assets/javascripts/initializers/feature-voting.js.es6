@@ -7,7 +7,8 @@ export default {
     TopicRoute.reopen({
       actions: {
         vote() {
-          var topic_id = this.modelFor('topic').id;
+          var topic = this.modelFor('topic');
+          var topic_id = topic.id;
           var user_id = Discourse.User.current().id;
           const self = this;
           return Discourse.ajax("/voting/vote", {
@@ -17,14 +18,15 @@ export default {
               user_id: user_id
             }
           }).then(function(result) {
+            topic.reload();
 
           }).catch(function(error) {
-            popupAjaxError(error);
+            console.log(error);
           });
         },
         unvote() {
-          console.log("unvoted");
-          var topic_id = this.modelFor('topic').id;
+          var topic = this.modelFor('topic');
+          var topic_id = topic.id;
           var user_id = Discourse.User.current().id;
           const self = this;
           return Discourse.ajax("/voting/unvote", {
@@ -34,9 +36,9 @@ export default {
               user_id: user_id
             }
           }).then(function(result) {
-
+            topic.reload();
           }).catch(function(error) {
-            popupAjaxError(error);
+            console.log(error);
           });
         }
       }
