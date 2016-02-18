@@ -34,6 +34,13 @@ after_initialize do
       if object.topic.custom_fields["vote_count"]
         return object.topic.custom_fields["vote_count"]
       else
+        if object.topic.category.custom_fields["enable_topic_voting"]
+          Set.new(
+            TopicCustomField
+              .where(name: "vote_count", value: 0)
+              .pluck(:topic_id)
+          )
+        end
         return 0
       end
     end
@@ -66,6 +73,6 @@ after_initialize do
   end
 
   Discourse::Application.routes.append do
-    mount ::DiscourseFeatureVoting::Engine, at: "/vote"
+    mount ::DiscourseFeatureVoting::Engine, at: "/voting"
   end
 end
