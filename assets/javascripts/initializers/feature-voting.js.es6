@@ -7,6 +7,7 @@ export default {
     TopicRoute.reopen({
       actions: {
         vote() {
+          console.log(this.currentUser);
           var topic = this.modelFor('topic');
           return Discourse.ajax("/voting/vote", {
             type: 'POST',
@@ -16,6 +17,10 @@ export default {
             }
           }).then(function(result) {
             topic.reload();
+            Discourse.User.findByUsername(Discourse.User.current().username).catch(function(result){
+              console.log(result);
+              Discourse.User.resetCurrent(result);
+            });
           }).catch(function(error) {
             console.log(error);
           });

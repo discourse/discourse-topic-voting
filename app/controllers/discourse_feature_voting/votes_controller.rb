@@ -3,9 +3,10 @@ module DiscourseFeatureVoting
 		requires_plugin 'discourse-feature-voting'
 
 		def add
-			topic = Topic.find_by(id: params["topic_id"])
 			user = User.find_by(id: params["user_id"])
-		
+
+			topic = Topic.find_by(id: params["topic_id"])
+
 			topic.custom_fields["vote_count"] = topic.custom_fields["vote_count"].to_i + 1
 			topic.save
 

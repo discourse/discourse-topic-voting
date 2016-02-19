@@ -5,6 +5,7 @@ en:
       vote_title: "Vote"
       unvote_title: "Unvote"
       voting_closed_title: "Closed"
+      voting_limit: "Limit"
       vote:
         one: "vote"
         multiple: "votes"

@@ -43,7 +43,6 @@ after_initialize do
         return false
       end
     end
-
   end
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
@@ -77,11 +76,10 @@ after_initialize do
 
   require_dependency 'user'
   class ::User
-
       def vote_count
         if self.custom_fields["votes"]
           user_votes = self.custom_fields["votes"]
-          return user_votes.length
+          return user_votes.length - 1
         else 
           return 0
         end
@@ -95,7 +93,24 @@ after_initialize do
         end
       end
 
+      def vote_limit
+        if self.vote_count >= SiteSetting.feature_voting_vote_limit
+          return true
+        else
+          return false
+        end
+      end
   end
+
+  require_dependency 'current_user_serializer'
+  class ::CurrentUserSerializer
+    attributes :vote_limit
+
+    def vote_limit
+      object.vote_limit
+    end
+    
+   end
 
   require_dependency 'topic'
   class ::Topic
