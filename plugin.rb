@@ -46,6 +46,9 @@ after_initialize do
 
   end
 
+  add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
+  add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
+
   class ::Category
       after_save :reset_voting_cache
 
@@ -96,6 +99,11 @@ after_initialize do
 
   require_dependency 'topic'
   class ::Topic
+
+    def can_vote
+      return self.category.custom_fields["enable_topic_voting"]
+    end
+
     def vote_count
       if self.custom_fields["vote_count"]
         return self.custom_fields["vote_count"]
