@@ -5,14 +5,12 @@ module DiscourseFeatureVoting
 		def add
 			topic = Topic.find_by(id: params["topic_id"])
 			user = User.find_by(id: params["user_id"])
-			if topic.custom_fields["vote_count"]
-				current = topic.custom_fields["vote_count"].to_i
-				updated = current + 1
-				topic.custom_fields["vote_count"] = updated
-			else 
-				topic.custom_fields["vote_count"] = 1
-			end
+		
+			topic.custom_fields["vote_count"] = topic.custom_fields["vote_count"].to_i + 1
 			topic.save
+
+			user.custom_fields["votes"] = user.votes.dup.push(params["topic_id"])
+			user.save
 
 			render json: topic.custom_fields["vote_count"]
 		end
@@ -20,12 +18,14 @@ module DiscourseFeatureVoting
 		def subtract
 			topic = Topic.find_by(id: params["topic_id"])
 			user = User.find_by(id: params["user_id"])
+
 			if topic.custom_fields["vote_count"].to_i > 0
-				current = topic.custom_fields["vote_count"].to_i
-				updated = current - 1
-				topic.custom_fields["vote_count"] = updated
+				topic.custom_fields["vote_count"] = topic.custom_fields["vote_count"].to_i - 1
 			end
 			topic.save
+
+			user.custom_fields["votes"] = user.votes.dup - [params["topic_id"].to_s]
+			user.save
 
 			render json: topic.custom_fields["vote_count"]
 		end

@@ -16,14 +16,14 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count
+    attributes :can_vote, :single_vote, :vote_count, :user_voted
 
     def can_vote
       return object.topic.category.custom_fields["enable_topic_voting"]
     end
 
     def single_vote
-      if object.topic.custom_fields["vote_count"] == 1
+      if object.topic.vote_count.to_i == 1
         return true
       else
         return false
@@ -31,17 +31,16 @@ after_initialize do
     end
 
     def vote_count
-      if object.topic.custom_fields["vote_count"]
-        return object.topic.custom_fields["vote_count"]
+      object.topic.vote_count
+    end
+
+    def user_voted
+      user = scope.user
+      if user && user.custom_fields["votes"]
+          user_votes = user.custom_fields["votes"]
+          return user_votes.include? object.topic.id.to_s
       else
-        if object.topic.category.custom_fields["enable_topic_voting"]
-          Set.new(
-            TopicCustomField
-              .where(name: "vote_count", value: 0)
-              .pluck(:topic_id)
-          )
-        end
-        return 0
+        return false
       end
     end
 
@@ -69,6 +68,47 @@ after_initialize do
               .pluck(:category_id)
           )
         end
+    end
+  end
+
+
+  require_dependency 'user'
+  class ::User
+
+      def vote_count
+        if self.custom_fields["votes"]
+          user_votes = self.custom_fields["votes"]
+          return user_votes.length
+        else 
+          return 0
+        end
+      end
+
+      def votes
+        if self.custom_fields["votes"]
+          return self.custom_fields["votes"]
+        else
+          return [nil]
+        end
+      end
+
+  end
+
+  require_dependency 'topic'
+  class ::Topic
+    def vote_count
+      if self.custom_fields["vote_count"]
+        return self.custom_fields["vote_count"]
+      else
+        if self.category.custom_fields["enable_topic_voting"]
+          Set.new(
+            TopicCustomField
+              .where(name: "vote_count", value: 0)
+              .pluck(:topic_id)
+          )
+        end
+        return 0
+      end
     end
   end
 
