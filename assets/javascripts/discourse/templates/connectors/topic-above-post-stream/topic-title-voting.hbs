@@ -11,10 +11,14 @@
 		</div>	
 	</div>
 	{{#if currentUser}}
-		{{#if model.user_voted}}
-			<a href {{action "unvote"}} class="vote-button unvote">{{i18n 'feature_voting.unvote_title'}}</a>
+		{{#if model.closed}}
+			<div class="vote-button voting-closed unvote">{{i18n 'feature_voting.voting_closed_title'}}</div>
 		{{else}}
-			<a href {{action "vote"}} class="vote-button vote">{{i18n 'feature_voting.vote_title'}}</a>
+			{{#if model.user_voted}}
+				<a href {{action "unvote"}} class="vote-button unvote">{{i18n 'feature_voting.unvote_title'}}</a>
+			{{else}}
+				<a href {{action "vote"}} class="vote-button vote">{{i18n 'feature_voting.vote_title'}}</a>
+			{{/if}}
 		{{/if}}
 	{{/if}}
 </div>
