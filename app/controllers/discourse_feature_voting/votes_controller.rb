@@ -13,7 +13,9 @@ module DiscourseFeatureVoting
 			user.custom_fields["votes"] = user.votes.dup.push(params["topic_id"])
 			user.save
 
-			render json: topic.custom_fields["vote_count"]
+			obj = {vote_limit: user.vote_limit, vote_count: topic.custom_fields["vote_count"].to_i}
+
+			render json: obj
 		end
 
 		def subtract
@@ -28,7 +30,9 @@ module DiscourseFeatureVoting
 			user.custom_fields["votes"] = user.votes.dup - [params["topic_id"].to_s]
 			user.save
 
-			render json: topic.custom_fields["vote_count"]
+			obj = {vote_limit: user.vote_limit, vote_count: topic.custom_fields["vote_count"].to_i}
+
+			render json: obj
 		end
 	end
 end

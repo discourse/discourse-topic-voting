@@ -7,7 +7,6 @@ export default {
     TopicRoute.reopen({
       actions: {
         vote() {
-          console.log(this.currentUser);
           var topic = this.modelFor('topic');
           return Discourse.ajax("/voting/vote", {
             type: 'POST',
@@ -16,11 +15,10 @@ export default {
               user_id: Discourse.User.current().id
             }
           }).then(function(result) {
-            topic.reload();
-            Discourse.User.findByUsername(Discourse.User.current().username).catch(function(result){
-              console.log(result);
-              Discourse.User.resetCurrent(result);
-            });
+            topic.set('vote_count', result.vote_count);
+            topic.set('user_voted', true);
+            Discourse.User.current().set('vote_limit', result.vote_limit);
+
           }).catch(function(error) {
             console.log(error);
           });
@@ -34,7 +32,9 @@ export default {
               user_id: Discourse.User.current().id
             }
           }).then(function(result) {
-            topic.reload();
+            topic.set('vote_count', result.vote_count);
+            topic.set('user_voted', false);
+            Discourse.User.current().set('vote_limit', result.vote_limit);
           }).catch(function(error) {
             console.log(error);
           });
