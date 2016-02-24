@@ -93,6 +93,14 @@ after_initialize do
         end
       end
 
+      def votes_archive
+        if self.custom_fields["votes_archive"]
+          return self.custom_fields["votes_archive"]
+        else
+          return [nil]
+        end
+      end
+
       def vote_limit
         if self.vote_count >= SiteSetting.feature_voting_vote_limit
           return true
@@ -138,20 +146,41 @@ after_initialize do
 
   require_dependency "jobs/base"
   module ::Jobs
+    
     class VoteRelease < Jobs::Base
       def execute(args)
-        byebug
         if topic = Topic.find_by(id: args[:topic_id])
-          byebug
+          UserCustomField.where(name: "votes", value: args[:topic_id]).find_each do |user_field|
+            user = User.find(user_field.user_id)
+            user.custom_fields["votes"] = user.votes.dup - [args[:topic_id].to_s]
+            user.custom_fields["votes_archive"] = user.votes_archive.dup.push(args[:topic_id])
+            user.save
+          end
         end
       end
     end
+
+    class VoteReclaim < Jobs::Base
+      def execute(args)
+        if topic = Topic.find_by(id: args[:topic_id])
+          UserCustomField.where(name: "votes_archive", value: args[:topic_id]).find_each do |user_field|
+            user.custom_fields["votes"] = user.votes.dup.push(args[:topic_id])
+            user.custom_fields["votes_archive"] = user.votes_archive.dup - [args[:topic_id].to_s]
+            user.save
+          end
+        end
+      end
+    end
+
   end
 
   DiscourseEvent.on(:topic_status_updated) do |topic_id, status, enabled|
-    if status == 'closed' && enabled == true
-      byebug
+    if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == true
       Jobs.enqueue(:vote_release, {topic_id: topic_id})
+    end
+
+    if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == false
+      Jobs.enqueue(:vote_reclaim, {topic_id: topic_id})
     end
   end
 
