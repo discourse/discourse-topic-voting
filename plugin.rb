@@ -109,7 +109,7 @@ after_initialize do
     def vote_limit
       object.vote_limit
     end
-    
+
    end
 
   require_dependency 'topic'
@@ -132,6 +132,26 @@ after_initialize do
         end
         return 0
       end
+    end
+
+  end
+
+  require_dependency "jobs/base"
+  module ::Jobs
+    class VoteRelease < Jobs::Base
+      def execute(args)
+        byebug
+        if topic = Topic.find_by(id: args[:topic_id])
+          byebug
+        end
+      end
+    end
+  end
+
+  DiscourseEvent.on(:topic_status_updated) do |topic_id, status, enabled|
+    if status == 'closed' && enabled == true
+      byebug
+      Jobs.enqueue(:vote_release, {topic_id: topic_id})
     end
   end
 
