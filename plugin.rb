@@ -144,6 +144,11 @@ after_initialize do
 
   end
 
+  require_dependency 'topic_query'
+  class ::TopicQuery
+    SORTABLE_MAPPING["votes"] = "custom_fields.vote_count"
+  end
+
   require_dependency "jobs/base"
   module ::Jobs
     
