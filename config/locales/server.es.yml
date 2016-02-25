@@ -1,0 +1,4 @@
+es:
+  site_settings: 
+    feature_voting_enabled: '¿Permitir a los usuarios votar los temas?'
+    feature_voting_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
