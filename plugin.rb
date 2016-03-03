@@ -192,4 +192,6 @@ after_initialize do
   Discourse::Application.routes.append do
     mount ::DiscourseFeatureVoting::Engine, at: "/voting"
   end
+
+  TopicList.preloaded_custom_fields << "vote_count" if TopicList.respond_to? :preloaded_custom_fields
 end
