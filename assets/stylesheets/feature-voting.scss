@@ -37,3 +37,15 @@
 .list-vote-count{
 	font-size: 0.75em;
 }
+.user-voted-topics{
+    height: 34px;
+    line-height: 34px;
+    
+    a {
+        padding: 8px 13px;
+        color: #7a7a7a;
+        font-size: 1.143em;
+        line-height: 20px;
+        cursor: pointer;
+    }
+}
