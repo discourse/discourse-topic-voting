@@ -124,14 +124,14 @@ after_initialize do
   class ::Topic
 
     def can_vote
-      return self.category.custom_fields["enable_topic_voting"]
+      return self.category.respond_to?(:custom_fields) ? !!self.category.custom_fields["enable_topic_voting"] : false
     end
 
     def vote_count
       if self.custom_fields["vote_count"]
         return self.custom_fields["vote_count"]
       else
-        if self.category.custom_fields["enable_topic_voting"]
+        if self.can_vote
           Set.new(
             TopicCustomField
               .where(name: "vote_count", value: 0)
