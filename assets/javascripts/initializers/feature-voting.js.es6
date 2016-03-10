@@ -1,6 +1,5 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import TopicRoute from 'discourse/routes/topic';
-import UserAction from "discourse/models/user-action";
 
 function  startVoting(api){
   TopicRoute.reopen({
@@ -39,10 +38,6 @@ function  startVoting(api){
         });
       }
     }
-  })
-
-  UserAction.reopen({
-    voteType: Em.computed.equal('action_type', 100)
   })
 }
 

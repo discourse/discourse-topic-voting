@@ -1,10 +1,45 @@
-import UserTopicListRoute from "discourse/routes/user-topic-list";
-import UserAction from "discourse/models/user-action";
+import ViewingActionType from "discourse/mixins/viewing-action-type";
 
-export default UserTopicListRoute.extend({
-  userActionType: UserAction.TYPES.topics,
+export default Discourse.Route.extend(ViewingActionType, {
+  model() {
+    return this.modelFor("user").get("stream");
+  },
 
-  model: function() {
-    return this.store.findFiltered('topicList', {filter: 'topics/created-by/' + this.modelFor('user').get('username_lower') });
+  afterModel() {
+  	console.log(this);
+    return this.modelFor("user").get("stream").filterBy(1);
+  },
+
+  renderTemplate() {
+    this.render("user_stream");
+  },
+
+  setupController(controller, model) {
+    controller.set("model", model);
+    this.viewingActionType(1);
+  },
+
+  actions: {
+
+    didTransition() {
+      this.controllerFor("user-activity")._showFooter();
+      return true;
+    },
+
+    removeBookmark(userAction) {
+      var user = this.modelFor("user");
+      Discourse.Post.updateBookmark(userAction.get("post_id"), false)
+        .then(function() {
+          // remove the user action from the stream
+          user.get("stream").remove(userAction);
+          // update the counts
+          user.get("stats").forEach(function (stat) {
+            if (stat.get("action_type") === userAction.action_type) {
+              stat.decrementProperty("count");
+            }
+          });
+        });
+    },
+
   }
 });
