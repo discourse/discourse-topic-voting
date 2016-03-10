@@ -144,9 +144,27 @@ after_initialize do
 
   end
 
+  require_dependency 'list_controller'
+  class ::ListController
+    def voted_by
+      list_opts = build_topic_list_options
+      target_user = fetch_user_from_params(include_inactive: current_user.try(:staff?))
+      list = generate_list_for("voted_by", target_user, list_opts)
+      list.more_topics_url = url_for(construct_url_with(:next, list_opts))
+      list.prev_topics_url = url_for(construct_url_with(:prev, list_opts))
+      respond_with_list(list)
+    end
+  end
+
   require_dependency 'topic_query'
   class ::TopicQuery
     SORTABLE_MAPPING["votes"] = "custom_fields.vote_count"
+
+    def list_voted_by(user)
+      create_list(:user_topics) do |topics|
+        topics.where(id: user.custom_fields["votes"])
+      end
+    end
   end
 
   require_dependency "jobs/base"
@@ -169,6 +187,7 @@ after_initialize do
       def execute(args)
         if topic = Topic.find_by(id: args[:topic_id])
           UserCustomField.where(name: "votes_archive", value: args[:topic_id]).find_each do |user_field|
+            user = User.find(user_field.user_id)
             user.custom_fields["votes"] = user.votes.dup.push(args[:topic_id])
             user.custom_fields["votes_archive"] = user.votes_archive.dup - [args[:topic_id].to_s]
             user.save
@@ -191,6 +210,7 @@ after_initialize do
 
   Discourse::Application.routes.append do
     mount ::DiscourseFeatureVoting::Engine, at: "/voting"
+    get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: {username: USERNAME_ROUTE_FORMAT}
   end
 
   TopicList.preloaded_custom_fields << "vote_count" if TopicList.respond_to? :preloaded_custom_fields
