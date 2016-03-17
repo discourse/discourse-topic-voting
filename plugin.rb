@@ -16,7 +16,7 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :user_voted
+    attributes :can_vote, :single_vote, :vote_count, :user_voted, :who_voted
 
     def can_vote
       return object.topic.category.custom_fields["enable_topic_voting"]
@@ -42,6 +42,14 @@ after_initialize do
       else
         return false
       end
+    end
+
+    def who_voted
+      users = []
+      User.where(id: object.topic.who_voted).each do |user|
+        users.push(UserSerializer.new(user, scope: scope, root: 'user'))
+      end
+      return users
     end
   end
 
@@ -140,6 +148,11 @@ after_initialize do
         end
         return 0
       end
+    end
+
+    def who_voted
+      user_ids = UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
+      return user_ids
     end
 
   end

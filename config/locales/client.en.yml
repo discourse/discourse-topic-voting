@@ -10,3 +10,4 @@ en:
       vote:
         one: "vote"
         multiple: "votes"
+      who_voted: "voted for this"

@@ -5,3 +5,6 @@ plugins:
   feature_voting_vote_limit:
     default: 10
     client: true
+  feature_voting_show_who_voted:
+    default: true
+    client: true

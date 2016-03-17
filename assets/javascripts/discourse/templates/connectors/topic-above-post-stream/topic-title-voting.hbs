@@ -1,7 +1,11 @@
 {{#if model.can_vote}}
 <div class="voting title-voting">
 	<div class="voting-wrapper">
-		<div class="vote-count">{{model.vote_count}}</div>
+		{{#if siteSettings.feature_voting_show_who_voted}}
+			<a href {{action "showWhoVoted"}} class="vote-count">{{model.vote_count}}</a>
+		{{else}}
+			<div class="vote-count">{{model.vote_count}}</div>
+		{{/if}}
 		<div class="vote-label">
 			{{#if model.single_vote}}
 				{{i18n 'feature_voting.vote.one'}}
@@ -24,6 +28,11 @@
 				{{/if}}
 			{{/if}}
 		{{/if}}
+	{{/if}}
+	{{#if siteSettings.feature_voting_show_who_voted}}
+		{{#popup-menu visible=whoVotedVisible hide="hideWhoVoted" title="feature_voting.vote_title_plural" extraClasses="who-voted-popup-menu"}}
+			<li>{{mount-widget widget="who-voted" args=model}}</li>
+		{{/popup-menu}}
 	{{/if}}
 </div>
 {{/if}}
