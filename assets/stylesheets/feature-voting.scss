@@ -22,6 +22,7 @@
 }
 .title-voting{
 	padding-top:14px;
+    position: relative;
 }
 .vote-button{
 	background-color: $tertiary;
@@ -48,4 +49,19 @@
         line-height: 20px;
         cursor: pointer;
     }
+}
+.who-voted-popup-menu {
+    position: absolute !important;
+    left: 90px !important;
+    top: 45px !important;
+
+    h3 {
+        display: none;
+    }
+    ul{
+        margin: 0px;
+    }
+}
+.who-voted .trigger-user-card img {
+    margin: 2px 0px;
 }
