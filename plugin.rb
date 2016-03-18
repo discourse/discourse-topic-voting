@@ -19,15 +19,11 @@ after_initialize do
     attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :who_voted
 
     def can_vote
-      return object.topic.category.respond_to?(:custom_fields) ? !!object.topic.category.custom_fields["enable_topic_voting"] : false
+      object.topic.category.respond_to?(:custom_fields) ? !!object.topic.category.custom_fields["enable_topic_voting"] : false
     end
 
     def single_vote
-      if object.topic.vote_count.to_i == 1
-        return true
-      else
-        return false
-      end
+      object.topic.vote_count.to_i == 1
     end
 
     def vote_count
@@ -35,11 +31,7 @@ after_initialize do
     end
 
     def has_votes
-      if object.topic.vote_count.to_i > 0
-        return true
-      else
-        return false
-      end
+      object.topic.vote_count.to_i > 0
     end
 
     def user_voted
@@ -118,11 +110,7 @@ after_initialize do
       end
 
       def vote_limit
-        if self.vote_count >= SiteSetting.feature_voting_vote_limit
-          return true
-        else
-          return false
-        end
+        self.vote_count >= SiteSetting.feature_voting_vote_limit
       end
   end
 
@@ -140,7 +128,7 @@ after_initialize do
   class ::Topic
 
     def can_vote
-      return self.category.respond_to?(:custom_fields) ? !!self.category.custom_fields["enable_topic_voting"] : false
+      self.category.respond_to?(:custom_fields) ? !!self.category.custom_fields["enable_topic_voting"] : false
     end
 
     def vote_count
@@ -159,8 +147,7 @@ after_initialize do
     end
 
     def who_voted
-      user_ids = UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
-      return user_ids
+      UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
     end
 
   end
