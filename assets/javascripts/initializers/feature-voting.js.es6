@@ -70,7 +70,12 @@ function  startVoting(api){
     getWhoVoted() {
       const { attrs, state } = this;
       var users = attrs.who_voted;
-      return state.whoVotedUsers = users.map(whoVotedAvatars);
+      if (users.length){
+        return state.whoVotedUsers = users.map(whoVotedAvatars);
+      }
+      else{
+        return state.whoVotedUsers = [];
+      }
     }
   });
 }

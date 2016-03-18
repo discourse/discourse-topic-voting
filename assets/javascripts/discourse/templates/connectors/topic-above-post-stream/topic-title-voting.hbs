@@ -2,7 +2,11 @@
 <div class="voting title-voting">
 	<div class="voting-wrapper">
 		{{#if siteSettings.feature_voting_show_who_voted}}
-			<a href {{action "showWhoVoted"}} class="vote-count">{{model.vote_count}}</a>
+			{{#if model.has_votes}}
+				<a href {{action "showWhoVoted"}} class="vote-count">{{model.vote_count}}</a>
+			{{else}}
+				<div class="vote-count">{{model.vote_count}}</div>
+			{{/if}}	
 		{{else}}
 			<div class="vote-count">{{model.vote_count}}</div>
 		{{/if}}

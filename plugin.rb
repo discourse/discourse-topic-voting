@@ -16,10 +16,10 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :user_voted, :who_voted
+    attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :who_voted
 
     def can_vote
-      return object.topic.category.custom_fields["enable_topic_voting"]
+      return object.topic.category.respond_to?(:custom_fields) ? !!object.topic.category.custom_fields["enable_topic_voting"] : false
     end
 
     def single_vote
@@ -32,6 +32,14 @@ after_initialize do
 
     def vote_count
       object.topic.vote_count
+    end
+
+    def has_votes
+      if object.topic.vote_count.to_i > 0
+        return true
+      else
+        return false
+      end
     end
 
     def user_voted
