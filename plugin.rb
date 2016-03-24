@@ -19,7 +19,7 @@ after_initialize do
     attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :who_voted
 
     def can_vote
-      object.topic.category.respond_to?(:custom_fields) ? !!object.topic.category.custom_fields["enable_topic_voting"] : false
+      object.topic.can_vote
     end
 
     def single_vote
@@ -128,7 +128,7 @@ after_initialize do
   class ::Topic
 
     def can_vote
-      self.category.respond_to?(:custom_fields) ? !!self.category.custom_fields["enable_topic_voting"] : false
+      self.category.respond_to?(:custom_fields) and SiteSetting.feature_voting_enabled and self.category.custom_fields["enable_topic_voting"].eql?("true")
     end
 
     def vote_count
