@@ -1,0 +1,13 @@
+zh_CN:
+  js:
+    feature_voting:
+      allow_topic_voting: "允许用户在此分类中为主帖点推荐"
+      vote_title: "推荐"
+      vote_title_plural: "推荐"
+      unvote_title: "取消"
+      voting_closed_title: "已结束推荐"
+      voting_limit: "次数限制"
+      vote:
+        one: "推荐"
+        multiple: "推荐"
+      who_voted: "已推荐"
