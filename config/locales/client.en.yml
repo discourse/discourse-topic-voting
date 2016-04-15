@@ -4,7 +4,7 @@ en:
       allow_topic_voting: "Allow users to vote on topics in this category"
       vote_title: "Vote"
       vote_title_plural: "Votes"
-      unvote_title: "Unvote"
+      voted_title: "Voted"
       voting_closed_title: "Closed"
       voting_limit: "Limit"
       vote:

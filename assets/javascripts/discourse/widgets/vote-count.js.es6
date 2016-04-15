@@ -9,7 +9,7 @@ export default createWidget('vote-count', {
   },
 
   defaultState() {
-    return { voteCount: 0 };
+    return { voteCount: 0, whoVotedUsers: [] };
   },
 
   html(attrs, state){

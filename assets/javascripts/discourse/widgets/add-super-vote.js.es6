@@ -8,15 +8,11 @@ export default createWidget('add-super-vote', {
     return 'vote-option';
   },
 
-  defaultState(attrs) {
-    return {  };
-  },
-
   html(attrs, state){
-    return "Hello World"
+    return "Add super vote"
   },
 
   click(){
-    this.sendWidgetAction('');
+    this.sendWidgetAction('upgradeVote');
   }
 });

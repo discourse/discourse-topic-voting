@@ -13,10 +13,10 @@ export default createWidget('remove-super-vote', {
   },
 
   html(attrs, state){
-    return "Hello World"
+    return "Remove super vote"
   },
 
   click(){
-    this.sendWidgetAction('');
+    this.sendWidgetAction('downgradeVote');
   }
 });

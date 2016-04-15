@@ -16,7 +16,7 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :who_voted
+    attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :user_super_voted, :who_voted, :who_super_voted
 
     def can_vote
       object.topic.can_vote
@@ -44,9 +44,27 @@ after_initialize do
       end
     end
 
+    def user_super_voted
+      user = scope.user
+      if user && user.custom_fields["super_votes"]
+          user_super_votes = user.custom_fields["super_votes"]
+          return user_super_votes.include? object.topic.id.to_s
+      else
+        return false
+      end
+    end
+
     def who_voted
       users = []
       User.where(id: object.topic.who_voted).each do |user|
+        users.push(UserSerializer.new(user, scope: scope, root: 'user'))
+      end
+      return users
+    end
+
+    def who_super_voted
+      users = []
+      User.where(id: object.topic.who_super_voted).each do |user|
         users.push(UserSerializer.new(user, scope: scope, root: 'user'))
       end
       return users
@@ -93,9 +111,26 @@ after_initialize do
         end
       end
 
+      def super_vote_count
+        if self.custom_fields["super_votes"]
+          user_super_votes = self.custom_fields["super_votes"]
+          return user_super_votes.length - 1
+        else 
+          return 0
+        end
+      end
+
       def votes
         if self.custom_fields["votes"]
           return self.custom_fields["votes"]
+        else
+          return [nil]
+        end
+      end
+
+      def super_votes
+        if self.custom_fields["super_votes"]
+          return self.custom_fields["super_votes"]
         else
           return [nil]
         end
@@ -109,17 +144,33 @@ after_initialize do
         end
       end
 
+      def super_votes_archive
+        if self.custom_fields["super_votes_archive"]
+          return self.custom_fields["super_votes_archive"]
+        else
+          return [nil]
+        end
+      end
+
       def vote_limit
         self.vote_count >= SiteSetting.feature_voting_vote_limit
+      end
+
+      def super_vote_limit
+        self.super_vote_count >= SiteSetting.feature_voting_super_vote_limit
       end
   end
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :vote_limit
+    attributes :vote_limit, :super_vote_limit
 
     def vote_limit
       object.vote_limit
+    end
+
+    def super_vote_limit
+      object.super_vote_limit
     end
 
    end
@@ -148,6 +199,10 @@ after_initialize do
 
     def who_voted
       UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
+    end
+
+    def who_super_voted
+      UserCustomField.where(name: "super_votes", value: self.id).pluck(:user_id)
     end
 
   end
