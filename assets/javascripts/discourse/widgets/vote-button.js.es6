@@ -5,43 +5,37 @@ export default createWidget('vote-button', {
   tagName: 'div.vote-button',
 
   buildClasses(attrs, state) {
-    if (Discourse.SiteSettings.feature_voting_show_who_voted) { return 'show-pointer'; }
-  },
-
-  defaultState(attrs) {
-    return { 
-    	userVoted: attrs.user_voted, 
-    	superVote: false, 
-    	votingClosed: attrs.closed, 
-    	buttonTitle: I18n.t('feature_voting.vote_title')
-    };
+  	var buttonClass = "";
+  	if (this.attrs.closed){
+      buttonClass = "voting-closed unvote";
+    }
+    else{
+      if (this.attrs.user_voted){
+        buttonClass = "unvote";
+      }
+      else{
+        if (this.currentUser.vote_limit){
+          buttonClass = "vote-limited unvote";
+        }
+        else{
+          buttonClass = "vote";
+        }
+      }
+    }
+    if (Discourse.SiteSettings.feature_voting_show_who_voted) { return buttonClass + ' show-pointer'; }
   },
 
   html(attrs, state){
-  	this.refreshButtonTitle();
-    return state.buttonTitle;
-  },
-
-  click(){
-  	$(".vote-options").toggle();
-  },
-
-  clickOutside(){
-  	$(".vote-options").hide();
-  },
-
-  refreshButtonTitle(){
-  	const currentUser = this.container.lookup('current-user:main');
-    var buttonTitle = I18n.t('feature_voting.vote_title');
-		if (this.state.votingClosed){
+  	var buttonTitle = I18n.t('feature_voting.vote_title');
+		if (this.attrs.closed){
       buttonTitle = I18n.t('feature_voting.voting_closed_title');
     }
     else{
-      if (this.state.userVoted){
+      if (this.attrs.user_voted){
         buttonTitle = I18n.t('feature_voting.unvote_title');
       }
       else{
-        if (currentUser.vote_limit){
+        if (this.currentUser.vote_limit){
           buttonTitle = I18n.t('feature_voting.voting_limit');
         }
         else{
@@ -49,6 +43,25 @@ export default createWidget('vote-button', {
         }
       }
     }
-    this.state.buttonTitle = buttonTitle;
+    return buttonTitle;
+  },
+
+  click(){
+  	if (!this.attrs.closed && this.parentWidget.state.allowClick){
+  		this.parentWidget.state.allowClick = false;
+      if (this.attrs.user_voted){
+        this.sendWidgetAction('removeVote');
+      }
+      else{
+        if (!this.currentUser.vote_limit){
+		  		this.sendWidgetAction('addVote');
+        }
+      }
+    }
+	  $(".vote-options").toggle();
+  },
+
+  clickOutside(){
+  	$(".vote-options").hide();
   }
 });

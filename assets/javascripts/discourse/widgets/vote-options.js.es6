@@ -13,8 +13,12 @@ export default createWidget('vote-options', {
   },
 
   html(attrs, state){
-    console.log(this);
-    return "Hello World"
+    var addVote = this.attach('add-vote', attrs);
+    var removeVote = this.attach('remove-vote', attrs);
+    var addSuperVote = this.attach('add-super-vote', attrs);
+    var removeSuperVote = this.attach('remove-super-vote', attrs);
+    var upgradeVote = this.attach('upgrade-vote', attrs);
+    return [addVote, removeVote, addSuperVote, removeSuperVote, upgradeVote];
   },
 
   click(){

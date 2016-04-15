@@ -9,7 +9,7 @@ export default createWidget('vote-box', {
   },
 
   defaultState() {
-    return { whoVotedUsers: [] };
+    return { whoVotedUsers: [], allowClick: true };
   },
 
   html(attrs, state){
@@ -19,14 +19,52 @@ export default createWidget('vote-box', {
       listClassName: 'popup-menu',
       addSelf: attrs
     });
-    return [voteCount, voteButton, voteOptions];
+    return [voteCount, voteButton];
   },
 
-  vote(){
-    this.state.voteCount++;
+  addVote(attrs){
+    var topic = this.attrs;
+    var state = this.state;
+    return Discourse.ajax("/voting/vote", {
+      type: 'POST',
+      data: {
+        topic_id: topic.id,
+        user_id: Discourse.User.current().id
+      }
+    }).then(function(result) {
+      topic.set('vote_count', result.vote_count);
+      topic.set('user_voted', true);
+      Discourse.User.current().set('vote_limit', result.vote_limit);
+      state.allowClick = true;
+    }).catch(function(error) {
+      console.log(error);
+    });
   },
 
-  unvote(){
-    this.state.voteCount--;
+  removeVote(attrs){
+    var topic = this.attrs;
+    var state = this.state;
+    return Discourse.ajax("/voting/unvote", {
+      type: 'POST',
+      data: {
+        topic_id: topic.id,
+        user_id: Discourse.User.current().id
+      }
+    }).then(function(result) {
+      topic.set('vote_count', result.vote_count);
+      topic.set('user_voted', false);
+      Discourse.User.current().set('vote_limit', result.vote_limit);
+      state.allowClick = true;
+    }).catch(function(error) {
+      console.log(error);
+    });
+  },
+
+  addSuperVote(){
+
+  },
+
+  removeSuperVote(){
+
   }
 });

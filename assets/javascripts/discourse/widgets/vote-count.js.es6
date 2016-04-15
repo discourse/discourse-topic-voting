@@ -13,8 +13,7 @@ export default createWidget('vote-count', {
   },
 
   html(attrs, state){
-    state.voteCount = attrs.vote_count;
-    var voteCount = h('div.vote-count', state.voteCount);
+    var voteCount = h('div.vote-count', attrs.vote_count.toString());
     if (attrs.single_vote){
       var voteDescription = I18n.t('feature_voting.vote.one');
     }
