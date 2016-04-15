@@ -1,20 +1,5 @@
 {{#if model.can_vote}}
 <div class="voting title-voting">
 	{{mount-widget widget="vote-box" args=model}}
-	{{#if currentUser}}
-		{{#if model.closed}}
-			<div class="vote-button voting-closed unvote">{{i18n 'feature_voting.voting_closed_title'}}</div>
-		{{else}}
-			{{#if model.user_voted}}
-				<a href {{action "unvote"}} class="vote-button unvote">{{i18n 'feature_voting.unvote_title'}}</a>
-			{{else}}
-				{{#if currentUser.vote_limit}}
-					<div class="vote-button vote-limited unvote">{{i18n 'feature_voting.voting_limit'}}</div>
-				{{else}}
-					<a href {{action "vote"}} class="vote-button vote">{{i18n 'feature_voting.vote_title'}}</a>
-				{{/if}}
-			{{/if}}
-		{{/if}}
-	{{/if}}
 </div>
 {{/if}}
