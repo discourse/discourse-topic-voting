@@ -58,14 +58,20 @@
 }
 .who-voted.popup-menu {
     position: absolute !important;
-    left: 90px !important;
-    top: 45px !important;
+    left: 80px !important;
+    top: 14px !important;
+    z-index: 990;
+    cursor: initial;
 
     h3 {
         display: none;
     }
     ul{
         margin: 0px;
+    }
+    a {
+        margin: 0.25em 0.25em 0.25em 0;
+        display: inline-block;
     }
 }
 .who-voted .trigger-user-card img {

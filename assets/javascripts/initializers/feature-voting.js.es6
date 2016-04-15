@@ -43,18 +43,6 @@ function  startVoting(api){
     }
   })
 
-  TopicController.reopen({
-    actions: {
-      showWhoVoted() {
-        this.model.set('whoVotedVisible', true);
-      },
-
-      hideWhoVoted() {
-        this.model.set('whoVotedVisible', false);
-      }
-    }
-  })
-
   api.createWidget('vote-box', {
     tagName: 'div.voting-wrapper',
 
@@ -89,7 +77,7 @@ function  startVoting(api){
     click(attrs){
       if (Discourse.SiteSettings.feature_voting_show_who_voted) {
         this.getWhoVoted();
-        $(".who-voted").show();
+        $(".who-voted").toggle();
       }
     },
     clickOutside(){
@@ -112,16 +100,9 @@ function  startVoting(api){
     return { template: user.user.avatar_template,
              username: user.user.username,
              post_url: user.user.post_url,
-             url: Discourse.getURL('/users/') + user.user.username_lower };
+             url: Discourse.getURL('/users/') + user.user.username.toLowerCase() };
   }
 
-}
-
-function whoVotedAvatars(user) {
-  return { template: user.user.avatar_template,
-           username: user.user.username,
-           post_url: user.user.post_url,
-           url: Discourse.getURL('/users/') + user.user.username_lower };
 }
 
 export default {
