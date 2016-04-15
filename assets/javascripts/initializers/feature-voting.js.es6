@@ -58,6 +58,10 @@ function  startVoting(api){
   api.createWidget('vote-box', {
     tagName: 'div.voting-wrapper',
 
+    buildClasses(attrs, state) {
+      if (Discourse.SiteSettings.feature_voting_show_who_voted) { return 'show-pointer'; }
+    },
+
     defaultState() {
       return { whoVotedUsers: [] };
     },
@@ -71,17 +75,22 @@ function  startVoting(api){
         var voteDescription = I18n.t('feature_voting.vote.multiple');
       }
       var voteLabel = h('div.vote-label', voteDescription);
-      const whoVoted = this.attach('small-user-list', {
+      var whoVoted = this.attach('small-user-list', {
         users: state.whoVotedUsers,
         addSelf: attrs.liked,
         listClassName: 'who-voted popup-menu hidden',
         description: 'feature_voting.who_voted'
       })
+      if (!Discourse.SiteSettings.feature_voting_show_who_voted) {
+        whoVoted = [];
+      }
       return [voteCount, voteLabel, whoVoted];
     },
     click(attrs){
-      this.getWhoVoted();
-      $(".who-voted").show();
+      if (Discourse.SiteSettings.feature_voting_show_who_voted) {
+        this.getWhoVoted();
+        $(".who-voted").show();
+      }
     },
     clickOutside(){
       $(".who-voted").hide();
