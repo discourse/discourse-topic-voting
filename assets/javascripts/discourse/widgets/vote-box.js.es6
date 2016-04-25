@@ -9,7 +9,7 @@ export default createWidget('vote-box', {
   },
 
   defaultState() {
-    return { whoVotedUsers: [], allowClick: true, initialVote: false };
+    return { allowClick: true, initialVote: false };
   },
 
   html(attrs, state){
@@ -32,6 +32,7 @@ export default createWidget('vote-box', {
       topic.set('vote_count', result.vote_count);
       topic.set('user_voted', true);
       Discourse.User.current().set('vote_limit', result.vote_limit);
+      topic.set('who_voted', result.who_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);
@@ -49,10 +50,16 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      if (result.super_vote_count == 0){
+        topic.set('has_super_votes', false);
+      }
       topic.set('user_voted', false);
       topic.set('user_super_voted', false);
       Discourse.User.current().set('vote_limit', result.vote_limit);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_voted', result.who_voted);
+      topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);
@@ -70,8 +77,11 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      topic.set('has_super_votes', true);
       topic.set('user_super_voted', true);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);
@@ -89,8 +99,13 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      if (result.super_vote_count == 0){
+        topic.set('has_super_votes', false);
+      }
       topic.set('user_super_voted', false);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);

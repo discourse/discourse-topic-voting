@@ -10,6 +10,10 @@ en:
       vote:
         one: "vote"
         multiple: "votes"
+      super_vote:
+        one: "super vote"
+        multiple: "super votes"
       who_voted: "voted for this"
+      who_super_voted: "super voted for this"
       upgrade_question: "Would you like to make that a Super Vote?"
       upgrade_answer: "Yes!"

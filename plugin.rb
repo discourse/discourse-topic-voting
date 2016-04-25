@@ -16,7 +16,7 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :user_super_voted, :who_voted, :who_super_voted
+    attributes :can_vote, :single_vote, :vote_count, :has_votes, :super_vote_count, :has_super_votes, :user_voted, :user_super_voted, :who_voted, :who_super_voted
 
     def can_vote
       object.topic.can_vote
@@ -26,12 +26,24 @@ after_initialize do
       object.topic.vote_count.to_i == 1
     end
 
+    def single_super_vote
+      object.topic.super_vote_count.to_i == 1
+    end
+
     def vote_count
       object.topic.vote_count
     end
 
     def has_votes
       object.topic.vote_count.to_i > 0
+    end
+
+    def super_vote_count
+      object.topic.super_vote_count
+    end
+
+    def has_super_votes
+      object.topic.super_vote_count.to_i > 0
     end
 
     def user_voted
@@ -185,6 +197,10 @@ after_initialize do
         end
         return 0
       end
+    end
+
+    def super_vote_count
+      UserCustomField.where(name: "super_votes", value: self.id).count
     end
 
     def who_voted
