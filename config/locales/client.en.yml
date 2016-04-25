@@ -11,3 +11,5 @@ en:
         one: "vote"
         multiple: "votes"
       who_voted: "voted for this"
+      upgrade_question: "Would you like to make that a Super Vote?"
+      upgrade_answer: "Yes!"

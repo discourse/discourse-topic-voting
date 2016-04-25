@@ -6,14 +6,14 @@ export default createWidget('vote-button', {
 
   buildClasses(attrs, state) {
   	var buttonClass = "";
-  	if (this.attrs.closed){
+  	if (attrs.closed){
       buttonClass = "voting-closed nonvote";
     }
     else{
-      if (this.attrs.user_voted && !this.attrs.user_super_voted){
+      if (attrs.user_voted && !attrs.user_super_voted){
         buttonClass = "nonvote";
       }
-      else if(this.attrs.user_voted && this.attrs.user_super_voted){
+      else if(attrs.user_voted && attrs.user_super_voted){
       	buttonClass = "nonvote supervote";
       }
       else{
@@ -30,11 +30,11 @@ export default createWidget('vote-button', {
 
   html(attrs, state){
   	var buttonTitle = I18n.t('feature_voting.vote_title');
-		if (this.attrs.closed){
+		if (attrs.closed){
       buttonTitle = I18n.t('feature_voting.voting_closed_title');
     }
     else{
-      if (this.attrs.user_voted){
+      if (attrs.user_voted){
         buttonTitle = I18n.t('feature_voting.voted_title');
       }
       else{
@@ -55,7 +55,12 @@ export default createWidget('vote-button', {
     	this.parentWidget.state.initialVote = true;
   		this.sendWidgetAction('addVote');
     }
-	  $(".vote-options").toggle();
+    if (this.parentWidget.state.initialVote && this.currentUser.super_vote_limit) {
+      this.parentWidget.state.initialVote = false;
+    }
+    else {
+      $(".vote-options").toggle();
+    }
   },
 
   clickOutside(){

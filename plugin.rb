@@ -35,23 +35,11 @@ after_initialize do
     end
 
     def user_voted
-      user = scope.user
-      if user && user.custom_fields["votes"]
-          user_votes = user.custom_fields["votes"]
-          return user_votes.include? object.topic.id.to_s
-      else
-        return false
-      end
+      object.topic.user_voted(scope.user.id)
     end
 
     def user_super_voted
-      user = scope.user
-      if user && user.custom_fields["super_votes"]
-          user_super_votes = user.custom_fields["super_votes"]
-          return user_super_votes.include? object.topic.id.to_s
-      else
-        return false
-      end
+      object.topic.user_super_voted(scope.user.id)
     end
 
     def who_voted
@@ -73,6 +61,8 @@ after_initialize do
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
+  add_to_serializer(:topic_list_item, :user_voted) { object.user_voted(scope.user.id) }
+  add_to_serializer(:topic_list_item, :user_super_voted) { object.user_super_voted(scope.user.id) }
 
   class ::Category
       after_save :reset_voting_cache
@@ -205,6 +195,25 @@ after_initialize do
       UserCustomField.where(name: "super_votes", value: self.id).pluck(:user_id)
     end
 
+    def user_voted(user_id)
+      user = User.find(user_id)
+      if user && user.custom_fields["votes"]
+          user_votes = user.custom_fields["votes"]
+          return user_votes.include? self.id.to_s
+      else
+        return false
+      end
+    end
+
+    def user_super_voted(user_id)
+      user = User.find(user_id)
+      if user && user.custom_fields["super_votes"]
+          user_super_votes = user.custom_fields["super_votes"]
+          return user_super_votes.include? self.id.to_s
+      else
+        return false
+      end
+    end
   end
 
   require_dependency 'list_controller'

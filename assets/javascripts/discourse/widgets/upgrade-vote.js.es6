@@ -9,7 +9,9 @@ export default createWidget('upgrade-vote', {
   },
 
   html(attrs, state){
-    return "Would you like to make that a <em>super vote</em>?<br>Yes!"
+    var upgradeQuestion = h('div.upgrade-question', I18n.t('feature_voting.upgrade_question'));
+    var upgradeAnswer = h('div.upgrade-answer', [h('i.fa.fa-star', ""), I18n.t('feature_voting.upgrade_answer')]);
+    return [upgradeQuestion, upgradeAnswer];
   },
 
   click(){

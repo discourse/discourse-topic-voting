@@ -10,11 +10,11 @@ export default createWidget('vote-options', {
 
   html(attrs, state){
     var contents = [];
-    if (this.parentWidget.state.initialVote){
+    if (this.parentWidget.state.initialVote && !this.currentUser.super_vote_limit){
       contents.push(this.attach('upgrade-vote', attrs));
     }
     else{
-      if (attrs.user_voted && !attrs.user_super_voted){
+      if (attrs.user_voted && !attrs.user_super_voted && !this.currentUser.super_vote_limit){
         contents.push(this.attach('add-super-vote', attrs));
       }
       if (attrs.user_voted && attrs.user_super_voted){
