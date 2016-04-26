@@ -11,3 +11,6 @@ plugins:
   feature_voting_show_who_voted:
     default: true
     client: true
+  feature_voting_show_votes_on_profile:
+    default: true
+    client: true

@@ -243,6 +243,9 @@ after_initialize do
   require_dependency 'list_controller'
   class ::ListController
     def voted_by
+      unless SiteSetting.feature_voting_show_votes_on_profile
+        render nothing: true, status: 404
+      end
       list_opts = build_topic_list_options
       target_user = fetch_user_from_params(include_inactive: current_user.try(:staff?))
       list = generate_list_for("voted_by", target_user, list_opts)
