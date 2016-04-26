@@ -8,15 +8,19 @@ export default createWidget('add-super-vote', {
     return 'vote-option';
   },
 
-  defaultState(attrs) {
-    return {  };
-  },
-
   html(attrs, state){
-    return "Hello World"
+    var user = this.currentUser;
+    var superVotesRemaining = user.super_vote_count - user.super_vote_limit;
+    if (superVotesRemaining == 1){
+      var superVoteDescription = I18n.t("feature_voting.super_votes_remaining.singular");
+    }
+    else{
+      var superVoteDescription = I18n.t("feature_voting.super_votes_remaining.plural", {number: superVotesRemaining});
+    }
+    return ["Add super vote", h("div.vote-option-description", superVoteDescription)];
   },
 
   click(){
-    this.sendWidgetAction('');
+    this.sendWidgetAction('upgradeVote');
   }
 });

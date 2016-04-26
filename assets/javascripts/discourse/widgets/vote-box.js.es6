@@ -9,20 +9,17 @@ export default createWidget('vote-box', {
   },
 
   defaultState() {
-    return { whoVotedUsers: [], allowClick: true };
+    return { allowClick: true, initialVote: false };
   },
 
   html(attrs, state){
     var voteCount = this.attach('vote-count', attrs);
     var voteButton = this.attach('vote-button', attrs);
-    var voteOptions = this.attach('vote-options', {
-      listClassName: 'popup-menu',
-      addSelf: attrs
-    });
-    return [voteCount, voteButton];
+    var voteOptions = this.attach('vote-options', attrs);
+    return [voteCount, voteButton, voteOptions];
   },
 
-  addVote(attrs){
+  addVote(){
     var topic = this.attrs;
     var state = this.state;
     return Discourse.ajax("/voting/vote", {
@@ -33,15 +30,17 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('has_votes', true);
       topic.set('user_voted', true);
       Discourse.User.current().set('vote_limit', result.vote_limit);
+      topic.set('who_voted', result.who_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);
     });
   },
 
-  removeVote(attrs){
+  removeVote(){
     var topic = this.attrs;
     var state = this.state;
     return Discourse.ajax("/voting/unvote", {
@@ -52,19 +51,68 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      if (result.vote_count == 0){
+        topic.set('has_votes', false);
+      }
+      if (result.super_vote_count == 0){
+        topic.set('has_super_votes', false);
+      }
       topic.set('user_voted', false);
+      topic.set('user_super_voted', false);
       Discourse.User.current().set('vote_limit', result.vote_limit);
+      Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_voted', result.who_voted);
+      topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
       console.log(error);
     });
   },
 
-  addSuperVote(){
-
+  upgradeVote(){
+    var topic = this.attrs;
+    var state = this.state;
+    return Discourse.ajax("/voting/upgrade", {
+      type: 'POST',
+      data: {
+        topic_id: topic.id,
+        user_id: Discourse.User.current().id
+      }
+    }).then(function(result) {
+      topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      topic.set('has_super_votes', true);
+      topic.set('user_super_voted', true);
+      Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_super_voted', result.who_super_voted);
+      state.allowClick = true;
+    }).catch(function(error) {
+      console.log(error);
+    });
   },
 
-  removeSuperVote(){
-
+  downgradeVote(){
+    var topic = this.attrs;
+    var state = this.state;
+    return Discourse.ajax("/voting/downgrade", {
+      type: 'POST',
+      data: {
+        topic_id: topic.id,
+        user_id: Discourse.User.current().id
+      }
+    }).then(function(result) {
+      topic.set('vote_count', result.vote_count);
+      topic.set('super_vote_count', result.super_vote_count);
+      if (result.super_vote_count == 0){
+        topic.set('has_super_votes', false);
+      }
+      topic.set('user_super_voted', false);
+      Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      topic.set('who_super_voted', result.who_super_voted);
+      state.allowClick = true;
+    }).catch(function(error) {
+      console.log(error);
+    });
   }
 });

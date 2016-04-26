@@ -5,7 +5,7 @@
     margin: 0px 20px 0px 0px;
     max-width: 10%;
 }
-.vote-count-wrapper{
+.vote-count-wrapper, .header-voting .voting-wrapper{
     border: 3px solid #e9e9e9;
 }
 .voting-wrapper.show-pointer .vote-count-wrapper{
@@ -13,6 +13,10 @@
 }
 .voting-wrapper.show-pointer .vote-count-wrapper:hover{
     background-color:#e9e9e9;
+}
+.vote-count-wrapper.no-votes:hover {
+    background-color: initial !important;
+    cursor: initial;
 }
 .vote-count{
 	height:20px;
@@ -31,16 +35,55 @@
     position: relative;
 }
 .vote-button{
-	background-color: $tertiary;
+	background-color: #e9e9e9;
 	display: block;
     margin-top: 5px;
     padding: 2px 0px;
-    color: #ffffff !important;
+    color: #222222 !important;
     cursor: pointer;
 }
-.vote-button.unvote {
-    color: #222222 !important;
+.vote-button.nonvote {
+    color: #ffffff !important;
+    background-color: $tertiary;
+}
+.vote-button.supervote:before{
+    content: $fa-var-star;
+    font-family: FontAwesome;
+    margin-right: 5px;
+    color: $highlight;
+}
+.vote-options{
+    text-align: left;
+}
+.vote-option{
+    cursor:pointer;
+    padding: 5px;
+}
+.vote-option:hover{
     background-color: #e9e9e9;
+}
+.vote-option.add-super-vote:before{
+    content: $fa-var-star;
+    font-family: FontAwesome;
+    margin-right: 5px;
+    color: $highlight;
+}
+.vote-option.remove-vote:before{
+    content: $fa-var-close;
+    font-family: FontAwesome;
+    margin-right: 6px;
+    margin-left: 1px;
+    color: $danger;
+}
+.vote-option.remove-super-vote:before{
+    content: $fa-var-star-half-o;
+    font-family: FontAwesome;
+    margin-right: 5px;
+    color: $highlight;
+}
+.vote-option-description{
+    font-size: 0.8em;
+    margin-left: 18px;
 }
 .list-vote-count{
 	font-size: 0.75em;
@@ -78,4 +121,22 @@
 }
 .who-voted .trigger-user-card img {
     margin: 2px 0px;
+}
+.upgrade-vote{
+    text-align: center;
+}
+.upgrade-vote .vote-option-description{
+    margin-left: 0px;
+}
+.upgrade-answer{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.upgrade-answer i{
+    margin: 0px 5px 0px 0px;
+}
+.super-vote-count{
+    border-bottom: 1px solid #e9e9e9;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
 }

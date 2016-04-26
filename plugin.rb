@@ -1,6 +1,6 @@
 # name: discourse-feature-voting
 # about: Adds the ability to vote on features in a specified category.
-# version: 0.1
+# version: 0.2
 # author: Joe Buhlig joebuhlig.com
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
@@ -16,7 +16,7 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :has_votes, :user_voted, :who_voted
+    attributes :can_vote, :single_vote, :vote_count, :has_votes, :super_vote_count, :has_super_votes, :user_voted, :user_super_voted, :who_voted, :who_super_voted
 
     def can_vote
       object.topic.can_vote
@@ -24,6 +24,10 @@ after_initialize do
 
     def single_vote
       object.topic.vote_count.to_i == 1
+    end
+
+    def single_super_vote
+      object.topic.super_vote_count.to_i == 1
     end
 
     def vote_count
@@ -34,14 +38,20 @@ after_initialize do
       object.topic.vote_count.to_i > 0
     end
 
+    def super_vote_count
+      object.topic.super_vote_count
+    end
+
+    def has_super_votes
+      object.topic.super_vote_count.to_i > 0
+    end
+
     def user_voted
-      user = scope.user
-      if user && user.custom_fields["votes"]
-          user_votes = user.custom_fields["votes"]
-          return user_votes.include? object.topic.id.to_s
-      else
-        return false
-      end
+      object.topic.user_voted(scope.user.id)
+    end
+
+    def user_super_voted
+      object.topic.user_super_voted(scope.user.id)
     end
 
     def who_voted
@@ -51,10 +61,20 @@ after_initialize do
       end
       return users
     end
+
+    def who_super_voted
+      users = []
+      User.where(id: object.topic.who_super_voted).each do |user|
+        users.push(UserSerializer.new(user, scope: scope, root: 'user'))
+      end
+      return users
+    end
   end
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
+  add_to_serializer(:topic_list_item, :user_voted) { object.user_voted(scope.user.id) }
+  add_to_serializer(:topic_list_item, :user_super_voted) { object.user_super_voted(scope.user.id) }
 
   class ::Category
       after_save :reset_voting_cache
@@ -93,9 +113,26 @@ after_initialize do
         end
       end
 
+      def super_vote_count
+        if self.custom_fields["super_votes"]
+          user_super_votes = self.custom_fields["super_votes"]
+          return user_super_votes.length - 1
+        else 
+          return 0
+        end
+      end
+
       def votes
         if self.custom_fields["votes"]
           return self.custom_fields["votes"]
+        else
+          return [nil]
+        end
+      end
+
+      def super_votes
+        if self.custom_fields["super_votes"]
+          return self.custom_fields["super_votes"]
         else
           return [nil]
         end
@@ -109,17 +146,41 @@ after_initialize do
         end
       end
 
+      def super_votes_archive
+        if self.custom_fields["super_votes_archive"]
+          return self.custom_fields["super_votes_archive"]
+        else
+          return [nil]
+        end
+      end
+
       def vote_limit
         self.vote_count >= SiteSetting.feature_voting_vote_limit
+      end
+
+      def super_vote_limit
+        self.super_vote_count >= SiteSetting.feature_voting_super_vote_limit
       end
   end
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :vote_limit
+    attributes :vote_limit, :super_vote_limit, :vote_count, :super_vote_count
 
     def vote_limit
       object.vote_limit
+    end
+
+    def super_vote_limit
+      object.super_vote_limit
+    end
+
+    def vote_count
+      object.vote_count
+    end
+
+    def super_vote_count
+      object.super_vote_count
     end
 
    end
@@ -146,15 +207,45 @@ after_initialize do
       end
     end
 
+    def super_vote_count
+      UserCustomField.where(name: "super_votes", value: self.id).count
+    end
+
     def who_voted
       UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
     end
 
+    def who_super_voted
+      UserCustomField.where(name: "super_votes", value: self.id).pluck(:user_id)
+    end
+
+    def user_voted(user_id)
+      user = User.find(user_id)
+      if user && user.custom_fields["votes"]
+          user_votes = user.custom_fields["votes"]
+          return user_votes.include? self.id.to_s
+      else
+        return false
+      end
+    end
+
+    def user_super_voted(user_id)
+      user = User.find(user_id)
+      if user && user.custom_fields["super_votes"]
+          user_super_votes = user.custom_fields["super_votes"]
+          return user_super_votes.include? self.id.to_s
+      else
+        return false
+      end
+    end
   end
 
   require_dependency 'list_controller'
   class ::ListController
     def voted_by
+      unless SiteSetting.feature_voting_show_votes_on_profile
+        render nothing: true, status: 404
+      end
       list_opts = build_topic_list_options
       target_user = fetch_user_from_params(include_inactive: current_user.try(:staff?))
       list = generate_list_for("voted_by", target_user, list_opts)
