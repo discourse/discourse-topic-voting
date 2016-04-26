@@ -1,6 +1,6 @@
 # name: discourse-feature-voting
 # about: Adds the ability to vote on features in a specified category.
-# version: 0.1
+# version: 0.2
 # author: Joe Buhlig joebuhlig.com
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
@@ -165,7 +165,7 @@ after_initialize do
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :vote_limit, :super_vote_limit
+    attributes :vote_limit, :super_vote_limit, :vote_count, :super_vote_count
 
     def vote_limit
       object.vote_limit
@@ -173,6 +173,14 @@ after_initialize do
 
     def super_vote_limit
       object.super_vote_limit
+    end
+
+    def vote_count
+      object.vote_count
+    end
+
+    def super_vote_count
+      object.super_vote_count
     end
 
    end

@@ -25,7 +25,10 @@ export default createWidget('vote-button', {
         }
       }
     }
-    if (Discourse.SiteSettings.feature_voting_show_who_voted) { return buttonClass + ' show-pointer'; }
+    if (Discourse.SiteSettings.feature_voting_show_who_voted) { 
+      buttonClass += ' show-pointer';
+    }
+    return buttonClass
   },
 
   html(attrs, state){

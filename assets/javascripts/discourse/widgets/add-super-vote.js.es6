@@ -9,7 +9,15 @@ export default createWidget('add-super-vote', {
   },
 
   html(attrs, state){
-    return "Add super vote"
+    var user = this.currentUser;
+    var superVotesRemaining = user.super_vote_count - user.super_vote_limit;
+    if (superVotesRemaining == 1){
+      var superVoteDescription = I18n.t("feature_voting.super_votes_remaining.singular");
+    }
+    else{
+      var superVoteDescription = I18n.t("feature_voting.super_votes_remaining.plural", {number: superVotesRemaining});
+    }
+    return ["Add super vote", h("div.vote-option-description", superVoteDescription)];
   },
 
   click(){

@@ -30,6 +30,7 @@ export default createWidget('vote-box', {
       }
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
+      topic.set('has_votes', true);
       topic.set('user_voted', true);
       Discourse.User.current().set('vote_limit', result.vote_limit);
       topic.set('who_voted', result.who_voted);
@@ -51,6 +52,9 @@ export default createWidget('vote-box', {
     }).then(function(result) {
       topic.set('vote_count', result.vote_count);
       topic.set('super_vote_count', result.super_vote_count);
+      if (result.vote_count == 0){
+        topic.set('has_votes', false);
+      }
       if (result.super_vote_count == 0){
         topic.set('has_super_votes', false);
       }

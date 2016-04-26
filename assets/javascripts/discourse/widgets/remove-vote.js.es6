@@ -13,7 +13,7 @@ export default createWidget('remove-vote', {
   },
 
   html(attrs, state){
-    return "Remove vote"
+    return ["Remove vote", h("div.vote-option-description", I18n.t("feature_voting.remove_vote_warning"))]
   },
 
   click(){

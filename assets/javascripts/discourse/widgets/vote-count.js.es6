@@ -5,7 +5,7 @@ export default createWidget('vote-count', {
   tagName: 'div.vote-count-wrapper',
 
   buildClasses(attrs, state) {
-    if (!attrs.has_votes){
+    if (!this.attrs.has_votes){
       return "no-votes";
     }
   },
@@ -15,9 +15,6 @@ export default createWidget('vote-count', {
   },
 
   html(attrs, state){
-    if (!attrs.has_votes){
-      return
-    }
     var voteCount = h('div.vote-count', attrs.vote_count.toString());
     if (attrs.single_vote){
       var voteDescription = I18n.t('feature_voting.vote.one');
@@ -35,21 +32,16 @@ export default createWidget('vote-count', {
         description: 'feature_voting.who_voted'
       })
     }
-    if (attrs.single_super_vote){
-      var superVoteDescription = I18n.t('feature_voting.vote.one');
-    }
-    else {
-      var superVoteDescription = I18n.t('feature_voting.vote.multiple');
-    }
     var superVoteCount = [];
     var whoSuperVoted = [];
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && attrs.has_super_votes) {
-      if (attrs.single_super_vote){
-        var superVoteDescription = I18n.t('feature_voting.vote.one');
+    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.has_super_votes) {
+      if (this.attrs.single_super_vote){
+        var superVoteDescription = I18n.t('feature_voting.super_vote.one');
       }
       else {
-        var superVoteDescription = I18n.t('feature_voting.vote.multiple');
+        var superVoteDescription = I18n.t('feature_voting.super_vote.multiple');
       }
+      superVoteDescription = " " + superVoteDescription;
       superVoteCount = h('div.super-vote-count', [attrs.super_vote_count.toString(), superVoteDescription]);
       var whoSuperVoted = [];
       whoSuperVoted = this.attach('small-user-list', {
