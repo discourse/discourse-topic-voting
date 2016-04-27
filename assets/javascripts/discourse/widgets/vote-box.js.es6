@@ -3,6 +3,7 @@ import { h } from 'virtual-dom';
 
 export default createWidget('vote-box', {
   tagName: 'div.voting-wrapper',
+  buildKey: () => 'vote-box',
 
   buildClasses(attrs, state) {
     if (Discourse.SiteSettings.feature_voting_show_who_voted) { return 'show-pointer'; }

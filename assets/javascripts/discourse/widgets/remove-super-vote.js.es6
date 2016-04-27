@@ -8,10 +8,6 @@ export default createWidget('remove-super-vote', {
     return 'vote-option';
   },
 
-  defaultState(attrs) {
-    return {  };
-  },
-
   html(attrs, state){
     var user = this.currentUser;
     var superVotesRemaining = user.super_vote_count - user.super_vote_limit;

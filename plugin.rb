@@ -5,7 +5,6 @@
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
 register_asset "stylesheets/feature-voting.scss"
-register_asset "javascripts/feature-voting.js"
 
 enabled_site_setting :feature_voting_enabled
 
@@ -155,11 +154,11 @@ after_initialize do
       end
 
       def vote_limit
-        self.vote_count >= SiteSetting.feature_voting_vote_limit
+        self.vote_count >= SiteSetting.send("feature_voting_tl#{self.trust_level}_vote_limit")
       end
 
       def super_vote_limit
-        self.super_vote_count >= SiteSetting.feature_voting_super_vote_limit
+        self.super_vote_count >= SiteSetting.send("feature_voting_tl#{self.trust_level}_super_vote_limit")
       end
   end
 
