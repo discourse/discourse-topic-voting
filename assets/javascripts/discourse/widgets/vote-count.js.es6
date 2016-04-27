@@ -3,6 +3,7 @@ import { h } from 'virtual-dom';
 
 export default createWidget('vote-count', {
   tagName: 'div.vote-count-wrapper',
+  buildKey: () => 'vote-count',
 
   buildClasses(attrs, state) {
     if (!this.attrs.has_votes){

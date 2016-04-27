@@ -8,10 +8,6 @@ export default createWidget('remove-vote', {
     return 'vote-option';
   },
 
-  defaultState(attrs) {
-    return {  };
-  },
-
   html(attrs, state){
     return ["Remove vote", h("div.vote-option-description", I18n.t("feature_voting.remove_vote_warning"))]
   },
