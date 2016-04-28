@@ -35,7 +35,7 @@ export default createWidget('vote-count', {
     }
     var superVoteCount = [];
     var whoSuperVoted = [];
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.has_super_votes) {
+    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.has_super_votes && this.siteSettings.feature_voting_allow_super_voting) {
       if (this.attrs.single_super_vote){
         var superVoteDescription = I18n.t('feature_voting.super_vote.one');
       }
@@ -76,7 +76,7 @@ export default createWidget('vote-count', {
       this.state.whoVotedUsers = [];
     }
 
-    if (superUsers.length){
+    if (superUsers.length && this.siteSettings.feature_voting_allow_super_voting){
       this.state.whoSuperVotedUsers = superUsers.map(whoVotedAvatars);
     }
     else{

@@ -38,3 +38,6 @@ plugins:
   feature_voting_show_votes_on_profile:
     default: true
     client: true
+  feature_voting_allow_super_voting:
+    default: true
+    client: true

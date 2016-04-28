@@ -9,7 +9,11 @@ export default createWidget('remove-vote', {
   },
 
   html(attrs, state){
-    return ["Remove vote", h("div.vote-option-description", I18n.t("feature_voting.remove_vote_warning"))]
+    var voteDescription = []
+    if (this.siteSettings.feature_voting_allow_super_voting){
+      voteDescription = h("div.vote-option-description", I18n.t("feature_voting.remove_vote_warning"));
+    }
+    return ["Remove vote", voteDescription];
   },
 
   click(){

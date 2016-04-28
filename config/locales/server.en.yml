@@ -13,3 +13,4 @@ en:
     feature_voting_tl4_super_vote_limit: 'How many active super votes are TL4 users allowed?'
     feature_voting_show_who_voted: 'Allow users to see who voted?'
     feature_voting_show_votes_on_profile: 'Allow users to see their votes in their activity feed?'
+    feature_voting_allow_super_voting: 'Allow users to use super votes?'

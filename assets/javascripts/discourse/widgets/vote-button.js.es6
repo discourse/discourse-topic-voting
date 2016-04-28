@@ -13,7 +13,7 @@ export default createWidget('vote-button', {
       if (attrs.user_voted && !attrs.user_super_voted){
         buttonClass = "nonvote";
       }
-      else if(attrs.user_voted && attrs.user_super_voted){
+      else if(attrs.user_voted && attrs.user_super_voted && this.siteSettings.feature_voting_allow_super_voting){
       	buttonClass = "nonvote supervote";
       }
       else{
@@ -58,7 +58,7 @@ export default createWidget('vote-button', {
     	this.parentWidget.state.initialVote = true;
   		this.sendWidgetAction('addVote');
     }
-    if (this.parentWidget.state.initialVote && this.currentUser.super_vote_limit) {
+    if ((this.parentWidget.state.initialVote && this.currentUser.super_vote_limit) || (this.parentWidget.state.initialVote && !this.siteSettings.feature_voting_allow_super_voting)){
       this.parentWidget.state.initialVote = false;
     }
     else {
