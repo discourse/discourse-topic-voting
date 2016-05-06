@@ -72,8 +72,8 @@ after_initialize do
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
-  add_to_serializer(:topic_list_item, :user_voted) { object.user_voted(options[:scope].user.id) }
-  add_to_serializer(:topic_list_item, :user_super_voted) { object.user_super_voted(options[:scope].user.id) }
+  # add_to_serializer(:topic_list_item, :user_voted) { object.user_voted(options[:scope].user.id) }
+  # add_to_serializer(:topic_list_item, :user_super_voted) { object.user_super_voted(options[:scope].user.id) }
 
   class ::Category
       after_save :reset_voting_cache
