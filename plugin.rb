@@ -46,11 +46,11 @@ after_initialize do
     end
 
     def user_voted
-      object.topic.user_voted(object.topic_user.user_id)
+      object.topic.user_voted(scope.user.id)
     end
 
     def user_super_voted
-      object.topic.user_super_voted(object.topic_user.user_id)
+      object.topic.user_super_voted(scope.user.id)
     end
 
     def who_voted
@@ -72,8 +72,16 @@ after_initialize do
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
-  # add_to_serializer(:topic_list_item, :user_voted) { object.user_voted(options[:scope].user.id) }
-  # add_to_serializer(:topic_list_item, :user_super_voted) { object.user_super_voted(options[:scope].user.id) }
+  add_to_serializer(:topic_list_item, :user_voted) { 
+    if scope.user
+      object.user_voted(scope.user.id)
+    end
+  }
+  add_to_serializer(:topic_list_item, :user_super_voted) {
+    if scope.user
+      object.user_super_voted(scope.user.id)
+    end
+  }
 
   class ::Category
       after_save :reset_voting_cache
