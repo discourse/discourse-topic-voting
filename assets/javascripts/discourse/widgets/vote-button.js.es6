@@ -1,5 +1,6 @@
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
+import showModal from 'discourse/lib/show-modal';
 
 export default createWidget('vote-button', {
   tagName: 'div.vote-button',
@@ -17,7 +18,7 @@ export default createWidget('vote-button', {
       	buttonClass = "nonvote supervote";
       }
       else{
-        if (this.currentUser.vote_limit){
+        if (this.currentUser && this.currentUser.vote_limit){
           buttonClass = "vote-limited nonvote";
         }
         else{
@@ -33,19 +34,24 @@ export default createWidget('vote-button', {
 
   html(attrs, state){
   	var buttonTitle = I18n.t('feature_voting.vote_title');
-		if (attrs.closed){
-      buttonTitle = I18n.t('feature_voting.voting_closed_title');
+    if (!this.currentUser){
+      buttonTitle = I18n.t('log_in');
     }
     else{
-      if (attrs.user_voted){
-        buttonTitle = I18n.t('feature_voting.voted_title');
+  		if (attrs.closed){
+        buttonTitle = I18n.t('feature_voting.voting_closed_title');
       }
       else{
-        if (this.currentUser.vote_limit){
-          buttonTitle = I18n.t('feature_voting.voting_limit');
+        if (attrs.user_voted){
+          buttonTitle = I18n.t('feature_voting.voted_title');
         }
         else{
-          buttonTitle = I18n.t('feature_voting.vote_title');
+          if (this.currentUser && this.currentUser.vote_limit){
+            buttonTitle = I18n.t('feature_voting.voting_limit');
+          }
+          else{
+            buttonTitle = I18n.t('feature_voting.vote_title');
+          }
         }
       }
     }
@@ -53,6 +59,9 @@ export default createWidget('vote-button', {
   },
 
   click(){
+    if (!this.currentUser){
+      showModal('login');
+    }
   	if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted && !this.currentUser.vote_limit){
     	this.parentWidget.state.allowClick = false;
     	this.parentWidget.state.initialVote = true;

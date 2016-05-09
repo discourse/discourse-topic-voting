@@ -46,11 +46,19 @@ after_initialize do
     end
 
     def user_voted
-      object.topic.user_voted(scope.user.id)
+      if scope.user and scope.user.id
+        return object.topic.user_voted(scope.user.id)
+      else
+        return false
+      end
     end
 
     def user_super_voted
-      object.topic.user_super_voted(scope.user.id)
+      if scope.user and scope.user.id
+        object.topic.user_super_voted(scope.user.id)
+      else
+        return false
+      end
     end
 
     def who_voted
@@ -73,12 +81,12 @@ after_initialize do
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
   add_to_serializer(:topic_list_item, :user_voted) { 
-    if scope.user
+    if scope.user and scope.user.id
       object.user_voted(scope.user.id)
     end
   }
   add_to_serializer(:topic_list_item, :user_super_voted) {
-    if scope.user
+    if scope.user and scope.user.id
       object.user_super_voted(scope.user.id)
     end
   }
