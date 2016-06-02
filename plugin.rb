@@ -46,18 +46,18 @@ after_initialize do
     end
 
     def user_voted
-      if scope.user and scope.user.id
-        return object.topic.user_voted(scope.user.id)
+      if scope.user
+        object.topic.user_voted(scope.user)
       else
-        return false
+        false
       end
     end
 
     def user_super_voted
-      if scope.user and scope.user.id
-        object.topic.user_super_voted(scope.user.id)
+      if scope.user
+        object.topic.user_super_voted(scope.user)
       else
-        return false
+        false
       end
     end
 
@@ -80,15 +80,13 @@ after_initialize do
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
+
   add_to_serializer(:topic_list_item, :user_voted) {
-    if scope.user and scope.user.id
-      object.user_voted(scope.user.id)
-    end
+    object.user_voted(scope.user) if scope.user
   }
+
   add_to_serializer(:topic_list_item, :user_super_voted) {
-    if scope.user and scope.user.id
-      object.user_super_voted(scope.user.id)
-    end
+    object.user_super_voted(scope.user) if scope.user
   }
 
   class ::Category
@@ -122,26 +120,26 @@ after_initialize do
       def vote_count
         if self.custom_fields["votes"]
           user_votes = self.custom_fields["votes"]
-          return user_votes.length - 1
+          user_votes.length - 1
         else
-          return 0
+          0
         end
       end
 
       def super_vote_count
         if self.custom_fields["super_votes"]
           user_super_votes = self.custom_fields["super_votes"]
-          return user_super_votes.length - 1
+          user_super_votes.length - 1
         else
-          return 0
+          0
         end
       end
 
       def votes
         if self.custom_fields["votes"]
-          return self.custom_fields["votes"]
+          self.custom_fields["votes"]
         else
-          return [nil]
+          [nil]
         end
       end
 
@@ -227,23 +225,19 @@ after_initialize do
       UserCustomField.where(name: "super_votes", value: self.id).pluck(:user_id)
     end
 
-    def user_voted(user_id)
-      user = User.find(user_id)
+    def user_voted(user)
       if user && user.custom_fields["votes"]
-          user_votes = user.custom_fields["votes"]
-          return user_votes.include? self.id.to_s
+        user.custom_fields["votes"].include? self.id.to_s
       else
-        return false
+        false
       end
     end
 
-    def user_super_voted(user_id)
-      user = User.find(user_id)
+    def user_super_voted(user)
       if user && user.custom_fields["super_votes"]
-          user_super_votes = user.custom_fields["super_votes"]
-          return user_super_votes.include? self.id.to_s
+        user.custom_fields["super_votes"].include? self.id.to_s
       else
-        return false
+        false
       end
     end
   end
