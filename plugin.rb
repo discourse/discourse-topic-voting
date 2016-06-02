@@ -80,7 +80,7 @@ after_initialize do
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
   add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
-  add_to_serializer(:topic_list_item, :user_voted) { 
+  add_to_serializer(:topic_list_item, :user_voted) {
     if scope.user and scope.user.id
       object.user_voted(scope.user.id)
     end
@@ -123,7 +123,7 @@ after_initialize do
         if self.custom_fields["votes"]
           user_votes = self.custom_fields["votes"]
           return user_votes.length - 1
-        else 
+        else
           return 0
         end
       end
@@ -132,7 +132,7 @@ after_initialize do
         if self.custom_fields["super_votes"]
           user_super_votes = self.custom_fields["super_votes"]
           return user_super_votes.length - 1
-        else 
+        else
           return 0
         end
       end
@@ -209,16 +209,9 @@ after_initialize do
 
     def vote_count
       if self.custom_fields["vote_count"]
-        return self.custom_fields["vote_count"]
+        self.custom_fields["vote_count"]
       else
-        if self.can_vote
-          Set.new(
-            TopicCustomField
-              .where(name: "vote_count", value: 0)
-              .pluck(:topic_id)
-          )
-        end
-        return 0
+        0 if self.can_vote
       end
     end
 
@@ -283,7 +276,7 @@ after_initialize do
 
   require_dependency "jobs/base"
   module ::Jobs
-    
+
     class VoteRelease < Jobs::Base
       def execute(args)
         if topic = Topic.find_by(id: args[:topic_id])
