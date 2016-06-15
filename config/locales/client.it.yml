@@ -1,0 +1,23 @@
+it:
+  js:
+    feature_voting:
+      allow_topic_voting: "Consenti agli utenti di votare argomenti in questa categoria"
+      vote_title: "Vota"
+      vote_title_plural: "Voti"
+      voted_title: "Votato"
+      voting_closed_title: "Chiuso"
+      voting_limit: "Limite"
+      vote:
+        one: "voto"
+        multiple: "voti"
+      super_vote:
+        one: "super voto"
+        multiple: "super voti"
+      super_votes_remaining: 
+        singular: "Ti rimane un super voto."
+        plural: "Ti rimangono {{number}} super voti."
+      remove_vote_warning: "Rimuove anche il super voto."
+      who_voted: "hanno votato"
+      who_super_voted: "hanno super votato"
+      upgrade_question: "Ti piacerebbe dare un Super Voto?"
+      upgrade_answer: "Si!"
