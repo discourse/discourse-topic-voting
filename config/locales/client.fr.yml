@@ -1,0 +1,23 @@
+en:
+  js:
+    feature_voting:
+      allow_topic_voting: "Autoriser les utilisateurs à voter dans cette catégorie"
+      vote_title: "Vote"
+      vote_title_plural: "Votes"
+      voted_title: "Voté"
+      voting_closed_title: "Fermé"
+      voting_limit: "Limite"
+      vote:
+        one: "vote"
+        multiple: "votes"
+      super_vote:
+        one: "super vote"
+        multiple: "super votes"
+      super_votes_remaining: 
+        singular: "Il vous reste un super vote"
+        plural: "Il vous reste {{number}} super votes."
+      remove_vote_warning: "Supprimera aussi les super votes."
+      who_voted: "a voté."
+      who_super_voted: "a super voté"
+      upgrade_question: "Voulez vous en faire un Super Vote?"
+      upgrade_answer: "Oui !"
