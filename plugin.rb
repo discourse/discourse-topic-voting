@@ -11,6 +11,11 @@ enabled_site_setting :feature_voting_enabled
 # load the engine
 load File.expand_path('../lib/discourse_feature_voting/engine.rb', __FILE__)
 
+Discourse.top_menu_items.push(:votes)
+Discourse.anonymous_top_menu_items.push(:votes)
+Discourse.filters.push(:votes)
+Discourse.anonymous_filters.push(:votes)
+
 after_initialize do
 
   require_dependency 'topic_view_serializer'
@@ -266,6 +271,10 @@ after_initialize do
         topics.where(id: user.custom_fields["votes"])
       end
     end
+
+    def list_votes
+        topics = create_list(:votes, {order: "votes"})
+      end
   end
 
   require_dependency "jobs/base"

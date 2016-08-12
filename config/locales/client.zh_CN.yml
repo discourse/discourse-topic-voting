@@ -11,3 +11,6 @@ zh_CN:
         one: "推荐"
         multiple: "推荐"
       who_voted: "已推荐"
+    filters:
+      votes:
+        title: "推荐"

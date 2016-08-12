@@ -21,3 +21,6 @@ it:
       who_super_voted: "hanno super votato"
       upgrade_question: "Ti piacerebbe dare un Super Voto?"
       upgrade_answer: "Si!"
+    filters:
+      votes:
+        title: "Voti"

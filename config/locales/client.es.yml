@@ -10,3 +10,6 @@ es:
       vote:
         one: "voto"
         multiple: "votos"
+    filters:
+      votes:
+        title: "Votos"
