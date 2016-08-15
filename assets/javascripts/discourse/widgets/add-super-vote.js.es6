@@ -10,7 +10,7 @@ export default createWidget('add-super-vote', {
 
   html(attrs, state){
     var user = this.currentUser;
-    var superVotesRemaining = user.super_vote_count - user.super_vote_limit;
+    var superVotesRemaining = user.super_votes_remaining;
     if (superVotesRemaining == 1){
       var superVoteDescription = I18n.t("feature_voting.super_votes_remaining.singular");
     }

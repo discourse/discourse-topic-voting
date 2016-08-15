@@ -10,7 +10,7 @@ export default createWidget('remove-vote', {
 
   html(attrs, state){
     var voteDescription = []
-    if (this.siteSettings.feature_voting_allow_super_voting){
+    if (this.siteSettings.feature_voting_allow_super_voting && attrs.user_super_voted) {
       voteDescription = h("div.vote-option-description", I18n.t("feature_voting.remove_vote_warning"));
     }
     return ["Remove vote", voteDescription];

@@ -172,6 +172,10 @@ after_initialize do
         end
       end
 
+      def super_votes_remaining
+        [0, SiteSetting.send("feature_voting_tl#{self.trust_level}_super_vote_limit") - self.super_vote_count].max
+      end
+
       def vote_limit
         self.vote_count >= SiteSetting.send("feature_voting_tl#{self.trust_level}_vote_limit")
       end
@@ -183,7 +187,7 @@ after_initialize do
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :vote_limit, :super_vote_limit, :vote_count, :super_vote_count
+    attributes :vote_limit, :super_vote_limit, :vote_count, :super_vote_count, :super_votes_remaining
 
     def vote_limit
       object.vote_limit
@@ -191,6 +195,10 @@ after_initialize do
 
     def super_vote_limit
       object.super_vote_limit
+    end
+
+    def super_votes_remaining
+      object.super_votes_remaining
     end
 
     def vote_count

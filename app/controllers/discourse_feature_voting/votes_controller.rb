@@ -16,6 +16,7 @@ module DiscourseFeatureVoting
 			obj = {
 				vote_limit: user.vote_limit, 
 				super_vote_limit: user.super_vote_limit, 
+				super_votes_remaining: user.super_votes_remaining,
 				vote_count: topic.custom_fields["vote_count"].to_i,
 				super_vote_count: topic.super_vote_count,
 				who_voted: who_voted(topic),
@@ -41,6 +42,7 @@ module DiscourseFeatureVoting
 			obj = {
 				vote_limit: user.vote_limit, 
 				super_vote_limit: user.super_vote_limit, 
+				super_votes_remaining: user.super_votes_remaining,
 				vote_count: topic.custom_fields["vote_count"].to_i,
 				super_vote_count: topic.super_vote_count,
 				who_voted: who_voted(topic),
@@ -60,6 +62,7 @@ module DiscourseFeatureVoting
 			obj = {
 				vote_limit: user.vote_limit, 
 				super_vote_limit: user.super_vote_limit, 
+				super_votes_remaining: user.super_votes_remaining,
 				vote_count: topic.custom_fields["vote_count"].to_i,
 				super_vote_count: topic.super_vote_count,
 				who_voted: who_voted(topic),
@@ -79,6 +82,7 @@ module DiscourseFeatureVoting
 			obj = {
 				vote_limit: user.vote_limit, 
 				super_vote_limit: user.super_vote_limit, 
+				super_votes_remaining: user.super_votes_remaining,
 				vote_count: topic.custom_fields["vote_count"].to_i,
 				super_vote_count: topic.super_vote_count,
 				who_voted: who_voted(topic),
