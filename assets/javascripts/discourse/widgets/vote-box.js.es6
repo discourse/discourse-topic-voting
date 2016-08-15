@@ -34,6 +34,7 @@ export default createWidget('vote-box', {
       topic.set('has_votes', true);
       topic.set('user_voted', true);
       Discourse.User.current().set('vote_limit', result.vote_limit);
+      Discourse.User.current().set('super_votes_remaining', result.super_votes_remaining);
       topic.set('who_voted', result.who_voted);
       state.allowClick = true;
     }).catch(function(error) {
@@ -63,6 +64,7 @@ export default createWidget('vote-box', {
       topic.set('user_super_voted', false);
       Discourse.User.current().set('vote_limit', result.vote_limit);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      Discourse.User.current().set('super_votes_remaining', result.super_votes_remaining);
       topic.set('who_voted', result.who_voted);
       topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
@@ -86,6 +88,7 @@ export default createWidget('vote-box', {
       topic.set('has_super_votes', true);
       topic.set('user_super_voted', true);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      Discourse.User.current().set('super_votes_remaining', result.super_votes_remaining);
       topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
@@ -110,6 +113,7 @@ export default createWidget('vote-box', {
       }
       topic.set('user_super_voted', false);
       Discourse.User.current().set('super_vote_limit', result.super_vote_limit);
+      Discourse.User.current().set('super_votes_remaining', result.super_votes_remaining);
       topic.set('who_super_voted', result.who_super_voted);
       state.allowClick = true;
     }).catch(function(error) {
