@@ -1,0 +1,26 @@
+en:
+  js:
+    feature_voting:
+      allow_topic_voting: "Sta gebruikers toe om te stemmen op onderwerpen in deze categorie"
+      vote_title: "Stem"
+      vote_title_plural: "Stemmen"
+      voted_title: "Gestemd"
+      voting_closed_title: "Gesloten"
+      voting_limit: "Limiet"
+      vote:
+        one: "stem"
+        multiple: "stemmen"
+      super_vote:
+        one: "super stem"
+        multiple: "super stemmen"
+      super_votes_remaining: 
+        singular: "U hebt nog een super stem over."
+        plural: "U hebt {{number}} super stemmen over ."
+      remove_vote_warning: "Ook de super stemmen verwijderen."
+      who_voted: "op dit gestemd"
+      who_super_voted: "heeft een super stem op dit uitgebracht"
+      upgrade_question: "Wilt u hiervan een Super Stem maken?"
+      upgrade_answer: "Ja!"
+    filters:
+      votes:
+        title: "Stemmen"
