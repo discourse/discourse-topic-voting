@@ -86,8 +86,8 @@ export default createWidget('vote-count', {
 });
 
 function whoVotedAvatars(user) {
-  return { template: user.user.avatar_template,
-           username: user.user.username,
-           post_url: user.user.post_url,
-           url: Discourse.getURL('/users/') + user.user.username.toLowerCase() };
+  return { template: user.avatar_template,
+           username: user.username,
+           post_url: user.post_url,
+           url: Discourse.getURL('/users/') + user.username.toLowerCase() };
 }

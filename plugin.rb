@@ -67,19 +67,13 @@ after_initialize do
     end
 
     def who_voted
-      users = []
-      User.where(id: object.topic.who_voted).each do |user|
-        users.push(UserSerializer.new(user, scope: scope, root: 'user'))
-      end
-      return users
+      users = User.find(UserCustomField.where(name: "votes", value: object.topic.id).pluck(:user_id))
+      ActiveModel::ArraySerializer.new(users, scope: scope, each_serializer: UserSerializer)
     end
 
     def who_super_voted
-      users = []
-      User.where(id: object.topic.who_super_voted).each do |user|
-        users.push(UserSerializer.new(user, scope: scope, root: 'user'))
-      end
-      return users
+      users = User.find(UserCustomField.where(name: "votes", value: object.topic.id).pluck(:user_id))
+      ActiveModel::ArraySerializer.new(users, scope: scope, each_serializer: UserSerializer)
     end
   end
 

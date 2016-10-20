@@ -93,19 +93,13 @@ module DiscourseFeatureVoting
 		end
 
 		def who_voted(topic)
-			users = []
-			User.where(id: topic.who_voted).each do |user|
-				users.push(UserSerializer.new(user, scope: guardian, root: 'user'))
-			end
-			return users
+			users = User.find(UserCustomField.where(name: "votes", value: topic.id).pluck(:user_id))
+			ActiveModel::ArraySerializer.new(users, scope: Guardian.new(User.find_by(id: params["user_id"])), each_serializer: UserSerializer)
 		end
 
 		def who_super_voted(topic)
-			users = []
-			User.where(id: topic.who_voted).each do |user|
-				users.push(UserSerializer.new(user, scope: guardian, root: 'user'))
-			end
-			return users
+			users = User.find(UserCustomField.where(name: "super_votes", value: topic.id).pluck(:user_id))
+			ActiveModel::ArraySerializer.new(users, scope: Guardian.new(User.find_by(id: params["user_id"])), each_serializer: UserSerializer)
 		end
 	end
 end
