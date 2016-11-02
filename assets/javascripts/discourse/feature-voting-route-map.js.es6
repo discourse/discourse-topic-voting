@@ -2,7 +2,7 @@ export default {
 	resource: 'user',
 	path: 'users/:username',
 	map() {
-		this.resource('userActivity', {path: 'activity'}, function(){
+		this.route('userActivity', {path: 'activity', resetNamespace: true}, function(){
 			this.route('votes')
 		})
 	}
