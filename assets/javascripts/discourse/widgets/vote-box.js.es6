@@ -1,5 +1,6 @@
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
+import { ajax } from 'discourse/lib/ajax';
 
 export default createWidget('vote-box', {
   tagName: 'div.voting-wrapper',
@@ -23,7 +24,7 @@ export default createWidget('vote-box', {
   addVote(){
     var topic = this.attrs;
     var state = this.state;
-    return Discourse.ajax("/voting/vote", {
+    return ajax("/voting/vote", {
       type: 'POST',
       data: {
         topic_id: topic.id,
@@ -45,7 +46,7 @@ export default createWidget('vote-box', {
   removeVote(){
     var topic = this.attrs;
     var state = this.state;
-    return Discourse.ajax("/voting/unvote", {
+    return ajax("/voting/unvote", {
       type: 'POST',
       data: {
         topic_id: topic.id,
@@ -76,7 +77,7 @@ export default createWidget('vote-box', {
   upgradeVote(){
     var topic = this.attrs;
     var state = this.state;
-    return Discourse.ajax("/voting/upgrade", {
+    return ajax("/voting/upgrade", {
       type: 'POST',
       data: {
         topic_id: topic.id,
@@ -99,7 +100,7 @@ export default createWidget('vote-box', {
   downgradeVote(){
     var topic = this.attrs;
     var state = this.state;
-    return Discourse.ajax("/voting/downgrade", {
+    return ajax("/voting/downgrade", {
       type: 'POST',
       data: {
         topic_id: topic.id,
