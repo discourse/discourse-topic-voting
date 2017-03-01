@@ -72,7 +72,7 @@ after_initialize do
     end
 
     def who_super_voted
-      users = User.find(UserCustomField.where(name: "votes", value: object.topic.id).pluck(:user_id))
+      users = User.find(UserCustomField.where(name: "super_votes", value: object.topic.id).pluck(:user_id))
       ActiveModel::ArraySerializer.new(users, scope: scope, each_serializer: UserSerializer)
     end
   end
@@ -89,30 +89,35 @@ after_initialize do
   }
 
   class ::Category
+      def self.reset_voting_cache
+        @allowed_voting_cache["allowed"] =
+          begin
+            Set.new(
+              CategoryCustomField
+                .where(name: "enable_topic_voting", value: "true")
+                .pluck(:category_id)
+            )
+          end
+      end
+
+      @allowed_voting_cache = DistributedCache.new("allowed_voting")
+
+      def self.can_vote?(category_id)
+        unless set = @allowed_voting_cache["allowed"]
+          set = reset_voting_cache
+        end
+        set.include?(category_id)
+      end
+
+
       after_save :reset_voting_cache
+
 
       protected
       def reset_voting_cache
-        ::Guardian.reset_voting_cache
+        ::Category.reset_voting_cache
       end
   end
-
-  class ::Guardian
-
-    @@allowed_voting_cache = DistributedCache.new("allowed_voting")
-
-    def self.reset_voting_cache
-      @@allowed_voting_cache["allowed"] =
-        begin
-          Set.new(
-            CategoryCustomField
-              .where(name: "enable_topic_voting", value: "true")
-              .pluck(:category_id)
-          )
-        end
-    end
-  end
-
 
   require_dependency 'user'
   class ::User
@@ -203,13 +208,13 @@ after_initialize do
       object.super_vote_count
     end
 
-   end
+  end
 
   require_dependency 'topic'
   class ::Topic
 
     def can_vote
-      self.category.respond_to?(:custom_fields) and SiteSetting.feature_voting_enabled and self.category.custom_fields["enable_topic_voting"].eql?("true")
+      SiteSetting.feature_voting_enabled and Category.can_vote?(category_id)
     end
 
     def vote_count
@@ -275,8 +280,8 @@ after_initialize do
     end
 
     def list_votes
-        topics = create_list(:votes, {order: "votes"})
-      end
+      create_list(:votes, {order: "votes"})
+    end
   end
 
   require_dependency "jobs/base"
@@ -284,7 +289,7 @@ after_initialize do
 
     class VoteRelease < Jobs::Base
       def execute(args)
-        if topic = Topic.find_by(id: args[:topic_id])
+        if Topic.find_by(id: args[:topic_id])
           UserCustomField.where(name: "votes", value: args[:topic_id]).find_each do |user_field|
             user = User.find(user_field.user_id)
             user.custom_fields["votes"] = user.votes.dup - [args[:topic_id].to_s]
@@ -297,7 +302,7 @@ after_initialize do
 
     class VoteReclaim < Jobs::Base
       def execute(args)
-        if topic = Topic.find_by(id: args[:topic_id])
+        if Topic.find_by(id: args[:topic_id])
           UserCustomField.where(name: "votes_archive", value: args[:topic_id]).find_each do |user_field|
             user = User.find(user_field.user_id)
             user.custom_fields["votes"] = user.votes.dup.push(args[:topic_id])

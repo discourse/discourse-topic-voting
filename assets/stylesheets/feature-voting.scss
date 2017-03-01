@@ -88,10 +88,15 @@
 .list-vote-count{
 	font-size: 0.75em;
 }
+
+.list-vote-count-new {
+  .fa {
+    margin-right: 2px;
+  }
+}
 .user-voted-topics{
     height: 34px;
     line-height: 34px;
-    
     a {
         padding: 8px 13px;
         color: #7a7a7a;
