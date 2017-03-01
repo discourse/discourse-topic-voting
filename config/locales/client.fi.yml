@@ -23,4 +23,4 @@ fi:
       upgrade_answer: "Kyllä!"
     filters:
       votes:
-      title: "Äänet"
+        title: "Äänet"
