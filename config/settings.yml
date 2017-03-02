@@ -2,42 +2,19 @@ plugins:
   feature_voting_enabled:
     default: true
     client: true
-  feature_voting_tl0_vote_limit:
-    default: 3
-    client: true
-  feature_voting_tl1_vote_limit:
-    default: 6
-    client: true
-  feature_voting_tl2_vote_limit:
-    default: 10
-    client: true
-  feature_voting_tl3_vote_limit:
-    default: 20
-    client: true
-  feature_voting_tl4_vote_limit:
-    default: 50
-    client: true
-  feature_voting_tl0_super_vote_limit:
-    default: 0
-    client: true
-  feature_voting_tl1_super_vote_limit:
-    default: 0
-    client: true
-  feature_voting_tl2_super_vote_limit:
-    default: 3
-    client: true
-  feature_voting_tl3_super_vote_limit:
-    default: 4
-    client: true
-  feature_voting_tl4_super_vote_limit:
-    default: 5
-    client: true
   feature_voting_show_who_voted:
     default: true
     client: true
   feature_voting_show_votes_on_profile:
     default: true
     client: true
-  feature_voting_allow_super_voting:
-    default: true
-    client: true
+  feature_voting_tl0_vote_limit:
+    default: 3
+  feature_voting_tl1_vote_limit:
+    default: 5
+  feature_voting_tl2_vote_limit:
+    default: 8
+  feature_voting_tl3_vote_limit:
+    default: 10
+  feature_voting_tl4_vote_limit:
+    default: 10

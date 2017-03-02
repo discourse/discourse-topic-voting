@@ -1,64 +1,48 @@
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
+import { ajax } from 'discourse/lib/ajax';
+
 
 export default createWidget('vote-count', {
   tagName: 'div.vote-count-wrapper',
   buildKey: () => 'vote-count',
 
-  buildClasses(attrs, state) {
-    if (!this.attrs.has_votes){
+  buildClasses() {
+    if (this.attrs.vote_count === 0){
       return "no-votes";
     }
   },
 
   defaultState() {
-    return { voteCount: 0, whoVotedUsers: [], whoSuperVotedUsers: [] };
+    return { whoVotedUsers: null };
   },
 
-  html(attrs, state){
-    var voteCount = h('div.vote-count', attrs.vote_count.toString());
-    if (attrs.single_vote){
-      var voteDescription = I18n.t('feature_voting.vote.one');
-    }
-    else {
-      var voteDescription = I18n.t('feature_voting.vote.multiple');
-    }
-    var voteLabel = h('div.vote-label', voteDescription);
-    var whoVoted = [];
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && attrs.has_votes) {
+  html(attrs){
+    let voteCount = h('div.vote-count', attrs.vote_count.toString());
+    let whoVoted = null;
+    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.state.whoVotedUsers && this.state.whoVotedUsers.length > 0) {
       whoVoted = this.attach('small-user-list', {
         users: this.state.whoVotedUsers,
         addSelf: attrs.liked,
         listClassName: 'regular-votes',
         description: 'feature_voting.who_voted'
-      })
+      });
     }
-    var superVoteCount = [];
-    var whoSuperVoted = [];
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.has_super_votes && this.siteSettings.feature_voting_allow_super_voting) {
-      if (this.attrs.single_super_vote){
-        var superVoteDescription = I18n.t('feature_voting.super_vote.one');
-      }
-      else {
-        var superVoteDescription = I18n.t('feature_voting.super_vote.multiple');
-      }
-      superVoteDescription = " " + superVoteDescription;
-      superVoteCount = h('div.super-vote-count', [attrs.super_vote_count.toString(), superVoteDescription]);
-      var whoSuperVoted = [];
-      whoSuperVoted = this.attach('small-user-list', {
-        users: this.state.whoSuperVotedUsers,
-        addSelf: attrs.liked,
-        listClassName: 'super-votes',
-        description: 'feature_voting.who_super_voted'
-      })
+
+    let buffer = [voteCount];
+    if (whoVoted) {
+      buffer.push(h('div.who-voted.popup-menu.voting-popup-menu', [whoVoted]));
     }
-    return [voteCount, voteLabel, h('div.who-voted.popup-menu.voting-popup-menu.hidden', [superVoteCount, whoSuperVoted, whoVoted])];
+    return buffer;
   },
 
   click(){
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.has_votes) {
-      this.getWhoVoted();
-      $(".who-voted").toggle();
+    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.vote_count > 0) {
+      if (this.state.whoVotedUsers === null) {
+        return this.getWhoVoted();
+      } else {
+        $(".who-voted").toggle();
+      }
     }
   },
 
@@ -67,21 +51,14 @@ export default createWidget('vote-count', {
   },
 
   getWhoVoted() {
-    var users = this.attrs.who_voted;
-    var superUsers = this.attrs.who_super_voted;
-    if (users.length){
+    return ajax("/voting/who", {
+      type: 'GET',
+      data: {
+        topic_id: this.attrs.id
+      }
+    }).then((users)=>{
       this.state.whoVotedUsers = users.map(whoVotedAvatars);
-    }
-    else{
-      this.state.whoVotedUsers = [];
-    }
-
-    if (superUsers.length && this.siteSettings.feature_voting_allow_super_voting){
-      this.state.whoSuperVotedUsers = superUsers.map(whoVotedAvatars);
-    }
-    else{
-      this.state.whoSuperVotedUsers = [];
-    }
+    });
   },
 });
 

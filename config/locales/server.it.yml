@@ -1,16 +1,10 @@
 it:
-  site_settings: 
+  site_settings:
     feature_voting_enabled: 'Consentire agli utenti di votare argomenti?'
     feature_voting_tl0_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL0?'
     feature_voting_tl1_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL1?'
     feature_voting_tl2_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL2?'
     feature_voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL3?'
     feature_voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL4?'
-    feature_voting_tl0_super_vote_limit: 'Quanti super voti attivi sono consentiti agli utenti a TL0?'
-    feature_voting_tl1_super_vote_limit: 'Quanti super voti attivi sono consentiti agli utenti a TL1?'
-    feature_voting_tl2_super_vote_limit: 'Quanti super voti attivi sono consentiti agli utenti a TL2?'
-    feature_voting_tl3_super_vote_limit: 'Quanti super voti attivi sono consentiti agli utenti a TL3?'
-    feature_voting_tl4_super_vote_limit: 'Quanti super voti attivi sono consentiti agli utenti a TL4?'
     feature_voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
     feature_voting_show_votes_on_profile: 'Consentire agli utenti di vedere i loro voti tra le attività del proprio profilo?'
-    feature_voting_allow_super_voting: 'Consentire agli utenti di usare i super voti?'

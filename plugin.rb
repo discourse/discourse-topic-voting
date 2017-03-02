@@ -1,15 +1,12 @@
 # name: discourse-feature-voting
 # about: Adds the ability to vote on features in a specified category.
-# version: 0.2
-# author: Joe Buhlig joebuhlig.com
+# version: 0.3
+# author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
 register_asset "stylesheets/feature-voting.scss"
 
 enabled_site_setting :feature_voting_enabled
-
-# load the engine
-load File.expand_path('../lib/discourse_feature_voting/engine.rb', __FILE__)
 
 Discourse.top_menu_items.push(:votes)
 Discourse.anonymous_top_menu_items.push(:votes)
@@ -20,34 +17,14 @@ after_initialize do
 
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :can_vote, :single_vote, :vote_count, :has_votes, :super_vote_count, :has_super_votes, :user_voted, :user_super_voted, :who_voted, :who_super_voted
+    attributes :can_vote, :vote_count, :user_voted
 
     def can_vote
-      object.topic.can_vote
-    end
-
-    def single_vote
-      object.topic.vote_count.to_i == 1
-    end
-
-    def single_super_vote
-      object.topic.super_vote_count.to_i == 1
+      object.topic.can_vote?
     end
 
     def vote_count
       object.topic.vote_count
-    end
-
-    def has_votes
-      object.topic.vote_count.to_i > 0
-    end
-
-    def super_vote_count
-      object.topic.super_vote_count
-    end
-
-    def has_super_votes
-      object.topic.super_vote_count.to_i > 0
     end
 
     def user_voted
@@ -58,34 +35,12 @@ after_initialize do
       end
     end
 
-    def user_super_voted
-      if scope.user
-        object.topic.user_super_voted(scope.user)
-      else
-        false
-      end
-    end
-
-    def who_voted
-      users = User.find(UserCustomField.where(name: "votes", value: object.topic.id).pluck(:user_id))
-      ActiveModel::ArraySerializer.new(users, scope: scope, each_serializer: UserSerializer)
-    end
-
-    def who_super_voted
-      users = User.find(UserCustomField.where(name: "super_votes", value: object.topic.id).pluck(:user_id))
-      ActiveModel::ArraySerializer.new(users, scope: scope, each_serializer: UserSerializer)
-    end
   end
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
-  add_to_serializer(:topic_list_item, :can_vote) { object.can_vote }
-
+  add_to_serializer(:topic_list_item, :can_vote) { object.can_vote? }
   add_to_serializer(:topic_list_item, :user_voted) {
     object.user_voted(scope.user) if scope.user
-  }
-
-  add_to_serializer(:topic_list_item, :user_super_voted) {
-    object.user_super_voted(scope.user) if scope.user
   }
 
   class ::Category
@@ -130,28 +85,11 @@ after_initialize do
         end
       end
 
-      def super_vote_count
-        if self.custom_fields["super_votes"]
-          user_super_votes = self.custom_fields["super_votes"]
-          user_super_votes.length - 1
-        else
-          0
-        end
-      end
-
       def votes
         if self.custom_fields["votes"]
           self.custom_fields["votes"]
         else
           [nil]
-        end
-      end
-
-      def super_votes
-        if self.custom_fields["super_votes"]
-          return self.custom_fields["super_votes"]
-        else
-          return [nil]
         end
       end
 
@@ -163,49 +101,26 @@ after_initialize do
         end
       end
 
-      def super_votes_archive
-        if self.custom_fields["super_votes_archive"]
-          return self.custom_fields["super_votes_archive"]
-        else
-          return [nil]
-        end
-      end
-
-      def super_votes_remaining
-        [0, SiteSetting.send("feature_voting_tl#{self.trust_level}_super_vote_limit") - self.super_vote_count].max
+      def reached_voting_limit?
+        vote_count >= vote_limit
       end
 
       def vote_limit
-        self.vote_count >= SiteSetting.send("feature_voting_tl#{self.trust_level}_vote_limit")
+        SiteSetting.send("feature_voting_tl#{self.trust_level}_vote_limit")
       end
 
-      def super_vote_limit
-        self.super_vote_count >= SiteSetting.send("feature_voting_tl#{self.trust_level}_super_vote_limit")
-      end
   end
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :vote_limit, :super_vote_limit, :vote_count, :super_vote_count, :super_votes_remaining
+    attributes :votes_exceeded,  :vote_count
 
-    def vote_limit
-      object.vote_limit
-    end
-
-    def super_vote_limit
-      object.super_vote_limit
-    end
-
-    def super_votes_remaining
-      object.super_votes_remaining
+    def votes_exceeded
+      object.reached_voting_limit?
     end
 
     def vote_count
       object.vote_count
-    end
-
-    def super_vote_count
-      object.super_vote_count
     end
 
   end
@@ -213,28 +128,16 @@ after_initialize do
   require_dependency 'topic'
   class ::Topic
 
-    def can_vote
+    def can_vote?
       SiteSetting.feature_voting_enabled and Category.can_vote?(category_id)
     end
 
     def vote_count
       if self.custom_fields["vote_count"]
-        self.custom_fields["vote_count"]
+        self.custom_fields["vote_count"].to_i
       else
-        0 if self.can_vote
+        0 if self.can_vote?
       end
-    end
-
-    def super_vote_count
-      UserCustomField.where(name: "super_votes", value: self.id).count
-    end
-
-    def who_voted
-      UserCustomField.where(name: "votes", value: self.id).pluck(:user_id)
-    end
-
-    def who_super_voted
-      UserCustomField.where(name: "super_votes", value: self.id).pluck(:user_id)
     end
 
     def user_voted(user)
@@ -245,13 +148,6 @@ after_initialize do
       end
     end
 
-    def user_super_voted(user)
-      if user && user.custom_fields["super_votes"]
-        user.custom_fields["super_votes"].include? self.id.to_s
-      else
-        false
-      end
-    end
   end
 
   require_dependency 'list_controller'
@@ -323,6 +219,20 @@ after_initialize do
     if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == false
       Jobs.enqueue(:vote_reclaim, {topic_id: topic_id})
     end
+  end
+
+  module ::DiscourseFeatureVoting
+    class Engine < ::Rails::Engine
+      isolate_namespace DiscourseFeatureVoting
+    end
+  end
+
+  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_feature_voting/votes_controller')
+
+  DiscourseFeatureVoting::Engine.routes.draw do
+    post 'vote' => 'votes#add'
+    post 'unvote' => 'votes#remove'
+    get 'who' => 'votes#who'
   end
 
   Discourse::Application.routes.append do

@@ -8,15 +8,16 @@ function initialize(api) {
 
     var buffer = [];
 
-    buffer.push("<span class='list-vote-count-new discourse-tag'>");
-    if (topic.user_super_voted) {
-      buffer.push("<i class='fa fa-star'></i>");
-    } else if (topic.user_voted) {
-      buffer.push("<i class='fa fa-star-o'></i>");
+    let title;
+    if (topic.user_voted) {
+      title = ` title='${I18n.t('feature_voting.voted')}'`;
     }
 
-    buffer.push(I18n.t('feature_voting.vote.multiple'));
-    buffer.push(`: <span class='vote-count-new'>${topic.vote_count}</span>`);
+    buffer.push(`<span class='list-vote-count discourse-tag'${title}>`);
+    buffer.push(I18n.t('feature_voting.votes', {count: topic.vote_count}));
+    if (topic.user_voted) {
+      buffer.push(`<i class='fa fa-star'></i>`);
+    }
     buffer.push("</span>");
 
     if (buffer.length > 0){

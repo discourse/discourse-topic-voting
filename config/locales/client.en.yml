@@ -1,26 +1,20 @@
 en:
   js:
     feature_voting:
+      voted: "You voted on this topic"
       allow_topic_voting: "Allow users to vote on topics in this category"
       vote_title: "Vote"
       vote_title_plural: "Votes"
       voted_title: "Voted"
       voting_closed_title: "Closed"
       voting_limit: "Limit"
+      votes:
+        one: "1 vote"
+        other: "{{count}} votes"
       vote:
         one: "vote"
         multiple: "votes"
-      super_vote:
-        one: "super vote"
-        multiple: "super votes"
-      super_votes_remaining: 
-        singular: "You have one super vote left."
-        plural: "You have {{number}} super votes left."
-      remove_vote_warning: "Also removes the super vote."
       who_voted: "voted for this"
-      who_super_voted: "super voted for this"
-      upgrade_question: "Would you like to make that a Super Vote?"
-      upgrade_answer: "Yes!"
     filters:
       votes:
         title: "Votes"

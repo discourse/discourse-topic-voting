@@ -10,17 +10,7 @@ it:
       vote:
         one: "voto"
         multiple: "voti"
-      super_vote:
-        one: "super voto"
-        multiple: "super voti"
-      super_votes_remaining: 
-        singular: "Ti rimane un super voto."
-        plural: "Ti rimangono {{number}} super voti."
-      remove_vote_warning: "Rimuove anche il super voto."
       who_voted: "hanno votato"
-      who_super_voted: "hanno super votato"
-      upgrade_question: "Ti piacerebbe dare un Super Voto?"
-      upgrade_answer: "Si!"
     filters:
       votes:
         title: "Voti"

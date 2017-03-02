@@ -1,5 +1,9 @@
 {{#if model.can_vote}}
-<div class="voting title-voting">
-	{{mount-widget widget="vote-box" args=model}}
-</div>
+  {{#if model.postStream.loaded}}
+    {{#if model.postStream.firstPostPresent}}
+      <div class="voting title-voting">
+        {{mount-widget widget="vote-box" args=model}}
+      </div>
+    {{/if}}
+  {{/if}}
 {{/if}}
