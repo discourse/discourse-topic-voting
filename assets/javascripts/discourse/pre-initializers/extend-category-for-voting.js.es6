@@ -3,6 +3,13 @@ import Category from 'discourse/models/category';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 
 function initialize(api) {
+
+  api.addPostClassesCallback((post) => {
+    if (post.post_number === 1 && post.can_vote) {
+      return ["voting-post"];
+    }
+  });
+  api.includePostAttributes('can_vote');
   api.addTagsHtmlCallback((topic) => {
     if (!topic.can_vote) { return; }
 
@@ -33,7 +40,7 @@ export default {
   before: 'inject-discourse-objects',
   initialize(container) {
 
-    withPluginApi('0.8.3', api => {
+    withPluginApi('0.8.4', api => {
       initialize(api, container);
     });
 

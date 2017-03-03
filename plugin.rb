@@ -15,6 +15,19 @@ Discourse.anonymous_filters.push(:votes)
 
 after_initialize do
 
+  require_dependency 'post_serializer'
+  class ::PostSerializer
+    attributes :can_vote
+
+    def include_can_vote?
+      object.post_number == 1 && object.topic && object.topic.can_vote?
+    end
+
+    def can_vote
+      true
+    end
+  end
+
   require_dependency 'topic_view_serializer'
   class ::TopicViewSerializer
     attributes :can_vote, :vote_count, :user_voted

@@ -122,3 +122,7 @@
 .upgrade-answer i{
     margin: 0px 5px 0px 0px;
 }
+
+.topic-post.voting-post {
+  button.like-count, button.toggle-like { display: none; }
+}
