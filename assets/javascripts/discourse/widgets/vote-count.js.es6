@@ -25,7 +25,6 @@ export default createWidget('vote-count', {
         users: this.state.whoVotedUsers,
         addSelf: attrs.liked,
         listClassName: 'regular-votes',
-        description: 'feature_voting.who_voted'
       });
     }
 
