@@ -13,7 +13,8 @@ function initialize(api) {
       title = ` title='${I18n.t('feature_voting.voted')}'`;
     }
 
-    buffer.push(`<span class='list-vote-count discourse-tag'${title}>`);
+    let userVotedClass = topic.user_voted ? " voted" : "";
+    buffer.push(`<span class='list-vote-count discourse-tag${userVotedClass}'${title}>`);
     buffer.push(I18n.t('feature_voting.votes', {count: topic.vote_count}));
     if (topic.user_voted) {
       buffer.push(`<i class='fa fa-star'></i>`);

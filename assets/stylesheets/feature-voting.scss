@@ -65,8 +65,12 @@
     margin-left: 18px;
 }
 
+.list-vote-count.voted {
+  font-weight: bold;
+}
 .list-vote-count {
   .fa {
+    display: none;
     margin-left: 3px;
     color: #999;
   }
