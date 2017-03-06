@@ -1,4 +1,4 @@
-module DiscourseFeatureVoting
+module DiscourseVoting
 	class VotesController < ::ApplicationController
     before_filter :ensure_logged_in
 
@@ -66,7 +66,7 @@ module DiscourseFeatureVoting
     end
 
 		def who_voted(topic)
-      return nil unless SiteSetting.feature_voting_show_who_voted
+      return nil unless SiteSetting.voting_show_who_voted
 
       users = User.where("id in (
         SELECT user_id FROM user_custom_fields WHERE name = 'votes' AND value = ?

@@ -1,6 +1,6 @@
 zh_CN:
   js:
-    feature_voting:
+    voting:
       allow_topic_voting: "允许用户在此分类中为主帖点推荐"
       vote_title: "推荐"
       vote_title_plural: "推荐"

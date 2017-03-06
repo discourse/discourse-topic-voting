@@ -20,7 +20,7 @@ export default createWidget('vote-count', {
   html(attrs){
     let voteCount = h('div.vote-count', attrs.vote_count.toString());
     let whoVoted = null;
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.state.whoVotedUsers && this.state.whoVotedUsers.length > 0) {
+    if (Discourse.SiteSettings.voting_show_who_voted && this.state.whoVotedUsers && this.state.whoVotedUsers.length > 0) {
       whoVoted = this.attach('small-user-list', {
         users: this.state.whoVotedUsers,
         addSelf: attrs.liked,
@@ -36,7 +36,7 @@ export default createWidget('vote-count', {
   },
 
   click(){
-    if (Discourse.SiteSettings.feature_voting_show_who_voted && this.attrs.vote_count > 0) {
+    if (Discourse.SiteSettings.voting_show_who_voted && this.attrs.vote_count > 0) {
       if (this.state.whoVotedUsers === null) {
         return this.getWhoVoted();
       } else {

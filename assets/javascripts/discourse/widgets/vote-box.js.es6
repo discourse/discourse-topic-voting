@@ -6,7 +6,7 @@ export default createWidget('vote-box', {
   buildKey: () => 'vote-box',
 
   buildClasses() {
-    if (Discourse.SiteSettings.feature_voting_show_who_voted) { return 'show-pointer'; }
+    if (Discourse.SiteSettings.voting_show_who_voted) { return 'show-pointer'; }
   },
 
   defaultState() {

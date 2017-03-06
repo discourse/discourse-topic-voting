@@ -1,6 +1,6 @@
 nl:
   js:
-    feature_voting:
+    voting:
       allow_topic_voting: "Sta gebruikers toe om te stemmen op onderwerpen in deze categorie"
       vote_title: "Stem"
       vote_title_plural: "Stemmen"

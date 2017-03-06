@@ -1,10 +1,10 @@
 en:
   site_settings:
-    feature_voting_enabled: '¿Permitir a los usuarios votar los temas?'
-    feature_voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
-    feature_voting_tl1_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
-    feature_voting_tl2_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
-    feature_voting_tl3_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
-    feature_voting_tl4_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
-    feature_voting_show_who_voted: '¿Pueden los usuarios ver quién votó?'
-    feature_voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su activity feed?'
+    voting_enabled: '¿Permitir a los usuarios votar los temas?'
+    voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
+    voting_tl1_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
+    voting_tl2_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
+    voting_tl3_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
+    voting_tl4_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'
+    voting_show_who_voted: '¿Pueden los usuarios ver quién votó?'
+    voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su activity feed?'

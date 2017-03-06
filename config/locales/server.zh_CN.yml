@@ -1,5 +1,5 @@
 zh_CN:
   site_settings: 
-    feature_voting_enabled: '是否允许用户为主帖点击推荐？'
-    feature_voting_vote_limit: 'How many active votes are users allowed?允许用户进行多少次有效推荐？'
-    feature_voting_show_who_voted: '是否允许用户查看哪些人已推荐？'
+    voting_enabled: '是否允许用户为主帖点击推荐？'
+    voting_vote_limit: 'How many active votes are users allowed?允许用户进行多少次有效推荐？'
+    voting_show_who_voted: '是否允许用户查看哪些人已推荐？'

@@ -1,12 +1,12 @@
-# name: discourse-feature-voting
+# name: discourse-voting
 # about: Adds the ability to vote on features in a specified category.
-# version: 0.3
+# version: 0.4
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
 register_asset "stylesheets/feature-voting.scss"
 
-enabled_site_setting :feature_voting_enabled
+enabled_site_setting :voting_enabled
 
 Discourse.top_menu_items.push(:votes)
 Discourse.anonymous_top_menu_items.push(:votes)
@@ -85,7 +85,7 @@ after_initialize do
       @allowed_voting_cache = DistributedCache.new("allowed_voting")
 
       def self.can_vote?(category_id)
-        return false unless SiteSetting.feature_voting_enabled
+        return false unless SiteSetting.voting_enabled
 
         unless set = @allowed_voting_cache["allowed"]
           set = reset_voting_cache
@@ -135,7 +135,7 @@ after_initialize do
       end
 
       def vote_limit
-        SiteSetting.send("feature_voting_tl#{self.trust_level}_vote_limit")
+        SiteSetting.send("voting_tl#{self.trust_level}_vote_limit")
       end
 
   end
@@ -158,7 +158,7 @@ after_initialize do
   class ::Topic
 
     def can_vote?
-      SiteSetting.feature_voting_enabled and Category.can_vote?(category_id)
+      SiteSetting.voting_enabled and Category.can_vote?(category_id)
     end
 
     def vote_count
@@ -182,7 +182,7 @@ after_initialize do
   require_dependency 'list_controller'
   class ::ListController
     def voted_by
-      unless SiteSetting.feature_voting_show_votes_on_profile
+      unless SiteSetting.voting_show_votes_on_profile
         render nothing: true, status: 404
       end
       list_opts = build_topic_list_options
@@ -253,22 +253,22 @@ after_initialize do
     end
   end
 
-  module ::DiscourseFeatureVoting
+  module ::DiscourseVoting
     class Engine < ::Rails::Engine
-      isolate_namespace DiscourseFeatureVoting
+      isolate_namespace DiscourseVoting
     end
   end
 
-  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_feature_voting/votes_controller')
+  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_voting/votes_controller')
 
-  DiscourseFeatureVoting::Engine.routes.draw do
+  DiscourseVoting::Engine.routes.draw do
     post 'vote' => 'votes#add'
     post 'unvote' => 'votes#remove'
     get 'who' => 'votes#who'
   end
 
   Discourse::Application.routes.append do
-    mount ::DiscourseFeatureVoting::Engine, at: "/voting"
+    mount ::DiscourseVoting::Engine, at: "/voting"
     get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: {username: USERNAME_ROUTE_FORMAT}
   end
 

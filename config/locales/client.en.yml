@@ -1,6 +1,6 @@
 en:
   js:
-    feature_voting:
+    voting:
       votes_nav_help: "topics with the most votes"
       voted: "You voted on this topic"
       allow_topic_voting: "Allow users to vote on topics in this category"

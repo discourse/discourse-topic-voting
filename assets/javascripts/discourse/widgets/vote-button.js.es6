@@ -22,31 +22,31 @@ export default createWidget('vote-button', {
         }
       }
     }
-    if (Discourse.SiteSettings.feature_voting_show_who_voted) {
+    if (Discourse.SiteSettings.voting_show_who_voted) {
       buttonClass += ' show-pointer';
     }
     return buttonClass;
   },
 
   html(attrs){
-  	var buttonTitle = I18n.t('feature_voting.vote_title');
+  	var buttonTitle = I18n.t('voting.vote_title');
     if (!this.currentUser){
       buttonTitle = I18n.t('log_in');
     }
     else{
   		if (attrs.closed){
-        buttonTitle = I18n.t('feature_voting.voting_closed_title');
+        buttonTitle = I18n.t('voting.voting_closed_title');
       }
       else{
         if (attrs.user_voted){
-          buttonTitle = I18n.t('feature_voting.voted_title');
+          buttonTitle = I18n.t('voting.voted_title');
         }
         else{
           if (this.currentUser && this.currentUser.votes_exceeded){
-            buttonTitle = I18n.t('feature_voting.voting_limit');
+            buttonTitle = I18n.t('voting.voting_limit');
           }
           else{
-            buttonTitle = I18n.t('feature_voting.vote_title');
+            buttonTitle = I18n.t('voting.vote_title');
           }
         }
       }

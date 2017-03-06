@@ -1,6 +1,6 @@
 es:
   js:
-    feature_voting:
+    voting:
       allow_topic_voting: "Permitir a los usuarios votar los temas de esta categoría"
       vote_title: "Votar"
       vote_title_plural: "Votos"
