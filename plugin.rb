@@ -15,6 +15,20 @@ Discourse.anonymous_filters.push(:votes)
 
 after_initialize do
 
+  require_dependency 'basic_category_serializer'
+  class ::BasicCategorySerializer
+    attributes :can_vote
+
+    def include_can_vote?
+      Category.can_vote?(object.id)
+    end
+
+    def can_vote
+      true
+    end
+
+  end
+
   require_dependency 'post_serializer'
   class ::PostSerializer
     attributes :can_vote
@@ -71,6 +85,8 @@ after_initialize do
       @allowed_voting_cache = DistributedCache.new("allowed_voting")
 
       def self.can_vote?(category_id)
+        return false unless SiteSetting.feature_voting_enabled
+
         unless set = @allowed_voting_cache["allowed"]
           set = reset_voting_cache
         end
@@ -189,7 +205,10 @@ after_initialize do
     end
 
     def list_votes
-      create_list(:votes, {order: "votes"})
+      create_list(:votes, unordered: true) do |topics|
+        topics.joins("left join topic_custom_fields tfv ON tfv.topic_id = topics.id AND tfv.name = 'vote_count'")
+              .order("coalesce(tfv.value,'0')::integer desc, topics.bumped_at desc")
+      end
     end
   end
 

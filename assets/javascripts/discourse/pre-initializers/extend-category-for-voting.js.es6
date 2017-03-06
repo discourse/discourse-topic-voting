@@ -1,4 +1,4 @@
-import property from 'ember-addons/ember-computed-decorators';
+import computed from 'ember-addons/ember-computed-decorators';
 import Category from 'discourse/models/category';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 
@@ -46,7 +46,12 @@ export default {
 
     Category.reopen({
 
-      @property('custom_fields.enable_topic_voting')
+      @computed("url")
+      votesUrl(url) {
+        return `${url}/l/votes`;
+      },
+
+      @computed('custom_fields.enable_topic_voting')
       enable_topic_voting: {
         get(enableField) {
           return enableField === "true";
