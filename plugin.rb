@@ -158,7 +158,7 @@ after_initialize do
   class ::Topic
 
     def can_vote?
-      SiteSetting.voting_enabled and Category.can_vote?(category_id)
+      SiteSetting.voting_enabled && Category.can_vote?(category_id) && category.topic_id != id
     end
 
     def vote_count
