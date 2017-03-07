@@ -1,4 +1,4 @@
-en:
+es:
   site_settings:
     voting_enabled: '¿Permitir a los usuarios votar los temas?'
     voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para cada usuario?'

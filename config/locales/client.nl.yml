@@ -7,9 +7,6 @@ nl:
       voted_title: "Gestemd"
       voting_closed_title: "Gesloten"
       voting_limit: "Limiet"
-      vote:
-        one: "stem"
-        multiple: "stemmen"
       who_voted: "op dit gestemd"
     filters:
       votes:

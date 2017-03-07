@@ -7,9 +7,6 @@ zh_CN:
       unvote_title: "取消"
       voting_closed_title: "已结束推荐"
       voting_limit: "次数限制"
-      vote:
-        one: "推荐"
-        multiple: "推荐"
       who_voted: "已推荐"
     filters:
       votes:

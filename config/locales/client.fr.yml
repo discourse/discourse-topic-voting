@@ -7,9 +7,6 @@ fr:
       voted_title: "Voté"
       voting_closed_title: "Fermé"
       voting_limit: "Limite"
-      vote:
-        one: "vote"
-        multiple: "votes"
       who_voted: "a voté."
     filters:
       votes:

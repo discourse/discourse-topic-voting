@@ -7,9 +7,6 @@ it:
       voted_title: "Votato"
       voting_closed_title: "Chiuso"
       voting_limit: "Limite"
-      vote:
-        one: "voto"
-        multiple: "voti"
       who_voted: "hanno votato"
     filters:
       votes:

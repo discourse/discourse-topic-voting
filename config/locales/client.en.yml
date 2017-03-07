@@ -12,9 +12,6 @@ en:
       votes:
         one: "1 vote"
         other: "{{count}} votes"
-      vote:
-        one: "vote"
-        multiple: "votes"
     filters:
       votes:
         title: "Votes"

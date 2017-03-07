@@ -7,9 +7,6 @@ es:
       unvote_title: "Quitar"
       voting_closed_title: "Cerrado"
       voting_limit: "Limitado"
-      vote:
-        one: "voto"
-        multiple: "votos"
     filters:
       votes:
         title: "Votos"
