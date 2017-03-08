@@ -32,7 +32,9 @@ module DiscourseVoting
         can_vote: !current_user.reached_voting_limit?,
 				vote_limit: current_user.vote_limit,
 				vote_count: topic.custom_fields["vote_count"].to_i,
-				who_voted: who_voted(topic)
+				who_voted: who_voted(topic),
+        alert:  current_user.alert_low_votes?,
+        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
 			}
 
 			render json: obj, status: voted ? 200 : 403
@@ -52,7 +54,8 @@ module DiscourseVoting
         can_vote: !current_user.reached_voting_limit?,
 				vote_limit: current_user.vote_limit,
 				vote_count: topic.custom_fields["vote_count"].to_i,
-				who_voted: who_voted(topic)
+				who_voted: who_voted(topic),
+        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
 			}
 
 			render json: obj

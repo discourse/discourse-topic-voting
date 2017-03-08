@@ -1,6 +1,8 @@
 en:
   js:
     voting:
+      reached_limit: "You are out of votes, remove an existing vote!"
+      list_votes: "List your votes"
       votes_nav_help: "topics with the most votes"
       voted: "You voted on this topic"
       allow_topic_voting: "Allow users to vote on topics in this category"
@@ -9,6 +11,9 @@ en:
       voted_title: "Voted"
       voting_closed_title: "Closed"
       voting_limit: "Limit"
+      votes_left:
+        one: "You have 1 vote left, see <a href='{{path}}'>your votes</a>."
+        other: "You have {{count}} votes left, see <a href='{{path}}'>your votes</a>."
       votes:
         one: "1 vote"
         other: "{{count}} votes"

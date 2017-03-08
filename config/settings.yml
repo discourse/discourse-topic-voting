@@ -1,4 +1,6 @@
 plugins:
+  voting_alert_votes_left:
+    default: 10
   voting_enabled:
     default: true
     client: true
@@ -9,12 +11,12 @@ plugins:
     default: true
     client: true
   voting_tl0_vote_limit:
-    default: 3
+    default: 2
   voting_tl1_vote_limit:
-    default: 5
+    default: 4
   voting_tl2_vote_limit:
-    default: 8
+    default: 6
   voting_tl3_vote_limit:
-    default: 10
+    default: 8
   voting_tl4_vote_limit:
     default: 10

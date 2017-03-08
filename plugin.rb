@@ -114,6 +114,10 @@ after_initialize do
         end
       end
 
+      def alert_low_votes?
+        (vote_limit - vote_count) <= SiteSetting.voting_alert_votes_left
+      end
+
       def votes
         if self.custom_fields["votes"]
           self.custom_fields["votes"]

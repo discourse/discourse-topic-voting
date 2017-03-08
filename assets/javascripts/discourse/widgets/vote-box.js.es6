@@ -1,5 +1,6 @@
 import { createWidget } from 'discourse/widgets/widget';
 import { ajax } from 'discourse/lib/ajax';
+import RawHtml from 'discourse/widgets/raw-html';
 
 export default createWidget('vote-box', {
   tagName: 'div.voting-wrapper',
@@ -13,11 +14,37 @@ export default createWidget('vote-box', {
     return { allowClick: true, initialVote: false };
   },
 
-  html(attrs){
+  html(attrs, state){
     var voteCount = this.attach('vote-count', attrs);
     var voteButton = this.attach('vote-button', attrs);
     var voteOptions = this.attach('vote-options', attrs);
-    return [voteCount, voteButton, voteOptions];
+    let contents = [voteCount, voteButton, voteOptions];
+
+    if (state.votesAlert > 0) {
+      const html = "<div class='voting-popup-menu vote-options popup-menu'>" + I18n.t("voting.votes_left", {
+          count: state.votesAlert,
+          path: this.currentUser.get("path") + "/activity/votes"
+      }) + "</div>";
+      contents.push(new RawHtml({html}));
+    }
+
+    return contents;
+
+  },
+
+  hideVotesAlert() {
+    if (this.state.votesAlert) {
+      this.state.votesAlert = null;
+      this.scheduleRerender();
+    }
+  },
+
+  click() {
+    this.hideVotesAlert();
+  },
+
+  clickOutside(){
+    this.hideVotesAlert();
   },
 
   addVote(){
@@ -28,10 +55,15 @@ export default createWidget('vote-box', {
       data: {
         topic_id: topic.id
       }
-    }).then(function(result) {
+    }).then((result) => {
       topic.set('vote_count', result.vote_count);
       topic.set('user_voted', true);
-      Discourse.User.current().set('votes_exceeded', !result.can_vote);
+      let currentUser = Discourse.User.current();
+      currentUser.set('votes_exceeded', !result.can_vote);
+      if (result.alert) {
+        state.votesAlert = result.votes_left;
+        this.scheduleRerender();
+      }
       topic.set('who_voted', result.who_voted);
       state.allowClick = true;
     }).catch(function(error) {

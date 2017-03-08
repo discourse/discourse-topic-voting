@@ -7,7 +7,7 @@ export default createWidget('vote-button', {
   buildClasses(attrs) {
   	var buttonClass = "";
   	if (attrs.closed){
-      buttonClass = "voting-closed nonvote";
+      buttonClass = "voting-closed";
     }
     else{
       if (!attrs.user_voted){
@@ -58,12 +58,12 @@ export default createWidget('vote-button', {
     if (!this.currentUser){
       showModal('login');
     }
-  	if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted && !this.currentUser.votes_exceeded){
+  	if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted){
     	this.parentWidget.state.allowClick = false;
     	this.parentWidget.state.initialVote = true;
   		this.sendWidgetAction('addVote');
     }
-    if (this.attrs.user_voted) {
+    if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
       $(".vote-options").toggle();
     }
   },
