@@ -1,4 +1,4 @@
-en:
+de:
   site_settings:
     voting_enabled: 'Benutzern erlauben, für Themen zu voten?'
     voting_tl0_vote_limit: 'Wie viele aktive Votes sind TL0-Benutzern erlaubt?'
@@ -8,4 +8,4 @@ en:
     voting_tl4_vote_limit: 'Wie viele aktive Votes sind TL4-Benutzern erlaubt?'
     voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer gevotet hat?'
     voting_show_votes_on_profile: 'Benutzern erlauben, ihre Votes in ihrem Benutzerprofil einzusehen?'
-    voting_alert_votes-left: 'Benutzer benachrichten, wenn diese Anzahl von Votes verblieben sind'
+    voting_alert_votes_left: 'Benutzer benachrichten, wenn diese Anzahl von Votes verblieben sind'
