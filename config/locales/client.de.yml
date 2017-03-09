@@ -1,0 +1,22 @@
+en:
+  js:
+    voting:
+      reached_limit: "Dir sind die Votes ausgegangen, entferne einen vorhandenen Vote!"
+      list_votes: "Deine Votes auflisten"
+      votes_nav_help: "Themen mit den meisten Votes"
+      voted: "Du hast für dieses Thema gevotet"
+      allow_topic_voting: "Benutzern erlauben, für Themen in dieser Kategorie zu voten"
+      vote_title: "Vote"
+      vote_title_plural: "Votes"
+      voted_title: "Voted"
+      voting_closed_title: "Geschlossen"
+      voting_limit: "Limit"
+      votes_left:
+        one: "Du hast 1 Vote übrig, siehe <a href='{{path}}'>deine Votes</a>."
+        other: "Dir bleiben {{count}} Votes, siehe <a href='{{path}}'>deine Votes</a>."
+      votes:
+        one: "1 Vote"
+        other: "{{count}} Votes"
+    filters:
+      votes:
+        title: "Votes"
