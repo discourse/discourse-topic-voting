@@ -21,12 +21,12 @@ function initialize(api) {
     }
 
     let userVotedClass = topic.user_voted ? " voted" : "";
-    buffer.push(`<span class='list-vote-count discourse-tag${userVotedClass}'${title}>`);
+    buffer.push(`<a href='${topic.get('url')}' class='list-vote-count discourse-tag${userVotedClass}'${title}>`);
     buffer.push(I18n.t('voting.votes', {count: topic.vote_count}));
     if (topic.user_voted) {
       buffer.push(`<i class='fa fa-star'></i>`);
     }
-    buffer.push("</span>");
+    buffer.push("</a>");
 
     if (buffer.length > 0){
       return buffer.join("");
