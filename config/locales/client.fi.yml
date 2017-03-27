@@ -1,0 +1,26 @@
+fi:
+  js:
+    feature_voting:
+      allow_topic_voting: "Salli käyttäjien antaa ääniä ketjuille tällä alueella"
+      vote_title: "Ääni"
+      vote_title_plural: "Äänet"
+      voted_title: "Äänestit"
+      voting_closed_title: "Suljettu"
+      voting_limit: "Yläraja"
+      vote:
+        one: "ääni"
+        multiple: "ääntä"
+      super_vote:
+        one: "superääni"
+        multiple: "superääntä"
+      super_votes_remaining: 
+        singular: "Sinulla on yksi superääni jäljellä."
+        plural: "Sinulla on {{number}} superääntä jäljellä."
+      remove_vote_warning: "Peruu myös superäänen."
+      who_voted: "äänesti tätä"
+      who_super_voted: "superäänesti tätä"
+      upgrade_question: "Haluatko äänesi olevan superääni?"
+      upgrade_answer: "Kyllä!"
+    filters:
+      votes:
+        title: "Äänet"

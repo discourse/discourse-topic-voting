@@ -1,0 +1,16 @@
+fi:
+  site_settings: 
+    feature_voting_enabled: 'Salli käyttäjien antaa ääniä ketjuille?'
+    feature_voting_tl0_vote_limit: 'Kuinka monta aktiivista ääntä lt0-käyttäjällä on?'
+    feature_voting_tl1_vote_limit: 'Kuinka monta aktiivista ääntä lt1-käyttäjällä on?'
+    feature_voting_tl2_vote_limit: 'Kuinka monta aktiivista ääntä lt2-käyttäjällä on?'
+    feature_voting_tl3_vote_limit: 'Kuinka monta aktiivista ääntä lt3-käyttäjällä on?'
+    feature_voting_tl4_vote_limit: 'Kuinka monta aktiivista ääntä lt4-käyttäjällä on?'
+    feature_voting_tl0_super_vote_limit: 'Kuinka monta aktiivista superääntä lt0-käyttäjällä on?'
+    feature_voting_tl1_super_vote_limit: 'Kuinka monta aktiivista superääntä lt1-käyttäjällä on?'
+    feature_voting_tl2_super_vote_limit: 'Kuinka monta aktiivista superääntä lt2-käyttäjällä on?'
+    feature_voting_tl3_super_vote_limit: 'Kuinka monta aktiivista superääntä lt3-käyttäjällä on?'
+    feature_voting_tl4_super_vote_limit: 'Kuinka monta aktiivista superääntä lt4-käyttäjällä on?'
+    feature_voting_show_who_voted: 'Salli käyttäjien nähdä, ketkä ovat äänestäneet?'
+    feature_voting_show_votes_on_profile: 'Salli käyttäjien nähdä äänet profiilin toimintasyötteessä?'
+    feature_voting_allow_super_voting: 'Salli superäänestäminen?'
