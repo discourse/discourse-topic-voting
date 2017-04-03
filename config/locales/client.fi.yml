@@ -1,26 +1,22 @@
 fi:
   js:
-    feature_voting:
+    voting:
+      reached_limit: "Sinulla ei ole enempää ääniä, poista antamasi ääni!"
+      list_votes: "Kaikki antamasi äänet"
+      votes_nav_help: "ketjut, joilla on eniten ääniä"
+      voted: "Äänestit tätä ketjua"
       allow_topic_voting: "Salli käyttäjien antaa ääniä ketjuille tällä alueella"
       vote_title: "Ääni"
       vote_title_plural: "Äänet"
       voted_title: "Äänestit"
       voting_closed_title: "Suljettu"
       voting_limit: "Yläraja"
-      vote:
-        one: "ääni"
-        multiple: "ääntä"
-      super_vote:
-        one: "superääni"
-        multiple: "superääntä"
-      super_votes_remaining: 
-        singular: "Sinulla on yksi superääni jäljellä."
-        plural: "Sinulla on {{number}} superääntä jäljellä."
-      remove_vote_warning: "Peruu myös superäänen."
-      who_voted: "äänesti tätä"
-      who_super_voted: "superäänesti tätä"
-      upgrade_question: "Haluatko äänesi olevan superääni?"
-      upgrade_answer: "Kyllä!"
+      votes_left:
+        one: "Sinulla on 1 ääni jäljellä, katso <a href='{{path}}'>kaikki äänesi</a>."
+        other: "Sinulla on {{count}} ääntä jäljellä, katso <a href='{{path}}'>kaikki äänesi</a>."
+      votes:
+        one: "1 ääni"
+        other: "{{count}} ääntä"
     filters:
       votes:
         title: "Äänet"
