@@ -1,0 +1,11 @@
+pl_PL:
+  site_settings:
+    voting_enabled: 'Pozwolić użytkownikom głosować na tematy?'
+    voting_tl0_vote_limit: 'Ile głosów mogą oddać użytkownicy TL0?'
+    voting_tl1_vote_limit: 'Ile głosów mogą oddać użytkownicy TL1?'
+    voting_tl2_vote_limit: 'Ile głosów mogą oddać użytkownicy TL2?'
+    voting_tl3_vote_limit: 'Ile głosów mogą oddać użytkownicy TL3?'
+    voting_tl4_vote_limit: 'Ile głosów mogą oddać użytkownicy TL4?'
+    voting_show_who_voted: 'Czy użytkownicy mają widzieć, kto głosował?'
+    voting_show_votes_on_profile: 'Czy głosy mają być widoczne w aktywności w proflu użytkownika?'
+    voting_alert_votes_left: 'Ostrzeż użytkownika, jesli pozostało mu tyle głosów'
