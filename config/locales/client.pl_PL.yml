@@ -6,9 +6,9 @@ pl_PL:
       votes_nav_help: "tematy z największą liczbą głosów"
       voted: "Oddałeś już głos"
       allow_topic_voting: "Pozwól użytkownikom głosować na tematy w tej kategorii"
-      vote_title: "Zagłosuj"
-      vote_title_plural: "Zasgłosuj"
-      voted_title: "Zagłosowano"
+      vote_title: "Głosuj"
+      vote_title_plural: "Głosuj"
+      voted_title: "Głosów"
       voting_closed_title: "Zamknięto"
       voting_limit: "Limit"
       votes_left:
@@ -16,8 +16,9 @@ pl_PL:
         other: "Masz jeszcze {{count}} głosy, sprawdź <a href='{{path}}'>swoje głosy</a>."
       votes:
         one: "1 głos"
-        other: "{{count}} głosy"
-        few: "{{count}} głosów"
+        other: "{{count}} głosów"
+        few: "{{count}} głosy"
+        many: "{{count}} głosów"
     filters:
       votes:
         title: "Głosy"
