@@ -56,11 +56,10 @@ export default createWidget('vote-box', {
       data: {
         topic_id: topic.id
       }
-    }).then((result) => {
+    }).then(result => {
       topic.set('vote_count', result.vote_count);
       topic.set('user_voted', true);
-      let currentUser = Discourse.User.current();
-      currentUser.set('votes_exceeded', !result.can_vote);
+      this.currentUser.set('votes_exceeded', !result.can_vote);
       if (result.alert) {
         state.votesAlert = result.votes_left;
         this.scheduleRerender();
@@ -78,10 +77,10 @@ export default createWidget('vote-box', {
       data: {
         topic_id: topic.id
       }
-    }).then(function(result) {
+    }).then(result => {
       topic.set('vote_count', result.vote_count);
       topic.set('user_voted', false);
-      Discourse.User.current().set('votes_exceeded', !result.can_vote);
+      this.currentUser.set('votes_exceeded', !result.can_vote);
       topic.set('who_voted', result.who_voted);
       state.allowClick = true;
     }).catch(popupAjaxError);
