@@ -1,6 +1,7 @@
 import { createWidget } from 'discourse/widgets/widget';
 import { ajax } from 'discourse/lib/ajax';
 import RawHtml from 'discourse/widgets/raw-html';
+import { popupAjaxError } from 'discourse/lib/ajax-error';
 
 export default createWidget('vote-box', {
   tagName: 'div.voting-wrapper',
@@ -66,9 +67,7 @@ export default createWidget('vote-box', {
       }
       topic.set('who_voted', result.who_voted);
       state.allowClick = true;
-    }).catch(function(error) {
-      console.log(error);
-    });
+    }).catch(popupAjaxError);
   },
 
   removeVote(){
@@ -85,9 +84,7 @@ export default createWidget('vote-box', {
       Discourse.User.current().set('votes_exceeded', !result.can_vote);
       topic.set('who_voted', result.who_voted);
       state.allowClick = true;
-    }).catch(function(error) {
-      console.log(error);
-    });
+    }).catch(popupAjaxError);
   }
 
 });
