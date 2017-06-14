@@ -1,0 +1,19 @@
+.voting {
+  float: none;
+  max-width: none;
+  margin: 0;
+  text-align: inherit;
+}
+
+.vote-count-wrapper {
+  display: inline-block;
+  min-width: 50px;
+  text-align: center;
+}
+
+.vote-button {
+  margin-left: 5px;
+  display: inline-block;
+  min-width: 50px;
+  text-align: center;
+}

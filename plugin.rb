@@ -4,7 +4,9 @@
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://www.github.com/joebuhlig/discourse-feature-voting
 
-register_asset "stylesheets/feature-voting.scss"
+register_asset "stylesheets/common/feature-voting.scss"
+register_asset "stylesheets/desktop/feature-voting.scss", :desktop
+register_asset "stylesheets/mobile/feature-voting.scss", :mobile
 
 enabled_site_setting :voting_enabled
 

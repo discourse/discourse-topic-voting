@@ -5,8 +5,8 @@ export default createWidget('vote-button', {
   tagName: 'div.vote-button',
 
   buildClasses(attrs) {
-  	var buttonClass = "";
-  	if (attrs.closed){
+    var buttonClass = "";
+    if (attrs.closed){
       buttonClass = "voting-closed";
     }
     else{
@@ -29,12 +29,12 @@ export default createWidget('vote-button', {
   },
 
   html(attrs){
-  	var buttonTitle = I18n.t('voting.vote_title');
+    var buttonTitle = I18n.t('voting.vote_title');
     if (!this.currentUser){
       buttonTitle = I18n.t('log_in');
     }
     else{
-  		if (attrs.closed){
+      if (attrs.closed){
         buttonTitle = I18n.t('voting.voting_closed_title');
       }
       else{
@@ -58,10 +58,10 @@ export default createWidget('vote-button', {
     if (!this.currentUser){
       showModal('login');
     }
-  	if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted){
-    	this.parentWidget.state.allowClick = false;
-    	this.parentWidget.state.initialVote = true;
-  		this.sendWidgetAction('addVote');
+    if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted){
+      this.parentWidget.state.allowClick = false;
+      this.parentWidget.state.initialVote = true;
+      this.sendWidgetAction('addVote');
     }
     if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
       $(".vote-options").toggle();
@@ -69,7 +69,7 @@ export default createWidget('vote-button', {
   },
 
   clickOutside(){
-  	$(".vote-options").hide();
-  	this.parentWidget.state.initialVote = false;
+    $(".vote-options").hide();
+    this.parentWidget.state.initialVote = false;
   }
 });

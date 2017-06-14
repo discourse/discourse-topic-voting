@@ -1,9 +1,9 @@
 .voting{
-    min-width: 70px;
-    float: left;
-    text-align: center;
-    margin: 0px 20px 0px 0px;
-    max-width: 10%;
+  min-width: 70px;
+  float: left;
+  text-align: center;
+  margin: 0px 20px 0px 0px;
+  max-width: 10%;
 }
 .vote-count-wrapper, .header-voting .voting-wrapper{
     border: 3px solid #e9e9e9;
@@ -18,21 +18,18 @@
     background-color: initial !important;
     cursor: initial;
 }
-.vote-count{
-	height:40px;
-	line-height:40px;
-	font-weight: bold;
-  font-size: 18px;
+.vote-count {
+  font-weight: bold;
 }
 .header-voting{
-	margin: 0px 20px 0px 5px;
+  margin: 0px 20px 0px 5px;
 }
 .title-voting{
-	padding-top:14px;
+  padding-top:14px;
     position: relative;
 }
 .vote-button {
-	display: block;
+  display: block;
   margin-top: 5px;
   padding: 2px 0px;
   color: #ffffff;
@@ -95,13 +92,6 @@
         margin: 0.25em 0.25em 0.25em 0;
         display: inline-block;
     }
-}
-.voting-popup-menu {
-    position: absolute !important;
-    left: 80px !important;
-    top: 14px !important;
-    z-index: 990;
-    cursor: initial;
 }
 .who-voted .trigger-user-card img {
     margin: 2px 0px;
