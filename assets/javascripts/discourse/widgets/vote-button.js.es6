@@ -22,7 +22,7 @@ export default createWidget('vote-button', {
         }
       }
     }
-    if (Discourse.SiteSettings.voting_show_who_voted) {
+    if (this.siteSettings.voting_show_who_voted) {
       buttonClass += ' show-pointer';
     }
     return buttonClass;
