@@ -2,6 +2,7 @@ en:
   js:
     voting:
       reached_limit: "You are out of votes, remove an existing vote!"
+      reached_category_limit: "You are out of votes for {{categoryName}}. Remove an existing vote in {{categoryName}} to vote again."
       list_votes: "List your votes"
       votes_nav_help: "topics with the most votes"
       voted: "You voted on this topic"
@@ -14,9 +15,21 @@ en:
       votes_left:
         one: "You have 1 vote left, see <a href='{{path}}'>your votes</a>."
         other: "You have {{count}} votes left, see <a href='{{path}}'>your votes</a>."
+      votes_left_category:
+        one: "You have 1 vote left in {{categoryName}}, see <a href='{{path}}'>your votes</a>."
+        other: "You have {{count}} votes left in {{categoryName}}, see <a href='{{path}}'>your votes</a>."
+
       votes:
         one: "1 vote"
         other: "{{count}} votes"
+
     filters:
       votes:
         title: "Votes"
+
+    category:
+      voting_tl0_vote_limit: 'How many active votes are TL0 users allowed in this category?'
+      voting_tl1_vote_limit: 'How many active votes are TL1 users allowed in this category?'
+      voting_tl2_vote_limit: 'How many active votes are TL2 users allowed in this category?'
+      voting_tl3_vote_limit: 'How many active votes are TL3 users allowed in this category?'
+      voting_tl4_vote_limit: 'How many active votes are TL4 users allowed in this category?'

@@ -16,26 +16,39 @@ module DiscourseVoting
       raise Discourse::InvalidAccess if !topic.can_vote?
       guardian.ensure_can_see!(topic)
 
+      user = current_user
       voted = false
+      has_category_limit = user.has_category_limit?(topic.category_id)
 
-      unless current_user.reached_voting_limit?
+      reached_applicable_limit = has_category_limit ?
+                                  user.reached_category_voting_limit?(topic.category_id) :
+                                  user.reached_voting_limit?
 
-        current_user.custom_fields["votes"] = current_user.votes.dup.push(params["topic_id"])
-        current_user.save
+      unless reached_applicable_limit
+        user.add_vote(topic)
+        user.save
 
-        update_vote_count(topic)
+        update_topic_vote_count(topic)
 
         voted = true
       end
 
+      vote_limit = user.vote_limit(topic.category_id)
+      user_vote_count = user.vote_count(topic.category_id)
+
       obj = {
-        can_vote: !current_user.reached_voting_limit?,
-        vote_limit: current_user.vote_limit,
+        user_votes_exceeded: user.reached_voting_limit?,
+        user_voted: true,
+        vote_limit: vote_limit,
         vote_count: topic.custom_fields["vote_count"].to_i,
         who_voted: who_voted(topic),
-        alert:  current_user.alert_low_votes?,
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        alert: user.alert_low_votes?,
+        votes_left: [(vote_limit - user_vote_count), 0].max
       }
+
+      if has_category_limit
+        obj[:category_votes_exceeded] = user.reached_category_voting_limit?(topic.category_id)
+      end
 
       render json: obj, status: voted ? 200 : 403
     end
@@ -45,25 +58,32 @@ module DiscourseVoting
 
       guardian.ensure_can_see!(topic)
 
-      current_user.custom_fields["votes"] = current_user.votes.dup - [params["topic_id"].to_s]
-      current_user.save
+      user = current_user
+      user.remove_vote(topic)
+      user.save
 
-      update_vote_count(topic)
+      update_topic_vote_count(topic)
 
+      vote_limit = user.vote_limit(topic.category_id)
       obj = {
-        can_vote: !current_user.reached_voting_limit?,
-        vote_limit: current_user.vote_limit,
+        user_votes_exceeded: user.reached_voting_limit?,
+        user_voted: false,
+        vote_limit: vote_limit,
         vote_count: topic.custom_fields["vote_count"].to_i,
         who_voted: who_voted(topic),
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        votes_left: [(vote_limit - user.vote_count(topic.category_id)), 0].max
       }
+
+      if user.has_category_limit?(topic.category_id)
+        obj[:category_votes_exceeded] = user.reached_category_voting_limit?(topic.category_id)
+      end
 
       render json: obj
     end
 
     protected
 
-    def update_vote_count(topic)
+    def update_topic_vote_count(topic)
       topic.custom_fields["vote_count"] = UserCustomField.where(value: topic.id.to_s, name: 'votes').count
       topic.save
     end

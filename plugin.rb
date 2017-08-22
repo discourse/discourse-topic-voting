@@ -19,10 +19,22 @@ after_initialize do
 
   require_dependency 'basic_category_serializer'
   class ::BasicCategorySerializer
-    attributes :can_vote
+    attributes :can_vote, :has_vote_limit, :votes_exceeded
 
     def include_can_vote?
       Category.can_vote?(object.id)
+    end
+
+    def include_votes_exceeded?
+      has_vote_limit
+    end
+
+    def has_vote_limit
+      scope && scope.user && !!scope.user.category_vote_limit(object.id)
+    end
+
+    def votes_exceeded
+      scope.user.reached_category_voting_limit?(object.id)
     end
 
     def can_vote
@@ -107,10 +119,11 @@ after_initialize do
 
   require_dependency 'user'
   class ::User
-      def vote_count
-        if self.custom_fields["votes"]
-          user_votes = self.custom_fields["votes"]
-          user_votes.length - 1
+      def vote_count(category_id = nil)
+        user_votes = category_id ? category_votes(category_id) : votes
+
+        if user_votes
+          user_votes.length
         else
           0
         end
@@ -121,34 +134,65 @@ after_initialize do
       end
 
       def votes
-        if self.custom_fields["votes"]
-          self.custom_fields["votes"]
-        else
-          [nil]
-        end
+        [*self.custom_fields["votes"]]
+      end
+
+      def category_votes(category_id)
+        [*self.custom_fields["#{category_id}_votes"]]
       end
 
       def votes_archive
-        if self.custom_fields["votes_archive"]
-          return self.custom_fields["votes_archive"]
-        else
-          return [nil]
-        end
+        [*self.custom_fields["votes_archive"]]
       end
 
       def reached_voting_limit?
         vote_count >= vote_limit
       end
 
-      def vote_limit
-        SiteSetting.send("voting_tl#{self.trust_level}_vote_limit")
+      def vote_limit(category_id = nil)
+        self.category_vote_limit(category_id) || SiteSetting.send("voting_tl#{self.trust_level}_vote_limit")
       end
 
+      def category_vote_limit(category_id = nil)
+        return nil if !category_id
+
+        limit = CategoryCustomField.where(name: "tl#{self.trust_level}_vote_limit", category_id: category_id)
+                                   .pluck(:value)[0]
+
+        limit.present? ? limit.to_i : nil
+      end
+
+      def has_category_limit?(category_id)
+        !!category_vote_limit(category_id)
+      end
+
+      def reached_category_voting_limit?(category_id)
+        vote_count(category_id) >= category_vote_limit(category_id)
+      end
+
+      def add_vote(topic)
+        self.custom_fields["votes"] = votes.dup.push(topic.id)
+        self.custom_fields["#{topic.category.id}_votes"] = category_votes(topic.category.id).dup.push(topic.id)
+      end
+
+      def remove_vote(topic)
+        self.custom_fields["votes"] = votes.dup - [topic.id.to_s]
+        self.custom_fields["#{topic.category.id}_votes"] = category_votes(topic.category.id).dup - [topic.id.to_s]
+      end
+
+      def remove_archived_vote(topic)
+        self.custom_fields["votes_archive"] = votes_archive.dup.push(topic.id)
+      end
+
+      def add_archived_vote(topic)
+        self.custom_fields["votes_archive"] = votes_archive.dup - [topic.id.to_s]
+      end
+      
   end
 
   require_dependency 'current_user_serializer'
   class ::CurrentUserSerializer
-    attributes :votes_exceeded,  :vote_count
+    attributes :votes_exceeded, :vote_count
 
     def votes_exceeded
       object.reached_voting_limit?
@@ -223,11 +267,13 @@ after_initialize do
 
     class VoteRelease < Jobs::Base
       def execute(args)
-        if Topic.find_by(id: args[:topic_id])
-          UserCustomField.where(name: "votes", value: args[:topic_id]).find_each do |user_field|
+        topic = Topic.find_by(id: args[:topic_id])
+
+        if topic
+          UserCustomField.where(name: "votes", value: topic.id).find_each do |user_field|
             user = User.find(user_field.user_id)
-            user.custom_fields["votes"] = user.votes.dup - [args[:topic_id].to_s]
-            user.custom_fields["votes_archive"] = user.votes_archive.dup.push(args[:topic_id])
+            user.remove_vote(topic)
+            user.remove_archived_vote(topic)
             user.save
           end
         end
@@ -236,11 +282,13 @@ after_initialize do
 
     class VoteReclaim < Jobs::Base
       def execute(args)
-        if Topic.find_by(id: args[:topic_id])
-          UserCustomField.where(name: "votes_archive", value: args[:topic_id]).find_each do |user_field|
+        topic = Topic.find_by(id: args[:topic_id])
+
+        if topic
+          UserCustomField.where(name: "votes_archive", value: topic.id).find_each do |user_field|
             user = User.find(user_field.user_id)
-            user.custom_fields["votes"] = user.votes.dup.push(args[:topic_id])
-            user.custom_fields["votes_archive"] = user.votes_archive.dup - [args[:topic_id].to_s]
+            user.add_vote(topic)
+            user.add_archived_vote(topic)
             user.save
           end
         end

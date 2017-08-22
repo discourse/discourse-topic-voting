@@ -14,9 +14,15 @@ export default createWidget('vote-options', {
     if (attrs.user_voted){
         contents.push(this.attach('remove-vote', attrs));
     }
-    else if (this.currentUser && this.currentUser.votes_exceeded && !attrs.user_voted) {
+    else if (this.currentUser && !attrs.user_voted && (attrs.category.votes_exceeded || this.currentUser.votes_exceeded)) {
+      let text = I18n.t('voting.reached_limit');
+
+      if (attrs.category.votes_exceeded) {
+        text = I18n.t('voting.reached_category_limit', { categoryName: attrs.category.name });
+      }
+
       contents.push([
-          h("div", I18n.t("voting.reached_limit")),
+          h("div", text),
           h("p",
             h("a",{ href: this.currentUser.get("path") + "/activity/votes" }, I18n.t("voting.list_votes"))
           )
