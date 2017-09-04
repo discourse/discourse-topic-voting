@@ -1,6 +1,6 @@
 module DiscourseVoting
   class VotesController < ::ApplicationController
-    before_filter :ensure_logged_in
+    before_action :ensure_logged_in
 
     def who
       params.require(:topic_id)
