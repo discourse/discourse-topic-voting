@@ -1,0 +1,22 @@
+ru:
+  js:
+    voting:
+      reached_limit: "У вас нет голосов, отзовите существующее голосование!"
+      list_votes: "Список голосований"
+      votes_nav_help: "Темы по количеству голосов"
+      voted: "Вы голосовали по этой теме"
+      allow_topic_voting: "Разрешить пользователям голосовать по темам в этой категории"
+      vote_title: "Голосую"
+      vote_title_plural: "Голосов"
+      voted_title: "проголосовано"
+      voting_closed_title: "Закрыто"
+      voting_limit: "Ограниченно"
+      votes_left:
+        one: "Остался 1 голос, см <a href='{{path}}'>голосования</a>."
+        other: "Осталось {{count}} голосов, см <a href='{{path}}'>голосования</a>."
+      votes:
+        one: "1 голос"
+        other: "{{count}} голосов"
+    filters:
+      votes:
+        title: "Голосов"
