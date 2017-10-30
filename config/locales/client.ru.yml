@@ -8,7 +8,7 @@ ru:
       allow_topic_voting: "Разрешить пользователям голосовать по темам в этой категории"
       vote_title: "Голосую"
       vote_title_plural: "Голосов"
-      voted_title: "проголосовано"
+      voted_title: "Проголосовано"
       voting_closed_title: "Закрыто"
       voting_limit: "Ограниченно"
       votes_left:
