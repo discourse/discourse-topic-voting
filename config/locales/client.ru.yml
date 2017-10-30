@@ -17,6 +17,8 @@ ru:
       votes:
         one: "1 голос"
         other: "{{count}} голосов"
+        few: "{{count}} голоса"
+        many: "{{count}} голосов"
     filters:
       votes:
         title: "Голосов"
