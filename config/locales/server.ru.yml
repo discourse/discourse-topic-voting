@@ -1,0 +1,11 @@
+ru:
+  site_settings:
+    voting_enabled: 'Разрешить пользователям голосовать по темам?'
+    voting_tl0_vote_limit: 'Сколько активных голосов у TL0 '
+    voting_tl1_vote_limit: 'Сколько активных голосов у TL1 '
+    voting_tl2_vote_limit: 'Сколько активных голосов у TL2 '
+    voting_tl3_vote_limit: 'Сколько активных голосов у TL3 '
+    voting_tl4_vote_limit: 'Сколько активных голосов у TL4 '
+    voting_show_who_voted: 'Разрешить пользователям видеть, кто голосовал?'
+    voting_show_votes_on_profile: 'Разрешить пользователям видеть свои голоса в своем фиде активности?'
+    voting_alert_votes_left: 'Предупреждать пользователя, о количестве голосов'
