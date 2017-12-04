@@ -1,13 +1,18 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
 zh_CN:
   js:
     voting:
       allow_topic_voting: "允许用户在此分类中为主帖点推荐"
       vote_title: "推荐"
       vote_title_plural: "推荐"
-      unvote_title: "取消"
       voting_closed_title: "已结束推荐"
       voting_limit: "次数限制"
-      who_voted: "已推荐"
     filters:
       votes:
         title: "推荐"

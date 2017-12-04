@@ -1,5 +1,12 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
 fi:
-  site_settings: 
+  site_settings:
     voting_enabled: 'Salli käyttäjien antaa ääniä ketjuille?'
     voting_tl0_vote_limit: 'Kuinka monta aktiivista ääntä lt0-käyttäjällä voi olla?'
     voting_tl1_vote_limit: 'Kuinka monta aktiivista ääntä lt1-käyttäjällä voi olla?'
