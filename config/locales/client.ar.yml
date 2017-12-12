@@ -1,0 +1,23 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+ar:
+  js:
+    voting:
+      reached_limit: "لم يعد بإمكانك التصويت الآن، الرجاء حذف تصويت"
+      list_votes: "قائمة تصويتاتك"
+      votes_nav_help: "المواضيع الأكثر تصويتا"
+      voted: "لقد صوّت على هذا الموضوع"
+      allow_topic_voting: "السماح للمستخدمين بالتصويت على المواضيع في هاته الفئة"
+      vote_title: "صوّت"
+      vote_title_plural: "التصويتات"
+      voted_title: "تم التصويت"
+      voting_closed_title: "مغلق"
+      voting_limit: "الحد"
+    filters:
+      votes:
+        title: "أصوات"

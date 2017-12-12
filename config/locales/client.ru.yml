@@ -1,0 +1,23 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+ru:
+  js:
+    voting:
+      reached_limit: "У вас закончились голоса, удалите часть ваших голосований!"
+      list_votes: "Кто голосовал"
+      votes_nav_help: "темы с наибольшим количеством голосов"
+      voted: "Вы голосовали по этой теме"
+      allow_topic_voting: "Разрешить пользователям голосовать по темам в этой категории"
+      vote_title: "Голос"
+      vote_title_plural: "Голосов"
+      voted_title: "Проголосовало"
+      voting_closed_title: "Закрыть"
+      voting_limit: "Лимит"
+    filters:
+      votes:
+        title: "Голосов"

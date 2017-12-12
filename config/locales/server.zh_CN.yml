@@ -8,4 +8,11 @@
 zh_CN:
   site_settings:
     voting_enabled: '是否允许用户为主帖点击推荐？'
+    voting_tl0_vote_limit: '信用等级0的用户有多少可选票？'
+    voting_tl1_vote_limit: '信用等级1的用户有多少可选票？'
+    voting_tl2_vote_limit: '信用等级2的用户有多少可选票？'
+    voting_tl3_vote_limit: '信用等级3的用户有多少可选票？'
+    voting_tl4_vote_limit: '信用等级4的用户有多少可选票？'
     voting_show_who_voted: '是否允许用户查看哪些人已推荐？'
+    voting_show_votes_on_profile: '允许用户在活动信息中见到他们的选票？'
+    voting_alert_votes_left: '通知用户他们的未选票'

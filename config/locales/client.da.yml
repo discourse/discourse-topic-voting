@@ -1,0 +1,20 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+da:
+  js:
+    voting:
+      reached_limit: "Du kan ikke afgive flere stemmer, fjern venligst en og prøv igen!"
+      list_votes: "Vis dine stemmer"
+      votes_nav_help: "emner med flest stemmer"
+      voted: "Du stemte i dette emne"
+      allow_topic_voting: "Tillad brugere at stemme på emner i denne kategori"
+      vote_title: "Stem"
+      vote_title_plural: "Stemmer"
+      voted_title: "Stemte"
+      voting_closed_title: "Lukket"
+      voting_limit: "Begrænset"

@@ -8,11 +8,20 @@
 zh_CN:
   js:
     voting:
+      reached_limit: "你没有选票了，先删除一张已选票！"
+      list_votes: "显示你的投票"
+      votes_nav_help: "选票最多的主题"
+      voted: "你在该主题中已经投过票了"
       allow_topic_voting: "允许用户在此分类中为主帖点推荐"
       vote_title: "推荐"
       vote_title_plural: "推荐"
+      voted_title: "已投票"
       voting_closed_title: "已结束推荐"
       voting_limit: "次数限制"
+      votes_left:
+        other: "你还有 {{count}} 张选票，见<a href='{{path}}'>你的投票</a>。"
+      votes:
+        other: "{{count}} 票"
     filters:
       votes:
         title: "推荐"

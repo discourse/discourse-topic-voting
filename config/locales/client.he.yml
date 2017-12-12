@@ -1,0 +1,29 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+he:
+  js:
+    voting:
+      reached_limit: "נגמרו לך ההצבעות, עליך להסיר הצבעה קיימת!"
+      list_votes: "הצגת ההצבעות שלך"
+      votes_nav_help: "נושאים עם הכי הרבה הצבעות"
+      voted: "הצבעת לנושא זה"
+      allow_topic_voting: "לאפשר למשתמשים להצביע על נושאים בקטגוריה זו"
+      vote_title: "הצבעה"
+      vote_title_plural: "הצבעות"
+      voted_title: "התקבלה הצבעה"
+      voting_closed_title: "נסגר"
+      voting_limit: "מגבלה"
+      votes_left:
+        one: "נותרה לך הצבעה אחת, הצגת <a href='{{path}}'>ההצבעות שלך</a>."
+        other: "נותרו לך {{count}} הצבעות, להציג את <a href='{{path}}'>ההצבעות שלך</a>."
+      votes:
+        one: "הצבעה אחת"
+        other: "{{count}} הצבעות"
+    filters:
+      votes:
+        title: "הצבעות"

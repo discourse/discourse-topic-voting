@@ -19,8 +19,10 @@ pl_PL:
       voting_closed_title: "Zamknięto"
       voting_limit: "Limit"
       votes_left:
-        one: "Masz jeszcze 1 głos, sprawdź <a href='{{path}}'>swoje głosy</a>."
-        other: "Masz jeszcze {{count}} głosy, sprawdź <a href='{{path}}'>swoje głosy</a>."
+        one: "Pozostał Ci 1 głos, zobacz <a href='{{path}}'>swoje głosy</a>."
+        few: "Pozostało Ci {{count}} głosów, zobacz <a href='{{path}}'>swoje głosy</a>."
+        many: "Pozostało Ci {{count}} głosów, zobacz <a href='{{path}}'>swoje głosy</a>."
+        other: "Pozostało Ci {{count}} głosów, zobacz <a href='{{path}}'>swoje głosy</a>."
       votes:
         one: "1 głos"
         few: "{{count}} głosy"

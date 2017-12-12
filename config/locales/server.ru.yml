@@ -1,0 +1,18 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+ru:
+  site_settings:
+    voting_enabled: 'Разрешить пользователям голосовать по темам?'
+    voting_tl0_vote_limit: 'Сколько активных голосов разрешено пользователям с TL0?'
+    voting_tl1_vote_limit: 'Сколько активных голосов разрешено пользователям с TL1?'
+    voting_tl2_vote_limit: 'Сколько активных голосов разрешено пользователям с TL2?'
+    voting_tl3_vote_limit: 'Сколько активных голосов разрешено пользователям с TL3?'
+    voting_tl4_vote_limit: 'Сколько активных голосов разрешено пользователям с TL4?'
+    voting_show_who_voted: 'Разрешить пользователям видеть, кто голосовал?'
+    voting_show_votes_on_profile: 'Разрешить пользователям видеть свои голоса в своем ленте активности?'
+    voting_alert_votes_left: 'Предупреждать пользователя, когда осталось мало голосов'

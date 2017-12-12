@@ -1,0 +1,27 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+vi:
+  js:
+    voting:
+      reached_limit: "Bạn đã hết lượt bình chọn, hãy xóa lượt đang có của bạn"
+      list_votes: "Liệt kê bình chọn của bạn"
+      votes_nav_help: "chủ đề có nhiều bình chọn nhất"
+      voted: "Bạn đã bình chọn cho chủ đề này"
+      allow_topic_voting: "Cho phép người dùng bình chọn chủ đề trong chuyên mục này"
+      vote_title: "Bình chọn"
+      vote_title_plural: "Bình ch"
+      voted_title: "Đã bình ch"
+      voting_closed_title: "Đã "
+      voting_limit: "Giới h"
+      votes_left:
+        other: "Bạn có {{count}} lượt bình chọn còn lại, xem <a href='{{path}}'>bình chọn của bạn</a>."
+      votes:
+        other: "{{count}} bình ch"
+    filters:
+      votes:
+        title: "Bình chọn"

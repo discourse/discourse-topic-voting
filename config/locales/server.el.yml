@@ -1,0 +1,16 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+el:
+  site_settings:
+    voting_enabled: 'Να επιτρέπεται σε χρήστες να ψηφίζουν σε νήματα;'
+    voting_tl0_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ0;'
+    voting_tl1_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ1;'
+    voting_tl2_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ2;'
+    voting_tl3_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ3;'
+    voting_tl4_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ4;'
+    voting_show_who_voted: 'Να επιτρέπεται σε χρήστες να βλέπουν ποιός ψήφισε;'
