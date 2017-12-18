@@ -18,6 +18,14 @@ ru:
       voted_title: "Проголосовало"
       voting_closed_title: "Закрыть"
       voting_limit: "Лимит"
+      votes_left:
+        one: "У вас остался 1 голос, проверьте <a href='{{path}}'>свои голоса</a>."
+        few: "У вас осталось {{count}} голоса, проверьте <a href='{{path}}'>свои голоса</a>."
+        other: "У вас осталось {{count}} голосов, проверьте <a href='{{path}}'>свои голоса</a>."
+      votes:
+        one: "1 голос"
+        few: "{{count}} голоса"
+        other: "{{count}} голосов"
     filters:
       votes:
         title: "Голосов"
