@@ -275,7 +275,9 @@ after_initialize do
 
   Discourse::Application.routes.append do
     mount ::DiscourseVoting::Engine, at: "/voting"
-    get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: {username: USERNAME_ROUTE_FORMAT}
+    # USERNAME_ROUTE_FORMAT is deprecated but we may need to support it for older installs
+    username_route_format = defined?(RouteFormat) ? RouteFormat.username : USERNAME_ROUTE_FORMAT
+    get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: {username: username_route_format}
   end
 
   TopicList.preloaded_custom_fields << "vote_count" if TopicList.respond_to? :preloaded_custom_fields
