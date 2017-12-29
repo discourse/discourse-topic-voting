@@ -5,4 +5,25 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-nb_NO: {}
+nb_NO:
+  js:
+    voting:
+      reached_limit: "Du har ikke flere stemmer igjen, fjern en eksisterende stemme."
+      list_votes: "List opp dine stemmer"
+      votes_nav_help: "emner med flest stemmer"
+      voted: "Du stemte i dette emnet"
+      allow_topic_voting: "Tillat brukere å stemme i emner i denne kategorien"
+      vote_title: "Stem"
+      vote_title_plural: "Stemmer"
+      voted_title: "Stemt"
+      voting_closed_title: "Lukket"
+      voting_limit: "Grense"
+      votes_left:
+        one: "Du har én stemme igjen, se <a href='{{path}}'>dine stemmer</a>."
+        other: "Du har {{count}} stemmer igjen, se <a href='{{path}}'>dine stemmer</a>."
+      votes:
+        one: "Én stemme"
+        other: "{{count}} stemmer"
+    filters:
+      votes:
+        title: "Stemmer"

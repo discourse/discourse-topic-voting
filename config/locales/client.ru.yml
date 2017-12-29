@@ -8,16 +8,26 @@
 ru:
   js:
     voting:
-      reached_limit: "У вас закончились голоса, удалите часть ваших голосований!"
-      list_votes: "Кто голосовал"
+      reached_limit: "У вас закончились голоса, удалите часть ваших голосов!"
+      list_votes: "Посмотреть ваши голоса"
       votes_nav_help: "темы с наибольшим количеством голосов"
       voted: "Вы голосовали по этой теме"
-      allow_topic_voting: "Разрешить пользователям голосовать по темам в этой категории"
+      allow_topic_voting: "Разрешить пользователям голосовать по темам в этом разделе"
       vote_title: "Голос"
-      vote_title_plural: "Голосов"
+      vote_title_plural: "Голоса"
       voted_title: "Проголосовало"
-      voting_closed_title: "Закрыть"
+      voting_closed_title: "Закрыто"
       voting_limit: "Лимит"
+      votes_left:
+        one: "У вас остался 1 голос, проверьте <a href='{{path}}'>свои голоса</a>."
+        few: "У вас осталось {{count}} голоса, проверьте <a href='{{path}}'>свои голоса</a>."
+        many: "У вас осталось {{count}} голосов, проверьте <a href='{{path}}'>свои голоса</a>."
+        other: "У вас осталось {{count}} голосов, проверьте <a href='{{path}}'>свои голоса</a>."
+      votes:
+        one: "проголосовал(а) %{count}"
+        few: "проголосовало %{count}"
+        many: "проголосовало %{count}"
+        other: "проголосовало %{count}"
     filters:
       votes:
         title: "Голосов"

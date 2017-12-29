@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-sv: {}
+sv:
+  site_settings:
+    voting_enabled: 'Tillåt användaromröstning på ämnen?'
+    voting_tl0_vote_limit: 'Hur många röster är tillgängliga för TL0 användare?'
+    voting_tl1_vote_limit: 'Hur många röster är tillgängliga för TL1 användare?'
+    voting_tl2_vote_limit: 'Hur många röster är tillgängliga för TL2 användare?'
+    voting_tl3_vote_limit: 'Hur många röster är tillgängliga för TL3 användare?'
+    voting_tl4_vote_limit: 'Hur många röster är tillgängliga för TL4 användare?'
+    voting_show_who_voted: 'Tillåt användare att se vem som har röstat? '
+    voting_show_votes_on_profile: 'Tillåt användare att se sina voteringar i aktivitetsflödet?'
+    voting_alert_votes_left: 'Uppmärksamma användaren när antal röster kvar är '
