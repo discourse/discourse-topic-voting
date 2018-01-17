@@ -72,7 +72,7 @@ module DiscourseVoting
       return nil unless SiteSetting.voting_show_who_voted
 
       users = User.where("id in (
-        SELECT user_id FROM user_custom_fields WHERE name = 'votes' AND value = ?
+        SELECT user_id FROM user_custom_fields WHERE (name = 'votes' OR name = 'votes_archive') AND value = ?
       )", params[:topic_id].to_i.to_s)
 
       ActiveModel::ArraySerializer.new(users, scope: guardian, each_serializer: BasicUserSerializer)
