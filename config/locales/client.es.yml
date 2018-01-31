@@ -8,10 +8,10 @@
 es:
   js:
     voting:
-      reached_limit: "Te quedaste sin votos, elimina un voto existente!"
+      reached_limit: "Te has quedado sin votos, ¡elimina un voto existente!"
       list_votes: "Lista tus votos"
       votes_nav_help: "temas más votados"
-      voted: "Tú votaste este tema"
+      voted: "Has votado este tema"
       allow_topic_voting: "Permitir a los usuarios votar los temas de esta categoría"
       vote_title: "Votar"
       vote_title_plural: "Votos"

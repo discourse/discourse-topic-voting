@@ -8,12 +8,22 @@
 it:
   js:
     voting:
-      allow_topic_voting: "Consenti agli utenti di votare argomenti in questa categoria"
+      reached_limit: "Hai terminato i voti, rimuovi un voto esistente!"
+      list_votes: "Elenca i tuoi voti"
+      votes_nav_help: "argomenti con il maggior numero di voti"
+      voted: "Hai votato su questo argomento"
+      allow_topic_voting: "Permetti agli utenti di votare argomenti in questa categoria"
       vote_title: "Vota"
       vote_title_plural: "Voti"
       voted_title: "Votato"
       voting_closed_title: "Chiuso"
       voting_limit: "Limite"
+      votes_left:
+        one: "Ti resta 1 voto, guarda<a href='{{path}}'>i tuoi voti</a>."
+        other: "Ti restano {{count}} voti, guarda<a href='{{path}}'>i tuoi voti</a>."
+      votes:
+        one: "1 voto"
+        other: "{{count}} voti"
     filters:
       votes:
         title: "Voti"

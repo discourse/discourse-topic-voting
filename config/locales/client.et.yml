@@ -5,4 +5,11 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-et: {}
+et:
+  js:
+    voting:
+      voted: "Sa hindasid seda teemat"
+      vote_title: "Hinda"
+      vote_title_plural: "HInnangud"
+      voting_closed_title: "Suletud"
+      voting_limit: "Limiit"

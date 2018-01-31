@@ -8,10 +8,11 @@
 it:
   site_settings:
     voting_enabled: 'Consentire agli utenti di votare argomenti?'
-    voting_tl0_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL0?'
-    voting_tl1_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL1?'
-    voting_tl2_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL2?'
-    voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL3?'
-    voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti a TL4?'
+    voting_tl0_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di esperienza 0?'
+    voting_tl1_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di esperienza 1?'
+    voting_tl2_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di esperienza 2?'
+    voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di esperienza 3?'
+    voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di esperienza 4?'
     voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
-    voting_show_votes_on_profile: 'Consentire agli utenti di vedere i loro voti tra le attività del proprio profilo?'
+    voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nelle attività del profilo?'
+    voting_alert_votes_left: 'Avverti l''utente quando mancan questo numero di voti'

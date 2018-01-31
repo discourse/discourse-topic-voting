@@ -18,3 +18,6 @@ da:
       voted_title: "Stemte"
       voting_closed_title: "Lukket"
       voting_limit: "Begrænset"
+    filters:
+      votes:
+        title: "Stemmer"
