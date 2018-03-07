@@ -5,4 +5,11 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-sk: {}
+sk:
+  js:
+    voting:
+      vote_title: "Hlas"
+      vote_title_plural: "Hlasy"
+      voted_title: "Odhlasované"
+      voting_closed_title: "Hlasovanie ukončené"
+      voting_limit: "Limit"

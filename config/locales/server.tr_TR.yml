@@ -5,4 +5,13 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-tr_TR: {}
+tr_TR:
+  site_settings:
+    voting_enabled: 'Kullanıcıların konular da oy kullanmasına izin verilsin mi?'
+    voting_tl0_vote_limit: 'Seviye 0 kullanıcılar ne kadar oy kullanabilir?'
+    voting_tl1_vote_limit: 'Seviye 1 kullanıcıları ne kadar oy kullanabilir?'
+    voting_tl2_vote_limit: 'Seviye 2 kullanıcıları ne kadar oy kullanabilir?'
+    voting_tl3_vote_limit: 'Seviye 3 kullanıcıları ne kadar oy kullanabilir?'
+    voting_tl4_vote_limit: 'Seviye 4 kullanıcıları ne kadar oy kullanabilir?'
+    voting_show_who_voted: 'Kullanıcıların, kimlerin oy verdiğini görmesine izin ver?'
+    voting_show_votes_on_profile: 'Kullanıcıların etkinliklerin de de oylarını görmesine izin verilsin mi?'

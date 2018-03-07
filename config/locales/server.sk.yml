@@ -5,4 +5,7 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-sk: {}
+sk:
+  site_settings:
+    voting_enabled: 'Povoľiť používateľom hlasovať o témach?'
+    voting_show_who_voted: 'Môžu používatelia vidieť kto hlasoval?'

@@ -7,4 +7,12 @@
 
 cs:
   site_settings:
-    voting_enabled: 'Povolit uživatelům volit pro témata?'
+    voting_enabled: 'Povolit uživatelům hlasovat o tématech?'
+    voting_tl0_vote_limit: 'Kolik aktivních hlasů povolit TL0 uživatelům?'
+    voting_tl1_vote_limit: 'Kolik aktivních hlasů povolit TL1 uživatelům?'
+    voting_tl2_vote_limit: 'Kolik aktivních hlasů povolit TL2 uživatelům?'
+    voting_tl3_vote_limit: 'Kolik aktivních hlasů povolit TL3 uživatelům?'
+    voting_tl4_vote_limit: 'Kolik aktivních hlasů povolit TL4 uživatelům?'
+    voting_show_who_voted: 'Povolit uživatelům zobrazit, kdo jak hlasoval?'
+    voting_show_votes_on_profile: 'Povolit uživatelům zobrazit jejich hlasování ve feedu aktivit?'
+    voting_alert_votes_left: 'Upozornit uživatele, když mu zbývá tolik hlasů'

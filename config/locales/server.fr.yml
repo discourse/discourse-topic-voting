@@ -8,3 +8,11 @@
 fr:
   site_settings:
     voting_enabled: 'Autoriser les utilisateurs à voter pour les sujets ?'
+    voting_tl0_vote_limit: 'A combien de votes ont droit les utilisateurs de niveau de confiance 0 ?'
+    voting_tl1_vote_limit: 'A combien de votes ont droit les utilisateurs de niveau de confiance 1 ?'
+    voting_tl2_vote_limit: 'A combien de votes ont droit les utilisateurs de niveau de confiance 2 ?'
+    voting_tl3_vote_limit: 'A combien de votes ont droit les utilisateurs de niveau de confiance 3 ?'
+    voting_tl4_vote_limit: 'A combien de votes ont droit les utilisateurs de niveau de confiance 4 ?'
+    voting_show_who_voted: 'Permettre aux utilisateurs de voir qui a voté ?'
+    voting_show_votes_on_profile: 'Permettre aux utilisateurs de voir leurs votes dans leur historique d''activité ?'
+    voting_alert_votes_left: 'Avertir les utilisateurs quand il leur reste ce nombre de votes ?'
