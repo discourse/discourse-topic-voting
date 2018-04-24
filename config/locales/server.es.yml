@@ -8,7 +8,7 @@
 es:
   site_settings:
     voting_enabled: '¿Permitir a los usuarios votar los temas?'
-    voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC0?'
+    voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para usuarios con nivel de confianza 0?'
     voting_tl1_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC1?'
     voting_tl2_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC2?'
     voting_tl3_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC3?'
