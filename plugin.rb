@@ -168,8 +168,10 @@ after_initialize do
     end
 
     def vote_count
-      if self.custom_fields["vote_count"]
-        self.custom_fields["vote_count"].to_i
+      if count = self.custom_fields["vote_count"]
+        # we may have a weird array here, don't explode
+        # need to fix core to enforce types on fields
+        count.try(:to_i) || 0
       else
         0 if self.can_vote?
       end
