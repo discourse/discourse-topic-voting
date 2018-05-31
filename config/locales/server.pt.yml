@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-pt: {}
+pt:
+  site_settings:
+    voting_enabled: 'Permitir que os utilizadores votem em tópicos?'
+    voting_tl0_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL0?'
+    voting_tl1_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL1?'
+    voting_tl2_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL2?'
+    voting_tl3_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL3?'
+    voting_tl4_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL4?'
+    voting_show_who_voted: 'Permitir aos utilizadores ver quem votou?'
+    voting_show_votes_on_profile: 'Permitir aos utilizadores ver os seus votos na lista de actividade?'
+    voting_alert_votes_left: 'Alertar o utilizador quando faltarem estes votos'

@@ -18,6 +18,20 @@ ar:
       voted_title: "تم التصويت"
       voting_closed_title: "مغلق"
       voting_limit: "الحد"
+      votes_left:
+        zero: "لا أصوات باقية. أنظر<a href='{{path}}'>أصواتك</a>."
+        one: "لديك صوت باق. أنظر <a href='{{path}}'>أصواتك</a>."
+        two: "لديك صوتان باقيان. أنظر <a href='{{path}}'>أصواتك</a>."
+        few: "لديك {{count}} أصوات باقية. أنظر <a href='{{path}}'>أصواتك</a>."
+        many: "لديك {{count}} أصوات باقية. أنظر <a href='{{path}}'>أصواتك</a>."
+        other: "لديك {{count}} أصوات باقية. أنظر <a href='{{path}}'>أصواتك</a>."
+      votes:
+        zero: "لا صوت"
+        one: "صوت واحد"
+        two: "صوتان"
+        few: "{{count}} أصوات"
+        many: "{{count}} أصوات"
+        other: "{{count}} الأصوات"
     filters:
       votes:
         title: "أصوات"

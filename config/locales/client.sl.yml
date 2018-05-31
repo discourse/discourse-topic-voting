@@ -5,7 +5,4 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ro:
-  site_settings:
-    voting_enabled: 'Permiteți utilizatorilor să voteze subiecte?'
-    voting_show_who_voted: 'Permiteți utilizatorilor să vadă cine a votat?'
+sl: {}

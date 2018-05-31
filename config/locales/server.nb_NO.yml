@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-nb_NO: {}
+nb_NO:
+  site_settings:
+    voting_enabled: 'Tillat brukere å stemme på emner?'
+    voting_tl0_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL0?'
+    voting_tl1_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL1?'
+    voting_tl2_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL2?'
+    voting_tl3_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL3?'
+    voting_tl4_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL4?'
+    voting_show_who_voted: 'Tillat brukere å se hvem som stemte?'
+    voting_show_votes_on_profile: 'Tillat brukere å se stemmene sine i aktivitetslisten?'
+    voting_alert_votes_left: 'Varsle bruker når dette antallet stemmer er igjen'
