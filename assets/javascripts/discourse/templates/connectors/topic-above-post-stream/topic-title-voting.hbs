@@ -2,7 +2,9 @@
   {{#if model.postStream.loaded}}
     {{#if model.postStream.firstPostPresent}}
       <div class="voting title-voting">
-        {{mount-widget widget="vote-box" args=model}}
+        {{mount-widget widget="vote-box" args=model
+          showLogin=(route-action "showLogin")
+        }}
       </div>
     {{/if}}
   {{/if}}

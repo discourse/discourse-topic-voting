@@ -1,5 +1,4 @@
 import { createWidget } from 'discourse/widgets/widget';
-import showModal from 'discourse/lib/show-modal';
 
 export default createWidget('vote-button', {
   tagName: 'div.vote-button',
@@ -56,7 +55,9 @@ export default createWidget('vote-button', {
 
   click(){
     if (!this.currentUser){
-      showModal('login');
+      this.sendWidgetAction("showLogin");
+      $.cookie("destination_url", window.location.href);
+      return;
     }
     if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted){
       this.parentWidget.state.allowClick = false;
