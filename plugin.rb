@@ -185,6 +185,20 @@ after_initialize do
       end
     end
 
+    def update_vote_count
+      custom_fields["vote_count"] = UserCustomField.where(value: id.to_s, name: 'votes').count
+
+      save
+    end
+
+    def who_voted
+      return nil unless SiteSetting.voting_show_who_voted
+
+      User.where("id in (
+        SELECT user_id FROM user_custom_fields WHERE name IN ('votes', 'votes_archive') AND value = ?
+      )", id.to_s)
+    end
+
   end
 
   require_dependency 'list_controller'
@@ -259,6 +273,24 @@ after_initialize do
     if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == false
       Jobs.enqueue(:vote_reclaim, {topic_id: topic_id})
     end
+  end
+
+  DiscourseEvent.on(:topic_merged) do |orig, dest|
+    orig.who_voted.each do |user|
+      if user.votes.include?(dest.id.to_s)
+        # User has voted for both +orig+ and +dest+.
+        # Remove vote for topic +orig+.
+        user.custom_fields["votes"] = user.votes.dup - [orig.id.to_s]
+      else
+        # Change the vote for +orig+ in a vote for +dest+.
+        user.custom_fields["votes"] = user.votes.map { |vote| vote == orig.id.to_s ? dest.id.to_s : vote }
+      end
+
+      user.save
+    end
+
+    orig.update_vote_count
+    dest.update_vote_count
   end
 
   module ::DiscourseVoting
