@@ -23,7 +23,7 @@ module DiscourseVoting
         current_user.custom_fields["votes"] = current_user.votes.dup.push(params["topic_id"])
         current_user.save
 
-        update_vote_count(topic)
+        topic.update_vote_count
 
         voted = true
       end
@@ -48,7 +48,7 @@ module DiscourseVoting
       current_user.custom_fields["votes"] = current_user.votes.dup - [params["topic_id"].to_s]
       current_user.save
 
-      update_vote_count(topic)
+      topic.update_vote_count
 
       obj = {
         can_vote: !current_user.reached_voting_limit?,
@@ -63,19 +63,10 @@ module DiscourseVoting
 
     protected
 
-    def update_vote_count(topic)
-      topic.custom_fields["vote_count"] = UserCustomField.where(value: topic.id.to_s, name: 'votes').count
-      topic.save
-    end
-
     def who_voted(topic)
       return nil unless SiteSetting.voting_show_who_voted
 
-      users = User.where("id in (
-        SELECT user_id FROM user_custom_fields WHERE name IN ('votes', 'votes_archive') AND value = ?
-      )", params[:topic_id].to_i.to_s)
-
-      ActiveModel::ArraySerializer.new(users, scope: guardian, each_serializer: BasicUserSerializer)
+      ActiveModel::ArraySerializer.new(topic.who_voted, scope: guardian, each_serializer: BasicUserSerializer)
     end
 
   end
