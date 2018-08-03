@@ -13,7 +13,7 @@ module DiscourseVoting
     def add
       topic = Topic.find_by(id: params["topic_id"])
 
-      raise Discourse::InvalidAccess if !topic.can_vote?
+      raise Discourse::InvalidAccess if !topic.can_vote? || topic.user_voted(current_user)
       guardian.ensure_can_see!(topic)
 
       voted = false
