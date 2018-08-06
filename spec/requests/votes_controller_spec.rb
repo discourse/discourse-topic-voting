@@ -21,5 +21,19 @@ describe DiscourseVoting::VotesController do
     post "/voting/vote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(403)
     expect(topic.reload.vote_count).to eq(1)
+    expect(user.reload.vote_count).to eq(1)
+  end
+
+  context "when a user has tallyed votes with no topic id" do
+    before do
+      user.custom_fields["votes"] = [nil, nil, nil]
+      user.save
+    end
+
+    it "removes extra votes" do
+      post "/voting/vote.json", params: { topic_id: topic.id }
+      expect(response.status).to eq(200)
+      expect(user.reload.vote_count).to eq (1)
+    end
   end
 end
