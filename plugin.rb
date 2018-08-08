@@ -109,7 +109,7 @@ after_initialize do
   class ::User
       def vote_count
         if self.custom_fields["votes"]
-          user_votes = self.custom_fields["votes"].reject { |v| v.nil? }.length
+          user_votes = self.custom_fields["votes"].reject { |v| v.blank? }.length
         else
           0
         end
