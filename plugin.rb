@@ -108,7 +108,7 @@ after_initialize do
   require_dependency 'user'
   class ::User
       def vote_count
-        if self.custom_fields["votes"]
+        if self.custom_fields["votes"] && self.custom_fields["votes"].kind_of?(Array)
           user_votes = self.custom_fields["votes"].reject { |v| v.blank? }.length
         else
           0

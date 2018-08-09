@@ -43,4 +43,15 @@ describe DiscourseVoting do
     expect(topic1.vote_count).to eq(3)
   end
 
+  context "when a user has an empty string as the votes custom field" do
+    before do
+      user0.custom_fields["votes"] = ""
+      user0.save
+    end
+
+    it "returns a vote count of zero" do
+      expect(user0.vote_count).to eq (0)
+    end
+  end
+
 end
