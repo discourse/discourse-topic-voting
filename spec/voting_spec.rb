@@ -7,8 +7,11 @@ describe DiscourseVoting do
   let(:user2) { Fabricate(:user) }
   let(:user3) { Fabricate(:user) }
 
-  let(:topic0) { Fabricate(:topic) }
-  let(:topic1) { Fabricate(:topic) }
+  let(:category1) { Fabricate(:category) }
+  let(:category2) { Fabricate(:category) }
+
+  let(:topic0) { Fabricate(:topic, category: category1) }
+  let(:topic1) { Fabricate(:topic, category: category2) }
 
   before do
     SiteSetting.voting_enabled = true
@@ -54,4 +57,25 @@ describe DiscourseVoting do
     end
   end
 
+  context "when a topic is moved to a category" do
+    let(:admin) { Fabricate(:admin) }
+    let(:post0) { Fabricate(:post, topic: topic0, post_number: 1) }
+    let(:post1) { Fabricate(:post, topic: topic1, post_number: 1) }
+    
+    before do
+      category1.custom_fields["enable_topic_voting"] = "true"
+      category1.save!
+      Category.reset_voting_cache
+    end
+
+    it "enqueus a job to reclaim votes if voting is enabled for the new category" do
+      PostRevisor.new(post1).revise!(admin, category_id: category1.id)
+      expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
+    end
+
+    it "enqueus a job to release votes if voting is disabled for the new category" do
+      PostRevisor.new(post0).revise!(admin, category_id: category2.id)
+      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
+    end
+  end
 end
