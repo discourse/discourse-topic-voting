@@ -274,6 +274,17 @@ after_initialize do
     end
   end
 
+  DiscourseEvent.on(:post_edited) do |post, topic_changed|
+    if topic_changed && SiteSetting.voting_enabled && UserCustomField.where(value: post.topic_id).where("name = 'votes_archive' OR name = 'votes'").exists?
+      category_id = post.topic.category_id
+      if Category.can_vote?(category_id)
+        Jobs.enqueue(:vote_reclaim, { topic_id: post.topic_id })
+      else
+        Jobs.enqueue(:vote_release, { topic_id: post.topic_id })
+      end
+    end
+  end
+
   DiscourseEvent.on(:topic_merged) do |orig, dest|
     orig.who_voted.each do |user|
       if user.votes.include?(dest.id.to_s)
