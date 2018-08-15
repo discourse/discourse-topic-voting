@@ -69,13 +69,33 @@ describe DiscourseVoting do
     end
 
     it "enqueus a job to reclaim votes if voting is enabled for the new category" do
+      user = post1.user
+      user.custom_fields["votes_archive"] = [post1.topic_id, 456456]
+      user.save!
+
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
+
+      Jobs::VoteReclaim.new.execute(topic_id: post1.topic_id)
+      user.reload
+
+      expect(user.votes).to contain_exactly(post1.topic_id.to_s, nil)
+      expect([user.votes_archive]).to contain_exactly("456456")
     end
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
+      user = post0.user
+      user.custom_fields["votes"] = [post0.topic_id, 456456]
+      user.save!
+
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
+
+      Jobs::VoteRelease.new.execute(topic_id: post0.topic_id)
+      user.reload
+
+      expect(user.votes_archive).to contain_exactly(post0.topic_id.to_s, nil)
+      expect([user.votes]).to contain_exactly("456456")
     end
   end
 end
