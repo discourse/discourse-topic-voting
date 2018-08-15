@@ -97,5 +97,13 @@ describe DiscourseVoting do
       expect(user.votes_archive).to contain_exactly(post0.topic_id.to_s, nil)
       expect([user.votes]).to contain_exactly("456456")
     end
+
+    it "doesn't enqueue a job if the topic has no votes" do
+      PostRevisor.new(post0).revise!(admin, category_id: category2.id)
+      expect(Jobs::VoteRelease.jobs.size).to eq(0)
+
+      PostRevisor.new(post1).revise!(admin, category_id: category1.id)
+      expect(Jobs::VoteReclaim.jobs.size).to eq(0)
+    end
   end
 end

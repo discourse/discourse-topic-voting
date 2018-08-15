@@ -275,7 +275,7 @@ after_initialize do
   end
 
   DiscourseEvent.on(:post_edited) do |post, topic_changed|
-    if topic_changed && SiteSetting.voting_enabled
+    if topic_changed && SiteSetting.voting_enabled && UserCustomField.where(value: post.topic_id).where("name = 'votes_archive' OR name = 'votes'").exists?
       category_id = post.topic.category_id
       if Category.can_vote?(category_id)
         Jobs.enqueue(:vote_reclaim, { topic_id: post.topic_id })
