@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ca: {}
+ca:
+  js:
+    voting:
+      vote_title: "Vota"
+      vote_title_plural: "Vots"
+      voted_title: "Votat"
+      voting_closed_title: "Tancat"
+      voting_limit: "Límit"
+    filters:
+      votes:
+        title: "Vots"

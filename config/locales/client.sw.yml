@@ -1,0 +1,29 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+sw:
+  js:
+    voting:
+      reached_limit: "Umetumia kura zako zote, toa kura moja uliyoitumia!"
+      list_votes: "Orodha ya kura zako"
+      votes_nav_help: "Mada zenye kura nyingi zaidi"
+      voted: "Uliipigia kura hii mada"
+      allow_topic_voting: "Ruhusu watumiaji wapige kura kwenye hiki kikundi"
+      vote_title: "Piga kura"
+      vote_title_plural: "Kura"
+      voted_title: "Alio/Waliopiga Kura"
+      voting_closed_title: "Imefungwa"
+      voting_limit: "Kikomo"
+      votes_left:
+        one: "Una kura 1 iliyoachwa, tazama  <a href='{{path}}'>kura zako</a>."
+        other: "Una kura  {{count}}  zilizoachwa, tazama <a href='{{path}}'>kura zako</a>."
+      votes:
+        one: "Kura"
+        other: "Idadi ya kura {{count}} "
+    filters:
+      votes:
+        title: "Kura"

@@ -18,6 +18,12 @@ pt_BR:
       voted_title: "Votado"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
+      votes_left:
+        one: "Você tem 1 voto restante, veja  <a href='{{path}}'>seus votos</a>."
+        other: "Você tem {{count}} votos restantes, veja <a href='{{path}}'>seus votos</a>."
+      votes:
+        one: "1 voto"
+        other: "{{count}} votos"
     filters:
       votes:
         title: "Votos"

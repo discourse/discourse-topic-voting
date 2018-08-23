@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-bs_BA: {}
+bs_BA:
+  site_settings:
+    voting_enabled: 'Dozvoli korisnicima da glasaju u temama?'
+    voting_tl0_vote_limit: 'Koliko aktivnih glasova je dozvoljeno korisnicima sa nivoom povjerenja 0?'
+    voting_tl1_vote_limit: 'Koliko aktivnih glasova je dozvoljeno korisnicima sa nivoom povjerenja 1?'
+    voting_tl2_vote_limit: 'Koliko aktivnih glasova je dozvoljeno korisnicima sa nivoom povjerenja 2?'
+    voting_tl3_vote_limit: 'Koliko aktivnih glasova je dozvoljeno korisnicima sa nivoom povjerenja 3?'
+    voting_tl4_vote_limit: 'Koliko aktivnih glasova je dozvoljeno korisnicima sa nivoom povjerenja 4?'
+    voting_show_who_voted: 'Dozvoli korisnicima da vide ko je glasao?'
+    voting_show_votes_on_profile: 'Dozvoli korisnicima da vide svoje glasove u svojem pregledu aktivnosti?'
+    voting_alert_votes_left: 'Upozorite korisnike kada do naksimalnog broja glasova ostano još'

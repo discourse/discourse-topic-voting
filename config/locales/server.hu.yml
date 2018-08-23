@@ -1,0 +1,18 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+hu:
+  site_settings:
+    voting_enabled: 'Lehetővé teszi a felhasználók számára, hogy szavazzanak témákról?'
+    voting_tl0_vote_limit: 'Hány aktív szavazat megengedett a TL0 felhasználók számára?'
+    voting_tl1_vote_limit: 'Hány aktív szavazat megengedett a TL1 felhasználók számára?'
+    voting_tl2_vote_limit: 'Hány aktív szavazat megengedett a TL2 felhasználók számára?'
+    voting_tl3_vote_limit: 'Hány aktív szavazat megengedett a TL3 felhasználók számára?'
+    voting_tl4_vote_limit: 'Hány aktív szavazat megengedett a TL4 felhasználók számára?'
+    voting_show_who_voted: 'Lehetővé teszi a felhasználók számára, hogy láthassák ki szavazott?'
+    voting_show_votes_on_profile: 'Lehetővé teszi a felhasználók számára, hogy szavazatukat a tevékenységi hírcsatornaikban láthassák?'
+    voting_alert_votes_left: 'Figyelmezteti a felhasználót amikor ennyi szavazata maradt'
