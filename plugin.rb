@@ -286,17 +286,20 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_merged) do |orig, dest|
-    orig.who_voted.each do |user|
-      if user.votes.include?(dest.id.to_s)
-        # User has voted for both +orig+ and +dest+.
-        # Remove vote for topic +orig+.
-        user.custom_fields["votes"] = user.votes.dup - [orig.id.to_s]
-      else
-        # Change the vote for +orig+ in a vote for +dest+.
-        user.custom_fields["votes"] = user.votes.map { |vote| vote == orig.id.to_s ? dest.id.to_s : vote }
-      end
+    if orig.who_voted.present?
+      orig.who_voted.each do |user|
 
-      user.save
+        if user.votes.include?(dest.id.to_s)
+          # User has voted for both +orig+ and +dest+.
+          # Remove vote for topic +orig+.
+          user.custom_fields["votes"] = user.votes.dup - [orig.id.to_s]
+        else
+          # Change the vote for +orig+ in a vote for +dest+.
+          user.custom_fields["votes"] = user.votes.map { |vote| vote == orig.id.to_s ? dest.id.to_s : vote }
+        end
+
+        user.save
+      end
     end
 
     orig.update_vote_count
