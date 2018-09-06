@@ -18,6 +18,18 @@ describe DiscourseVoting do
     SiteSetting.voting_show_who_voted = true
   end
 
+  it "doesn't allow users to vote more than they are allowed" do
+    SiteSetting.voting_tl1_vote_limit = 1
+    user0.update!(trust_level: 1)
+
+    expect(user0.reached_voting_limit?).to eq(false)
+
+    user0.custom_fields["votes"] = [topic0.id.to_s]
+    user0.save!
+
+    expect(user0.reached_voting_limit?).to eq(true)
+  end
+
   it 'moves votes when topics are merged' do
     users = [user0, user1, user2, user3]
 
