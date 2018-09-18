@@ -26,7 +26,7 @@ describe DiscourseVoting::VotesController do
 
   context "when a user has tallyed votes with no topic id" do
     before do
-      user.custom_fields["votes"] = [nil, nil, nil]
+      user.custom_fields[DiscourseVoting::VOTES] = [nil, nil, nil]
       user.save
     end
 
