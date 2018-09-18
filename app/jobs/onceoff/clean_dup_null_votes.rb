@@ -1,6 +1,27 @@
 module Jobs
   class CleanDupNullVotes < Jobs::Onceoff
     def execute_onceoff(args)
+      # archive votes to closed or archived topics
+      DB.exec("
+        UPDATE user_custom_fields ucf
+        SET name = '#{DiscourseVoting::VOTES_ARCHIVE}'
+        FROM topics t
+        WHERE ucf.name = '#{DiscourseVoting::VOTES}'
+        AND (t.closed OR t.archived)
+        AND t.id::text = ucf.value
+      ")
+
+      # un-archive votes to open topics
+      DB.exec("
+        UPDATE user_custom_fields ucf
+        SET name = '#{DiscourseVoting::VOTES}'
+        FROM topics t
+        WHERE ucf.name = '#{DiscourseVoting::VOTES_ARCHIVE}'
+        AND NOT t.closed
+        AND NOT t.archived
+        AND t.id::text = ucf.value
+      ")
+
       # delete duplicate votes
       DB.exec("
         DELETE FROM user_custom_fields ucf1
