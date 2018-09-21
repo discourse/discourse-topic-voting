@@ -55,18 +55,9 @@
   font-size: 0.8em;
   margin-left: 18px;
 }
-
 .list-vote-count.voted {
   font-weight: bold;
 }
-.list-vote-count {
-  .fa {
-    display: none;
-    margin-left: 3px;
-    color: #999;
-  }
-}
-
 .user-voted-topics {
   height: 34px;
   line-height: 34px;
@@ -106,7 +97,6 @@
 .upgrade-answer i {
   margin: 0px 5px 0px 0px;
 }
-
 .topic-post.voting-post {
   button.like-count,
   button.toggle-like {
