@@ -1,51 +1,44 @@
-import { createWidget } from 'discourse/widgets/widget';
+import { createWidget } from "discourse/widgets/widget";
 
-export default createWidget('vote-button', {
-  tagName: 'div.vote-button',
+export default createWidget("vote-button", {
+  tagName: "button.btn.btn-primary.vote-button",
 
   buildClasses(attrs) {
     var buttonClass = "";
-    if (attrs.closed){
+    if (attrs.closed) {
       buttonClass = "voting-closed";
-    }
-    else{
-      if (!attrs.user_voted){
+    } else {
+      if (!attrs.user_voted) {
         buttonClass = "nonvote";
-      }
-      else{
-        if (this.currentUser && this.currentUser.votes_exceeded){
+      } else {
+        if (this.currentUser && this.currentUser.votes_exceeded) {
           buttonClass = "vote-limited nonvote";
-        }
-        else{
+        } else {
           buttonClass = "vote";
         }
       }
     }
     if (this.siteSettings.voting_show_who_voted) {
-      buttonClass += ' show-pointer';
+      buttonClass += " show-pointer";
     }
     return buttonClass;
   },
 
-  html(attrs){
-    var buttonTitle = I18n.t('voting.vote_title');
-    if (!this.currentUser){
-      buttonTitle = I18n.t('log_in');
-    }
-    else{
-      if (attrs.closed){
-        buttonTitle = I18n.t('voting.voting_closed_title');
-      }
-      else{
-        if (attrs.user_voted){
-          buttonTitle = I18n.t('voting.voted_title');
-        }
-        else{
-          if (this.currentUser && this.currentUser.votes_exceeded){
-            buttonTitle = I18n.t('voting.voting_limit');
-          }
-          else{
-            buttonTitle = I18n.t('voting.vote_title');
+  html(attrs) {
+    var buttonTitle = I18n.t("voting.vote_title");
+    if (!this.currentUser) {
+      buttonTitle = I18n.t("log_in");
+    } else {
+      if (attrs.closed) {
+        buttonTitle = I18n.t("voting.voting_closed_title");
+      } else {
+        if (attrs.user_voted) {
+          buttonTitle = I18n.t("voting.voted_title");
+        } else {
+          if (this.currentUser && this.currentUser.votes_exceeded) {
+            buttonTitle = I18n.t("voting.voting_limit");
+          } else {
+            buttonTitle = I18n.t("voting.vote_title");
           }
         }
       }
@@ -53,23 +46,27 @@ export default createWidget('vote-button', {
     return buttonTitle;
   },
 
-  click(){
-    if (!this.currentUser){
+  click() {
+    if (!this.currentUser) {
       this.sendWidgetAction("showLogin");
       $.cookie("destination_url", window.location.href);
       return;
     }
-    if (!this.attrs.closed && this.parentWidget.state.allowClick && !this.attrs.user_voted){
+    if (
+      !this.attrs.closed &&
+      this.parentWidget.state.allowClick &&
+      !this.attrs.user_voted
+    ) {
       this.parentWidget.state.allowClick = false;
       this.parentWidget.state.initialVote = true;
-      this.sendWidgetAction('addVote');
+      this.sendWidgetAction("addVote");
     }
     if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
       $(".vote-options").toggle();
     }
   },
 
-  clickOutside(){
+  clickOutside() {
     $(".vote-options").hide();
     this.parentWidget.state.initialVote = false;
   }
