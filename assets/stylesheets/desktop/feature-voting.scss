@@ -1,14 +1,15 @@
 .voting-popup-menu {
-  position: absolute !important;
-  left: 80px !important;
-  top: 14px !important;
-  z-index: 990;
+  position: absolute;
+  left: 80px;
+  top: 14px;
+  z-index: z("header") - 1;
   cursor: initial;
 }
 
 .vote-count{
-  height:40px;
-  line-height:40px;
-  font-weight: bold;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-up-2;
+  height: 40px;
 }
