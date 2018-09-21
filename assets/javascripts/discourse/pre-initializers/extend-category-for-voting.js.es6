@@ -29,9 +29,6 @@ function initialize(api) {
         )}' class='list-vote-count discourse-tag${userVotedClass}'${title}>`
       );
       buffer.push(I18n.t("voting.votes", { count: topic.vote_count }));
-      if (topic.user_voted) {
-        buffer.push(`<i class='fa fa-star'></i>`);
-      }
       buffer.push("</a>");
 
       if (buffer.length > 0) {
