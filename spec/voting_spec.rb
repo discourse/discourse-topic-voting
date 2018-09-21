@@ -39,7 +39,9 @@ describe DiscourseVoting do
     users[1].custom_fields[DiscourseVoting::VOTES] = users[1].votes.dup.push(topic1.id.to_s)
     users[2].custom_fields[DiscourseVoting::VOTES] = users[2].votes.dup.push(topic0.id.to_s)
     users[2].custom_fields[DiscourseVoting::VOTES] = users[2].votes.dup.push(topic1.id.to_s)
-    users.each { |u| u.save }
+
+    users.each { |u| u.save! }
+
     [topic0, topic1].each { |t| t.update_vote_count }
 
     # Simulating merger of +topic0+ into +topic1+.
@@ -48,9 +50,9 @@ describe DiscourseVoting do
     # Force user refresh.
     users.each(&:reload)
 
-    expect(users[0].votes).to eq([topic1.id.to_s])
-    expect(users[1].votes).to eq([topic1.id.to_s])
-    expect(users[2].votes).to eq([topic1.id.to_s])
+    expect(users[0].votes).to eq([topic1.id])
+    expect(users[1].votes).to eq([topic1.id])
+    expect(users[2].votes).to eq([topic1.id])
     expect(users[3].votes).to eq([])
 
     expect(topic0.vote_count).to eq(0)
@@ -60,11 +62,14 @@ describe DiscourseVoting do
   context "when a user has an empty string as the votes custom field" do
     before do
       user0.custom_fields[DiscourseVoting::VOTES] = ""
+      user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = ""
       user0.save
+      user0.reload
     end
 
     it "returns a vote count of zero" do
       expect(user0.vote_count).to eq (0)
+      expect(user0.votes_archive).to eq ([])
     end
   end
 
@@ -86,7 +91,7 @@ describe DiscourseVoting do
     let(:admin) { Fabricate(:admin) }
     let(:post0) { Fabricate(:post, topic: topic0, post_number: 1) }
     let(:post1) { Fabricate(:post, topic: topic1, post_number: 1) }
-    
+
     before do
       category1.custom_fields["enable_topic_voting"] = "true"
       category1.save!
@@ -104,8 +109,8 @@ describe DiscourseVoting do
       Jobs::VoteReclaim.new.execute(topic_id: post1.topic_id)
       user.reload
 
-      expect(user.votes).to contain_exactly(post1.topic_id.to_s)
-      expect(user.votes_archive).to contain_exactly("456456")
+      expect(user.votes).to eq([post1.topic_id])
+      expect(user.votes_archive).to eq([456456])
     end
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
@@ -119,8 +124,8 @@ describe DiscourseVoting do
       Jobs::VoteRelease.new.execute(topic_id: post0.topic_id)
       user.reload
 
-      expect(user.votes_archive).to contain_exactly(post0.topic_id.to_s)
-      expect(user.votes).to contain_exactly("456456")
+      expect(user.votes_archive).to eq([post0.topic_id])
+      expect(user.votes).to eq([456456])
     end
 
     it "doesn't enqueue a job if the topic has no votes" do

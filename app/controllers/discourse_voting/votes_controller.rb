@@ -10,8 +10,9 @@ module DiscourseVoting
       render json: MultiJson.dump(who_voted(topic))
     end
 
-    def add
-      topic = Topic.find_by(id: params["topic_id"])
+    def vote
+      topic_id = params["topic_id"].to_i
+      topic = Topic.find_by(id: topic_id)
 
       raise Discourse::InvalidAccess if !topic.can_vote? || topic.user_voted(current_user)
       guardian.ensure_can_see!(topic)
@@ -20,11 +21,10 @@ module DiscourseVoting
 
       unless current_user.reached_voting_limit?
 
-        current_user.custom_fields[DiscourseVoting::VOTES] = current_user.votes.dup.push(params["topic_id"]).uniq
+        current_user.custom_fields[DiscourseVoting::VOTES] = current_user.votes.dup.push(topic_id).uniq
         current_user.save!
 
         topic.update_vote_count
-
         voted = true
       end
 
@@ -40,12 +40,13 @@ module DiscourseVoting
       render json: obj, status: voted ? 200 : 403
     end
 
-    def remove
-      topic = Topic.find_by(id: params["topic_id"])
+    def unvote
+      topic_id = params["topic_id"].to_i
+      topic = Topic.find_by(id: topic_id)
 
       guardian.ensure_can_see!(topic)
 
-      current_user.custom_fields[DiscourseVoting::VOTES] = current_user.votes.dup - [params["topic_id"].to_s]
+      current_user.custom_fields[DiscourseVoting::VOTES] = current_user.votes.dup - [topic_id]
       current_user.save!
 
       topic.update_vote_count
