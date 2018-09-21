@@ -73,3 +73,10 @@
     display: none;
   }
 }
+.voting-popup-menu {
+  position: absolute;
+  left: 80px;
+  top: 14px;
+  z-index: z("header") - 1;
+  cursor: initial;
+}
