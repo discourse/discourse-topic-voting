@@ -1,7 +1,7 @@
 import { createWidget } from "discourse/widgets/widget";
 
 export default createWidget("vote-button", {
-  tagName: "div.vote-button",
+  tagName: "div.btn.btn-primary.vote-button",
 
   buildClasses(attrs) {
     var buttonClass = "";
