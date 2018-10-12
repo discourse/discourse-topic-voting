@@ -2,7 +2,7 @@
 # about: Adds the ability to vote on features in a specified category.
 # version: 0.4
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
-# url: https://www.github.com/joebuhlig/discourse-feature-voting
+# url: https://github.com/discourse/discourse-votin
 
 register_asset "stylesheets/common/feature-voting.scss"
 register_asset "stylesheets/desktop/feature-voting.scss", :desktop
