@@ -27,7 +27,11 @@ export default createWidget("vote-button", {
   html(attrs) {
     var buttonTitle = I18n.t("voting.vote_title");
     if (!this.currentUser) {
-      buttonTitle = I18n.t("log_in");
+      if (attrs.vote_count) {
+        buttonTitle = I18n.t("voting.anonymous_button", { count: attrs.vote_count });
+      } else {
+        buttonTitle = I18n.t("voting.anonymous_button", { count: 1 });
+      }
     } else {
       if (attrs.closed) {
         buttonTitle = I18n.t("voting.voting_closed_title");
