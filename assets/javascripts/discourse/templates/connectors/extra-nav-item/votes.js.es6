@@ -1,10 +1,10 @@
 export default {
-  votedPath(){
+  votedPath() {
     return "foobar";
   },
-  path(category){
+  path(category) {
     if (category) {
-      return category.get('votesUrl');
+      return category.get("votesUrl");
     }
   },
   displayName() {
@@ -13,7 +13,10 @@ export default {
   setupComponent(args, component) {
     const filterMode = args.filterMode;
     // no endsWith in IE
-    if (filterMode && filterMode.indexOf("votes", filterMode.length - 5) !== -1) {
+    if (
+      filterMode &&
+      filterMode.indexOf("votes", filterMode.length - 5) !== -1
+    ) {
       component.set("classNames", ["active"]);
     }
   },

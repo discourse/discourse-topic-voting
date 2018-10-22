@@ -5,6 +5,8 @@ export default UserTopicListRoute.extend({
   userActionType: UserAction.TYPES.topics,
 
   model: function() {
-    return this.store.findFiltered('topicList', {filter: 'topics/voted-by/' + this.modelFor('user').get('username_lower') });
+    return this.store.findFiltered("topicList", {
+      filter: "topics/voted-by/" + this.modelFor("user").get("username_lower")
+    });
   }
 });
