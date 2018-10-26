@@ -1,6 +1,10 @@
 plugins:
   voting_alert_votes_left:
     default: 10
+  voting_allow_excerpts_for_all_topics:
+    default: false
+    hidden: true
+    client: true
   voting_enabled:
     default: true
     client: true

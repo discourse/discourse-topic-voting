@@ -86,6 +86,9 @@ after_initialize do
   add_to_serializer(:topic_list_item, :user_voted) {
     object.user_voted(scope.user) if scope.user
   }
+  add_to_serializer(:listable_topic, :include_excerpt?) {
+    SiteSetting.voting_enabled && SiteSetting.voting_allow_excerpts_for_all_topics
+  }
 
   class ::Category
     def self.reset_voting_cache
