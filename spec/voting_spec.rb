@@ -136,4 +136,27 @@ describe DiscourseVoting do
       expect(Jobs::VoteReclaim.jobs.size).to eq(0)
     end
   end
+
+  context "when voting_allow_excerpts_for_all_topics is not enabled" do
+    let(:topic) { Fabricate(:topic, excerpt: 'This is a test') }
+    let(:user) { Fabricate(:user) }
+    subject(:json) { ListableTopicSerializer.new(topic, scope: Guardian.new(user), root: false).as_json }
+
+    it "should not include an excerpt for the topic" do
+      expect(json[:excerpt]).to eq(nil)
+    end
+  end
+
+  context "when voting_allow_excerpts_for_all_topics is enabled" do
+    let(:topic) { Fabricate(:topic, excerpt: 'This is a test') }
+    let(:user) { Fabricate(:user) }
+    subject(:json) { ListableTopicSerializer.new(topic, scope: Guardian.new(user), root: false).as_json }
+    before do
+      SiteSetting.voting_allow_excerpts_for_all_topics = true
+    end
+
+    it "should include an excerpt for the topic" do
+      expect(json[:excerpt]).to eq('This is a test')
+    end
+  end
 end
