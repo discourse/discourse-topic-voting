@@ -1,4 +1,5 @@
 import { createWidget } from "discourse/widgets/widget";
+import { iconNode } from "discourse-common/lib/icon-library";
 
 export default createWidget("remove-vote", {
   tagName: "div.remove-vote",
@@ -8,7 +9,7 @@ export default createWidget("remove-vote", {
   },
 
   html() {
-    return ["Remove vote"];
+    return [iconNode("times"), "Remove vote"];
   },
 
   click() {

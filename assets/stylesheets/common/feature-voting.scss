@@ -35,9 +35,7 @@
     background-color: $primary-low;
   }
 }
-.vote-option.remove-vote:before {
-  content: $fa-var-close;
-  font-family: FontAwesome;
+.vote-option.remove-vote .d-icon {
   margin-right: 6px;
   color: $danger;
 }
