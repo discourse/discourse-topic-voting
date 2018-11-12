@@ -1,7 +1,7 @@
 {{#if siteSettings.voting_show_votes_on_profile}}
 <li>
   {{#link-to 'userActivity.votes'}}
-    <i class="glyph fa fa-heart"></i>{{i18n 'voting.vote_title_plural'}}
+    {{d-icon 'heart'}} {{i18n 'voting.vote_title_plural'}}
   {{/link-to}}
 </li>
 {{/if}}
