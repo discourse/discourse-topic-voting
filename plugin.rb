@@ -196,7 +196,7 @@ after_initialize do
           value: id.to_s, keys: [DiscourseVoting::VOTES, DiscourseVoting::VOTES_ARCHIVE]).count
 
       custom_fields[DiscourseVoting::VOTE_COUNT] = count
-      save!
+      save_custom_fields
     end
 
     def who_voted
