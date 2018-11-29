@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-pt: {}
+pt:
+  js:
+    voting:
+      votes_nav_help: "tópicos mais votados"
+      voted: "Votou neste tópico"
+      allow_topic_voting: "Permitir que os utilizadores votem em tópicos desta categoria"
+      vote_title: "Voto"
+      vote_title_plural: "Votos"
+      voted_title: "Votado"
+      voting_closed_title: "Fechado"
+      voting_limit: "Limite"

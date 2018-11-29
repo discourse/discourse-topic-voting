@@ -5,8 +5,7 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ko:
-  js:
-    voting:
-      anonymous_button:
-        other: "투표"
+lt:
+  site_settings:
+    voting_enabled: 'Leisti nariams balsuoti temoje?'
+    voting_show_who_voted: 'Leisti nariams matyti balsavusius?'

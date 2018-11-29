@@ -5,4 +5,17 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-sl: {}
+sl:
+  js:
+    voting:
+      reached_limit: "Nimate več glasov, odstranite obstoječega!"
+      list_votes: "Prikaži moje glasove"
+      voted: "Glasovali ste v tej temi"
+      allow_topic_voting: "Dovolite uporabnikom, da glasujejo o temah v tej kategoriji"
+      vote_title: "Glasuj"
+      vote_title_plural: "Glasovi"
+      voted_title: "Glasovano"
+      voting_limit: "Omejitev"
+    filters:
+      votes:
+        title: "Glasovi"

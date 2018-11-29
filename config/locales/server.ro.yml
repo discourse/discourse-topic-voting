@@ -8,4 +8,11 @@
 ro:
   site_settings:
     voting_enabled: 'Permiteți utilizatorilor să voteze subiecte?'
+    voting_tl0_vote_limit: 'Câte voturi active permiteți pentru utilizatorii cu TL0 ?'
+    voting_tl1_vote_limit: 'Câte voturi active permiteți pentru utilizatorii cu TL1 ?'
+    voting_tl2_vote_limit: 'Câte voturi active permiteți pentru utilizatorii cu TL2 ?'
+    voting_tl3_vote_limit: 'Câte voturi active permiteți pentru utilizatorii cu TL3 ?'
+    voting_tl4_vote_limit: 'Câte voturi active permiteți pentru utilizatorii cu TL4 ?'
     voting_show_who_voted: 'Permiteți utilizatorilor să vadă cine a votat?'
+    voting_show_votes_on_profile: 'Permiteți utilizatorilor să vadă voturile în fluxurile lor de activități?'
+    voting_alert_votes_left: 'Avertizați utilizatorii când mai rămân doar atâtea voturi'

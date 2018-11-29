@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-nl: {}
+nl:
+  site_settings:
+    voting_enabled: 'Toestaan dat gebruikers op topics kunnen stemmen?'
+    voting_tl0_vote_limit: 'Hoeveel actieve stemmen mogen TL0 gebruikers hebben?'
+    voting_tl1_vote_limit: 'Hoeveel actieve stemmen mogen TL1 gebruikers hebben?'
+    voting_tl2_vote_limit: 'Hoeveel actieve stemmen mogen TL2 gebruikers hebben?'
+    voting_tl3_vote_limit: 'Hoeveel actieve stemmen mogen TL3 gebruikers hebben?'
+    voting_tl4_vote_limit: 'Hoeveel actieve stemmen mogen TL4 gebruikers hebben?'
+    voting_show_who_voted: 'Toestaan dat gebruikers kunnen zien wie gestemd heeft?'
+    voting_show_votes_on_profile: 'Toestaan dat gebruikers hun stemmen in hun activiteitenfeed zien?'
+    voting_alert_votes_left: 'Gebruiker waarschuwen als zoveel stemmen over zijn'

@@ -24,6 +24,9 @@ de:
       votes:
         one: "1 Vote"
         other: "{{count}} Votes"
+      anonymous_button:
+        one: "Stimme"
+        other: "Stimmen"
     filters:
       votes:
         title: "Votes"

@@ -24,6 +24,9 @@ es:
       votes:
         one: "1 voto"
         other: "{{count}} votos"
+      anonymous_button:
+        one: "Voto"
+        other: "Votos"
     filters:
       votes:
         title: "Votos"

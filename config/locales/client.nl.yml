@@ -8,12 +8,25 @@
 nl:
   js:
     voting:
+      reached_limit: "Je hebt geen stemmen meer, verwijder een bestaande stem!"
+      list_votes: "Lijst jouw stemmen"
+      votes_nav_help: "topics met de meeste stemmen"
+      voted: "Je hebt op deze topic gestemd"
       allow_topic_voting: "Sta gebruikers toe om te stemmen op onderwerpen in deze categorie"
       vote_title: "Stem"
       vote_title_plural: "Stemmen"
       voted_title: "Gestemd"
       voting_closed_title: "Gesloten"
       voting_limit: "Limiet"
+      votes_left:
+        one: "Je hebt 1 stem over, bekijk <a href='{{path}}'>jouw stemmen</a>."
+        other: "Je hebt {{count}} stemmen over, bekijk <a href='{{path}}'>jouw stemmen</a>."
+      votes:
+        one: "1 stem"
+        other: "{{count}} stemmen"
+      anonymous_button:
+        one: "Stem"
+        other: "Stemmen"
     filters:
       votes:
         title: "Stemmen"
