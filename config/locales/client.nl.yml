@@ -11,7 +11,7 @@ nl:
       reached_limit: "Je hebt geen stemmen meer, verwijder een bestaande stem!"
       list_votes: "Lijst jouw stemmen"
       votes_nav_help: "topics met de meeste stemmen"
-      voted: "Je hebt op deze topic gestemd"
+      voted: "Je hebt op dit topic gestemd"
       allow_topic_voting: "Sta gebruikers toe om te stemmen op onderwerpen in deze categorie"
       vote_title: "Stem"
       vote_title_plural: "Stemmen"

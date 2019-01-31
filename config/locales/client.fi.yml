@@ -24,6 +24,9 @@ fi:
       votes:
         one: "1 ääni"
         other: "{{count}} ääntä"
+      anonymous_button:
+        one: "Ääni"
+        other: "Äänet"
     filters:
       votes:
         title: "Äänet"
