@@ -303,7 +303,7 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_merged) do |orig, dest|
-    if orig.who_voted.present?
+    if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
 
         if user.votes.include?(dest.id)
