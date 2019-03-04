@@ -10,9 +10,9 @@ nb_NO:
     voting:
       reached_limit: "Du har ikke flere stemmer igjen, fjern en eksisterende stemme."
       list_votes: "List opp dine stemmer"
-      votes_nav_help: "tråder med flest stemmer"
-      voted: "Du stemte på denne tråden"
-      allow_topic_voting: "Tillat brukere å stemme på tråder i denne kategorien"
+      votes_nav_help: "emner med flest stemmer"
+      voted: "Du stemte på dette emnet"
+      allow_topic_voting: "Tillat brukere å stemme på emner i denne kategorien"
       vote_title: "Stemme"
       vote_title_plural: "Stemmer"
       voted_title: "Stemt"

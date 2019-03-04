@@ -28,6 +28,11 @@ ru:
         few: "проголосовало %{count}"
         many: "проголосовало %{count}"
         other: "проголосовало %{count}"
+      anonymous_button:
+        one: "Голос"
+        few: "Голосов"
+        many: "Голосов"
+        other: "Голосов"
     filters:
       votes:
         title: "Голосов"

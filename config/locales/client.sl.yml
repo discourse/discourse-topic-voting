@@ -10,12 +10,29 @@ sl:
     voting:
       reached_limit: "Nimate več glasov, odstranite obstoječega!"
       list_votes: "Prikaži moje glasove"
+      votes_nav_help: "teme z največ glasovi"
       voted: "Glasovali ste v tej temi"
       allow_topic_voting: "Dovolite uporabnikom, da glasujejo o temah v tej kategoriji"
       vote_title: "Glasuj"
       vote_title_plural: "Glasovi"
       voted_title: "Glasovano"
+      voting_closed_title: "Zaprta"
       voting_limit: "Omejitev"
+      votes_left:
+        one: "Imate še %{count} glas na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
+        two: "Imate še {{count}} glasova na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
+        few: "Imate še {{count}} glasove na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
+        other: "Imate še {{count}} glasov na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
+      votes:
+        one: "{{count}} glas"
+        two: "{{count}} glasova"
+        few: "{{count}} glasove"
+        other: "{{count}} glasov"
+      anonymous_button:
+        one: "Glas"
+        two: "Glasova"
+        few: "Glasovi"
+        other: "Glasov"
     filters:
       votes:
         title: "Glasovi"
