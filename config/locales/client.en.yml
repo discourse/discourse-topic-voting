@@ -12,10 +12,10 @@ en:
       voting_closed_title: "Closed"
       voting_limit: "Limit"
       votes_left:
-        one: "You have 1 vote left, see <a href='{{path}}'>your votes</a>."
+        one: "You have {{count}} vote left, see <a href='{{path}}'>your votes</a>."
         other: "You have {{count}} votes left, see <a href='{{path}}'>your votes</a>."
       votes:
-        one: "1 vote"
+        one: "{{count}} vote"
         other: "{{count}} votes"
       anonymous_button:
         one: "Vote"
