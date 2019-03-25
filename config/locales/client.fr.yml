@@ -7,6 +7,9 @@
 
 fr:
   js:
+    category:
+      sort_options:
+        votes: "Votes"
     voting:
       reached_limit: "Vous n'avez plus de votes disponibles, enlevez-en un !"
       list_votes: "Lister vos votes"
@@ -19,10 +22,10 @@ fr:
       voting_closed_title: "Fermé"
       voting_limit: "Limite"
       votes_left:
-        one: "Vous avec 1 vote restant, consultez <a href='{{path}}'>vos votes</a>."
+        one: "Vous avec {{count}} vote restant, consultez <a href='{{path}}'>vos votes</a>."
         other: "Vous avez {{count}} votes restant, consultez <a href='{{path}}'>vos votes</a>."
       votes:
-        one: "1 vote"
+        one: "{{count}} vote"
         other: "{{count}} votes"
       anonymous_button:
         one: "Vote"
