@@ -44,6 +44,9 @@ export default {
     withPluginApi("0.8.4", api => {
       initialize(api, container);
     });
+    withPluginApi("0.8.30", api => {
+      api.addCategorySortCriteria("votes");
+    });
 
     Category.reopen({
       @computed("url")

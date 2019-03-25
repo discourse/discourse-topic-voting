@@ -1,5 +1,8 @@
 en:
   js:
+    category:
+      sort_options:
+        votes: "Votes"
     voting:
       reached_limit: "You are out of votes, remove an existing vote!"
       list_votes: "List your votes"
