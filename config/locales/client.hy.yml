@@ -1,0 +1,35 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+hy:
+  js:
+    category:
+      sort_options:
+        votes: "Քվեներ"
+    voting:
+      reached_limit: "Դուք գերազանցել եք քվեների քանակը, հեռացրեք որևէ գոյույթուն ունեցող քվե!"
+      list_votes: "Ցուցակագրել Ձեր քվեները"
+      votes_nav_help: "ամենաշատ քվեներով թեմաները"
+      voted: "Դուք քվեարկել եք այս թեմայում"
+      allow_topic_voting: "Թույլատրել օգտատերերին քվեարկել այս կատեգորիայի թեմաներում"
+      vote_title: "Քվեարկել"
+      vote_title_plural: "Քվե"
+      voted_title: "Քվեարկած"
+      voting_closed_title: "Փակված է"
+      voting_limit: "Սահմանափակում"
+      votes_left:
+        one: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
+        other: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
+      votes:
+        one: "{{count}}  քվե"
+        other: "{{count}} քվե"
+      anonymous_button:
+        one: "Քվեներ"
+        other: "Քվեներ"
+    filters:
+      votes:
+        title: "Քվեներ"

@@ -7,10 +7,13 @@
 
 pt_BR:
   js:
+    category:
+      sort_options:
+        votes: "Votos"
     voting:
       reached_limit: "Você está sem votos, remova um voto existente!"
       list_votes: "Mostrar seus votos"
-      votes_nav_help: "tópicos mais votados"
+      votes_nav_help: "tópicos com a maioria dos votos"
       voted: "Você votou neste tópico"
       allow_topic_voting: "Permitir que usuários votem em tópicos desta categoria"
       vote_title: "Votar"
@@ -19,13 +22,13 @@ pt_BR:
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
       votes_left:
-        one: "Você tem 1 voto restante, veja  <a href='{{path}}'>seus votos</a>."
-        other: "Você tem {{count}} votos restantes, veja <a href='{{path}}'>seus votos</a>."
+        one: "Você tem {{count}} voto restante, veja os <a href='{{path}}'>seus votos</a>."
+        other: "Você tem {{count}} votos restantes, veja os <a href='{{path}}'>seus votos</a>."
       votes:
-        one: "1 voto"
+        one: "{{count}} voto"
         other: "{{count}} votos"
       anonymous_button:
-        one: "Votos"
+        one: "Voto"
         other: "Votos"
     filters:
       votes:

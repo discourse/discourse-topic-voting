@@ -18,12 +18,6 @@ sw:
       voted_title: "Alio/Waliopiga Kura"
       voting_closed_title: "Imefungwa"
       voting_limit: "Kikomo"
-      votes_left:
-        one: "Una kura 1 iliyoachwa, tazama  <a href='{{path}}'>kura zako</a>."
-        other: "Una kura  {{count}}  zilizoachwa, tazama <a href='{{path}}'>kura zako</a>."
-      votes:
-        one: "Kura"
-        other: "Idadi ya kura {{count}} "
     filters:
       votes:
         title: "Kura"

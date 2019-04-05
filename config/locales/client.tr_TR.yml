@@ -18,12 +18,6 @@ tr_TR:
       voted_title: "Oylanmış"
       voting_closed_title: "Kapalı"
       voting_limit: "Sınır"
-      votes_left:
-        one: "1 oyunuz kaldı. <a href='{{path}}'>Oylarınız</a>ı görüntüleyin."
-        other: "{{count}} oyunuz kaldı. <a href='{{path}}'>Oylarınız</a>ı görüntüleyin."
-      votes:
-        one: "1 oy"
-        other: "%{count} oylar"
     filters:
       votes:
         title: "Oylar"

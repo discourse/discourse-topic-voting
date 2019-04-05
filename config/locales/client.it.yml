@@ -18,12 +18,6 @@ it:
       voted_title: "Votato"
       voting_closed_title: "Chiuso"
       voting_limit: "Limite"
-      votes_left:
-        one: "Ti resta 1 voto, guarda<a href='{{path}}'>i tuoi voti</a>."
-        other: "Ti restano {{count}} voti, guarda<a href='{{path}}'>i tuoi voti</a>."
-      votes:
-        one: "1 voto"
-        other: "{{count}} voti"
       anonymous_button:
         one: "Voto"
         other: "Voti"

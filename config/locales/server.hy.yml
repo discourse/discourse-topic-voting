@@ -1,0 +1,18 @@
+# encoding: utf-8
+#
+# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+#
+# To work with us on translations, join this project:
+# https://www.transifex.com/projects/p/discourse-org/
+
+hy:
+  site_settings:
+    voting_enabled: 'Թույլատրե՞լ օգտատերերին քվեարկել թեմաներում:'
+    voting_tl0_vote_limit: 'Քանի՞ ակտիվ քվե է թույլատրվում ՎՄ-0 ունեցող օգտատերերին:'
+    voting_tl1_vote_limit: 'Քանի՞ ակտիվ քվե է թույլատրվում ՎՄ-1 ունեցող օգտատերերին:'
+    voting_tl2_vote_limit: 'Քանի՞ ակտիվ քվե է թույլատրվում ՎՄ-2 ունեցող օգտատերերին:'
+    voting_tl3_vote_limit: 'Քանի՞ ակտիվ քվե է թույլատրվում ՎՄ-3 ունեցող օգտատերերին:'
+    voting_tl4_vote_limit: 'Քանի՞ ակտիվ քվե է թույլատրվում ՎՄ-4 ունեցող օգտատերերին:'
+    voting_show_who_voted: 'Թույլատրել օգտատերերին տեսնել, թե ով է քվեարկել:'
+    voting_show_votes_on_profile: 'Թույլատրե՞լ օգտատերերին տեսնել իրեց քվեները ակտիվության լրահոսում:'
+    voting_alert_votes_left: 'Զգուշացնել օգտատիրոջը, երբ մնացել է այսքան հատ քվե'

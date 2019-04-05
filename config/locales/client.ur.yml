@@ -18,12 +18,6 @@ ur:
       voted_title: "ووٹ کیا"
       voting_closed_title: "بند"
       voting_limit: "حد"
-      votes_left:
-        one: "آپ کے پاس 1 ووٹ باقی ہے، دیکھیے <a href='{{path}}'>آپ کے ووٹ</a>۔"
-        other: "آپ کے پاس {{count}} ووٹ باقی ہیں، دیکھیے </a>آپ کے ووٹ</a>۔"
-      votes:
-        one: "1 ووٹ"
-        other: "{{count}} ووٹ"
     filters:
       votes:
         title: "ووٹ"

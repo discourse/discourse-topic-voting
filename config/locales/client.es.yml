@@ -7,6 +7,9 @@
 
 es:
   js:
+    category:
+      sort_options:
+        votes: "Votos"
     voting:
       reached_limit: "Te has quedado sin votos, ¡elimina un voto existente!"
       list_votes: "Lista tus votos"
@@ -19,8 +22,8 @@ es:
       voting_closed_title: "Cerrado"
       voting_limit: "Limitado"
       votes_left:
-        one: "Tienes 1 voto más, ver <a href='{{path}}'>tus votos</a>."
-        other: "Tienes {{count}} votos más, ver <a href='{{path}}'>tus votos</a>."
+        one: "Te queda 1 voto, ver <a href='{{path}}'>tus votos</a>."
+        other: "Te quedan {{count}} votos, ver <a href='{{path}}'>tus votos</a>."
       votes:
         one: "1 voto"
         other: "{{count}} votos"

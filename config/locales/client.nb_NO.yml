@@ -18,12 +18,6 @@ nb_NO:
       voted_title: "Stemt"
       voting_closed_title: "Lukket"
       voting_limit: "Grense"
-      votes_left:
-        one: "Du har én stemme igjen, se <a href='{{path}}'>dine stemmer</a>."
-        other: "Du har {{count}} stemmer igjen, se <a href='{{path}}'>dine stemmer</a>."
-      votes:
-        one: "Én stemme"
-        other: "{{count}} stemmer"
     filters:
       votes:
         title: "Stemmer"

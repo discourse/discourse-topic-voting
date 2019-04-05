@@ -18,16 +18,6 @@ cs:
       voted_title: "Odhlasováno"
       voting_closed_title: "Uzavřeno"
       voting_limit: "limit"
-      votes_left:
-        one: "Zbývá vám 1 hlas, podívejte se na <a href='{{path}}'>své hlasy</a>."
-        few: "Zbývají vám {{count}} hlasy, podívejte se <a href='{{path}}'>na své hlasy</a>."
-        many: "Zbývá vám {{count}} hlasů, podívejte se <a href='{{path}}'>na své hlasy</a>."
-        other: "Zbývá vám {{count}} hlasů, podívejte se <a href='{{path}}'>na své hlasy</a>."
-      votes:
-        one: "1 hlas"
-        few: "{{count}} hlasy"
-        many: "{{count}} hlasů"
-        other: "{{count}} hlasů"
     filters:
       votes:
         title: "Hlasy"

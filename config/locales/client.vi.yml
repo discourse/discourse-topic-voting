@@ -18,10 +18,6 @@ vi:
       voted_title: "Đã bình ch"
       voting_closed_title: "Đã "
       voting_limit: "Giới h"
-      votes_left:
-        other: "Bạn có {{count}} lượt bình chọn còn lại, xem <a href='{{path}}'>bình chọn của bạn</a>."
-      votes:
-        other: "{{count}} bình ch"
     filters:
       votes:
         title: "Bình chọn"

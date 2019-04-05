@@ -5,4 +5,7 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ko: {}
+ko:
+  site_settings:
+    voting_enabled: '사용자가 글에 투표하도록 허용 하시겠습니까?'
+    voting_show_who_voted: '사용자가 누가 투표를 했는지 볼 수 있도록 하시겠습니까?'

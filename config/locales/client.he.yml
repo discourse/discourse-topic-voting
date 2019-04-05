@@ -18,16 +18,6 @@ he:
       voted_title: "התקבלה הצבעה"
       voting_closed_title: "נסגר"
       voting_limit: "מגבלה"
-      votes_left:
-        one: "נותרה לך הצבעה אחת, הצגת <a href='{{path}}'>ההצבעות שלך</a>."
-        two: "נותרו לך {{count}} הצבעות, להציג את <a href='{{path}}'>ההצבעות שלך</a>."
-        many: "נותרו לך {{count}} הצבעות, להציג את <a href='{{path}}'>ההצבעות שלך</a>."
-        other: "נותרו לך {{count}} הצבעות, להציג את <a href='{{path}}'>ההצבעות שלך</a>."
-      votes:
-        one: "הצבעה אחת"
-        two: "{{count}} הצבעות"
-        many: "{{count}} הצבעות"
-        other: "{{count}} הצבעות"
     filters:
       votes:
         title: "הצבעות"

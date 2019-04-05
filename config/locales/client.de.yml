@@ -7,6 +7,9 @@
 
 de:
   js:
+    category:
+      sort_options:
+        votes: "Stimmen"
     voting:
       reached_limit: "Dir sind die Votes ausgegangen, entferne einen vorhandenen Vote!"
       list_votes: "Deine Votes auflisten"
@@ -19,11 +22,11 @@ de:
       voting_closed_title: "Geschlossen"
       voting_limit: "Limit"
       votes_left:
-        one: "Du hast 1 Vote übrig, siehe <a href='{{path}}'>deine Votes</a>."
-        other: "Dir bleiben {{count}} Votes, siehe <a href='{{path}}'>deine Votes</a>."
+        one: "Du hast {{count}} Stimme übrig, siehe <a href='{{path}}'>deine Stimmen</a>."
+        other: "Du hast {{count}} Stimmen übrig, siehe <a href='{{path}}'>deine Stimmen</a>."
       votes:
-        one: "1 Vote"
-        other: "{{count}} Votes"
+        one: "{{count}} Stimme"
+        other: "{{count}} Stimmen"
       anonymous_button:
         one: "Stimme"
         other: "Stimmen"

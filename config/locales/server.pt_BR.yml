@@ -8,11 +8,11 @@
 pt_BR:
   site_settings:
     voting_enabled: 'Permitir que usuários votem nos tópicos?'
-    voting_tl0_vote_limit: 'Quantos votos de usuários nível 0 são permitidos?'
-    voting_tl1_vote_limit: 'Quantos votos de usuários de nível 1 são permitidos?'
-    voting_tl2_vote_limit: 'Quantos votos de usuários de nível 2 são permitidos?'
-    voting_tl3_vote_limit: 'Quantos votos de usuários de nível 3 são permitidos?'
-    voting_tl4_vote_limit: 'Quantos votos de usuários de nível 4 são permitidos?'
+    voting_tl0_vote_limit: 'Quantos votos ativos de usuários NC0 são permitidos?'
+    voting_tl1_vote_limit: 'Quantos votos ativos de usuários NC1 são permitidos?'
+    voting_tl2_vote_limit: 'Quantos votos ativos de usuários NC2 são permitidos?'
+    voting_tl3_vote_limit: 'Quantos votos ativos de usuários NC3 são permitidos?'
+    voting_tl4_vote_limit: 'Quantos votos ativos de usuários NC4 são permitidos?'
     voting_show_who_voted: 'Permitir que usuários vejam quem votou?'
-    voting_show_votes_on_profile: 'Permitir que usuários vejam seus votos nos seus feed de atividade?'
-    voting_alert_votes_left: 'Alertar o usuário quando ele votar várias vezes?'
+    voting_show_votes_on_profile: 'Permitir que usuários vejam seus votos nos seus feeds de atividade?'
+    voting_alert_votes_left: 'Alertar o usuário quando houver esta quantidade de votos restantes'

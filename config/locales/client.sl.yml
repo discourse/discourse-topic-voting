@@ -18,16 +18,6 @@ sl:
       voted_title: "Glasovano"
       voting_closed_title: "Zaprta"
       voting_limit: "Omejitev"
-      votes_left:
-        one: "Imate še %{count} glas na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
-        two: "Imate še {{count}} glasova na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
-        few: "Imate še {{count}} glasove na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
-        other: "Imate še {{count}} glasov na voljo, poglejte <a href='{{path}}'>vaše glasove</a>."
-      votes:
-        one: "{{count}} glas"
-        two: "{{count}} glasova"
-        few: "{{count}} glasove"
-        other: "{{count}} glasov"
       anonymous_button:
         one: "Glas"
         two: "Glasova"

@@ -18,10 +18,6 @@ zh_CN:
       voted_title: "已投票"
       voting_closed_title: "已结束推荐"
       voting_limit: "次数限制"
-      votes_left:
-        other: "你还有 {{count}} 张选票，见<a href='{{path}}'>你的投票</a>。"
-      votes:
-        other: "{{count}} 票"
       anonymous_button:
         other: "投票"
     filters:

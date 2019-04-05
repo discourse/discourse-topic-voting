@@ -18,12 +18,6 @@ hu:
       voted_title: "Szavazott"
       voting_closed_title: "Lezárva"
       voting_limit: "Limit"
-      votes_left:
-        one: "Csak 1 szavazatod maradt, lásd <a href='{{path}}'>your votes</a>."
-        other: "{{count}} szavazatod maradt, lásd <a href='{{path}}'>your votes</a>."
-      votes:
-        one: "1 szavazat"
-        other: "{{count}} szavazat"
     filters:
       votes:
         title: "Szavazatok"

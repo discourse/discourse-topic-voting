@@ -18,12 +18,6 @@ fi:
       voted_title: "Äänestit"
       voting_closed_title: "Suljettu"
       voting_limit: "Yläraja"
-      votes_left:
-        one: "Sinulla on 1 ääni jäljellä, katso <a href='{{path}}'>kaikki äänesi</a>."
-        other: "Sinulla on {{count}} ääntä jäljellä, katso <a href='{{path}}'>kaikki äänesi</a>."
-      votes:
-        one: "1 ääni"
-        other: "{{count}} ääntä"
       anonymous_button:
         one: "Ääni"
         other: "Äänet"
