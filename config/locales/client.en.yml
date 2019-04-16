@@ -23,6 +23,7 @@ en:
       anonymous_button:
         one: "Vote"
         other: "Votes"
+      remove_vote: "Remove vote"
     filters:
       votes:
         title: "Votes"

@@ -9,7 +9,7 @@ export default createWidget("remove-vote", {
   },
 
   html() {
-    return [iconNode("times"), "Remove vote"];
+    return [iconNode("times"), I18n.t("voting.remove_vote")];
   },
 
   click() {
