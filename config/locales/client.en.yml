@@ -4,6 +4,7 @@ en:
       sort_options:
         votes: "Votes"
     voting:
+      title: "Voting"
       reached_limit: "You are out of votes, remove an existing vote!"
       list_votes: "List your votes"
       votes_nav_help: "topics with the most votes"
