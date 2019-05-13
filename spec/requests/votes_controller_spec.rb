@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe DiscourseVoting::VotesController do
@@ -22,7 +24,7 @@ describe DiscourseVoting::VotesController do
 
   it "can correctly show deal with voting workflow" do
 
-    SiteSetting.send "voting_tl#{user.trust_level}_vote_limit=", 2
+    SiteSetting.public_send "voting_tl#{user.trust_level}_vote_limit=", 2
 
     post "/voting/vote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(200)

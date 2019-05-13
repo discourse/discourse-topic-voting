@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DiscourseVoting
   class VotesController < ::ApplicationController
     before_action :ensure_logged_in
@@ -33,7 +35,7 @@ module DiscourseVoting
         vote_limit: current_user.vote_limit,
         vote_count: topic.custom_fields[DiscourseVoting::VOTE_COUNT].to_i,
         who_voted: who_voted(topic),
-        alert:  current_user.alert_low_votes?,
+        alert: current_user.alert_low_votes?,
         votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
       }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # name: discourse-voting
 # about: Adds the ability to vote on features in a specified category.
 # version: 0.4
@@ -146,7 +148,7 @@ after_initialize do
     end
 
     def vote_limit
-      SiteSetting.send("voting_tl#{self.trust_level}_vote_limit")
+      SiteSetting.get("voting_tl#{self.trust_level}_vote_limit")
     end
 
   end
