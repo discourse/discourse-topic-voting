@@ -148,7 +148,7 @@ after_initialize do
     end
 
     def vote_limit
-      SiteSetting.get("voting_tl#{self.trust_level}_vote_limit")
+      SiteSetting.public_send("voting_tl#{self.trust_level}_vote_limit")
     end
 
   end
