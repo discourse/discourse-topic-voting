@@ -7,6 +7,9 @@
 
 ru:
   js:
+    category:
+      sort_options:
+        votes: "Голосов"
     voting:
       reached_limit: "У вас закончились голоса, удалите часть ваших голосов!"
       list_votes: "Посмотреть ваши голоса"

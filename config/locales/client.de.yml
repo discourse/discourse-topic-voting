@@ -11,6 +11,7 @@ de:
       sort_options:
         votes: "Stimmen"
     voting:
+      title: "Abstimmung"
       reached_limit: "Dir sind die Votes ausgegangen, entferne einen vorhandenen Vote!"
       list_votes: "Deine Votes auflisten"
       votes_nav_help: "Themen mit den meisten Votes"
@@ -30,6 +31,7 @@ de:
       anonymous_button:
         one: "Stimme"
         other: "Stimmen"
+      remove_vote: "Stimme entfernen"
     filters:
       votes:
         title: "Votes"

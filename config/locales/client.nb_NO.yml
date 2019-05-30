@@ -7,6 +7,9 @@
 
 nb_NO:
   js:
+    category:
+      sort_options:
+        votes: "Stemmer"
     voting:
       reached_limit: "Du har ikke flere stemmer igjen, fjern en eksisterende stemme."
       list_votes: "List opp dine stemmer"

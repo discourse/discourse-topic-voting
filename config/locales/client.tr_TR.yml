@@ -7,6 +7,9 @@
 
 tr_TR:
   js:
+    category:
+      sort_options:
+        votes: "Oylar"
     voting:
       reached_limit: "Oy hakkınız kalmadı, mevcut bir oyunuzu kaldırın!"
       list_votes: "Oylarınızı listeleyin"

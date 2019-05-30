@@ -7,6 +7,9 @@
 
 vi:
   js:
+    category:
+      sort_options:
+        votes: "Bình chọn"
     voting:
       reached_limit: "Bạn đã hết lượt bình chọn, hãy xóa lượt đang có của bạn"
       list_votes: "Liệt kê bình chọn của bạn"

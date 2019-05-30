@@ -7,6 +7,9 @@
 
 ar:
   js:
+    category:
+      sort_options:
+        votes: "أصوات"
     voting:
       reached_limit: "لم يعد بإمكانك التصويت الآن، الرجاء حذف تصويت"
       list_votes: "قائمة تصويتاتك"

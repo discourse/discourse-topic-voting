@@ -7,6 +7,9 @@
 
 pt:
   js:
+    category:
+      sort_options:
+        votes: "Votos"
     voting:
       votes_nav_help: "tópicos mais votados"
       voted: "Votou neste tópico"
@@ -16,3 +19,6 @@ pt:
       voted_title: "Votado"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
+    filters:
+      votes:
+        title: "Votos"

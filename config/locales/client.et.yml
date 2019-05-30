@@ -7,9 +7,15 @@
 
 et:
   js:
+    category:
+      sort_options:
+        votes: "HInnangud"
     voting:
       voted: "Sa hindasid seda teemat"
       vote_title: "Hinda"
       vote_title_plural: "HInnangud"
       voting_closed_title: "Suletud"
       voting_limit: "Limiit"
+    filters:
+      votes:
+        title: "HInnangud"

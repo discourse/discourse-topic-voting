@@ -7,6 +7,9 @@
 
 cs:
   js:
+    category:
+      sort_options:
+        votes: "Hlasy"
     voting:
       reached_limit: "Došly ti hlasy. Odeber si existující hlas."
       list_votes: "Seznam tvých hlasů"

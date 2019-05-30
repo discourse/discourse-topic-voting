@@ -7,11 +7,19 @@
 
 ko:
   js:
+    category:
+      sort_options:
+        votes: "투표"
     voting:
       list_votes: "내 투표 목록"
       voted: "이 주제에 투표했습니다"
       allow_topic_voting: "사용자가 이 카테고리의 주제에 투표하도록 허용함"
+      vote_title: "투표"
+      vote_title_plural: "투표"
       voted_title: "투표함"
       voting_closed_title: "닫힘"
       anonymous_button:
         other: "투표"
+    filters:
+      votes:
+        title: "투표"

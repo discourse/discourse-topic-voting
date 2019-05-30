@@ -7,9 +7,15 @@
 
 sk:
   js:
+    category:
+      sort_options:
+        votes: "Hlasy"
     voting:
       vote_title: "Hlas"
       vote_title_plural: "Hlasy"
       voted_title: "Odhlasované"
       voting_closed_title: "Hlasovanie ukončené"
       voting_limit: "Limit"
+    filters:
+      votes:
+        title: "Hlasy"

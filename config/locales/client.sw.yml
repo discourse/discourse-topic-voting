@@ -7,6 +7,9 @@
 
 sw:
   js:
+    category:
+      sort_options:
+        votes: "Kura"
     voting:
       reached_limit: "Umetumia kura zako zote, toa kura moja uliyoitumia!"
       list_votes: "Orodha ya kura zako"

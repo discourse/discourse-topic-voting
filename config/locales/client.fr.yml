@@ -30,6 +30,7 @@ fr:
       anonymous_button:
         one: "Vote"
         other: "Votes"
+      remove_vote: "Retirer vote"
     filters:
       votes:
         title: "Votes"

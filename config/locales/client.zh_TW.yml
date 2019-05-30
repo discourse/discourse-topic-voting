@@ -7,6 +7,9 @@
 
 zh_TW:
   js:
+    category:
+      sort_options:
+        votes: "投票"
     voting:
       reached_limit: "您已退出投票，移除現有的投票！"
       list_votes: "列出您的投票"

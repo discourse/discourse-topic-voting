@@ -7,6 +7,9 @@
 
 ca:
   js:
+    category:
+      sort_options:
+        votes: "Vots"
     voting:
       vote_title: "Vota"
       vote_title_plural: "Vots"

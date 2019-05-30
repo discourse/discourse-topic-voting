@@ -7,12 +7,12 @@
 
 es:
   site_settings:
-    voting_enabled: '¿Permitir a los usuarios votar los temas?'
-    voting_tl0_vote_limit: '¿Cuántos votos activos se permiten para usuarios con nivel de confianza 0?'
-    voting_tl1_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC1?'
-    voting_tl2_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC2?'
-    voting_tl3_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC3?'
-    voting_tl4_vote_limit: '¿Cuántos votos activos se permiten para usuarios con NC4?'
-    voting_show_who_voted: '¿Pueden los usuarios ver quién votó?'
-    voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su activity feed?'
-    voting_alert_votes_left: 'Alertar al usuario cuando quedan muchos votos'
+    voting_enabled: '¿Permitir a los usuarios votar sobre temas?'
+    voting_tl0_vote_limit: '¿Cuántos votos activos están permitidos los usuarios de NC0?'
+    voting_tl1_vote_limit: '¿Cuántos votos activos están permitidos los usuarios de NC1?'
+    voting_tl2_vote_limit: '¿Cuántos votos activos están permitidos los usuarios de NC2?'
+    voting_tl3_vote_limit: '¿Cuántos votos activos están permitidos los usuarios de NC3?'
+    voting_tl4_vote_limit: '¿Cuántos votos activos están permitidos los usuarios de NC4?'
+    voting_show_who_voted: '¿Permitir a los usuarios ver quién votó?'
+    voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su feed de actividad?'
+    voting_alert_votes_left: 'Alertar al usuario cuando quedan estos tantos votos'

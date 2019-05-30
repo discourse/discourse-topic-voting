@@ -7,6 +7,9 @@
 
 da:
   js:
+    category:
+      sort_options:
+        votes: "Stemmer"
     voting:
       reached_limit: "Du kan ikke afgive flere stemmer, fjern venligst en og prøv igen!"
       list_votes: "Vis dine stemmer"

@@ -11,6 +11,7 @@ nl:
       sort_options:
         votes: "Stemmen"
     voting:
+      title: "Stemmen"
       reached_limit: "U hebt geen stemmen meer, verwijder een bestaande stem!"
       list_votes: "Uw stemmen weergeven"
       votes_nav_help: "topics met de meeste stemmen"
@@ -30,6 +31,7 @@ nl:
       anonymous_button:
         one: "Stem"
         other: "Stemmen"
+      remove_vote: "Stem verwijderen"
     filters:
       votes:
         title: "Stemmen"

@@ -7,7 +7,11 @@
 
 he:
   js:
+    category:
+      sort_options:
+        votes: "הצבעות"
     voting:
+      title: "הצבעה"
       reached_limit: "נגמרו לך ההצבעות, עליך להסיר הצבעה קיימת!"
       list_votes: "הצגת ההצבעות שלך"
       votes_nav_help: "נושאים עם הכי הרבה הצבעות"
@@ -18,6 +22,22 @@ he:
       voted_title: "התקבלה הצבעה"
       voting_closed_title: "נסגר"
       voting_limit: "מגבלה"
+      votes_left:
+        one: "נותרה לרשותך הצבעה אחת, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
+        two: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
+        many: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
+        other: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
+      votes:
+        one: "הצבעה אחת"
+        two: "{{count}} הצבעות"
+        many: "{{count}} הצבעות"
+        other: "{{count}} הצבעות"
+      anonymous_button:
+        one: "הצבעה"
+        two: "הצבעות"
+        many: "הצבעות"
+        other: "הצבעות"
+      remove_vote: "הסרת הצבעה"
     filters:
       votes:
         title: "הצבעות"

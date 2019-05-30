@@ -7,8 +7,15 @@
 
 ja:
   js:
+    category:
+      sort_options:
+        votes: "投票"
     voting:
       voted: "あなたはこのトピックに投票しました"
       vote_title: "投票"
+      vote_title_plural: "投票"
       anonymous_button:
         other: "投票"
+    filters:
+      votes:
+        title: "投票"

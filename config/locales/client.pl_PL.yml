@@ -7,6 +7,9 @@
 
 pl_PL:
   js:
+    category:
+      sort_options:
+        votes: "Głosy"
     voting:
       reached_limit: "Oddałeś już maksymalną liczbę głosów!"
       list_votes: "Lista twoich głosów"

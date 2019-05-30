@@ -11,25 +11,27 @@ es:
       sort_options:
         votes: "Votos"
     voting:
+      title: "Votación"
       reached_limit: "Te has quedado sin votos, ¡elimina un voto existente!"
       list_votes: "Lista tus votos"
-      votes_nav_help: "temas más votados"
-      voted: "Has votado este tema"
-      allow_topic_voting: "Permitir a los usuarios votar los temas de esta categoría"
+      votes_nav_help: "temas con más votos"
+      voted: "Votaste sobre este tema"
+      allow_topic_voting: "Permitir a los usuarios votar sobre temas en esta categoría"
       vote_title: "Votar"
       vote_title_plural: "Votos"
       voted_title: "Votado"
       voting_closed_title: "Cerrado"
       voting_limit: "Limitado"
       votes_left:
-        one: "Te queda 1 voto, ver <a href='{{path}}'>tus votos</a>."
-        other: "Te quedan {{count}} votos, ver <a href='{{path}}'>tus votos</a>."
+        one: "Te queda {{count}} voto, ver <a href='{{path}}'>tus votos</a>."
+        other: "Te quedan {{count}} votos, mira <a href='{{path}}'>tus votos</a>."
       votes:
-        one: "1 voto"
+        one: "{{count}} voto"
         other: "{{count}} votos"
       anonymous_button:
         one: "Voto"
         other: "Votos"
+      remove_vote: "Quitar voto"
     filters:
       votes:
         title: "Votos"
