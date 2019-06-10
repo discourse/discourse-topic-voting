@@ -11,7 +11,8 @@ fr:
       sort_options:
         votes: "Votes"
     voting:
-      reached_limit: "Vous n'avez plus de votes disponibles, enlevez-en un !"
+      title: "Votation"
+      reached_limit: "Vous n'avez plus de votes disponibles, enlevez-en un !"
       list_votes: "Lister vos votes"
       votes_nav_help: "sujets les plus votés"
       voted: "Vous avez voté pour ce sujet"

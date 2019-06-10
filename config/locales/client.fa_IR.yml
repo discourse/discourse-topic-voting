@@ -9,3 +9,4 @@ fa_IR:
   js:
     voting:
       vote_title: "امتیاز"
+      voting_closed_title: "بسته"
