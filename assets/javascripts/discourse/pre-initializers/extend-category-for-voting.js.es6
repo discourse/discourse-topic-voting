@@ -17,15 +17,16 @@ function initialize(api) {
 
       var buffer = [];
 
-      let title;
+      let title = "";
       if (topic.user_voted) {
-        title = `title='${I18n.t("voting.voted")}'`;
+        title = ` title='${I18n.t("voting.voted")}'`;
       }
 
       let userVotedClass = topic.user_voted ? " voted" : "";
       buffer.push(
-        "<span class='list-vote-count discourse-tag${userVotedClass}' ${title}>"
+        `<span class='list-vote-count discourse-tag${userVotedClass}'${title}>`
       );
+
       buffer.push(I18n.t("voting.votes", { count: topic.vote_count }));
       buffer.push("</span>");
 
