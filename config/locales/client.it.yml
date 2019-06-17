@@ -11,6 +11,7 @@ it:
       sort_options:
         votes: "Voti"
     voting:
+      title: "Votare"
       reached_limit: "Hai terminato i voti, rimuovi un voto esistente!"
       list_votes: "Elenca i tuoi voti"
       votes_nav_help: "argomenti con il maggior numero di voti"
@@ -30,6 +31,7 @@ it:
       anonymous_button:
         one: "Voto"
         other: "Voti"
+      remove_vote: "Rimuovi voto"
     filters:
       votes:
         title: "Voti"

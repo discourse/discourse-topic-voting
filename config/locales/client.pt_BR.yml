@@ -11,6 +11,7 @@ pt_BR:
       sort_options:
         votes: "Votos"
     voting:
+      title: "Votação"
       reached_limit: "Você está sem votos, remova um voto existente!"
       list_votes: "Mostrar seus votos"
       votes_nav_help: "tópicos com a maioria dos votos"
@@ -30,6 +31,7 @@ pt_BR:
       anonymous_button:
         one: "Voto"
         other: "Votos"
+      remove_vote: "Remover voto"
     filters:
       votes:
         title: "Votos"

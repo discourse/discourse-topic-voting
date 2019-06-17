@@ -11,6 +11,7 @@ ru:
       sort_options:
         votes: "Голосов"
     voting:
+      title: "Голосование"
       reached_limit: "У вас закончились голоса, удалите часть ваших голосов!"
       list_votes: "Посмотреть ваши голоса"
       votes_nav_help: "темы с наибольшим количеством голосов"
@@ -36,6 +37,7 @@ ru:
         few: "Голосов"
         many: "Голосов"
         other: "Голосов"
+      remove_vote: "Удалить голосование"
     filters:
       votes:
         title: "Голосов"
