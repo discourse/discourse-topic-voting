@@ -1,4 +1,4 @@
-class AddVoteCountIndexToPostCustomFields < ActiveRecord::Migration[5.2]
+class AddVoteCountIndexToTopicCustomFields < ActiveRecord::Migration[5.2]
   def change
     execute <<~SQL
       DELETE FROM topic_custom_fields f
