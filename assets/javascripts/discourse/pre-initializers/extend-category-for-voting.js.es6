@@ -50,11 +50,6 @@ export default {
     });
 
     Category.reopen({
-      @computed("url")
-      votesUrl(url) {
-        return `${url}/l/votes`;
-      },
-
       @computed("custom_fields.enable_topic_voting")
       enable_topic_voting: {
         get(enableField) {
