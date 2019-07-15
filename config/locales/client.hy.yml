@@ -25,7 +25,7 @@ hy:
         one: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
         other: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
       votes:
-        one: "{{count}}  քվե"
+        one: "{{count}} քվե"
         other: "{{count}} քվե"
       anonymous_button:
         one: "Քվեներ"

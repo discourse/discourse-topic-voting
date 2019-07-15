@@ -11,11 +11,27 @@ ca:
       sort_options:
         votes: "Vots"
     voting:
+      title: "Votació"
+      reached_limit: "Us heu quedat sense vots. Elimineu un vot existent."
+      list_votes: "Llista els vots"
+      votes_nav_help: "temes amb més vots"
+      voted: "Heu votat sobre aquest tema"
+      allow_topic_voting: "Permet als usuaris votar sobre temes d&#39;aquesta categoria"
       vote_title: "Vota"
       vote_title_plural: "Vots"
       voted_title: "Votat"
       voting_closed_title: "Tancat"
       voting_limit: "Límit"
+      votes_left:
+        one: "Us queda {{count}} vot. Mireu els <a href='{{path}}'>vostres vots</a>."
+        other: "Us queden {{count}} vots. Mireu els <a href='{{path}}'>vostres vots</a>."
+      votes:
+        one: "{{count}} vot"
+        other: "{{count}} vots"
+      anonymous_button:
+        one: "Vota"
+        other: "Vots"
+      remove_vote: "Elimina el vot"
     filters:
       votes:
         title: "Vots"

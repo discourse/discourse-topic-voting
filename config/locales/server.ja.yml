@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ja: {}
+ja:
+  site_settings:
+    voting_enabled: 'ユーザーに投票を許可しますか？'
+    voting_tl0_vote_limit: '何個のアクティブな投票をTL0ユーザーに許可しますか？'
+    voting_tl1_vote_limit: '何個のアクティブな投票をTL1ユーザーに許可しますか？'
+    voting_tl2_vote_limit: '何個のアクティブな投票をTL2ユーザーに許可しますか？'
+    voting_tl3_vote_limit: '何個のアクティブな投票をTL3ユーザーに許可しますか？'
+    voting_tl4_vote_limit: '何個のアクティブな投票をTL4ユーザーに許可しますか？'
+    voting_show_who_voted: 'ユーザーに誰が投票したか見ることができるようにしますか？'
+    voting_show_votes_on_profile: 'ユーザーのアクティビティーフィードでユーザーの投票を見ることができるようにしますか？'
+    voting_alert_votes_left: '多くの投票が放置された時通知する'
