@@ -115,10 +115,55 @@ after_initialize do
     end
 
     after_save :reset_voting_cache
+    after_find :track_voting_enabled
+    after_save :reclaim_release_votes
 
     protected
     def reset_voting_cache
       ::Category.reset_voting_cache
+    end
+
+    def track_voting_enabled
+      return unless SiteSetting.voting_enabled
+      @old_enable_voting = custom_fields[::DiscourseVoting::VOTING_ENABLED]
+    end
+
+    def reclaim_release_votes
+      return unless SiteSetting.voting_enabled
+
+      aliases = {
+        votes: DiscourseVoting::VOTES,
+        votes_archive: DiscourseVoting::VOTES_ARCHIVE,
+        category_id: id
+      }
+
+      was_enabled = @old_enable_voting
+      is_enabled = custom_fields[::DiscourseVoting::VOTING_ENABLED]
+
+      if !was_enabled && is_enabled
+        # Unarchive all votes in the category
+        DB.exec(<<~SQL, aliases)
+          UPDATE user_custom_fields ucf
+          SET name = :votes
+          FROM topics t
+          WHERE ucf.name = :votes_archive
+          AND NOT t.closed
+          AND NOT t.archived
+          AND t.deleted_at IS NULL
+          AND t.id::text = ucf.value
+          AND t.category_id = :category_id
+        SQL
+      elsif was_enabled && !is_enabled
+        # Archive all votes in category
+        DB.exec(<<~SQL, aliases)
+          UPDATE user_custom_fields ucf
+          SET name = :votes_archive
+          FROM topics t
+          WHERE ucf.name = :votes
+          AND t.id::text = ucf.value
+          AND t.category_id = :category_id
+        SQL
+      end
     end
   end
 

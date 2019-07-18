@@ -157,4 +157,46 @@ describe DiscourseVoting do
       expect(Jobs::VoteReclaim.jobs.size).to eq(0)
     end
   end
+
+  context "when a category has voting enabled/disabled" do
+    let(:category3) { Fabricate(:category) }
+    let(:topic2) { Fabricate(:topic, category: category3) }
+
+    before do
+      category1.custom_fields["enable_topic_voting"] = true
+      category1.save!
+
+      category2.custom_fields["enable_topic_voting"] = true
+      category2.save!
+
+      category3.custom_fields["enable_topic_voting"] = false
+      category3.save!
+
+      user0.custom_fields[DiscourseVoting::VOTES] = [topic0.id, topic1.id]
+      user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = [topic2.id]
+      user0.save!
+    end
+
+    it "reclaims votes when voting is disabled on a category" do
+      category = Category.find(category1.id)
+      category.custom_fields["enable_topic_voting"] = false
+      category.save!
+
+      user0.reload
+
+      expect(user0.custom_fields[DiscourseVoting::VOTES]).to contain_exactly(topic1.id)
+      expect(user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE]).to contain_exactly(topic0.id, topic2.id)
+    end
+
+    it "restores votes when voting is enabled on a category" do
+      category = Category.find(category3.id)
+      category.custom_fields["enable_topic_voting"] = true
+      category.save!
+
+      user0.reload
+
+      expect(user0.custom_fields[DiscourseVoting::VOTES]).to contain_exactly(topic0.id, topic1.id, topic2.id)
+      expect(user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE]).to eq(nil)
+    end
+  end
 end
