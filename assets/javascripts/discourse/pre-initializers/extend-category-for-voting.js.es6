@@ -53,10 +53,9 @@ export default {
       @computed("custom_fields.enable_topic_voting")
       enable_topic_voting: {
         get(enableField) {
-          return enableField === "true";
+          return enableField;
         },
         set(value) {
-          value = value ? "true" : "false";
           this.set("custom_fields.enable_topic_voting", value);
           return value;
         }

@@ -22,6 +22,7 @@ after_initialize do
     VOTES = "votes".freeze
     VOTES_ARCHIVE = "votes_archive".freeze
     VOTE_COUNT = "vote_count".freeze
+    VOTING_ENABLED = "enable_topic_voting"
 
     class Engine < ::Rails::Engine
       isolate_namespace DiscourseVoting
@@ -31,6 +32,7 @@ after_initialize do
   User.register_custom_field_type(::DiscourseVoting::VOTES, [:integer])
   User.register_custom_field_type(::DiscourseVoting::VOTES_ARCHIVE, [:integer])
   Topic.register_custom_field_type(::DiscourseVoting::VOTE_COUNT, :integer)
+  Category.register_custom_field_type(::DiscourseVoting::VOTING_ENABLED, :boolean)
 
   load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
 
@@ -95,7 +97,7 @@ after_initialize do
         begin
           Set.new(
             CategoryCustomField
-            .where(name: "enable_topic_voting", value: "true")
+            .where(name: ::DiscourseVoting::VOTING_ENABLED, value: "true")
             .pluck(:category_id)
           )
         end
