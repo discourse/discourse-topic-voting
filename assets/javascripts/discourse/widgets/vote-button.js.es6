@@ -4,7 +4,7 @@ export default createWidget("vote-button", {
   tagName: "button.btn.btn-primary.vote-button",
 
   buildClasses(attrs) {
-    var buttonClass = "";
+    let buttonClass = "";
     if (attrs.closed) {
       buttonClass = "voting-closed";
     } else {
@@ -25,7 +25,7 @@ export default createWidget("vote-button", {
   },
 
   html(attrs) {
-    var buttonTitle = I18n.t("voting.vote_title");
+    let buttonTitle = I18n.t("voting.vote_title");
     if (!this.currentUser) {
       if (attrs.vote_count) {
         buttonTitle = I18n.t("voting.anonymous_button", {

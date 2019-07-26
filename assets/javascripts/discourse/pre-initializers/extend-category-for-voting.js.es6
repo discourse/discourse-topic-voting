@@ -15,7 +15,7 @@ function initialize(api) {
         return;
       }
 
-      var buffer = [];
+      const buffer = [];
 
       let title = "";
       if (topic.user_voted) {
@@ -42,12 +42,8 @@ export default {
   name: "extend-category-for-voting",
   before: "inject-discourse-objects",
   initialize(container) {
-    withPluginApi("0.8.4", api => {
-      initialize(api, container);
-    });
-    withPluginApi("0.8.30", api => {
-      api.addCategorySortCriteria("votes");
-    });
+    withPluginApi("0.8.4", api => initialize(api, container));
+    withPluginApi("0.8.30", api => api.addCategorySortCriteria("votes"));
 
     Category.reopen({
       @computed("custom_fields.enable_topic_voting")

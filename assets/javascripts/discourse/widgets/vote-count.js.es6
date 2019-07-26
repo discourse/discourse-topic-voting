@@ -17,7 +17,7 @@ export default createWidget("vote-count", {
   },
 
   html(attrs) {
-    let voteCount = h("div.vote-count", attrs.vote_count.toString());
+    const voteCount = h("div.vote-count", attrs.vote_count.toString());
     let whoVoted = null;
     if (
       this.siteSettings.voting_show_who_voted &&
@@ -58,9 +58,7 @@ export default createWidget("vote-count", {
       data: {
         topic_id: this.attrs.id
       }
-    }).then(users => {
-      this.state.whoVotedUsers = users.map(whoVotedAvatars);
-    });
+    }).then(users => (this.state.whoVotedUsers = users.map(whoVotedAvatars)));
   }
 });
 

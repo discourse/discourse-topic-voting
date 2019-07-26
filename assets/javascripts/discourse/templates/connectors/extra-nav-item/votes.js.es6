@@ -1,12 +1,9 @@
 export default {
   setupComponent(args, component) {
-    component.set(
-      "url",
-      Discourse.BaseUri + "/" + args.filterMode + "?order=votes"
-    );
+    component.set("url", `${Discourse.BaseUri}/${args.filterMode}?order=votes`);
   },
   shouldRender(args, component) {
-    const category = component.get("category");
-    return !!(category && category.get("can_vote"));
+    const category = component.category;
+    return !!(category && category.can_vote);
   }
 };

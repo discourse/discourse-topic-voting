@@ -9,7 +9,7 @@ export default createWidget("vote-options", {
   },
 
   html(attrs) {
-    var contents = [];
+    const contents = [];
 
     if (attrs.user_voted) {
       contents.push(this.attach("remove-vote", attrs));
