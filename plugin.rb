@@ -356,24 +356,36 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_merged) do |orig, dest|
+    duplicated_votes = 0
+    moved_votes = 0
+
     if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
-
         if user.votes.include?(dest.id)
           # User has voted for both +orig+ and +dest+.
           # Remove vote for topic +orig+.
+          duplicated_votes += 1
           user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup - [orig.id]
         else
           # Change the vote for +orig+ in a vote for +dest+.
           user.custom_fields[DiscourseVoting::VOTES] = user.votes.map { |vote| vote == orig.id ? dest.id : vote }
+          moved_votes += 1
         end
 
-        user.save!
+        user.save_custom_fields
       end
     end
 
     orig.update_vote_count
     dest.update_vote_count
+
+    if moved_votes > 0
+      if moderator_post = orig.ordered_posts.where(action_code: 'split_topic').last
+        moderator_post.raw << "\n\n#{I18n.t('voting.votes_moved', count: moved_votes)}"
+        moderator_post.raw << " #{I18n.t('voting.duplicated_votes', count: duplicated_votes)}" if duplicated_votes > 0
+        moderator_post.save!
+      end
+    end
   end
 
   require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_voting/votes_controller')
