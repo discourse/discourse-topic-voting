@@ -32,7 +32,7 @@ describe "Voting Consistency" do
     Jobs::VotingEnsureConsistency.new.execute_onceoff(nil)
 
     no_vote_topic.reload
-    expect(no_vote_topic.custom_fields).to eq("random1" => "random")
+    expect(no_vote_topic.custom_fields["random1"]).to eq("random")
 
     user.reload
     expect(user.custom_fields).to eq("votes" => [one_vote_topic.id, two_vote_topic.id])
@@ -41,10 +41,12 @@ describe "Voting Consistency" do
     expect(user2.custom_fields).to eq("votes" => [two_vote_topic.id])
 
     one_vote_topic.reload
-    expect(one_vote_topic.custom_fields).to eq("vote_count" => 1, "random2" => "random")
+    expect(one_vote_topic.custom_fields["vote_count"]).to eq(1)
+    expect(one_vote_topic.custom_fields["random2"]).to eq("random")
 
     two_vote_topic.reload
-    expect(two_vote_topic.custom_fields).to eq("vote_count" => 2, "random3" => "random")
+    expect(two_vote_topic.custom_fields["vote_count"]).to eq(2)
+    expect(two_vote_topic.custom_fields["random3"]).to eq("random")
 
   end
 end

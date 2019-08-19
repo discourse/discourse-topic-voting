@@ -115,21 +115,16 @@ after_initialize do
     end
 
     after_save :reset_voting_cache
-    after_find :track_voting_enabled
-    after_save :reclaim_release_votes
+    before_save :reclaim_release_votes
 
     protected
     def reset_voting_cache
       ::Category.reset_voting_cache
     end
 
-    def track_voting_enabled
-      return unless SiteSetting.voting_enabled
-      @old_enable_voting = custom_fields[::DiscourseVoting::VOTING_ENABLED]
-    end
-
     def reclaim_release_votes
-      return unless SiteSetting.voting_enabled
+      return if self.new_record?
+      return if !SiteSetting.voting_enabled
 
       aliases = {
         votes: DiscourseVoting::VOTES,
@@ -137,7 +132,13 @@ after_initialize do
         category_id: id
       }
 
-      was_enabled = @old_enable_voting
+      was_enabled = CategoryCustomField.where(
+        "name = :name AND value similar to :value AND category_id = :id",
+        id: id,
+        name: ::DiscourseVoting::VOTING_ENABLED,
+        value: '(t|T|1)%'
+      ).exists?
+
       is_enabled = custom_fields[::DiscourseVoting::VOTING_ENABLED]
 
       if !was_enabled && is_enabled
