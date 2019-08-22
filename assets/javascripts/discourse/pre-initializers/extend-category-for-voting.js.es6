@@ -43,7 +43,7 @@ export default {
 
   before: "inject-discourse-objects",
 
-  initialize(api) {
+  initialize() {
     withPluginApi("0.8.4", api => initialize(api));
     withPluginApi("0.8.30", api => api.addCategorySortCriteria("votes"));
 

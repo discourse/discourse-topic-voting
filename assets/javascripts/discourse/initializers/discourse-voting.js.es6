@@ -7,11 +7,11 @@ export default {
     withPluginApi("0.8.32", api => {
       api.addNavigationBarItem({
         name: "votes",
-        customFilter: (category, args, router) => {
+        customFilter: category => {
           const siteSettings = api.container.lookup("site-settings:main");
           return siteSettings.voting_enabled && category && category.can_vote;
         },
-        customHref: (category, args, router) => {
+        customHref: (category, args) => {
           return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
         }
       });
