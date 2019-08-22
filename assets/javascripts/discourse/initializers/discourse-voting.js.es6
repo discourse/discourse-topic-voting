@@ -8,8 +8,17 @@ export default {
       api.addNavigationBarItem({
         name: "votes",
         customFilter: category => {
-          const siteSettings = api.container.lookup("site-settings:main");
-          return siteSettings.voting_enabled && category && category.can_vote;
+          const container = api.container;
+
+          if (
+            container &&
+            (!container.isDestroying || !container.isDestroyed)
+          ) {
+            const siteSettings = container.lookup("site-settings:main");
+            return siteSettings.voting_enabled && category && category.can_vote;
+          }
+
+          return false;
         },
         customHref: (category, args) => {
           return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
