@@ -36,53 +36,53 @@ after_initialize do
 
   load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
 
-  require_dependency 'basic_category_serializer'
-  class ::BasicCategorySerializer
-    attributes :can_vote
+  reloadable_patch do |plugin|
+    require_dependency 'basic_category_serializer'
+    class ::BasicCategorySerializer
+      attributes :can_vote
 
-    def include_can_vote?
-      Category.can_vote?(object.id)
-    end
+      def include_can_vote?
+        Category.can_vote?(object.id)
+      end
 
-    def can_vote
-      true
-    end
-
-  end
-
-  require_dependency 'post_serializer'
-  class ::PostSerializer
-    attributes :can_vote
-
-    def include_can_vote?
-      object.post_number == 1 && object.topic && object.topic.can_vote?
-    end
-
-    def can_vote
-      true
-    end
-  end
-
-  require_dependency 'topic_view_serializer'
-  class ::TopicViewSerializer
-    attributes :can_vote, :vote_count, :user_voted
-
-    def can_vote
-      object.topic.can_vote?
-    end
-
-    def vote_count
-      object.topic.vote_count
-    end
-
-    def user_voted
-      if scope.user
-        object.topic.user_voted(scope.user)
-      else
-        false
+      def can_vote
+        true
       end
     end
 
+    require_dependency 'post_serializer'
+    class ::PostSerializer
+      attributes :can_vote
+
+      def include_can_vote?
+        object.post_number == 1 && object.topic && object.topic.can_vote?
+      end
+
+      def can_vote
+        true
+      end
+    end
+
+    require_dependency 'topic_view_serializer'
+    class ::TopicViewSerializer
+      attributes :can_vote, :vote_count, :user_voted
+
+      def can_vote
+        object.topic.can_vote?
+      end
+
+      def vote_count
+        object.topic.vote_count
+      end
+
+      def user_voted
+        if scope.user
+          object.topic.user_voted(scope.user)
+        else
+          false
+        end
+      end
+    end
   end
 
   add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
