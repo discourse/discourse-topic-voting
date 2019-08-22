@@ -37,19 +37,6 @@ after_initialize do
   load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
 
   reloadable_patch do |plugin|
-    require_dependency 'basic_category_serializer'
-    class ::BasicCategorySerializer
-      attributes :can_vote
-
-      def include_can_vote?
-        Category.can_vote?(object.id)
-      end
-
-      def can_vote
-        true
-      end
-    end
-
     require_dependency 'post_serializer'
     class ::PostSerializer
       attributes :can_vote
@@ -90,6 +77,16 @@ after_initialize do
   add_to_serializer(:topic_list_item, :user_voted) {
     object.user_voted(scope.user) if scope.user
   }
+
+  [:basic_category, :site_category, :category].each do |serializer|
+    add_to_serializer(serializer, :can_vote, false) do
+      SiteSetting.voting_enabled
+    end
+
+    add_to_serializer(serializer, :include_can_vote?) do
+      Category.can_vote?(object.id)
+    end
+  end
 
   class ::Category
     def self.reset_voting_cache
