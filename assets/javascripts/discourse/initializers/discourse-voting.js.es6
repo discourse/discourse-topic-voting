@@ -5,25 +5,18 @@ export default {
 
   initialize() {
     withPluginApi("0.8.32", api => {
-      api.addNavigationBarItem({
-        name: "votes",
-        customFilter: category => {
-          const container = api.container;
-
-          if (
-            container &&
-            (!container.isDestroying || !container.isDestroyed)
-          ) {
-            const siteSettings = container.lookup("site-settings:main");
-            return siteSettings.voting_enabled && category && category.can_vote;
+      const siteSettings = api.container.lookup("site-settings:main");
+      if (siteSettings.voting_enabled) {
+        api.addNavigationBarItem({
+          name: "votes",
+          customFilter: category => {
+            return category && category && category.can_vote;
+          },
+          customHref: (category, args) => {
+            return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
           }
-
-          return false;
-        },
-        customHref: (category, args) => {
-          return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
-        }
-      });
+        });
+      }
     });
   }
 };
