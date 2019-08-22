@@ -3,7 +3,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 export default {
   name: "discourse-voting",
 
-  initialize(api) {
+  initialize() {
     withPluginApi("0.8.32", api => {
       api.addNavigationBarItem({
         name: "votes",
