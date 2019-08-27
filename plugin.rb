@@ -78,14 +78,12 @@ after_initialize do
     object.user_voted(scope.user) if scope.user
   }
 
-  [:basic_category, :site_category, :category].each do |serializer|
-    add_to_serializer(serializer, :can_vote, false) do
-      SiteSetting.voting_enabled
-    end
+  add_to_serializer(:basic_category, :can_vote, false) do
+    SiteSetting.voting_enabled
+  end
 
-    add_to_serializer(serializer, :include_can_vote?) do
-      Category.can_vote?(object.id)
-    end
+  add_to_serializer(:basic_category, :include_can_vote?) do
+    Category.can_vote?(object.id)
   end
 
   class ::Category
