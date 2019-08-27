@@ -1,80 +1,102 @@
-.voting {
-  min-width: 70px;
-  float: left;
-  text-align: center;
-  margin-right: 20px;
+.title-voting {
+  padding-right: 0.75em;
+  width: 6em;
   max-width: 10%;
+  box-sizing: border-box;
+  float: left;
 }
+
 .vote-count-wrapper {
   border: 3px solid $primary-low;
 }
+
 .voting-wrapper.show-pointer .vote-count-wrapper:not(.no-votes) {
   cursor: pointer;
   &:hover {
     background-color: $primary-low;
   }
 }
-.vote-count {
+
+.vote-count-wrapper {
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .title-voting {
+  // matches core title-wrapper padding
   padding-top: 14px;
   position: relative;
 }
+
 .vote-button {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 0.35em;
 }
+
 .vote-options {
   text-align: left;
 }
+
 .vote-option {
   cursor: pointer;
-  padding: 5px;
+  padding: 0.35em;
   &:hover {
     background-color: $primary-low;
   }
 }
+
 .vote-option.remove-vote .d-icon {
-  margin-right: 6px;
+  margin-right: 0.35em;
   color: $danger;
 }
-.vote-option-description {
-  font-size: $font-down-1;
-  margin-left: 18px;
-}
+
 .list-vote-count.voted {
   font-weight: bold;
 }
+
 .who-voted.popup-menu {
   a {
-    margin: 0.4em 0.25em 0.4em 0;
+    margin: 0.4em 0.25em;
     display: inline-block;
   }
 }
-.upgrade-vote {
-  text-align: center;
-}
-.upgrade-vote .vote-option-description {
-  margin-left: 0;
-}
-.upgrade-answer {
-  text-decoration: underline;
-  font-weight: bold;
-  i {
-    margin: 0px 5px 0px 0px;
-  }
-}
+
 .topic-post.voting-post {
   button.like-count,
   button.toggle-like {
     display: none;
   }
 }
+
 .voting-popup-menu {
   position: absolute;
   left: 80px;
+  // matches core title-wrapper padding
   top: 14px;
-  z-index: z("header") - 1;
+  z-index: z("usercard") - 1;
   cursor: initial;
+  // voter avatars
+  .regular-votes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// TEMP: RTL overrides
+.title-voting {
+  .rtl & {
+    float: right;
+    padding-right: 0;
+    padding-left: 0.75em;
+  }
+}
+
+.voting-popup-menu {
+  .rtl & {
+    left: unset;
+    right: 80px;
+  }
 }
