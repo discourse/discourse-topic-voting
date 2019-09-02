@@ -80,6 +80,7 @@
   // voter avatars
   .regular-votes {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
   }
