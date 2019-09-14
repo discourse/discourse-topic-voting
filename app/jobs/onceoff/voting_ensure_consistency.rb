@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Jobs
-  class VotingEnsureConsistency < Jobs::Onceoff
+  class VotingEnsureConsistency < ::Jobs::Onceoff
     def execute_onceoff(args)
       aliases = {
         vote_count: DiscourseVoting::VOTE_COUNT,

@@ -290,7 +290,7 @@ after_initialize do
   require_dependency "jobs/base"
   module ::Jobs
 
-    class VoteRelease < Jobs::Base
+    class VoteRelease < ::Jobs::Base
       def execute(args)
         if topic = Topic.find_by(id: args[:topic_id])
           UserCustomField.where(name: DiscourseVoting::VOTES, value: args[:topic_id]).find_each do |user_field|
@@ -304,7 +304,7 @@ after_initialize do
       end
     end
 
-    class VoteReclaim < Jobs::Base
+    class VoteReclaim < ::Jobs::Base
       def execute(args)
         if topic = Topic.find_by(id: args[:topic_id])
           UserCustomField.where(name: DiscourseVoting::VOTES_ARCHIVE, value: topic.id).find_each do |user_field|
