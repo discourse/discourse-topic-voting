@@ -331,11 +331,11 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_trashed) do |topic|
-		Jobs.enqueue(:vote_release, topic_id: topic.id) if !topic.closed && !topic.archived
-	end
+    Jobs.enqueue(:vote_release, topic_id: topic.id) if !topic.closed && !topic.archived
+  end
 
-	DiscourseEvent.on(:topic_recovered) do |topic|
-		Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
+  DiscourseEvent.on(:topic_recovered) do |topic|
+    Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
   end
 
   DiscourseEvent.on(:post_edited) do |post, topic_changed|
