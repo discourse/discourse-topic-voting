@@ -109,8 +109,6 @@ describe DiscourseVoting do
   end
 
   context "when topic is trashed" do
-		let (:user) { Fabricate(:user) }
-
     it "enqueues a job for releasing votes" do
       DiscourseEvent.on(:topic_trashed) do |topic|
         expect(topic).to be_instance_of(Topic)
