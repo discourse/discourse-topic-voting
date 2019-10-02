@@ -108,6 +108,32 @@ describe DiscourseVoting do
     end
   end
 
+  context "when topic is trashed" do
+		let (:user) { Fabricate(:user) }
+
+    it "enqueues a job for releasing votes" do
+      DiscourseEvent.on(:topic_trashed) do |topic|
+        expect(topic).to be_instance_of(Topic)
+      end
+
+      topic1.trash!
+      topic1.recover!
+      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+    end
+  end
+
+  context "when a topic is recovered" do
+    it "enqueues a job for reclaiming votes" do
+      DiscourseEvent.on(:topic_released) do |topic|
+        expect(topic).to be_instance_of(Topic)
+      end
+
+      topic1.trash!
+      topic1.recover!
+      expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+    end
+  end
+
   context "when a topic is moved to a category" do
     let(:admin) { Fabricate(:admin) }
     let(:post0) { Fabricate(:post, topic: topic0, post_number: 1) }
