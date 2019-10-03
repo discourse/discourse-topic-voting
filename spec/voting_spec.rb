@@ -108,27 +108,22 @@ describe DiscourseVoting do
     end
   end
 
-  context "when topic is trashed" do
-    it "enqueues a job for releasing votes" do
-      DiscourseEvent.on(:topic_trashed) do |topic|
-        expect(topic).to be_instance_of(Topic)
-      end
+  context "when a job is trashed and then recovered" do
+    it "released the vote back to the user, then reclaims it on topic recovery" do
+      user0.custom_fields[DiscourseVoting::VOTES] = [topic1.id]
+      user0.save
 
       topic1.trash!
-      topic1.recover!
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
-    end
-  end
+      Jobs::VoteRelease.new.execute(topic_id: topic1.id)
 
-  context "when a topic is recovered" do
-    it "enqueues a job for reclaiming votes" do
-      DiscourseEvent.on(:topic_released) do |topic|
-        expect(topic).to be_instance_of(Topic)
-      end
+      expect(user0.reload.votes).to eq([])
 
-      topic1.trash!
       topic1.recover!
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      Jobs::VoteReclaim.new.execute(topic_id: topic1.id)
+
+      expect(user0.reload.votes).to eq([topic1.id])
     end
   end
 
