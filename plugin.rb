@@ -306,7 +306,7 @@ after_initialize do
 
     class VoteReclaim < ::Jobs::Base
       def execute(args)
-        if topic = Topic.find_by(id: args[:topic_id])
+        if topic = Topic.with_deleted.find_by(id: args[:topic_id])
           UserCustomField.where(name: DiscourseVoting::VOTES_ARCHIVE, value: topic.id).find_each do |user_field|
             user = User.find(user_field.user_id)
             user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup.push(topic.id).uniq
