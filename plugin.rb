@@ -292,7 +292,7 @@ after_initialize do
 
     class VoteRelease < ::Jobs::Base
       def execute(args)
-        if topic = Topic.find_by(id: args[:topic_id])
+        if topic = Topic.with_deleted.find_by(id: args[:topic_id])
           UserCustomField.where(name: DiscourseVoting::VOTES, value: args[:topic_id]).find_each do |user_field|
             user = User.find(user_field.user_id)
             user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup - [args[:topic_id]]
@@ -306,7 +306,7 @@ after_initialize do
 
     class VoteReclaim < ::Jobs::Base
       def execute(args)
-        if topic = Topic.find_by(id: args[:topic_id])
+        if topic = Topic.with_deleted.find_by(id: args[:topic_id])
           UserCustomField.where(name: DiscourseVoting::VOTES_ARCHIVE, value: topic.id).find_each do |user_field|
             user = User.find(user_field.user_id)
             user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup.push(topic.id).uniq
@@ -328,6 +328,14 @@ after_initialize do
     if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == false
       Jobs.enqueue(:vote_reclaim, topic_id: topic.id)
     end
+  end
+
+  DiscourseEvent.on(:topic_trashed) do |topic|
+    Jobs.enqueue(:vote_release, topic_id: topic.id) if !topic.closed && !topic.archived
+  end
+
+  DiscourseEvent.on(:topic_recovered) do |topic|
+    Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
   end
 
   DiscourseEvent.on(:post_edited) do |post, topic_changed|

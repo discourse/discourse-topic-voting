@@ -108,6 +108,20 @@ describe DiscourseVoting do
     end
   end
 
+  context "when a job is trashed and then recovered" do
+    it "released the vote back to the user, then reclaims it on topic recovery" do
+      Jobs.run_immediately!
+      user0.custom_fields[DiscourseVoting::VOTES] = [topic1.id]
+      user0.save
+
+      topic1.reload.trash!
+      expect(user0.reload.votes).to eq([])
+
+      topic1.recover!
+      expect(user0.reload.votes).to eq([topic1.id])
+    end
+  end
+
   context "when a topic is moved to a category" do
     let(:admin) { Fabricate(:admin) }
     let(:post0) { Fabricate(:post, topic: topic0, post_number: 1) }
