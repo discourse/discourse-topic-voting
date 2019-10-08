@@ -34,6 +34,7 @@ describe DiscourseVoting do
 
   context "with two topics" do
     let(:users) { [user0, user1, user2, user3] }
+
     before do
       Fabricate(:post, topic: topic0, user: user0)
       Fabricate(:post, topic: topic0, user: user0)
@@ -49,34 +50,33 @@ describe DiscourseVoting do
 
       [topic0, topic1].each { |t| t.update_vote_count }
     end
+
     it 'moves votes when entire topic is merged' do
       topic0.move_posts(Discourse.system_user, topic0.posts.pluck(:id), destination_topic_id: topic1.id)
 
-      users.each(&:reload)
-      [topic0, topic1].each(&:reload)
+      expect(users[0].reload.votes).to eq([topic1.id])
+      expect(users[1].reload.votes).to eq([topic1.id])
+      expect(users[2].reload.votes).to eq([topic1.id])
+      expect(users[3].reload.votes).to eq([])
 
-      expect(users[0].votes).to eq([topic1.id])
-      expect(users[1].votes).to eq([topic1.id])
-      expect(users[2].votes).to eq([topic1.id])
-      expect(users[3].votes).to eq([])
+      expect(topic0.reload.vote_count).to eq(0)
+      expect(topic1.reload.vote_count).to eq(3)
 
-      expect(topic0.vote_count).to eq(0)
-      expect(topic1.vote_count).to eq(3)
+      merged_post = topic0.posts.find_by(action_code: 'split_topic')
+      expect(merged_post.raw).to include(I18n.t('voting.votes_moved', count: 1))
+      expect(merged_post.raw).to include(I18n.t('voting.duplicated_votes', count: 1))
     end
 
     it 'does not move votes when a single post is moved' do
       topic0.move_posts(Discourse.system_user, topic0.posts[1, 2].map(&:id), destination_topic_id: topic1.id)
 
-      users.each(&:reload)
-      [topic0, topic1].each(&:reload)
+      expect(users[0].reload.votes).to eq([topic0.id])
+      expect(users[1].reload.votes).to eq([topic1.id])
+      expect(users[2].reload.votes).to eq([topic0.id, topic1.id])
+      expect(users[3].reload.votes).to eq([])
 
-      expect(users[0].votes).to eq([topic0.id])
-      expect(users[1].votes).to eq([topic1.id])
-      expect(users[2].votes).to eq([topic0.id, topic1.id])
-      expect(users[3].votes).to eq([])
-
-      expect(topic0.vote_count).to eq(2)
-      expect(topic1.vote_count).to eq(2)
+      expect(topic0.reload.vote_count).to eq(2)
+      expect(topic1.reload.vote_count).to eq(2)
     end
   end
 
