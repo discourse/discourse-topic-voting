@@ -24,3 +24,4 @@ tr_TR:
     filters:
       votes:
         title: "Oylar"
+        help: "en çok oy alan konular"

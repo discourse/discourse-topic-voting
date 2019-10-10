@@ -35,3 +35,4 @@ de:
     filters:
       votes:
         title: "Votes"
+        help: "Themen mit den meisten Votes"

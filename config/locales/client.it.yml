@@ -35,3 +35,4 @@ it:
     filters:
       votes:
         title: "Voti"
+        help: "argomenti con il maggior numero di voti"

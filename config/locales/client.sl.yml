@@ -41,3 +41,4 @@ sl:
     filters:
       votes:
         title: "Glasovi"
+        help: "teme z največ glasovi"

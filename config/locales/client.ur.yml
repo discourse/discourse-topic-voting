@@ -35,3 +35,4 @@ ur:
     filters:
       votes:
         title: "ووٹ"
+        help: "سب سے زیادہ ووٹوں والے ٹاپک"

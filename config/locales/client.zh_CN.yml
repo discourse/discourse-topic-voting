@@ -32,3 +32,4 @@ zh_CN:
     filters:
       votes:
         title: "推荐"
+        help: "选票最多的主题"

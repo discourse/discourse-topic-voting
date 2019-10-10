@@ -5,4 +5,14 @@
 # To work with us on translations, join this project:
 # https://www.transifex.com/projects/p/discourse-org/
 
-ar: {}
+ar:
+  site_settings:
+    voting_enabled: 'سماح الأعضاء من التصويت على المواضيع؟'
+    voting_tl0_vote_limit: 'ماهو عدد التصويتات الممكنة  يمكن الأعضاء الجدد بوضعها؟'
+    voting_tl1_vote_limit: 'ماهو عدد التصويتات الممكنة يمكن الأعضاء من المستوى الاول بوضعها؟'
+    voting_tl2_vote_limit: ' ماهو عدد التصويتات الممكنة يمكن الأعضاء من المستوى الثاني بوضعها؟'
+    voting_tl3_vote_limit: 'ماهو عدد التصويتات الممكنة يمكن الأعضاء من المستوى الثالث بوضعها؟'
+    voting_tl4_vote_limit: 'ماهو عدد التصويتات الممكنة يمكن الأعضاء من المستوى الرابع بوضعها؟'
+    voting_show_who_voted: 'سماح الأعضاء من مشاهدة من قام بالتصويت؟'
+    voting_show_votes_on_profile: 'سماح الأعضاء برؤية التصويتات في مسار النشاط؟'
+    voting_alert_votes_left: 'تنبية عضو بأن هذا كثير من الاصوات'

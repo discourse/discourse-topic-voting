@@ -9,3 +9,4 @@ uk:
   js:
     voting:
       vote_title: "Проголосувати"
+      voting_closed_title: "Закриті"

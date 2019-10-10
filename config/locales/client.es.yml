@@ -12,8 +12,8 @@ es:
         votes: "Votos"
     voting:
       title: "Votación"
-      reached_limit: "Te has quedado sin votos, ¡elimina un voto existente!"
-      list_votes: "Lista tus votos"
+      reached_limit: "Se te acabaron los votos, ¡elimina un voto existente!"
+      list_votes: "Lista de tus votos"
       votes_nav_help: "temas con más votos"
       voted: "Votaste sobre este tema"
       allow_topic_voting: "Permitir a los usuarios votar sobre temas en esta categoría"
@@ -21,7 +21,7 @@ es:
       vote_title_plural: "Votos"
       voted_title: "Votado"
       voting_closed_title: "Cerrado"
-      voting_limit: "Limitado"
+      voting_limit: "Límite"
       votes_left:
         one: "Te queda {{count}} voto, ver <a href='{{path}}'>tus votos</a>."
         other: "Te quedan {{count}} votos, mira <a href='{{path}}'>tus votos</a>."
@@ -35,3 +35,4 @@ es:
     filters:
       votes:
         title: "Votos"
+        help: "temas con más votos"

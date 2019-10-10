@@ -41,3 +41,4 @@ he:
     filters:
       votes:
         title: "הצבעות"
+        help: "נושאים עם הכי הרבה הצבעות"

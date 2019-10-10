@@ -35,3 +35,4 @@ nl:
     filters:
       votes:
         title: "Stemmen"
+        help: "topics met de meeste stemmen"

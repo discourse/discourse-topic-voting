@@ -24,3 +24,4 @@ vi:
     filters:
       votes:
         title: "Bình chọn"
+        help: "chủ đề có nhiều bình chọn nhất"

@@ -16,3 +16,10 @@ nl:
     voting_show_who_voted: 'Toestaan dat gebruikers kunnen zien wie er heeft gestemd?'
     voting_show_votes_on_profile: 'Toestaan dat gebruikers hun stemmen in hun activiteitenfeed zien?'
     voting_alert_votes_left: 'Gebruiker waarschuwen als zoveel stemmen over zijn'
+  voting:
+    votes_moved:
+      one: "Een stem is verplaatst."
+      other: "%{count} stemmen zijn verplaatst."
+    duplicated_votes:
+      one: "Een stem kon niet worden verplaatst, omdat de gebruiker al in het andere topic heeft gestemd."
+      other: "%{count} stemmen konden niet worden verplaatst, omdat de gebruikers ervan al in het andere topic hebben gestemd."

@@ -15,4 +15,4 @@ ca:
     voting_tl4_vote_limit: 'Quants vots actius són permesos als usuaris del nivell de confiança 4?'
     voting_show_who_voted: 'Voleu permetre que els usuaris vegin qui ha votat?'
     voting_show_votes_on_profile: 'Voleu permetre als usuaris veure els seus vots en el seu canal d''activitat?'
-    voting_alert_votes_left: 'Alerta l’usuari quan quedi aquesta quantitat de vots'
+    voting_alert_votes_left: 'Alerta l''usuari quan quedi aquesta quantitat de vots'

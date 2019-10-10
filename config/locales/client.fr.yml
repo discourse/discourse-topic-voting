@@ -35,3 +35,4 @@ fr:
     filters:
       votes:
         title: "Votes"
+        help: "sujets les plus votés"

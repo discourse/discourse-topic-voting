@@ -35,3 +35,4 @@ hu:
     filters:
       votes:
         title: "Szavazatok"
+        help: "legtöbb szavazatot kapott témák"

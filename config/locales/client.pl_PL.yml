@@ -41,3 +41,4 @@ pl_PL:
     filters:
       votes:
         title: "Głosy"
+        help: "tematy z największą liczbą głosów"

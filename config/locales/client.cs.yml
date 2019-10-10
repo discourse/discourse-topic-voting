@@ -24,3 +24,4 @@ cs:
     filters:
       votes:
         title: "Hlasy"
+        help: "témata s nejvíce hlasy"

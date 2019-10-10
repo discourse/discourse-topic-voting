@@ -35,3 +35,4 @@ pt_BR:
     filters:
       votes:
         title: "Votos"
+        help: "tópicos com a maioria dos votos"

@@ -24,3 +24,4 @@ zh_TW:
     filters:
       votes:
         title: "投票"
+        help: "最多票數的主題"

@@ -24,3 +24,4 @@ ar:
     filters:
       votes:
         title: "أصوات"
+        help: "المواضيع الأكثر تصويتا"

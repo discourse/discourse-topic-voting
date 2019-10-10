@@ -22,3 +22,4 @@ pt:
     filters:
       votes:
         title: "Votos"
+        help: "tópicos mais votados"
