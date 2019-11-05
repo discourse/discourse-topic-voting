@@ -9,11 +9,17 @@ export default {
       if (siteSettings.voting_enabled) {
         api.addNavigationBarItem({
           name: "votes",
+          before: "top",
           customFilter: category => {
-            return category && category && category.can_vote;
+            return category && category.can_vote;
           },
           customHref: (category, args) => {
             return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
+          },
+          forceActive: (category, args, router) => {
+            return (
+              router.currentURL && router.currentURL.indexOf("order=votes") > -1
+            );
           }
         });
       }
