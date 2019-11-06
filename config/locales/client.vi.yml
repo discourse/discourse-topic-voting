@@ -11,6 +11,7 @@ vi:
       sort_options:
         votes: "Bình chọn"
     voting:
+      title: "Bình chọn"
       reached_limit: "Bạn đã hết lượt bình chọn, hãy xóa lượt đang có của bạn"
       list_votes: "Liệt kê bình chọn của bạn"
       votes_nav_help: "chủ đề có nhiều bình chọn nhất"
@@ -21,6 +22,13 @@ vi:
       voted_title: "Đã bình ch"
       voting_closed_title: "Đã "
       voting_limit: "Giới h"
+      votes_left:
+        other: "Bạn còn {{count}}phiếu, xem <a href='{{path}}'>lượt bầu</a> của bạn"
+      votes:
+        other: "{{count}}phiếu"
+      anonymous_button:
+        other: "Phiếu"
+      remove_vote: "Xoá Bình Chọn<br>"
     filters:
       votes:
         title: "Bình chọn"

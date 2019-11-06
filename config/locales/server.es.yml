@@ -16,3 +16,10 @@ es:
     voting_show_who_voted: '¿Permitir a los usuarios ver quién votó?'
     voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su feed de actividad?'
     voting_alert_votes_left: 'Alertar al usuario cuando queda esta cantidad de votos'
+  voting:
+    votes_moved:
+      one: "Un voto se ha movido"
+      other: "Se han movido %{count} votos."
+    duplicated_votes:
+      one: "No se pudo mover un voto porque el usuario ya votó en el otro tema."
+      other: "No se pudieron mover %{count} votos porque los usuarios ya votaron en el otro tema."

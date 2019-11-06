@@ -16,3 +16,8 @@ zh_CN:
     voting_show_who_voted: '是否允许用户查看哪些人已推荐？'
     voting_show_votes_on_profile: '允许用户在活动信息中见到他们的选票？'
     voting_alert_votes_left: '通知用户他们的未选票'
+  voting:
+    votes_moved:
+      other: "%{count}个投票被移动。"
+    duplicated_votes:
+      other: "%{count}个投票无法移动，因为其用户已在另一个主题中投票。"

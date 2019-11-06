@@ -16,3 +16,10 @@ ca:
     voting_show_who_voted: 'Voleu permetre que els usuaris vegin qui ha votat?'
     voting_show_votes_on_profile: 'Voleu permetre als usuaris veure els seus vots en el seu canal d''activitat?'
     voting_alert_votes_left: 'Alerta l''usuari quan quedi aquesta quantitat de vots'
+  voting:
+    votes_moved:
+      one: "S'ha mogut un vot"
+      other: "S'han mogut %{count} vots."
+    duplicated_votes:
+      one: "No s'han pogut moure un vot perquè l'usuari ja ha votat en l'altre tema."
+      other: "No s'han pogut moure %{count} vots perquè els usuaris ja han votat en l'altre tema."
