@@ -17,8 +17,11 @@ export default {
             return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
           },
           forceActive: (category, args, router) => {
+            const queryParams = router.currentRoute.queryParams;
             return (
-              router.currentURL && router.currentURL.indexOf("order=votes") > -1
+              queryParams &&
+              Object.keys(queryParams).length === 1 &&
+              queryParams["order"] === "votes"
             );
           }
         });
