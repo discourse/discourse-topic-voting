@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import NavItem from "discourse/models/nav-item";
 
 export default {
   name: "discourse-voting",
@@ -14,7 +15,10 @@ export default {
             return category && category.can_vote;
           },
           customHref: (category, args) => {
-            return `${Discourse.BaseUri}/${args.filterMode}?order=votes`;
+            const currentFilterType = (args.filterMode || "").split("/").pop();
+            const path = NavItem.pathFor(currentFilterType, args);
+
+            return `${path}?order=votes`;
           },
           forceActive: (category, args, router) => {
             const queryParams = router.currentRoute.queryParams;
