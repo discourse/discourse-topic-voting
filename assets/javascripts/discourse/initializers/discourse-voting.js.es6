@@ -18,7 +18,7 @@ export default {
             const currentFilterType = (args.filterMode || "").split("/").pop();
             const path = NavItem.pathFor(currentFilterType, args);
 
-            return `${path}?order=votes`;
+            return `${path.replace(/\/l\/$/, "")}?order=votes`;
           },
           forceActive: (category, args, router) => {
             const queryParams = router.currentRoute.queryParams;
