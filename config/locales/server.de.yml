@@ -16,3 +16,10 @@ de:
     voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer gevotet hat?'
     voting_show_votes_on_profile: 'Benutzern erlauben, ihre Votes in ihrem Benutzerprofil einzusehen?'
     voting_alert_votes_left: 'Benutzer benachrichten, wenn diese Anzahl von Votes verblieben sind'
+  voting:
+    votes_moved:
+      one: "Eine Stimme wurde verschoben"
+      other: "%{count} Stimmen wurden verschoben."
+    duplicated_votes:
+      one: "Eine Stimme konnte nicht verschoben werden, weil der Benutzer bereits in einem anderen Thema abgestimmt hat."
+      other: "%{count} Stimmen konnten nicht verschoben werden, weil die Benutzer bereits in einem anderen Thema abgestimmt haben."

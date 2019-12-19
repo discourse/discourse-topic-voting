@@ -16,3 +16,10 @@ fr:
     voting_show_who_voted: 'Permettre aux utilisateurs de voir qui a voté ?'
     voting_show_votes_on_profile: 'Permettre aux utilisateurs de voir leurs votes dans leur historique d''activité ?'
     voting_alert_votes_left: 'Avertir les utilisateurs quand il leur reste ce nombre de votes ?'
+  voting:
+    votes_moved:
+      one: "Un vote a été déplacé."
+      other: "%{count} votes ont été déplacés."
+    duplicated_votes:
+      one: "Un vote n'a pas pu être déplacé car l'utilisateur a déjà voté dans l'autre sujet."
+      other: "%{count} votes n'ont pas pu être déplacés car leurs utilisateurs ont déjà voté dans l'autre sujet."
