@@ -24,6 +24,11 @@
   white-space: nowrap;
 }
 
+.voting-popup-menu {
+  width: calc(100vw - 100px);
+  // 80px left positioning + 20px .wrap padding
+}
+
 // TEMP: RTL overrides
 .title-voting {
   .rtl & {
