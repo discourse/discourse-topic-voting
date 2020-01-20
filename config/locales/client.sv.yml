@@ -7,5 +7,32 @@
 
 sv:
   js:
+    category:
+      sort_options:
+        votes: "Röster"
     voting:
-      vote_title: "Rösta"
+      title: "Röstning"
+      reached_limit: "Du har inga fler röster, ta bort en befintlig röst!"
+      list_votes: "Lista dina röster"
+      votes_nav_help: "ämnen med de flesta rösterna"
+      voted: "Du röstade om detta ämne"
+      allow_topic_voting: "Låt användare rösta om ämnen i denna kategori"
+      vote_title: "Röst"
+      vote_title_plural: "Röster"
+      voted_title: "Röstade"
+      voting_closed_title: "Stängd"
+      voting_limit: "Gräns"
+      votes_left:
+        one: "Du har {{count}} röst kvar, se <a href='{{path}}'>dina röster</a>."
+        other: "Du har {{count}} röster kvar, se <a href='{{path}}'>dina röster</a>."
+      votes:
+        one: "{{count}} omröstning"
+        other: "{{count}} röster"
+      anonymous_button:
+        one: "Röst"
+        other: "Röster"
+      remove_vote: "Ta bort röst"
+    filters:
+      votes:
+        title: "Röster"
+        help: "ämnen med de flesta rösterna"

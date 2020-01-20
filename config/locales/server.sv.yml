@@ -7,7 +7,7 @@
 
 sv:
   site_settings:
-    voting_enabled: 'Tillåt användaromröstning på ämnen?'
+    voting_enabled: 'Vill du tillåta användaromröstning på ämnen?'
     voting_tl0_vote_limit: 'Hur många röster är tillgängliga för TL0 användare?'
     voting_tl1_vote_limit: 'Hur många röster är tillgängliga för TL1 användare?'
     voting_tl2_vote_limit: 'Hur många röster är tillgängliga för TL2 användare?'
@@ -16,3 +16,10 @@ sv:
     voting_show_who_voted: 'Tillåt användare att se vem som har röstat? '
     voting_show_votes_on_profile: 'Tillåt användare att se sina voteringar i aktivitetsflödet?'
     voting_alert_votes_left: 'Uppmärksamma användaren när antal röster kvar är '
+  voting:
+    votes_moved:
+      one: "En omröstning har flyttats."
+      other: "%{count} röster har flyttats."
+    duplicated_votes:
+      one: "En omröstning kunde inte flyttas eftersom användaren redan röstade i det andra ämnet."
+      other: "%{count} röster kunde inte flyttas eftersom deras användare redan röstade i det andra ämnet."
