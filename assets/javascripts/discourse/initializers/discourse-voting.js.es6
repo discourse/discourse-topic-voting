@@ -15,10 +15,10 @@ export default {
             return category && category.can_vote;
           },
           customHref: (category, args) => {
-            const currentFilterType = (args.filterMode || "").split("/").pop();
+            const currentFilterType = (args.filterType || "").split("/").pop();
             const path = NavItem.pathFor(currentFilterType, args);
 
-            return `${path.replace(/\/l\/$/, "")}?order=votes`;
+            return `${path}?order=votes`;
           },
           forceActive: (category, args, router) => {
             const queryParams = router.currentRoute.queryParams;
