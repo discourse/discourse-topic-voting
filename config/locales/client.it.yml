@@ -16,7 +16,7 @@ it:
       list_votes: "Elenca i tuoi voti"
       votes_nav_help: "argomenti con il maggior numero di voti"
       voted: "Hai votato su questo argomento"
-      allow_topic_voting: "Permetti agli utenti di votare argomenti in questa categoria"
+      allow_topic_voting: "Permetti agli utenti di votare gli argomenti in questa categoria"
       vote_title: "Vota"
       vote_title_plural: "Voti"
       voted_title: "Votato"
@@ -24,10 +24,10 @@ it:
       voting_limit: "Limite"
       votes_left:
         one: "Ti resta {{count}} voto, guarda <a href='{{path}}'>i tuoi voti</a>."
-        other: "Ti restano {{count}}voti, guarda <a href='{{path}}'>i tuoi voti</a>."
+        other: "Ti restano {{count}} voti, guarda <a href='{{path}}'>i tuoi voti</a>."
       votes:
-        one: "{{count}}voto"
-        other: "{{count}}voti"
+        one: "{{count}} voto"
+        other: "{{count}} voti"
       anonymous_button:
         one: "Voto"
         other: "Voti"

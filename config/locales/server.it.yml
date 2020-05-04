@@ -16,3 +16,10 @@ it:
     voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
     voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nelle attività del profilo?'
     voting_alert_votes_left: 'Avverti l''utente quando mancan questo numero di voti'
+  voting:
+    votes_moved:
+      one: "Un voto è stato spostato."
+      other: "%{count} voti sono stati spostati. "
+    duplicated_votes:
+      one: "Non è stato possibile spostare un voto perché l'utente ha già votato nell'altro argomento."
+      other: "Non è stato possibile spostare %{count} voti perché i gli utenti hanno già votato nell'altro argomento."

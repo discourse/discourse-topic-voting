@@ -16,3 +16,12 @@ bs_BA:
     voting_show_who_voted: 'Dozvoli korisnicima da vide ko je glasao?'
     voting_show_votes_on_profile: 'Dozvoli korisnicima da vide svoje glasove u svojem pregledu aktivnosti?'
     voting_alert_votes_left: 'Upozorite korisnike kada do naksimalnog broja glasova ostano još'
+  voting:
+    votes_moved:
+      one: "Glas je maknut."
+      few: "%{count} glasa je maknuto."
+      other: "%{count} glasova je maknuto."
+    duplicated_votes:
+      one: "Glas nije mogao biti maknut jer njihovi korisnici su već glasali u drugoj temi."
+      few: "%{count} glasa nije moglo biti maknuto jer njihovi korisnici su već glasali u drugoj temi."
+      other: "%{count} glasova nije moglo biti maknuto jer njihovi korisnici su već glasali u drugoj temi."
