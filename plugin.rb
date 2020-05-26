@@ -356,30 +356,39 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_merged) do |orig, dest|
-    duplicated_votes = 0
     moved_votes = 0
+    duplicated_votes = 0
 
     if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
-        if user.votes.include?(dest.id)
-          # User has voted for both +orig+ and +dest+.
-          # Remove vote for topic +orig+.
-          duplicated_votes += 1
-          user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup - [orig.id]
+        if user.votes.include?(orig.id)
+          if user.votes.include?(dest.id)
+            duplicated_votes += 1
+            user.custom_fields[DiscourseVoting::VOTES] = user.votes.dup - [orig.id]
+          else
+            user.custom_fields[DiscourseVoting::VOTES] = user.votes.map { |vote| vote == orig.id ? dest.id : vote }
+            moved_votes += 1
+          end
+        elsif user.votes_archive.include?(orig.id)
+          if user.votes_archive.include?(dest.id)
+            duplicated_votes += 1
+            user.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = user.votes_archive.dup - [orig.id]
+          else
+            user.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = user.votes_archive.map { |vote| vote == orig.id ? dest.id : vote }
+            moved_votes += 1
+          end
         else
-          # Change the vote for +orig+ in a vote for +dest+.
-          user.custom_fields[DiscourseVoting::VOTES] = user.votes.map { |vote| vote == orig.id ? dest.id : vote }
-          moved_votes += 1
+          next
         end
 
         user.save_custom_fields
       end
     end
 
-    orig.update_vote_count
-    dest.update_vote_count
-
     if moved_votes > 0
+      orig.update_vote_count
+      dest.update_vote_count
+
       if moderator_post = orig.ordered_posts.where(action_code: 'split_topic').last
         moderator_post.raw << "\n\n#{I18n.t('voting.votes_moved', count: moved_votes)}"
         moderator_post.raw << " #{I18n.t('voting.duplicated_votes', count: duplicated_votes)}" if duplicated_votes > 0

@@ -8,6 +8,7 @@ describe DiscourseVoting do
   let(:user1) { Fabricate(:user) }
   let(:user2) { Fabricate(:user) }
   let(:user3) { Fabricate(:user) }
+  let(:user4) { Fabricate(:user) }
 
   let(:category1) { Fabricate(:category) }
   let(:category2) { Fabricate(:category) }
@@ -33,7 +34,7 @@ describe DiscourseVoting do
   end
 
   context "with two topics" do
-    let(:users) { [user0, user1, user2, user3] }
+    let(:users) { [user0, user1, user2, user3, user4] }
 
     before do
       Fabricate(:post, topic: topic0, user: user0)
@@ -41,11 +42,11 @@ describe DiscourseVoting do
 
       # +user0+ votes +topic0+, +user1+ votes +topic1+ and +user2+ votes both
       # topics.
-      users[0].custom_fields[DiscourseVoting::VOTES] = users[0].votes.dup.push(topic0.id.to_s)
-      users[1].custom_fields[DiscourseVoting::VOTES] = users[1].votes.dup.push(topic1.id.to_s)
-      users[2].custom_fields[DiscourseVoting::VOTES] = users[2].votes.dup.push(topic0.id.to_s)
-      users[2].custom_fields[DiscourseVoting::VOTES] = users[2].votes.dup.push(topic1.id.to_s)
-
+      users[0].custom_fields[DiscourseVoting::VOTES]         = (users[0].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic0.id.to_s)
+      users[1].custom_fields[DiscourseVoting::VOTES]         = (users[1].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic1.id.to_s)
+      users[2].custom_fields[DiscourseVoting::VOTES]         = (users[2].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic0.id.to_s)
+      users[2].custom_fields[DiscourseVoting::VOTES]         = (users[2].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic1.id.to_s)
+      users[4].custom_fields[DiscourseVoting::VOTES_ARCHIVE] = (users[4].custom_fields[DiscourseVoting::VOTES_ARCHIVE].dup || []).push(topic0.id.to_s)
       users.each { |u| u.save! }
 
       [topic0, topic1].each { |t| t.update_vote_count }
@@ -54,28 +55,42 @@ describe DiscourseVoting do
     it 'moves votes when entire topic is merged' do
       topic0.move_posts(Discourse.system_user, topic0.posts.pluck(:id), destination_topic_id: topic1.id)
 
-      expect(users[0].reload.votes).to eq([topic1.id])
-      expect(users[1].reload.votes).to eq([topic1.id])
-      expect(users[2].reload.votes).to eq([topic1.id])
-      expect(users[3].reload.votes).to eq([])
+      users.each { |user| user.reload }
+      expect(users[0].votes).to         contain_exactly(topic1.id)
+      expect(users[0].votes_archive).to contain_exactly()
+      expect(users[1].votes).to         contain_exactly(topic1.id)
+      expect(users[1].votes_archive).to contain_exactly()
+      expect(users[2].votes).to         contain_exactly(topic1.id)
+      expect(users[2].votes_archive).to contain_exactly()
+      expect(users[3].votes).to         contain_exactly()
+      expect(users[3].votes_archive).to contain_exactly()
+      expect(users[4].votes).to         contain_exactly()
+      expect(users[4].votes_archive).to contain_exactly(topic1.id)
 
       expect(topic0.reload.vote_count).to eq(0)
-      expect(topic1.reload.vote_count).to eq(3)
+      expect(topic1.reload.vote_count).to eq(4)
 
       merged_post = topic0.posts.find_by(action_code: 'split_topic')
-      expect(merged_post.raw).to include(I18n.t('voting.votes_moved', count: 1))
+      expect(merged_post.raw).to include(I18n.t('voting.votes_moved', count: 2))
       expect(merged_post.raw).to include(I18n.t('voting.duplicated_votes', count: 1))
     end
 
     it 'does not move votes when a single post is moved' do
       topic0.move_posts(Discourse.system_user, topic0.posts[1, 2].map(&:id), destination_topic_id: topic1.id)
 
-      expect(users[0].reload.votes).to eq([topic0.id])
-      expect(users[1].reload.votes).to eq([topic1.id])
-      expect(users[2].reload.votes).to eq([topic0.id, topic1.id])
-      expect(users[3].reload.votes).to eq([])
+      users.each { |user| user.reload }
+      expect(users[0].votes).to         contain_exactly(topic0.id)
+      expect(users[0].votes_archive).to contain_exactly()
+      expect(users[1].votes).to         contain_exactly(topic1.id)
+      expect(users[1].votes_archive).to contain_exactly()
+      expect(users[2].votes).to         contain_exactly(topic0.id, topic1.id)
+      expect(users[2].votes_archive).to contain_exactly()
+      expect(users[3].votes).to         contain_exactly()
+      expect(users[3].votes_archive).to contain_exactly()
+      expect(users[4].votes).to         contain_exactly()
+      expect(users[4].votes_archive).to contain_exactly(topic0.id)
 
-      expect(topic0.reload.vote_count).to eq(2)
+      expect(topic0.reload.vote_count).to eq(3)
       expect(topic1.reload.vote_count).to eq(2)
     end
   end
