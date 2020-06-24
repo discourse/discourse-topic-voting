@@ -22,16 +22,6 @@ uk:
       voted_title: "Проголосували"
       voting_closed_title: "Закриті"
       voting_limit: "Обмеження"
-      votes_left:
-        one: "У вас залишилось {{count}} голосів, побачите <a href='{{path}}'>свої голоси</a> ."
-        few: "У вас залишилось {{count}} голосів, дивіться <a href='{{path}}'>ваші голоси</a> ."
-        many: "У вас залишилось {{count}} голосів, дивіться <a href='{{path}}'>ваші голоси</a> ."
-        other: "У вас залишилось {{count}} голосів, дивіться <a href='{{path}}'>ваші голоси</a> ."
-      votes:
-        one: "{{count}} голос"
-        few: "{{count}} голосів"
-        many: "{{count}} голосів"
-        other: "{{count}} голосів"
       anonymous_button:
         one: "Голосувати"
         few: "Голосів"

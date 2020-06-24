@@ -23,11 +23,11 @@ ca:
       voting_closed_title: "Tancat"
       voting_limit: "Límit"
       votes_left:
-        one: "Us queda {{count}} vot. Mireu els <a href='{{path}}'>vostres vots</a>."
-        other: "Us queden {{count}} vots. Mireu els <a href='{{path}}'>vostres vots</a>."
+        one: "Us queda %{count} vot, mireu els <a href='%{path}'>vostres vots</a>."
+        other: "Us queden %{count} vots, mireu els <a href='%{path}'>vostres vots</a>."
       votes:
-        one: "{{count}} vot"
-        other: "{{count}} vots"
+        one: " %{count} vot"
+        other: "%{count} vots"
       anonymous_button:
         one: "Vota"
         other: "Vots"

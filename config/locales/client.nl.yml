@@ -22,12 +22,6 @@ nl:
       voted_title: "Gestemd"
       voting_closed_title: "Gesloten"
       voting_limit: "Limiet"
-      votes_left:
-        one: "U hebt {{count}} stem over, bekijk <a href='{{path}}'>uw stemmen</a>."
-        other: "U hebt {{count}} stemmen over, bekijk <a href='{{path}}'>uw stemmen</a>."
-      votes:
-        one: "{{count}} stem"
-        other: "{{count}} stemmen"
       anonymous_button:
         one: "Stem"
         other: "Stemmen"

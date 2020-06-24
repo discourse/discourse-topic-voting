@@ -16,3 +16,10 @@ pt:
     voting_show_who_voted: 'Permitir aos utilizadores ver quem votou?'
     voting_show_votes_on_profile: 'Permitir aos utilizadores ver os seus votos na lista de actividade?'
     voting_alert_votes_left: 'Alertar o utilizador quando faltarem estes votos'
+  voting:
+    votes_moved:
+      one: "Foi movido um voto."
+      other: "Foram movidos %{count}votos."
+    duplicated_votes:
+      one: "Não foi possível mover um voto porque o utilizador já votou em outro tópico."
+      other: "Não foi possível mover %{count} votos porque os seus utilizadores já votaram em outro tópico."

@@ -22,12 +22,6 @@ tr_TR:
       voted_title: "Oylanmış"
       voting_closed_title: "Kapalı"
       voting_limit: "Sınır"
-      votes_left:
-        one: "{{count}} oyunuz kaldı, <a href='{{path}}'>oylarınızı görün</a> ."
-        other: "{{count}} oyunuz kaldı, <a href='{{path}}'>oylarınızı görün</a> ."
-      votes:
-        one: "{{count}} oy"
-        other: "{{count}} oylar"
       anonymous_button:
         one: "Oy"
         other: "Oylar"

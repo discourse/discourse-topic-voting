@@ -23,11 +23,11 @@ sv:
       voting_closed_title: "Stängd"
       voting_limit: "Gräns"
       votes_left:
-        one: "Du har {{count}} röst kvar, se <a href='{{path}}'>dina röster</a>."
-        other: "Du har {{count}} röster kvar, se <a href='{{path}}'>dina röster</a>."
+        one: "Du har %{count}röst kvar, se <a href='%{path}'>dina röster</a>."
+        other: "Du har %{count}röster kvar, se <a href='%{path}'>dina röster</a>."
       votes:
-        one: "{{count}} omröstning"
-        other: "{{count}} röster"
+        one: "%{count} röst"
+        other: "%{count} röster"
       anonymous_button:
         one: "Röst"
         other: "Röster"

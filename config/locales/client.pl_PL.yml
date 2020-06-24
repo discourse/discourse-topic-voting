@@ -22,16 +22,6 @@ pl_PL:
       voted_title: "Głosów"
       voting_closed_title: "Zamknięto"
       voting_limit: "Limit"
-      votes_left:
-        one: "Pozostał Ci {{count}} głos, zobacz <a href='{{path}}'>swoje głosy</a>."
-        few: "Pozostały Ci {{count}} głosy, zobacz <a href='{{path}}'>swoje głosy</a>."
-        many: "Pozostało Ci {{count}} głosów, zobacz <a href='{{path}}'>swoje głosy</a>."
-        other: "Pozostało Ci {{count}} głosów, zobacz <a href='{{path}}'>swoje głosy</a>."
-      votes:
-        one: "{{count}}głos"
-        few: "{{count}}głosy"
-        many: "{{count}}głosów"
-        other: "{{count}}głosów"
       anonymous_button:
         one: "Głos"
         few: "Głosy"

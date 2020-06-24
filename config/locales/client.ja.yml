@@ -15,8 +15,6 @@ ja:
       vote_title: "投票"
       vote_title_plural: "投票"
       voted_title: "投票済み"
-      votes:
-        other: "{{count}}票"
       anonymous_button:
         other: "投票"
     filters:

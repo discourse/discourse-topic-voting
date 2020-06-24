@@ -7,6 +7,23 @@
 
 fa_IR:
   js:
+    category:
+      sort_options:
+        votes: "آرا"
     voting:
-      vote_title: "امتیاز"
+      title: "رأی دادن"
+      list_votes: "آرای خود را فهرست کنید"
+      votes_nav_help: "موضوعات با بیشترین آرا"
+      voted: "شما به این موضوع رای داده اید"
+      vote_title: "رای"
+      vote_title_plural: "آرا"
+      voted_title: "رای داده شده"
       voting_closed_title: "بسته"
+      anonymous_button:
+        one: "رای"
+        other: "آرا"
+      remove_vote: "حذف رای"
+    filters:
+      votes:
+        title: "آرا"
+        help: "موضوعات با بیشترین آرا"

@@ -22,14 +22,6 @@ bs_BA:
       voted_title: "Glasano"
       voting_closed_title: "Zatvoreno"
       voting_limit: "Limit"
-      votes_left:
-        one: "Imate još {{count}} preostao glas, pogledati <a href='{{path}}'>vaši glasovi</a>."
-        few: "Imate još {{count}} preostala glasa, pogledati <a href='{{path}}'>vaši glasovi</a>."
-        other: "Imate još {{count}} preostalih glasova, pogledati  <a href='{{path}}'>vaši glasovi</a>."
-      votes:
-        one: "{{count}} glas"
-        few: "{{count}} glasa"
-        other: "{{count}} glasova"
       anonymous_button:
         one: "Glas"
         few: "Glasa"

@@ -22,12 +22,6 @@ da:
       voted_title: "Stemte"
       voting_closed_title: "Lukket"
       voting_limit: "Begrænset"
-      votes_left:
-        one: "Du har {{count}} stemme tilbage, se <a href='{{path}}'>dine stemmer</a> ."
-        other: "Du har {{count}} stemmer tilbage, se <a href='{{path}}'>dine stemmer</a> ."
-      votes:
-        one: "{{count}} stemme"
-        other: "{{count}} stemmer"
       anonymous_button:
         one: "Stemme"
         other: "Stemmer"

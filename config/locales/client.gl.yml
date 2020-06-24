@@ -7,5 +7,17 @@
 
 gl:
   js:
+    category:
+      sort_options:
+        votes: "Votos"
     voting:
       vote_title: "Votar"
+      vote_title_plural: "Votos"
+      voting_closed_title: "Pechado"
+      anonymous_button:
+        one: "Voto"
+        other: "Votos"
+      remove_vote: "Eliminar voto"
+    filters:
+      votes:
+        title: "Votos"

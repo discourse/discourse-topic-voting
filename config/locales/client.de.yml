@@ -22,12 +22,9 @@ de:
       voted_title: "Voted"
       voting_closed_title: "Geschlossen"
       voting_limit: "Limit"
-      votes_left:
-        one: "Du hast {{count}} Stimme übrig, siehe <a href='{{path}}'>deine Stimmen</a>."
-        other: "Du hast {{count}} Stimmen übrig, siehe <a href='{{path}}'>deine Stimmen</a>."
       votes:
-        one: "{{count}} Stimme"
-        other: "{{count}} Stimmen"
+        one: "%{count} Abstimmung"
+        other: "%{count} Stimmen"
       anonymous_button:
         one: "Stimme"
         other: "Stimmen"

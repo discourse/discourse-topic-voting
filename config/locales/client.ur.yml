@@ -22,12 +22,6 @@ ur:
       voted_title: "ووٹ کیا"
       voting_closed_title: "بند"
       voting_limit: "حد"
-      votes_left:
-        one: "آپ کے پاس {{count}} ووٹ باقی ہے، دیکھیے <a href='{{path}}'>اپنے ووٹ</a>۔"
-        other: "آپ کے پاس {{count}} ووٹ باقی ہیں، دیکھیے <a href='{{path}}'>اپنے ووٹ</a>۔"
-      votes:
-        one: "{{count}} ووٹ"
-        other: "{{count}} ووٹ"
       anonymous_button:
         one: "ووٹ"
         other: "ووٹ"

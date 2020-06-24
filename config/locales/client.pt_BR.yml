@@ -22,12 +22,6 @@ pt_BR:
       voted_title: "Votado"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
-      votes_left:
-        one: "Você tem {{count}} voto restante, veja os <a href='{{path}}'>seus votos</a>."
-        other: "Você tem {{count}} votos restantes, veja os <a href='{{path}}'>seus votos</a>."
-      votes:
-        one: "{{count}} voto"
-        other: "{{count}} votos"
       anonymous_button:
         one: "Voto"
         other: "Votos"

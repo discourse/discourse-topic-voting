@@ -22,10 +22,6 @@ vi:
       voted_title: "Đã bình ch"
       voting_closed_title: "Đã "
       voting_limit: "Giới h"
-      votes_left:
-        other: "Bạn còn {{count}}phiếu, xem <a href='{{path}}'>lượt bầu</a> của bạn"
-      votes:
-        other: "{{count}}phiếu"
       anonymous_button:
         other: "Phiếu"
       remove_vote: "Xoá Bình Chọn<br>"

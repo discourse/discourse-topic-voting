@@ -22,16 +22,6 @@ ru:
       voted_title: "Проголосовало"
       voting_closed_title: "Закрыто"
       voting_limit: "Лимит"
-      votes_left:
-        one: "У вас остался {{count}} голос, просмотрите <a href='{{path}}'>свои голоса</a>."
-        few: "У вас осталось {{count}} голосов, просмотрите <a href='{{path}}'>свои голоса</a>."
-        many: "У вас осталось {{count}} голосов, просмотрите <a href='{{path}}'>свои голоса</a>."
-        other: "У вас остался {{count}} голос, просмотрите <a href='{{path}}'>свои голоса</a>."
-      votes:
-        one: "{{count}} голос"
-        few: "{{count}} голосов"
-        many: "{{count}} голосов"
-        other: "{{count}} голосов"
       anonymous_button:
         one: "Голос"
         few: "Голосов"

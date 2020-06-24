@@ -11,14 +11,22 @@ pt:
       sort_options:
         votes: "Votos"
     voting:
+      list_votes: "Listar os seus votos"
       votes_nav_help: "tópicos mais votados"
       voted: "Votou neste tópico"
-      allow_topic_voting: "Permitir que os utilizadores votem em tópicos desta categoria"
+      allow_topic_voting: "Permitir que os utilizadores votem nos tópicos desta categoria"
       vote_title: "Voto"
       vote_title_plural: "Votos"
       voted_title: "Votado"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
+      votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      anonymous_button:
+        one: "Voto"
+        other: "Votos"
+      remove_vote: "Remover voto"
     filters:
       votes:
         title: "Votos"

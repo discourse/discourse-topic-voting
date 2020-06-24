@@ -23,15 +23,15 @@ he:
       voting_closed_title: "נסגר"
       voting_limit: "מגבלה"
       votes_left:
-        one: "נותרה לרשותך הצבעה אחת, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
-        two: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
-        many: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
-        other: "נותרו לרשותך {{count}} הצבעות, ניתן להביט ב<a href='{{path}}'>הצבעות שלך</a>."
+        one: "נותרה לרשותך הצבעה %{count}, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
+        two: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
+        many: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
+        other: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
       votes:
-        one: "הצבעה אחת"
-        two: "{{count}} הצבעות"
-        many: "{{count}} הצבעות"
-        other: "{{count}} הצבעות"
+        one: "הצבעה %{count}"
+        two: "%{count} הצבעות"
+        many: "%{count} הצבעות"
+        other: "%{count} הצבעות"
       anonymous_button:
         one: "הצבעה"
         two: "הצבעות"

@@ -23,11 +23,11 @@ fr:
       voting_closed_title: "Fermé"
       voting_limit: "Limite"
       votes_left:
-        one: "Vous avec {{count}} vote restant, consultez <a href='{{path}}'>vos votes</a>."
-        other: "Vous avez {{count}} votes restant, consultez <a href='{{path}}'>vos votes</a>."
+        one: "Vous avez %{count} vote restant, consultez <a href='%{path}'>vos votes</a>."
+        other: "Vous avez %{count} votes restants, consultez <a href='%{path}'>vos votes</a>."
       votes:
-        one: "{{count}} vote"
-        other: "{{count}} votes"
+        one: "%{count} vote"
+        other: "%{count} votes"
       anonymous_button:
         one: "Vote"
         other: "Votes"

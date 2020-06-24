@@ -22,12 +22,6 @@ hu:
       voted_title: "Szavazott"
       voting_closed_title: "Lezárva"
       voting_limit: "Limit"
-      votes_left:
-        one: "{{count}}szavazatod maradt. <a href='{{path}}'>eddigi szavazataid</a>szavazataid."
-        other: "{{count}}szavazatod maradt. Eddigi <a href='{{path}}'>szavazataid</a>."
-      votes:
-        one: "{{count}}szavazat"
-        other: "{{count}}szavazat"
       anonymous_button:
         one: "szavazások "
         other: "Szavazások"

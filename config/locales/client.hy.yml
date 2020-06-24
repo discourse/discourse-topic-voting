@@ -21,12 +21,6 @@ hy:
       voted_title: "Քվեարկած"
       voting_closed_title: "Փակված է"
       voting_limit: "Սահմանափակում"
-      votes_left:
-        one: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
-        other: "Դուք դեռևս ունեք {{count}} քվե, դիտեք <a href='{{path}}'>Ձեր քվեները</a>:"
-      votes:
-        one: "{{count}} քվե"
-        other: "{{count}} քվե"
       anonymous_button:
         one: "Քվեներ"
         other: "Քվեներ"
