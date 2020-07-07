@@ -1,4 +1,4 @@
-import computed from "ember-addons/ember-computed-decorators";
+import { computed } from "@ember/object";
 import Category from "discourse/models/category";
 import { withPluginApi } from "discourse/lib/plugin-api";
 
