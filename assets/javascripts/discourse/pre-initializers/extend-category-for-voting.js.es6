@@ -48,8 +48,7 @@ export default {
     withPluginApi("0.8.30", api => api.addCategorySortCriteria("votes"));
 
     Category.reopen({
-      @computed("custom_fields.enable_topic_voting")
-      enable_topic_voting: {
+      enable_topic_voting: computed("custom_fields.enable_topic_voting", {
         get(enableField) {
           return enableField;
         },
@@ -57,7 +56,7 @@ export default {
           this.set("custom_fields.enable_topic_voting", value);
           return value;
         }
-      }
+      })
     });
   }
 };

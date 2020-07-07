@@ -1,0 +1,12 @@
+{
+  "name": "discourse-voting",
+  "version": "1.0.0",
+  "repository": "git@github.com:discourse/discourse-voting.git",
+  "author": "Discourse",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^8.2",
+    "eslint": "^4.19",
+    "prettier": "1.14.3"
+  }
+}
