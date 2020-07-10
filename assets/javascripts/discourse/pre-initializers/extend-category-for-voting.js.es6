@@ -1,5 +1,3 @@
-import { computed } from "@ember/object";
-import Category from "discourse/models/category";
 import { withPluginApi } from "discourse/lib/plugin-api";
 
 function initialize(api) {
@@ -46,17 +44,5 @@ export default {
   initialize() {
     withPluginApi("0.8.4", api => initialize(api));
     withPluginApi("0.8.30", api => api.addCategorySortCriteria("votes"));
-
-    Category.reopen({
-      enable_topic_voting: computed("custom_fields.enable_topic_voting", {
-        get(enableField) {
-          return enableField;
-        },
-        set(value) {
-          this.set("custom_fields.enable_topic_voting", value);
-          return value;
-        }
-      })
-    });
   }
 };
