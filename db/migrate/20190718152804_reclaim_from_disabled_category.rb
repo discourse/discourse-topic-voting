@@ -3,9 +3,9 @@
 class ReclaimFromDisabledCategory < ActiveRecord::Migration[5.2]
   def up
     aliases = {
-      votes: DiscourseVoting::VOTES,
-      votes_archive: DiscourseVoting::VOTES_ARCHIVE,
-      voting_enabled: DiscourseVoting::VOTING_ENABLED
+      votes: "votes",
+      votes_archive: "votes_archive",
+      voting_enabled: "enable_topic_voting"
     }
 
     # archive votes in non-voting categories

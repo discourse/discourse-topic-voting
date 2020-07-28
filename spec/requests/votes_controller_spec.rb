@@ -9,7 +9,7 @@ describe DiscourseVoting::VotesController do
   let(:topic) { Fabricate(:topic, category_id: category.id) }
 
   before do
-    CategoryCustomField.create!(category_id: category.id, name: "enable_topic_voting", value: "true")
+    DiscourseVoting::CategorySetting.create!(category: category)
     Category.reset_voting_cache
     SiteSetting.voting_show_who_voted = true
     SiteSetting.voting_enabled = true
@@ -46,18 +46,5 @@ describe DiscourseVoting::VotesController do
 
     expect(topic.reload.vote_count).to eq(0)
     expect(user.reload.vote_count).to eq(0)
-  end
-
-  context "when a user has tallyed votes with no topic id" do
-    before do
-      user.custom_fields[DiscourseVoting::VOTES] = [nil, nil, nil]
-      user.save
-    end
-
-    it "removes extra votes" do
-      post "/voting/vote.json", params: { topic_id: topic.id }
-      expect(response.status).to eq(200)
-      expect(user.reload.vote_count).to eq (1)
-    end
   end
 end

@@ -27,8 +27,7 @@ describe DiscourseVoting do
 
     expect(user0.reached_voting_limit?).to eq(false)
 
-    user0.custom_fields["votes"] = [topic0.id.to_s]
-    user0.save!
+    DiscourseVoting::Vote.create(user: user0, topic: topic0)
 
     expect(user0.reached_voting_limit?).to eq(true)
   end
@@ -42,12 +41,11 @@ describe DiscourseVoting do
 
       # +user0+ votes +topic0+, +user1+ votes +topic1+ and +user2+ votes both
       # topics.
-      users[0].custom_fields[DiscourseVoting::VOTES]         = (users[0].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic0.id.to_s)
-      users[1].custom_fields[DiscourseVoting::VOTES]         = (users[1].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic1.id.to_s)
-      users[2].custom_fields[DiscourseVoting::VOTES]         = (users[2].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic0.id.to_s)
-      users[2].custom_fields[DiscourseVoting::VOTES]         = (users[2].custom_fields[DiscourseVoting::VOTES].dup         || []).push(topic1.id.to_s)
-      users[4].custom_fields[DiscourseVoting::VOTES_ARCHIVE] = (users[4].custom_fields[DiscourseVoting::VOTES_ARCHIVE].dup || []).push(topic0.id.to_s)
-      users.each { |u| u.save! }
+      DiscourseVoting::Vote.create(user: users[0], topic: topic0)
+      DiscourseVoting::Vote.create(user: users[1], topic: topic1)
+      DiscourseVoting::Vote.create(user: users[2], topic: topic0)
+      DiscourseVoting::Vote.create(user: users[2], topic: topic1)
+      DiscourseVoting::Vote.create(user: users[4], topic: topic0, archive: true)
 
       [topic0, topic1].each { |t| t.update_vote_count }
     end
@@ -97,9 +95,7 @@ describe DiscourseVoting do
 
   context "when a user has an empty string as the votes custom field" do
     before do
-      user0.custom_fields[DiscourseVoting::VOTES] = ""
-      user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = ""
-      user0.save
+      DiscourseVoting::Vote.where(user: user0).delete_all
       user0.reload
     end
 
@@ -126,8 +122,7 @@ describe DiscourseVoting do
   context "when a job is trashed and then recovered" do
     it "released the vote back to the user, then reclaims it on topic recovery" do
       Jobs.run_immediately!
-      user0.custom_fields[DiscourseVoting::VOTES] = [topic1.id]
-      user0.save
+      DiscourseVoting::Vote.create(user: user0, topic: topic1)
 
       topic1.reload.trash!
       expect(user0.reload.votes).to eq([])
@@ -143,15 +138,15 @@ describe DiscourseVoting do
     let(:post1) { Fabricate(:post, topic: topic1, post_number: 1) }
 
     before do
-      category1.custom_fields["enable_topic_voting"] = "true"
+      DiscourseVoting::CategorySetting.create!(category: category1)
       category1.save!
       Category.reset_voting_cache
     end
 
     it "enqueus a job to reclaim votes if voting is enabled for the new category" do
       user = post1.user
-      user.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = [post1.topic_id, 456456]
-      user.save!
+      DiscourseVoting::Vote.create(user: user, topic: post1.topic, archive: true)
+      DiscourseVoting::Vote.create(user: user, topic_id: 456456, archive: true)
 
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
@@ -165,8 +160,8 @@ describe DiscourseVoting do
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
       user = post0.user
-      user.custom_fields[DiscourseVoting::VOTES] = [post0.topic_id, 456456]
-      user.save!
+      DiscourseVoting::Vote.create(user: user, topic: post0.topic)
+      DiscourseVoting::Vote.create(user: user, topic_id: 456456)
 
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
@@ -192,40 +187,33 @@ describe DiscourseVoting do
     let(:topic2) { Fabricate(:topic, category: category3) }
 
     before do
-      category1.custom_fields["enable_topic_voting"] = true
-      category1.save!
+      DiscourseVoting::CategorySetting.create!(category: category1)
 
-      category2.custom_fields["enable_topic_voting"] = true
-      category2.save!
+      DiscourseVoting::CategorySetting.create!(category: category2)
 
-      category3.custom_fields["enable_topic_voting"] = false
-      category3.save!
+      DiscourseVoting::CategorySetting.destroy_by(category: category3)
 
-      user0.custom_fields[DiscourseVoting::VOTES] = [topic0.id, topic1.id]
-      user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE] = [topic2.id]
-      user0.save!
+      DiscourseVoting::Vote.create(user: user0, topic: topic0)
+      DiscourseVoting::Vote.create(user: user0, topic: topic1)
+      DiscourseVoting::Vote.create(user: user0, topic: topic2, archive: true)
     end
 
     it "reclaims votes when voting is disabled on a category" do
-      category = Category.find(category1.id)
-      category.custom_fields["enable_topic_voting"] = false
-      category.save!
+      DiscourseVoting::CategorySetting.destroy_by(category: category1)
 
       user0.reload
 
-      expect(user0.custom_fields[DiscourseVoting::VOTES]).to contain_exactly(topic1.id)
-      expect(user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE]).to contain_exactly(topic0.id, topic2.id)
+      expect(DiscourseVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic1.id)
+      expect(DiscourseVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to contain_exactly(topic0.id, topic2.id)
     end
 
     it "restores votes when voting is enabled on a category" do
-      category = Category.find(category3.id)
-      category.custom_fields["enable_topic_voting"] = true
-      category.save!
+      DiscourseVoting::CategorySetting.create!(category: category3)
 
       user0.reload
 
-      expect(user0.custom_fields[DiscourseVoting::VOTES]).to contain_exactly(topic0.id, topic1.id, topic2.id)
-      expect(user0.custom_fields[DiscourseVoting::VOTES_ARCHIVE]).to eq(nil)
+      expect(DiscourseVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic0.id, topic1.id, topic2.id)
+      expect(DiscourseVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to eq([])
     end
   end
 end

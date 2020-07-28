@@ -3,101 +3,84 @@
 module Jobs
   class VotingEnsureConsistency < ::Jobs::Onceoff
     def execute_onceoff(args)
-      aliases = {
-        vote_count: DiscourseVoting::VOTE_COUNT,
-        votes: DiscourseVoting::VOTES,
-        votes_archive: DiscourseVoting::VOTES_ARCHIVE,
-      }
-
-      # archive votes to closed or archived or deleted topics
-      DB.exec(<<~SQL, aliases)
-        UPDATE user_custom_fields ucf
-        SET name = :votes_archive
-        FROM topics t
-        WHERE ucf.name = :votes
-        AND (t.closed OR t.archived OR t.deleted_at IS NOT NULL)
-        AND t.id::text = ucf.value
+      DB.exec(<<~SQL)
+        UPDATE discourse_voting_votes
+        SET archive=true
+        FROM topics
+        WHERE topics.id = discourse_voting_votes.topic_id
+        AND discourse_voting_votes.archive IS NOT TRUE
+        AND (topics.closed OR topics.archived OR topics.deleted_at IS NOT NULL)
       SQL
 
       # un-archive votes to open topics
-      DB.exec(<<~SQL, aliases)
-        UPDATE user_custom_fields ucf
-        SET name = :votes
-        FROM topics t
-        WHERE ucf.name = :votes_archive
-        AND NOT t.closed
-        AND NOT t.archived
-        AND t.deleted_at IS NULL
-        AND t.id::text = ucf.value
+      DB.exec(<<~SQL)
+        UPDATE discourse_voting_votes
+        SET archive=false
+        FROM topics
+        WHERE topics.id = discourse_voting_votes.topic_id
+        AND discourse_voting_votes.archive IS TRUE
+        AND NOT topics.closed
+        AND NOT topics.archived
+        AND topics.deleted_at IS NULL
       SQL
 
       # delete duplicate votes
-      DB.exec(<<~SQL, aliases)
-        DELETE FROM user_custom_fields ucf1
-        USING user_custom_fields ucf2
-        WHERE ucf1.id < ucf2.id AND
-              ucf1.user_id = ucf2.user_id AND
-              ucf1.value = ucf2.value AND
-              ucf1.name = ucf2.name AND
-              (ucf1.name IN (:votes, :votes_archive))
+      DB.exec(<<~SQL)
+        DELETE FROM discourse_voting_votes dvv1
+        USING discourse_voting_votes dvv2
+        WHERE dvv1.id < dvv2.id AND
+              dvv1.user_id = dvv2.user_id AND
+              dvv1.topic_id = dvv2.topic_id AND
+              dvv1.archive = dvv2.archive
       SQL
 
       # delete votes associated with no topics
-      DB.exec(<<~SQL, aliases)
-        DELETE FROM user_custom_fields ucf
-        WHERE ucf.value IS NULL
-        AND ucf.name IN (:votes, :votes_archive)
+      DB.exec(<<~SQL)
+        DELETE FROM discourse_voting_votes
+        WHERE discourse_voting_votes.topic_id IS NULL
       SQL
 
       # delete duplicate vote counts for topics
-      DB.exec(<<~SQL, aliases)
-        DELETE FROM topic_custom_fields tcf
-        USING topic_custom_fields tcf2
-        WHERE tcf.id < tcf2.id AND
-              tcf.name = tcf2.name AND
-              tcf.topic_id = tcf2.topic_id AND
-              tcf.value = tcf.value AND
-              tcf.name = :vote_count
+      DB.exec(<<~SQL)
+        DELETE FROM discourse_voting_vote_counters dvvc
+        USING discourse_voting_vote_counters dvvc2
+        WHERE dvvc.id < dvvc2.id AND
+              dvvc.topic_id = dvvc2.topic_id AND
+              dvvc.counter = dvvc2.counter
       SQL
 
       # insert missing vote counts for topics
       # ensures we have "something" for every topic with votes
-      DB.exec(<<~SQL, aliases)
+      DB.exec(<<~SQL)
         WITH missing_ids AS (
           SELECT DISTINCT t.id FROM topics t
-          JOIN user_custom_fields ucf ON t.id::text = ucf.value AND
-            ucf.name IN (:votes, :votes_archive)
-          LEFT JOIN topic_custom_fields tcf ON t.id = tcf.topic_id
-            AND tcf.name = :vote_count
-          WHERE tcf.topic_id IS NULL
+          JOIN discourse_voting_votes dvv ON t.id = dvv.topic_id
+          LEFT JOIN discourse_voting_vote_counters dvvc ON t.id = dvvc.topic_id
+          WHERE dvvc.topic_id IS NULL
         )
-        INSERT INTO topic_custom_fields (value, topic_id, name, created_at, updated_at)
-        SELECT '0', id, :vote_count, now(), now() FROM missing_ids
+        INSERT INTO discourse_voting_vote_counters (counter, topic_id, created_at, updated_at)
+        SELECT '0', id, now(), now() FROM missing_ids
       SQL
 
       # remove all superflous vote count custom fields
-      DB.exec(<<~SQL, aliases)
-        DELETE FROM topic_custom_fields
-        WHERE name = :vote_count
-        AND topic_id IN (
+      DB.exec(<<~SQL)
+        DELETE FROM discourse_voting_vote_counters
+        WHERE topic_id IN (
           SELECT t1.id FROM topics t1
-          LEFT JOIN user_custom_fields ucf
-            ON ucf.value = t1.id::text AND
-              ucf.name IN (:votes, :votes_archive)
-          WHERE ucf.id IS NULL
+          LEFT JOIN discourse_voting_votes dvv
+            ON dvv.topic_id = t1.id
+          WHERE dvv.id IS NULL
         )
       SQL
 
       # correct topics vote counts
-      DB.exec(<<~SQL, aliases)
-        UPDATE topic_custom_fields tcf
-        SET value = (
-          SELECT COUNT(*) FROM user_custom_fields ucf
-          WHERE tcf.topic_id::text = ucf.value AND
-            ucf.name IN (:votes, :votes_archive)
-          GROUP BY ucf.value
+      DB.exec(<<~SQL)
+        UPDATE discourse_voting_vote_counters dvvc
+        SET counter = (
+          SELECT COUNT(*) FROM discourse_voting_votes dvv
+          WHERE dvvc.topic_id = dvv.topic_id
+          GROUP BY dvv.topic_id
         )
-        WHERE tcf.name = :vote_count
       SQL
     end
   end
