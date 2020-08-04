@@ -29,6 +29,27 @@ export default {
             );
           }
         });
+        api.addNavigationBarItem({
+          name: "my_votes",
+          before: "top",
+          customFilter: category => {
+            return category && category.can_vote && api.getCurrentUser();
+          },
+          customHref: (category, args) => {
+            const currentFilterType = (args.filterType || "").split("/").pop();
+            const path = NavItem.pathFor(currentFilterType, args);
+
+            return `${path}?order=my_votes`;
+          },
+          forceActive: (category, args, router) => {
+            const queryParams = router.currentRoute.queryParams;
+            return (
+              queryParams &&
+              Object.keys(queryParams).length === 1 &&
+              queryParams["order"] === "my_votes"
+            );
+          }
+        });
       }
     });
   }

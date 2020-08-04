@@ -29,3 +29,6 @@ en:
       votes:
         title: "Votes"
         help: "topics with the most votes"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"

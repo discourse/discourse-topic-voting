@@ -81,6 +81,11 @@ after_initialize do
         .reorder("COALESCE(discourse_voting_vote_counters.counter,'0')::integer #{sort_dir}")
     }
 
+    TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
+      return result if options[:order] != "my_votes" || !user
+      result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+    }
+
     add_to_serializer(:category, :custom_fields) do
       object.custom_fields.merge(enable_topic_voting: DiscourseVoting::CategorySetting.find_by(category_id: object.id).present?)
     end
