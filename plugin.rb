@@ -240,8 +240,21 @@ after_initialize do
       class VoteRelease < ::Jobs::Base
         def execute(args)
           if topic = Topic.with_deleted.find_by(id: args[:topic_id])
-            DiscourseVoting::Vote.where(topic_id: args[:topic_id]).update_all(archive: true)
+            votes = DiscourseVoting::Vote.where(topic_id: args[:topic_id])
+            votes.update_all(archive: true)
+
             topic.update_vote_count
+
+            return if args[:trashed]
+
+            votes.find_each do |vote|
+              Notification.create!(user_id: vote.user_id,
+                                   notification_type: Notification.types[:votes_released],
+                                   topic_id: vote.topic_id,
+                                   data: { message: "votes_released",
+                                           title: "votes_released" }.to_json)
+            end
+
           end
         end
       end
@@ -269,7 +282,7 @@ after_initialize do
   end
 
   DiscourseEvent.on(:topic_trashed) do |topic|
-    Jobs.enqueue(:vote_release, topic_id: topic.id) if !topic.closed && !topic.archived
+    Jobs.enqueue(:vote_release, topic_id: topic.id, trashed: true) if !topic.closed && !topic.archived
   end
 
   DiscourseEvent.on(:topic_recovered) do |topic|

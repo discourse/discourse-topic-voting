@@ -117,6 +117,16 @@ describe DiscourseVoting do
       topic1.update_status('closed', false, Discourse.system_user)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
     end
+
+    it 'creates notification that topic was completed' do
+      Jobs.run_immediately!
+      DiscourseVoting::Vote.create(user: user0, topic: topic1)
+      expect { topic1.update_status('closed', true, user0) }.to change { Notification.count }.by(1)
+      notification = Notification.last
+      expect(notification.user_id).to eq(user0.id)
+      expect(notification.topic_id).to eq(topic1.id)
+      expect(JSON.parse(notification.data)['message']).to eq('votes_released')
+    end
   end
 
   context "when a job is trashed and then recovered" do
@@ -126,6 +136,7 @@ describe DiscourseVoting do
 
       topic1.reload.trash!
       expect(user0.reload.votes).to eq([])
+      expect(Notification.count).to eq(0)
 
       topic1.recover!
       expect(user0.reload.votes).to eq([topic1.id])
