@@ -1,9 +1,8 @@
-# encoding: utf-8
-#
-# Never edit this file. It will be overwritten when translations are pulled from Transifex.
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
 #
 # To work with us on translations, join this project:
-# https://www.transifex.com/projects/p/discourse-org/
+# https://translate.discourse.org/
 
 ru:
   js:
@@ -14,7 +13,7 @@ ru:
       title: "Голосование"
       reached_limit: "У вас закончились голоса, удалите часть ваших голосов!"
       list_votes: "Посмотреть ваши голоса"
-      votes_nav_help: "темы с наибольшим количеством голосов"
+      votes_nav_help: "Темы с наибольшим количеством голосов"
       voted: "Вы голосовали по этой теме"
       allow_topic_voting: "Разрешить пользователям голосовать по темам в этом разделе"
       vote_title: "Голос"
@@ -22,13 +21,23 @@ ru:
       voted_title: "Проголосовало"
       voting_closed_title: "Закрыто"
       voting_limit: "Лимит"
+      votes_left:
+        one: "У вас есть %{count} голос, посмотрите <a href='%{path}'>ваши голоса</a> ."
+        few: "У вас есть %{count} голоса, посмотрите <a href='%{path}'>ваши голоса</a> ."
+        many: "У вас есть %{count} голосов, посмотрите <a href='%{path}'>ваши голоса</a> ."
+        other: "У вас есть %{count} голосов, посмотрите <a href='%{path}'>ваши голоса</a> ."
+      votes:
+        one: "%{count} голоса"
+        few: "%{count} голосов"
+        many: "%{count} голосов"
+        other: "%{count} голосов"
       anonymous_button:
         one: "Голос"
-        few: "Голосов"
+        few: "Голоса"
         many: "Голосов"
         other: "Голосов"
       remove_vote: "Удалить голосование"
     filters:
       votes:
         title: "Голосов"
-        help: "темы с наибольшим количеством голосов"
+        help: "Темы с наибольшим количеством голосов"
