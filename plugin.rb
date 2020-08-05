@@ -103,6 +103,14 @@ after_initialize do
       Category.can_vote?(object.id)
     end
 
+    Search.advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
+      posts.where("(SELECT COUNT(*) FROM discourse_voting_votes WHERE discourse_voting_votes.topic_id = posts.topic_id) >= ?", match.to_i)
+    end
+
+    Search.advanced_order(:votes) do |posts|
+      posts.reorder("COALESCE((SELECT dvvc.counter FROM discourse_voting_vote_counters dvvc WHERE dvvc.topic_id = subquery.topic_id), 0) DESC")
+    end
+
     class ::Category
       def self.reset_voting_cache
         @allowed_voting_cache["allowed"] =
@@ -228,8 +236,8 @@ after_initialize do
 
       def list_votes
         create_list(:votes, unordered: true) do |topics|
-          topics.joins("left join discourse_voting_counters dvc ON dvc.topic_id = topics.id")
-            .order("coalesce(dvc.counter,'0')::integer desc, topics.bumped_at desc")
+          topics.joins("left join discourse_voting_vote_counters dvvc ON dvvc.topic_id = topics.id")
+            .order("coalesce(dvvc.counter,'0')::integer desc, topics.bumped_at desc")
         end
       end
     end

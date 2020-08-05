@@ -32,3 +32,9 @@ en:
       my_votes:
         title: "My Votes"
         help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

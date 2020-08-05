@@ -8,6 +8,10 @@ export default {
     withPluginApi("0.8.32", api => {
       const siteSettings = api.container.lookup("site-settings:main");
       if (siteSettings.voting_enabled) {
+
+        const pageSearchController = api.container.lookup("controller:full-page-search");
+        pageSearchController.sortOrders.pushObject({ name: I18n.t("search.most_votes"), id: 5, term: "order:votes" });
+
         api.addNavigationBarItem({
           name: "votes",
           before: "top",
