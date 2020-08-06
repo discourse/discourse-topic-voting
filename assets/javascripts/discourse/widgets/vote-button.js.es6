@@ -1,7 +1,9 @@
 import { createWidget } from "discourse/widgets/widget";
+import { h } from "virtual-dom";
 
 export default createWidget("vote-button", {
-  tagName: "button.btn.btn-primary.vote-button",
+  tagName: "div",
+
 
   buildClasses(attrs) {
     var buttonClass = "";
@@ -49,7 +51,11 @@ export default createWidget("vote-button", {
         }
       }
     }
-    return buttonTitle;
+
+    return h("button",
+      { attributes: { title: this.currentUser ? I18n.t("voting.votes_left_button_title", { count: this.currentUser.votes_left }) : "" }, className: "btn btn-primary vote-button" },
+      buttonTitle
+    );
   },
 
   click() {

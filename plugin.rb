@@ -169,7 +169,7 @@ after_initialize do
 
     require_dependency 'current_user_serializer'
     class ::CurrentUserSerializer
-      attributes :votes_exceeded,  :vote_count
+      attributes :votes_exceeded,  :vote_count, :votes_left
 
       def votes_exceeded
         object.reached_voting_limit?
@@ -179,6 +179,9 @@ after_initialize do
         object.vote_count
       end
 
+      def votes_left
+        [object.vote_limit - object.vote_count, 0].max
+      end
     end
 
     require_dependency 'topic'
