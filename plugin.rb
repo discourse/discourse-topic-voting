@@ -105,11 +105,16 @@ after_initialize do
       Category.can_vote?(object.id)
     end
 
-    Search.advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
+
+    # Allows to define custom search filters. Example usage:
+    #   advanced_filter(/^min_example_count:(\d+)$/) do |posts, match|
+    #     posts.where("(SELECT COUNT(*) FROM example_table WHERE example_table.topic_id = posts.topic_id) >= ?", match.to_i)
+    #   end
+    register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
       posts.where("(SELECT COUNT(*) FROM discourse_voting_votes WHERE discourse_voting_votes.topic_id = posts.topic_id) >= ?", match.to_i)
     end
 
-    Search.advanced_order(:votes) do |posts|
+    register_search_advanced_order(:votes) do |posts|
       posts.reorder("COALESCE((SELECT dvvc.counter FROM discourse_voting_vote_counters dvvc WHERE dvvc.topic_id = subquery.topic_id), 0) DESC")
     end
 
