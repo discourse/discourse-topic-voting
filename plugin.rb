@@ -71,7 +71,7 @@ after_initialize do
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
       result = result.includes(:vote_counter)
-      result.select("*, (SELECT COUNT(*) AS current_user_voted fROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id)") if user
+      result = result.select("*, (SELECT COUNT(*) AS current_user_voted FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id)") if user
       result
     }
 
@@ -104,7 +104,6 @@ after_initialize do
     add_to_serializer(:basic_category, :include_can_vote?) do
       Category.can_vote?(object.id)
     end
-
 
     # Allows to define custom search filters. Example usage:
     #   advanced_filter(/^min_example_count:(\d+)$/) do |posts, match|
@@ -203,7 +202,11 @@ after_initialize do
       end
 
       def user_voted?(user)
-        (self.current_user_voted && self.current_user_voted > 0) || votes.map(&:user_id).include?(user.id)
+        if self.current_user_voted
+          self.current_user_voted && self.current_user_voted > 0
+        else
+          votes.map(&:user_id).include?(user.id)
+        end
       end
 
       def update_vote_count

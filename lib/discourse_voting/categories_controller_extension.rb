@@ -7,7 +7,7 @@ module DiscourseVoting
       category_params = super
       if @vote_enabled
         category_params[:category_setting_attributes] = {}
-      elsif @category&.category_setting 
+      elsif @category&.category_setting
         category_params[:category_setting_attributes] = { id: @category.category_setting.id, _destroy: '1' }
       end
       category_params
