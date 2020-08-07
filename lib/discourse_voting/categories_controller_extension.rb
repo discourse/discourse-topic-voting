@@ -2,11 +2,15 @@
 
 module DiscourseVoting
   module CategoriesControllerExtension
-    def update
-      guardian.ensure_can_edit!(@category)
-      vote_enabled = params[:custom_fields] && params[:custom_fields].delete(:enable_topic_voting) == "true"
-      vote_enabled ? DiscourseVoting::CategorySetting.create(category: @category) : DiscourseVoting::CategorySetting.destroy_by(category: @category)
-      super
+    def category_params
+      @vote_enabled ||= params[:custom_fields] && params[:custom_fields].delete(:enable_topic_voting) == "true"
+      category_params = super
+      if @vote_enabled
+        category_params[:category_setting_attributes] = {}
+      elsif @category&.category_setting 
+        category_params[:category_setting_attributes] = { id: @category.category_setting.id, _destroy: '1' }
+      end
+      category_params
     end
   end
 end

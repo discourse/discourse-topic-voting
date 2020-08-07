@@ -29,11 +29,13 @@ after_initialize do
   load File.expand_path('../app/models/discourse_voting/vote_counter.rb', __FILE__)
   load File.expand_path('../app/models/discourse_voting/vote.rb', __FILE__)
   load File.expand_path('../lib/discourse_voting/categories_controller_extension.rb', __FILE__)
+  load File.expand_path('../lib/discourse_voting/category_extension.rb', __FILE__)
   load File.expand_path('../lib/discourse_voting/topic_extension.rb', __FILE__)
   load File.expand_path('../lib/discourse_voting/user_extension.rb', __FILE__)
 
   reloadable_patch do |plugin|
     CategoriesController.class_eval { prepend DiscourseVoting::CategoriesControllerExtension }
+    Category.class_eval { prepend DiscourseVoting::CategoryExtension }
     Topic.class_eval { prepend DiscourseVoting::TopicExtension }
     User.class_eval { prepend DiscourseVoting::UserExtension }
 
