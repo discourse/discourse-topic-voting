@@ -8,9 +8,14 @@ export default {
     withPluginApi("0.8.32", api => {
       const siteSettings = api.container.lookup("site-settings:main");
       if (siteSettings.voting_enabled) {
-
-        const pageSearchController = api.container.lookup("controller:full-page-search");
-        pageSearchController.sortOrders.pushObject({ name: I18n.t("search.most_votes"), id: 5, term: "order:votes" });
+        const pageSearchController = api.container.lookup(
+          "controller:full-page-search"
+        );
+        pageSearchController.sortOrders.pushObject({
+          name: I18n.t("search.most_votes"),
+          id: 5,
+          term: "order:votes"
+        });
 
         api.addNavigationBarItem({
           name: "votes",
@@ -19,7 +24,7 @@ export default {
             return category && category.can_vote;
           },
           customHref: (category, args) => {
-            const path = NavItem.pathFor('latest', args);
+            const path = NavItem.pathFor("latest", args);
             return `${path}?order=votes`;
           },
           forceActive: (category, args, router) => {
@@ -38,7 +43,7 @@ export default {
             return category && category.can_vote && api.getCurrentUser();
           },
           customHref: (category, args) => {
-            const path = NavItem.pathFor('latest', args);
+            const path = NavItem.pathFor("latest", args);
             return `${path}?order=my_votes`;
           },
           forceActive: (category, args, router) => {

@@ -4,7 +4,6 @@ import { h } from "virtual-dom";
 export default createWidget("vote-button", {
   tagName: "div",
 
-
   buildClasses(attrs) {
     var buttonClass = "";
     if (attrs.closed) {
@@ -52,8 +51,18 @@ export default createWidget("vote-button", {
       }
     }
 
-    return h("button",
-      { attributes: { title: this.currentUser ? I18n.t("voting.votes_left_button_title", { count: this.currentUser.votes_left }) : "" }, className: "btn btn-primary vote-button" },
+    return h(
+      "button",
+      {
+        attributes: {
+          title: this.currentUser
+            ? I18n.t("voting.votes_left_button_title", {
+                count: this.currentUser.votes_left
+              })
+            : ""
+        },
+        className: "btn btn-primary vote-button"
+      },
       buttonTitle
     );
   },
