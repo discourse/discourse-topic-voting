@@ -19,9 +19,7 @@ export default {
             return category && category.can_vote;
           },
           customHref: (category, args) => {
-            const currentFilterType = (args.filterType || "").split("/").pop();
-            const path = NavItem.pathFor(currentFilterType, args);
-
+            const path = NavItem.pathFor('latest', args);
             return `${path}?order=votes`;
           },
           forceActive: (category, args, router) => {
@@ -40,9 +38,7 @@ export default {
             return category && category.can_vote && api.getCurrentUser();
           },
           customHref: (category, args) => {
-            const currentFilterType = (args.filterType || "").split("/").pop();
-            const path = NavItem.pathFor(currentFilterType, args);
-
+            const path = NavItem.pathFor('latest', args);
             return `${path}?order=my_votes`;
           },
           forceActive: (category, args, router) => {
