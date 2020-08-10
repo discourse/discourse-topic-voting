@@ -3,6 +3,7 @@
 module Jobs
   class VotingEnsureConsistency < ::Jobs::Onceoff
     def execute_onceoff(args)
+      # archive votes to closed or archived or deleted topics
       DB.exec(<<~SQL)
         UPDATE discourse_voting_votes
         SET archive=true

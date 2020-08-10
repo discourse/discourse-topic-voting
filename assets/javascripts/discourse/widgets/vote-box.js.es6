@@ -22,6 +22,7 @@ export default createWidget("vote-box", {
     var voteButton = this.attach("vote-button", attrs);
     var voteOptions = this.attach("vote-options", attrs);
     let contents = [voteCount, voteButton, voteOptions];
+
     if (state.votesAlert > 0) {
       const html =
         "<div class='voting-popup-menu vote-options popup-menu'>" +
