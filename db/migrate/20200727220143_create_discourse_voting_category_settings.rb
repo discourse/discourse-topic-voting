@@ -22,11 +22,6 @@ class CreateDiscourseVotingCategorySettings < ActiveRecord::Migration[6.0]
   end
 
   def down
-    DB.exec <<~SQL
-      INSERT INTO category_custom_fields(category_id, created_at, updated_at, name, value)
-      SELECT category_id, created_at, updated_at, 'enable_topic_voting', 'true'
-      FROM discourse_voting_category_settings
-    SQL
-    drop_table :discourse_voting_category_settings
+    raise ActiveRecord::IrreversibleMigration
   end
 end
