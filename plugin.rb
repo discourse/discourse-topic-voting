@@ -209,7 +209,7 @@ after_initialize do
         count = self.votes.count
 
         counter = self.vote_counter || DiscourseVoting::VoteCounter.new(topic: self)
-        counter.update(counter: count)
+        counter.update!(counter: count)
       end
 
       def who_voted
