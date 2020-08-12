@@ -135,7 +135,7 @@ describe DiscourseVoting do
 
       topic1.reload.trash!
       expect(user0.reload.votes).to eq([])
-      expect(Notification.count).to eq(0)
+      expect(user0.notifications.count).to eq(0)
 
       topic1.recover!
       expect(user0.reload.votes).to eq([topic1.id])
