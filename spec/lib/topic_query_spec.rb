@@ -13,7 +13,7 @@ describe TopicQuery do
     SiteSetting.voting_show_who_voted = true
     DiscourseVoting::CategorySetting.create!(category_id: category1)
     DiscourseVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id)
-    DiscourseVoting::VoteCounter.create!(topic_id: topic1.id, counter: 1)
+    DiscourseVoting::TopicVoteCount.create!(topic_id: topic1.id, counter: 1)
   end
 
   it "order topic by votes" do

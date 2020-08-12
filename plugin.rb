@@ -26,7 +26,7 @@ after_initialize do
 
   load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
   load File.expand_path('../app/models/discourse_voting/category_setting.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_voting/vote_counter.rb', __FILE__)
+  load File.expand_path('../app/models/discourse_voting/topic_vote_count.rb', __FILE__)
   load File.expand_path('../app/models/discourse_voting/vote.rb', __FILE__)
   load File.expand_path('../lib/discourse_voting/categories_controller_extension.rb', __FILE__)
   load File.expand_path('../lib/discourse_voting/category_extension.rb', __FILE__)
@@ -70,7 +70,7 @@ after_initialize do
     end
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
-      result = result.includes(:vote_counter)
+      result = result.includes(:topic_vote_count)
       result = result.select("*, (SELECT COUNT(*) AS current_user_voted FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id)") if user
       result
     }
@@ -79,8 +79,8 @@ after_initialize do
       return result if options[:order] != "votes"
       sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
       result
-        .joins("LEFT JOIN discourse_voting_vote_counters ON discourse_voting_vote_counters.topic_id = topics.id")
-        .reorder("COALESCE(discourse_voting_vote_counters.counter,'0')::integer #{sort_dir}")
+        .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
+        .reorder("COALESCE(discourse_voting_topic_vote_count.counter,'0')::integer #{sort_dir}")
     }
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
@@ -110,7 +110,7 @@ after_initialize do
     end
 
     register_search_advanced_order(:votes) do |posts|
-      posts.reorder("COALESCE((SELECT dvvc.counter FROM discourse_voting_vote_counters dvvc WHERE dvvc.topic_id = subquery.topic_id), 0) DESC")
+      posts.reorder("COALESCE((SELECT dvtvc.counter FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = subquery.topic_id), 0) DESC")
     end
 
     class ::Category
@@ -194,7 +194,7 @@ after_initialize do
       end
 
       def vote_count
-        self.vote_counter&.counter.to_i
+        self.topic_vote_count&.counter.to_i
       end
 
       def user_voted?(user)
@@ -208,7 +208,7 @@ after_initialize do
       def update_vote_count
         count = self.votes.count
 
-        counter = self.vote_counter || DiscourseVoting::VoteCounter.new(topic: self)
+        counter = self.topic_vote_count || DiscourseVoting::TopicVoteCount.new(topic: self)
         counter.update!(counter: count)
       end
 
@@ -245,8 +245,8 @@ after_initialize do
 
       def list_votes
         create_list(:votes, unordered: true) do |topics|
-          topics.joins("left join discourse_voting_vote_counters dvvc ON dvvc.topic_id = topics.id")
-            .order("coalesce(dvvc.counter,'0')::integer desc, topics.bumped_at desc")
+          topics.joins("left join discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id")
+            .order("coalesce(dvtvc.counter,'0')::integer desc, topics.bumped_at desc")
         end
       end
     end
