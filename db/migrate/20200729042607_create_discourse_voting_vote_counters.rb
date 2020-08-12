@@ -23,11 +23,6 @@ class CreateDiscourseVotingVoteCounters < ActiveRecord::Migration[6.0]
   end
 
   def down
-    DB.exec <<~SQL
-      INSERT INTO topic_custom_fields(topic_id, created_at, updated_at, name, value)
-      SELECT topic_id, created_at, updated_at, 'vote_count', counter
-      FROM discourse_voting_vote_counters
-    SQL
-    drop_table :discourse_voting_vote_counters
+  raise ActiveRecord::IrreversibleMigration
   end
 end
