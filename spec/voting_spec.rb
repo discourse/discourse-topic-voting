@@ -170,8 +170,8 @@ describe DiscourseVoting do
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
       user = post0.user
-      DiscourseVoting::Vote.create(user: user, topic: post0.topic)
-      DiscourseVoting::Vote.create(user: user, topic_id: 456456)
+      DiscourseVoting::Vote.create!(user: user, topic: post0.topic)
+      DiscourseVoting::Vote.create!(user: user, topic_id: 456456)
 
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
