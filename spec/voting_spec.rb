@@ -41,11 +41,11 @@ describe DiscourseVoting do
 
       # +user0+ votes +topic0+, +user1+ votes +topic1+ and +user2+ votes both
       # topics.
-      DiscourseVoting::Vote.create(user: users[0], topic: topic0)
-      DiscourseVoting::Vote.create(user: users[1], topic: topic1)
-      DiscourseVoting::Vote.create(user: users[2], topic: topic0)
-      DiscourseVoting::Vote.create(user: users[2], topic: topic1)
-      DiscourseVoting::Vote.create(user: users[4], topic: topic0, archive: true)
+      DiscourseVoting::Vote.create!(user: users[0], topic: topic0)
+      DiscourseVoting::Vote.create!(user: users[1], topic: topic1)
+      DiscourseVoting::Vote.create!(user: users[2], topic: topic0)
+      DiscourseVoting::Vote.create!(user: users[2], topic: topic1)
+      DiscourseVoting::Vote.create!(user: users[4], topic: topic0, archive: true)
 
       [topic0, topic1].each { |t| t.update_vote_count }
     end
