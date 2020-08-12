@@ -338,7 +338,7 @@ after_initialize do
             duplicated_votes += 1
             user.topic_votes.where(topic_id: orig.id, user_id: user.id, archive: true).destroy!
           else
-            user.topic_votes.where(topic_id: orig.id, user_id: user.id, archive: true).update(topic_id: dest.id)
+            user.topic_votes.where(topic_id: orig.id, user_id: user.id, archive: true).update!(topic_id: dest.id)
             moved_votes += 1
           end
         else
