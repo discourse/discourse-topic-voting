@@ -27,7 +27,7 @@ describe DiscourseVoting do
 
     expect(user0.reached_voting_limit?).to eq(false)
 
-    DiscourseVoting::Vote.create(user: user0, topic: topic0)
+    DiscourseVoting::Vote.create!(user: user0, topic: topic0)
 
     expect(user0.reached_voting_limit?).to eq(true)
   end
