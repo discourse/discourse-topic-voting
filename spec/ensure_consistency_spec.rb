@@ -22,7 +22,7 @@ describe Jobs::VotingEnsureConsistency do
     two_vote_topic.save_custom_fields
 
     # one vote
-    DiscourseVoting::Vote.create(user: user, topic: one_vote_topic, archive: true)
+    DiscourseVoting::Vote.create!(user: user, topic: one_vote_topic, archive: true)
 
     # two votes
     DiscourseVoting::Vote.create(user: user, topic: two_vote_topic, archive: true)
