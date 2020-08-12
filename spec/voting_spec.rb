@@ -95,8 +95,7 @@ describe DiscourseVoting do
 
   context "when a user has an empty string as the votes custom field" do
     before do
-      DiscourseVoting::Vote.where(user: user0).delete_all
-      user0.reload
+      user0.topic_votes.delete_all
     end
 
     it "returns a vote count of zero" do
