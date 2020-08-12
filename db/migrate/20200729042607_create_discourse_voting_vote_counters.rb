@@ -15,11 +15,6 @@ class CreateDiscourseVotingVoteCounters < ActiveRecord::Migration[6.0]
       FROM topic_custom_fields
       WHERE name = 'vote_count'
     SQL
-
-    DB.exec <<~SQL
-      DELETE FROM topic_custom_fields
-      WHERE name = 'vote_count'
-    SQL
   end
 
   def down
