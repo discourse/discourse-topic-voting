@@ -32,17 +32,6 @@ class CreateDiscourseVotingVotes < ActiveRecord::Migration[6.0]
 
   def down
     DB.exec <<~SQL
-      INSERT INTO user_custom_fields(value, user_id, name, created_at, updated_at)
-      SELECT topic_id, user_id, 'votes', created_at, updated_at
-      FROM discourse_voting_votes
-      WHERE archive = false
-    SQL
-    DB.exec <<~SQL
-      INSERT INTO user_custom_fields(value, user_id, name, created_at, updated_at)
-      SELECT topic_id, user_id, 'votes_archive', created_at, updated_at
-      FROM discourse_voting_votes
-      WHERE archive = true
-    SQL
-    drop_table :discourse_voting_votes
+  raise ActiveRecord::IrreversibleMigration
   end
 end
