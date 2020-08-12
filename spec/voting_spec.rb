@@ -121,9 +121,8 @@ describe DiscourseVoting do
     it 'creates notification that topic was completed' do
       Jobs.run_immediately!
       DiscourseVoting::Vote.create!(user: user0, topic: topic1)
-      expect { topic1.update_status('closed', true, user0) }.to change { Notification.count }.by(1)
-      notification = Notification.last
-      expect(notification.user_id).to eq(user0.id)
+      expect { topic1.update_status('closed', true, user0) }.to change { user0.reload.notifications.count }.by(1)
+      notification = user0.notifications.last
       expect(notification.topic_id).to eq(topic1.id)
       expect(JSON.parse(notification.data)['message']).to eq('votes_released')
     end
