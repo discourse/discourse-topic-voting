@@ -131,7 +131,7 @@ describe DiscourseVoting do
   context "when a job is trashed and then recovered" do
     it "released the vote back to the user, then reclaims it on topic recovery" do
       Jobs.run_immediately!
-      DiscourseVoting::Vote.create(user: user0, topic: topic1)
+      DiscourseVoting::Vote.create!(user: user0, topic: topic1)
 
       topic1.reload.trash!
       expect(user0.reload.votes).to eq([])
