@@ -155,8 +155,8 @@ describe DiscourseVoting do
 
     it "enqueus a job to reclaim votes if voting is enabled for the new category" do
       user = post1.user
-      DiscourseVoting::Vote.create(user: user, topic: post1.topic, archive: true)
-      DiscourseVoting::Vote.create(user: user, topic_id: 456456, archive: true)
+      DiscourseVoting::Vote.create!(user: user, topic: post1.topic, archive: true)
+      DiscourseVoting::Vote.create!(user: user, topic_id: 456456, archive: true)
 
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
