@@ -309,7 +309,7 @@ after_initialize do
   DiscourseEvent.on(:post_edited) do |post, topic_changed|
     if topic_changed &&
         SiteSetting.voting_enabled &&
-        DiscourseVoting::Vote.where(topic_id: post.topic_id).exists?
+        DiscourseVoting::Vote.exists?(topic_id: post.topic_id)
       new_category_id = post.reload.topic.category_id
       if Category.can_vote?(new_category_id)
         Jobs.enqueue(:vote_reclaim, topic_id: post.topic_id)
