@@ -71,7 +71,7 @@ after_initialize do
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
       result = result.includes(:topic_vote_count)
-      result = result.select("*, (SELECT COUNT(*) AS current_user_voted FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id)") if user
+      result = result.select("*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted") if user
       result
     }
 
@@ -183,38 +183,6 @@ after_initialize do
 
       def votes_left
         [object.vote_limit - object.vote_count, 0].max
-      end
-    end
-
-    require_dependency 'topic'
-    class ::Topic
-
-      def can_vote?
-        SiteSetting.voting_enabled && Category.can_vote?(category_id) && category.topic_id != id
-      end
-
-      def vote_count
-        self.topic_vote_count&.counter.to_i
-      end
-
-      def user_voted?(user)
-        if self.current_user_voted
-          self.current_user_voted && self.current_user_voted > 0
-        else
-          votes.map(&:user_id).include?(user.id)
-        end
-      end
-
-      def update_vote_count
-        count = self.votes.count
-
-        counter = self.topic_vote_count || DiscourseVoting::TopicVoteCount.new(topic: self)
-        counter.update!(counter: count)
-      end
-
-      def who_voted
-        return nil unless SiteSetting.voting_show_who_voted
-        self.votes.map(&:user)
       end
     end
 
