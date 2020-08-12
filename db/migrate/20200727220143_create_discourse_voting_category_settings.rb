@@ -14,11 +14,6 @@ class CreateDiscourseVotingCategorySettings < ActiveRecord::Migration[6.0]
       FROM category_custom_fields
       WHERE name = 'enable_topic_voting' and value = 'true'
     SQL
-
-    DB.exec <<~SQL
-      DELETE FROM category_custom_fields
-      WHERE name = 'enable_topic_voting'
-    SQL
   end
 
   def down

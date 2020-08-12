@@ -23,15 +23,9 @@ class CreateDiscourseVotingVotes < ActiveRecord::Migration[6.0]
       FROM user_custom_fields
       WHERE name = 'votes_archive'
     SQL
-
-    DB.exec <<~SQL
-      DELETE FROM user_custom_fields
-      WHERE name = 'votes' OR name = 'votes_archive'
-    SQL
   end
 
   def down
-    DB.exec <<~SQL
-  raise ActiveRecord::IrreversibleMigration
+    raise ActiveRecord::IrreversibleMigration
   end
 end

@@ -33,8 +33,8 @@ describe Jobs::VotingEnsureConsistency do
     no_vote_topic.reload
     expect(no_vote_topic.custom_fields["random1"]).to eq("random")
 
-    expect(DiscourseVoting::Vote.where(user: user).pluck(&:topic_id)).to eq([one_vote_topic.id, two_vote_topic.id])
-    expect(DiscourseVoting::Vote.where(user: user2).pluck(&:topic_id)).to eq([two_vote_topic.id])
+    expect(DiscourseVoting::Vote.where(user: user).pluck(:topic_id)).to eq([one_vote_topic.id, two_vote_topic.id])
+    expect(DiscourseVoting::Vote.where(user: user2).pluck(:topic_id)).to eq([two_vote_topic.id])
 
     one_vote_topic.reload
     expect(one_vote_topic.vote_counter.counter).to eq(1)
