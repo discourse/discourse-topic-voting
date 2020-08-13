@@ -80,7 +80,7 @@ after_initialize do
       sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
       result
         .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
-        .reorder("COALESCE(discourse_voting_topic_vote_count.counter,'0')::integer #{sort_dir}")
+        .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
     }
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
@@ -106,11 +106,11 @@ after_initialize do
     end
 
     register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
-      posts.where("(SELECT counter FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?", match.to_i)
+      posts.where("(SELECT votes_count FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?", match.to_i)
     end
 
     register_search_advanced_order(:votes) do |posts|
-      posts.reorder("COALESCE((SELECT dvtvc.counter FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = subquery.topic_id), 0) DESC")
+      posts.reorder("COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = subquery.topic_id), 0) DESC")
     end
 
     class ::Category
@@ -212,7 +212,7 @@ after_initialize do
       def list_votes
         create_list(:votes, unordered: true) do |topics|
           topics.joins("LEFT JOIN discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id")
-            .order("COALESCE(dvtvc.counter,'0')::integer DESC, topics.bumped_at DESC")
+            .order("COALESCE(dvtvc.votes_count,'0')::integer DESC, topics.bumped_at DESC")
         end
       end
     end

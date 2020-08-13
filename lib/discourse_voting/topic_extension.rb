@@ -13,7 +13,7 @@ module DiscourseVoting
     end
 
     def vote_count
-      self.topic_vote_count&.counter.to_i
+      self.topic_vote_count&.votes_count.to_i
     end
 
     def user_voted?(user)
@@ -27,8 +27,8 @@ module DiscourseVoting
     def update_vote_count
       count = self.votes.count
 
-      counter = self.topic_vote_count || DiscourseVoting::TopicVoteCount.new(topic: self)
-      counter.update!(counter: count)
+      topic_vote_count = self.topic_vote_count || DiscourseVoting::TopicVoteCount.new(topic: self)
+      topic_vote_count.update!(votes_count: count)
     end
 
     def who_voted

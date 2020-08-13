@@ -47,7 +47,7 @@ module Jobs
         USING discourse_voting_topic_vote_count dvtvc2
         WHERE dvtvc.id < dvtvc2.id AND
               dvtvc.topic_id = dvtvc2.topic_id AND
-              dvtvc.counter = dvtvc2.counter
+              dvtvc.votes_count = dvtvc2.votes_count
       SQL
 
       # insert missing vote counts for topics
@@ -59,7 +59,7 @@ module Jobs
           LEFT JOIN discourse_voting_topic_vote_count dvtvc ON t.id = dvtvc.topic_id
           WHERE dvtvc.topic_id IS NULL
         )
-        INSERT INTO discourse_voting_topic_vote_count (counter, topic_id, created_at, updated_at)
+        INSERT INTO discourse_voting_topic_vote_count (votes_count, topic_id, created_at, updated_at)
         SELECT '0', id, now(), now() FROM missing_ids
       SQL
 
@@ -77,7 +77,7 @@ module Jobs
       # correct topics vote counts
       DB.exec(<<~SQL)
         UPDATE discourse_voting_topic_vote_count dvtvc
-        SET counter = (
+        SET votes_count = (
           SELECT COUNT(*) FROM discourse_voting_votes dvv
           WHERE dvtvc.topic_id = dvv.topic_id
           GROUP BY dvv.topic_id
