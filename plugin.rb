@@ -204,15 +204,15 @@ after_initialize do
       def list_voted_by(user)
         create_list(:user_topics) do |topics|
           topics
-            .joins("LEFT JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id")
+            .joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id")
             .where("discourse_voting_votes.user_id = ?", user.id)
         end
       end
 
       def list_votes
         create_list(:votes, unordered: true) do |topics|
-          topics.joins("left join discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id")
-            .order("coalesce(dvtvc.counter,'0')::integer desc, topics.bumped_at desc")
+          topics.joins("LEFT JOIN discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id")
+            .order("COALESCE(dvtvc.counter,'0')::integer DESC, topics.bumped_at DESC")
         end
       end
     end
@@ -236,6 +236,8 @@ after_initialize do
                                    topic_id: vote.topic_id,
                                    data: { message: "votes_released",
                                            title: "votes_released" }.to_json)
+            rescue
+              # If one notifcation crash, inform others
             end
 
           end
@@ -245,8 +247,10 @@ after_initialize do
       class VoteReclaim < ::Jobs::Base
         def execute(args)
           if topic = Topic.with_deleted.find_by(id: args[:topic_id])
-            DiscourseVoting::Vote.where(topic_id: args[:topic_id]).update_all(archive: false)
-            topic.update_vote_count
+            ActiveRecord::Base.transaction do
+              DiscourseVoting::Vote.where(topic_id: args[:topic_id]).update_all(archive: false)
+              topic.update_vote_count
+            end
           end
         end
       end

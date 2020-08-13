@@ -57,15 +57,15 @@ describe DiscourseVoting do
       topic0.move_posts(Discourse.system_user, topic0.posts.pluck(:id), destination_topic_id: topic1.id)
 
       users.each { |user| user.reload }
-      expect(users[0].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic1.id)
+      expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[1].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic1.id)
+      expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[2].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic1.id)
+      expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[3].topics_with_vote.pluck(:topic_id)).to         contain_exactly()
+      expect(users[3].topics_with_vote.pluck(:topic_id)).to contain_exactly()
       expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[4].topics_with_vote.pluck(:topic_id)).to         contain_exactly()
+      expect(users[4].topics_with_vote.pluck(:topic_id)).to contain_exactly()
       expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
 
       expect(topic0.reload.vote_count).to eq(0)
@@ -80,15 +80,15 @@ describe DiscourseVoting do
       topic0.move_posts(Discourse.system_user, topic0.posts[1, 2].map(&:id), destination_topic_id: topic1.id)
 
       users.each { |user| user.reload }
-      expect(users[0].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic0.id)
+      expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
       expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[1].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic1.id)
+      expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[2].topics_with_vote.pluck(:topic_id)).to         contain_exactly(topic0.id, topic1.id)
+      expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id, topic1.id)
       expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[3].topics_with_vote.pluck(:topic_id)).to         contain_exactly()
+      expect(users[3].topics_with_vote.pluck(:topic_id)).to contain_exactly()
       expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[4].topics_with_vote.pluck(:topic_id)).to         contain_exactly()
+      expect(users[4].topics_with_vote.pluck(:topic_id)).to contain_exactly()
       expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
 
       expect(topic0.reload.vote_count).to eq(4)

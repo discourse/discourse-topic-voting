@@ -3,17 +3,17 @@
 require 'rails_helper'
 
 describe TopicQuery do
-  let!(:user0) { Fabricate(:user) }
-  let!(:category1) { Fabricate(:category) }
-  let!(:topic0) { Fabricate(:topic, category: category1) }
-  let!(:topic1) { Fabricate(:topic, category: category1) }
+  fab!(:user0) { Fabricate(:user) }
+  fab!(:category1) { Fabricate(:category) }
+  fab!(:topic0) { Fabricate(:topic, category: category1) }
+  fab!(:topic1) { Fabricate(:topic, category: category1) }
+  fab!(:category_setting) { DiscourseVoting::CategorySetting.create!(category_id: category1) }
+  fab!(:vote) { DiscourseVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id) }
+  fab!(:topic_vote_count) { DiscourseVoting::TopicVoteCount.create!(topic_id: topic1.id, counter: 1) }
 
   before do
     SiteSetting.voting_enabled = true
     SiteSetting.voting_show_who_voted = true
-    DiscourseVoting::CategorySetting.create!(category_id: category1)
-    DiscourseVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id)
-    DiscourseVoting::TopicVoteCount.create!(topic_id: topic1.id, counter: 1)
   end
 
   it "order topic by votes" do
