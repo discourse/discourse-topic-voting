@@ -298,13 +298,13 @@ after_initialize do
             duplicated_votes += 1
             user.topic_votes.destroy_by(topic_id: orig.id, archive: false)
           else
-            user.topic_votes.where(topic_id: orig.id, archive: false).update(topic_id: dest.id)
+            user.topic_votes.find_by(topic_id: orig.id, archive: false).update!(topic_id: dest.id)
             moved_votes += 1
           end
         elsif user.votes_archive.include?(orig.id)
           if user.votes_archive.include?(dest.id)
             duplicated_votes += 1
-            user.topic_votes.where(topic_id: orig.id, user_id: user.id, archive: true).destroy!
+            user.topic_votes.destroy_by(topic_id: orig.id, user_id: user.id, archive: true)
           else
             user.topic_votes.find_by(topic_id: orig.id, user_id: user.id, archive: true).update!(topic_id: dest.id)
             moved_votes += 1
@@ -312,8 +312,6 @@ after_initialize do
         else
           next
         end
-
-        user.save_custom_fields
       end
     end
 
