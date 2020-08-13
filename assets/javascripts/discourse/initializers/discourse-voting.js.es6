@@ -44,14 +44,14 @@ export default {
           },
           customHref: (category, args) => {
             const path = NavItem.pathFor("latest", args);
-            return `${path}?status=my_votes`;
+            return `${path}?order=my_votes`;
           },
           forceActive: (category, args, router) => {
             const queryParams = router.currentRoute.queryParams;
             return (
               queryParams &&
               Object.keys(queryParams).length === 1 &&
-              queryParams["status"] === "my_votes"
+              queryParams["order"] === "my_votes"
             );
           }
         });
