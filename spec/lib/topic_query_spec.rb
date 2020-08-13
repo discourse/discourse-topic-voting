@@ -21,6 +21,6 @@ describe TopicQuery do
   end
 
   it "returns topics voted by user" do
-    expect(TopicQuery.new(user0, { order: 'my_votes' }).list_latest.topics.map(&:id)).to eq([topic1.id])
+    expect(TopicQuery.new(user0, { status: 'my_votes' }).list_latest.topics.map(&:id)).to eq([topic1.id])
   end
 end

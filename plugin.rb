@@ -84,7 +84,7 @@ after_initialize do
     }
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
-      return result if options[:order] != "my_votes" || !user
+      return result if options[:status] != "my_votes" || !user
       result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
     }
 
