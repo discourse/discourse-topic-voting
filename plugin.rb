@@ -106,7 +106,7 @@ after_initialize do
     end
 
     register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
-      posts.where("(SELECT COUNT(*) FROM discourse_voting_votes WHERE discourse_voting_votes.topic_id = posts.topic_id) >= ?", match.to_i)
+      posts.where("(SELECT counter FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?", match.to_i)
     end
 
     register_search_advanced_order(:votes) do |posts|
@@ -117,9 +117,7 @@ after_initialize do
       def self.reset_voting_cache
         @allowed_voting_cache["allowed"] =
           begin
-            Set.new(
-              DiscourseVoting::CategorySetting.pluck(:category_id)
-            )
+            DiscourseVoting::CategorySetting.pluck(:category_id)
           end
       end
 
@@ -145,19 +143,19 @@ after_initialize do
     require_dependency 'user'
     class ::User
       def vote_count
-        votes.length
+        topics_with_vote.length
       end
 
       def alert_low_votes?
         (vote_limit - vote_count) <= SiteSetting.voting_alert_votes_left
       end
 
-      def votes
-        self.topic_votes.where(archive: false).pluck(:topic_id)
+      def topics_with_vote
+        self.votes.where(archive: false)
       end
 
-      def votes_archive
-        self.topic_votes.where(archive: true).pluck(:topic_id)
+      def topics_with_archived_vote
+        self.votes.where(archive: true)
       end
 
       def reached_voting_limit?
@@ -293,20 +291,20 @@ after_initialize do
 
     if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
-        if user.votes.include?(orig.id)
-          if user.votes.include?(dest.id)
+        if user.topics_with_vote.pluck(:topic_id).include?(orig.id)
+          if user.topics_with_vote.pluck(:topic_id).include?(dest.id)
             duplicated_votes += 1
-            user.topic_votes.destroy_by(topic_id: orig.id, archive: false)
+            user.votes.destroy_by(topic_id: orig.id, archive: false)
           else
-            user.topic_votes.find_by(topic_id: orig.id, archive: false).update!(topic_id: dest.id)
+            user.votes.find_by(topic_id: orig.id, archive: false).update!(topic_id: dest.id)
             moved_votes += 1
           end
-        elsif user.votes_archive.include?(orig.id)
-          if user.votes_archive.include?(dest.id)
+        elsif user.topics_with_archived_vote.pluck(:topic_id).include?(orig.id)
+          if user.topics_with_archived_vote.pluck(:topic_id).include?(dest.id)
             duplicated_votes += 1
-            user.topic_votes.destroy_by(topic_id: orig.id, user_id: user.id, archive: true)
+            user.votes.destroy_by(topic_id: orig.id, user_id: user.id, archive: true)
           else
-            user.topic_votes.find_by(topic_id: orig.id, user_id: user.id, archive: true).update!(topic_id: dest.id)
+            user.votes.find_by(topic_id: orig.id, user_id: user.id, archive: true).update!(topic_id: dest.id)
             moved_votes += 1
           end
         else
