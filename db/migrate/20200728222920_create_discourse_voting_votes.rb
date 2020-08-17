@@ -15,6 +15,7 @@ class CreateDiscourseVotingVotes < ActiveRecord::Migration[6.0]
       SELECT value::integer, user_id, 'false', created_at, updated_at
       FROM user_custom_fields
       WHERE name = 'votes'
+      ON CONFLICT(user_id, topic_id) DO NOTHING
     SQL
 
     DB.exec <<~SQL
@@ -22,6 +23,7 @@ class CreateDiscourseVotingVotes < ActiveRecord::Migration[6.0]
       SELECT value::integer, user_id, 'true', created_at, updated_at
       FROM user_custom_fields
       WHERE name = 'votes_archive'
+      ON CONFLICT(user_id, topic_id) DO NOTHING
     SQL
   end
 
