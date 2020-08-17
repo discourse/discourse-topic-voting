@@ -227,5 +227,10 @@ describe DiscourseVoting do
       expect(DiscourseVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic0.id, topic1.id, topic2.id)
       expect(DiscourseVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to eq([])
     end
+
+    it 'is not erroring when topic without category' do
+      topic1.category.destroy
+      expect(topic1.reload.can_vote?).to be_falsey
+    end
   end
 end
