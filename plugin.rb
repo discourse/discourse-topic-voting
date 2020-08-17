@@ -71,39 +71,34 @@ after_initialize do
 
     TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
       result = result.includes(:topic_vote_count)
-      result = result.select("*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted") if user
-      result
-    }
 
-    TopicQuery.results_filter_callbacks << ->(_type, result, _user, options) {
-      return result if options[:order] != "votes"
-      sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
-      result
-        .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
-        .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
-    }
+      if user
+        result = result.select("topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted")
 
-    TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
-      return result if options[:state] != "my_votes" || !user
-      result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+        if options[:state] == "my_votes"
+          result = result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+        end
+      end
+
+      if options[:order] == "votes"
+        sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
+        result = result
+          .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
+          .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
+      end
+
+      result
     }
 
     add_to_serializer(:category, :custom_fields) do
       object.custom_fields.merge(enable_topic_voting: DiscourseVoting::CategorySetting.find_by(category_id: object.id).present?)
     end
+
     add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
     add_to_serializer(:topic_list_item, :can_vote) { object.can_vote? }
-    add_to_serializer(:topic_list_item, :user_voted) {
-      object.user_voted?(scope.user) if scope.user
-    }
-
-    add_to_serializer(:basic_category, :can_vote, false) do
-      SiteSetting.voting_enabled
-    end
-
-    add_to_serializer(:basic_category, :include_can_vote?) do
-      Category.can_vote?(object.id)
-    end
+    add_to_serializer(:topic_list_item, :user_voted) { object.user_voted?(scope.user) if scope.user }
+    add_to_serializer(:basic_category, :can_vote, false) { SiteSetting.voting_enabled }
+    add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
     register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
       posts.where("(SELECT votes_count FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?", match.to_i)
