@@ -69,26 +69,28 @@ after_initialize do
       end
     end
 
-    TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
-      result = result.includes(:topic_vote_count)
+    if TopicQuery.respond_to?(:results_filter_callbacks)
+      TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
+        result = result.includes(:topic_vote_count)
 
-      if user
-        result = result.select("topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted")
+        if user
+          result = result.select("topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted")
 
-        if options[:state] == "my_votes"
-          result = result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+          if options[:state] == "my_votes"
+            result = result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+          end
         end
-      end
 
-      if options[:order] == "votes"
-        sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
-        result = result
-          .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
-          .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
-      end
+        if options[:order] == "votes"
+          sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
+          result = result
+            .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
+            .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
+        end
 
-      result
-    }
+        result
+      }
+    end
 
     add_to_serializer(:category, :custom_fields) do
       object.custom_fields.merge(enable_topic_voting: DiscourseVoting::CategorySetting.find_by(category_id: object.id).present?)
