@@ -64,7 +64,10 @@ export default createWidget("vote-box", {
       .then(result => {
         topic.set("vote_count", result.vote_count);
         topic.set("user_voted", true);
-        this.currentUser.set("votes_exceeded", !result.can_vote);
+        this.currentUser.setProperties({
+          votes_exceeded: !result.can_vote,
+          votes_left: result.votes_left
+        });
         if (result.alert) {
           state.votesAlert = result.votes_left;
         }
@@ -87,7 +90,10 @@ export default createWidget("vote-box", {
       .then(result => {
         topic.set("vote_count", result.vote_count);
         topic.set("user_voted", false);
-        this.currentUser.set("votes_exceeded", !result.can_vote);
+        this.currentUser.setProperties({
+          votes_exceeded: !result.can_vote,
+          votes_left: result.votes_left
+        });
         topic.set("who_voted", result.who_voted);
         state.allowClick = true;
         this.scheduleRerender();
