@@ -2,7 +2,7 @@
 
 # name: discourse-voting
 # about: Adds the ability to vote on features in a specified category.
-# version: 0.4
+# version: 0.5
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://github.com/discourse/discourse-voting
 
