@@ -22,11 +22,11 @@ function initialize(api) {
 
       let userVotedClass = topic.user_voted ? " voted" : "";
       buffer.push(
-        `<span class='list-vote-count discourse-tag${userVotedClass}'${title}>`
+        `<a href='${topic.url}' class='list-vote-count discourse-tag simple${userVotedClass}'${title}>`
       );
 
       buffer.push(I18n.t("voting.votes", { count: topic.vote_count }));
-      buffer.push("</span>");
+      buffer.push("</a>");
 
       if (buffer.length > 0) {
         return buffer.join("");
