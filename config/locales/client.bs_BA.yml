@@ -13,7 +13,7 @@ bs_BA:
       title: "Glasanje"
       reached_limit: "Ostali ste bez glasova, odstrani postojeći glas!"
       list_votes: "Izlistaj svoje glasove"
-      votes_nav_help: "teme sa najviše glasova"
+      votes_nav_help: "teme s najviše glasova"
       voted: "Glasali ste na ovoj temi"
       allow_topic_voting: "Dozvolite korisnicima da glasaju na teme u ovoj kategoriji"
       vote_title: "Glasaj"
@@ -21,6 +21,18 @@ bs_BA:
       voted_title: "Glasano"
       voting_closed_title: "Zatvoreno"
       voting_limit: "Limit"
+      votes_left:
+        one: "Imate %{count} preostao glas, pogledajte <a href='%{path}'>vaši glasovi</a>."
+        few: "Imate još %{count} glasa, pogledajte <a href='%{path}'>vaši glasovi</a>."
+        other: "Imate još %{count} glasova, pogledajte <a href='%{path}'>vaši glasovi</a>."
+      votes_left_button_title:
+        one: "Ostao vam je %{count} glas."
+        few: "Ostalo vam je %{count} glasa."
+        other: "Ostalo vam je %{count} glasova."
+      votes:
+        one: "%{count} glas"
+        few: "%{count} glasa"
+        other: "%{count} glasova"
       anonymous_button:
         one: "Glas"
         few: "Glasa"
@@ -30,3 +42,12 @@ bs_BA:
       votes:
         title: "Glasovi"
         help: "teme sa najviše glasova"
+      my_votes:
+        title: "Moji glasovi"
+        help: "teme o kojima ste glasali"
+    search:
+      most_votes: "Većina glasova"
+      advanced:
+        vote:
+          count:
+            label: "Minimalni broj glasova"

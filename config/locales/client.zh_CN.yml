@@ -15,14 +15,16 @@ zh_CN:
       list_votes: "显示你的投票"
       votes_nav_help: "选票最多的主题"
       voted: "你在该主题中已经投过票了"
-      allow_topic_voting: "允许用户在此分类中为主帖点推荐"
-      vote_title: "推荐"
-      vote_title_plural: "推荐"
+      allow_topic_voting: "允许用户在此分类中为主帖进行票选"
+      vote_title: "投票"
+      vote_title_plural: "投票"
       voted_title: "已投票"
       voting_closed_title: "已结束推荐"
       voting_limit: "次数限制"
       votes_left:
         other: "你还有 %{count} 张选票，查看 <a href='%{path}'>你的投票</a>。"
+      votes_left_button_title:
+        other: "你还有 %{count} 张选票。"
       votes:
         other: "%{count} 票"
       anonymous_button:
@@ -30,5 +32,14 @@ zh_CN:
       remove_vote: "移除投票"
     filters:
       votes:
-        title: "推荐"
+        title: "投票"
         help: "选票最多的主题"
+      my_votes:
+        title: "我的投票"
+        help: "您投票的主题"
+    search:
+      most_votes: "最多投票"
+      advanced:
+        vote:
+          count:
+            label: "最小投票数"

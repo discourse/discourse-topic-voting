@@ -24,6 +24,9 @@ sv:
       votes_left:
         one: "Du har %{count}röst kvar, se <a href='%{path}'>dina röster</a>."
         other: "Du har %{count} röster kvar, se <a href='%{path}'>dina röster</a>."
+      votes_left_button_title:
+        one: "Du har %{count} röst kvar."
+        other: "Du har %{count} röster kvar."
       votes:
         one: "%{count} röst"
         other: "%{count} röster"
@@ -35,3 +38,12 @@ sv:
       votes:
         title: "Röster"
         help: "ämnen med de flesta rösterna"
+      my_votes:
+        title: "Mina röster"
+        help: "ämnen du röstade i"
+    search:
+      most_votes: "Flest röster"
+      advanced:
+        vote:
+          count:
+            label: "Minsta röstantal"
