@@ -1,3 +1,4 @@
+import I18n from "I18n";
 import { createWidget } from "discourse/widgets/widget";
 import { ajax } from "discourse/lib/ajax";
 import RawHtml from "discourse/widgets/raw-html";
@@ -28,7 +29,7 @@ export default createWidget("vote-box", {
         "<div class='voting-popup-menu vote-options popup-menu'>" +
         I18n.t("voting.votes_left", {
           count: state.votesAlert,
-          path: this.currentUser.get("path") + "/activity/votes"
+          path: this.currentUser.get("path") + "/activity/votes",
         }) +
         "</div>";
       contents.push(new RawHtml({ html }));
@@ -58,15 +59,15 @@ export default createWidget("vote-box", {
     return ajax("/voting/vote", {
       type: "POST",
       data: {
-        topic_id: topic.id
-      }
+        topic_id: topic.id,
+      },
     })
-      .then(result => {
+      .then((result) => {
         topic.set("vote_count", result.vote_count);
         topic.set("user_voted", true);
         this.currentUser.setProperties({
           votes_exceeded: !result.can_vote,
-          votes_left: result.votes_left
+          votes_left: result.votes_left,
         });
         if (result.alert) {
           state.votesAlert = result.votes_left;
@@ -84,20 +85,20 @@ export default createWidget("vote-box", {
     return ajax("/voting/unvote", {
       type: "POST",
       data: {
-        topic_id: topic.id
-      }
+        topic_id: topic.id,
+      },
     })
-      .then(result => {
+      .then((result) => {
         topic.set("vote_count", result.vote_count);
         topic.set("user_voted", false);
         this.currentUser.setProperties({
           votes_exceeded: !result.can_vote,
-          votes_left: result.votes_left
+          votes_left: result.votes_left,
         });
         topic.set("who_voted", result.who_voted);
         state.allowClick = true;
         this.scheduleRerender();
       })
       .catch(popupAjaxError);
-  }
+  },
 });

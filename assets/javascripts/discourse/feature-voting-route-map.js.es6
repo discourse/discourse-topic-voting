@@ -5,9 +5,9 @@ export default {
     this.route(
       "userActivity",
       { path: "activity", resetNamespace: true },
-      function() {
+      function () {
         this.route("votes");
       }
     );
-  }
+  },
 };
