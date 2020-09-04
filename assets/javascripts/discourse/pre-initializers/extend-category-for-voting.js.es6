@@ -1,14 +1,15 @@
+import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
 
 function initialize(api) {
-  api.addPostClassesCallback(post => {
+  api.addPostClassesCallback((post) => {
     if (post.post_number === 1 && post.can_vote) {
       return ["voting-post"];
     }
   });
   api.includePostAttributes("can_vote");
   api.addTagsHtmlCallback(
-    topic => {
+    (topic) => {
       if (!topic.can_vote) {
         return;
       }
@@ -42,7 +43,7 @@ export default {
   before: "inject-discourse-objects",
 
   initialize() {
-    withPluginApi("0.8.4", api => initialize(api));
-    withPluginApi("0.8.30", api => api.addCategorySortCriteria("votes"));
-  }
+    withPluginApi("0.8.4", (api) => initialize(api));
+    withPluginApi("0.8.30", (api) => api.addCategorySortCriteria("votes"));
+  },
 };

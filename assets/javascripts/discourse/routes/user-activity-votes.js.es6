@@ -4,9 +4,9 @@ import UserAction from "discourse/models/user-action";
 export default UserTopicListRoute.extend({
   userActionType: UserAction.TYPES.topics,
 
-  model: function() {
+  model: function () {
     return this.store.findFiltered("topicList", {
-      filter: "topics/voted-by/" + this.modelFor("user").get("username_lower")
+      filter: "topics/voted-by/" + this.modelFor("user").get("username_lower"),
     });
-  }
+  },
 });

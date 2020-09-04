@@ -28,7 +28,7 @@ export default createWidget("vote-count", {
       whoVoted = this.attach("small-user-list", {
         users: this.state.whoVotedUsers,
         addSelf: attrs.liked,
-        listClassName: "regular-votes"
+        listClassName: "regular-votes",
       });
     }
 
@@ -57,12 +57,12 @@ export default createWidget("vote-count", {
     return ajax("/voting/who", {
       type: "GET",
       data: {
-        topic_id: this.attrs.id
-      }
-    }).then(users => {
+        topic_id: this.attrs.id,
+      },
+    }).then((users) => {
       this.state.whoVotedUsers = users.map(whoVotedAvatars);
     });
-  }
+  },
 });
 
 function whoVotedAvatars(user) {
@@ -70,6 +70,6 @@ function whoVotedAvatars(user) {
     template: user.avatar_template,
     username: user.username,
     post_url: user.post_url,
-    url: getURL("/users/") + user.username.toLowerCase()
+    url: getURL("/users/") + user.username.toLowerCase(),
   };
 }

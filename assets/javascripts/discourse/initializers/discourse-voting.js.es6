@@ -1,3 +1,4 @@
+import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import NavItem from "discourse/models/nav-item";
 
@@ -5,7 +6,7 @@ export default {
   name: "discourse-voting",
 
   initialize() {
-    withPluginApi("0.8.32", api => {
+    withPluginApi("0.8.32", (api) => {
       const siteSettings = api.container.lookup("site-settings:main");
       if (siteSettings.voting_enabled) {
         // TODO: Remove if check once Discourse 2.6 is stable
@@ -18,14 +19,14 @@ export default {
           pageSearchController.sortOrders.pushObject({
             name: I18n.t("search.most_votes"),
             id: 5,
-            term: "order:votes"
+            term: "order:votes",
           });
         }
 
         api.addNavigationBarItem({
           name: "votes",
           before: "top",
-          customFilter: category => {
+          customFilter: (category) => {
             return category && category.can_vote;
           },
           customHref: (category, args) => {
@@ -39,12 +40,12 @@ export default {
               Object.keys(queryParams).length === 1 &&
               queryParams["order"] === "votes"
             );
-          }
+          },
         });
         api.addNavigationBarItem({
           name: "my_votes",
           before: "top",
-          customFilter: category => {
+          customFilter: (category) => {
             return category && category.can_vote && api.getCurrentUser();
           },
           customHref: (category, args) => {
@@ -58,9 +59,9 @@ export default {
               Object.keys(queryParams).length === 1 &&
               queryParams["state"] === "my_votes"
             );
-          }
+          },
         });
       }
     });
-  }
+  },
 };

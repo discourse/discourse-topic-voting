@@ -1,3 +1,4 @@
+import I18n from "I18n";
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
 
@@ -30,7 +31,7 @@ export default createWidget("vote-button", {
     if (!this.currentUser) {
       if (attrs.vote_count) {
         buttonTitle = I18n.t("voting.anonymous_button", {
-          count: attrs.vote_count
+          count: attrs.vote_count,
         });
       } else {
         buttonTitle = I18n.t("voting.anonymous_button", { count: 1 });
@@ -57,11 +58,11 @@ export default createWidget("vote-button", {
         attributes: {
           title: this.currentUser
             ? I18n.t("voting.votes_left_button_title", {
-                count: this.currentUser.votes_left
+                count: this.currentUser.votes_left,
               })
-            : ""
+            : "",
         },
-        className: "btn btn-primary vote-button"
+        className: "btn btn-primary vote-button",
       },
       buttonTitle
     );
@@ -90,5 +91,5 @@ export default createWidget("vote-button", {
   clickOutside() {
     $(".vote-options").hide();
     this.parentWidget.state.initialVote = false;
-  }
+  },
 });

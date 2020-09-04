@@ -1,3 +1,4 @@
+import I18n from "I18n";
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
 
@@ -27,9 +28,9 @@ export default createWidget("vote-options", {
             { href: this.currentUser.get("path") + "/activity/votes" },
             I18n.t("voting.list_votes")
           )
-        )
+        ),
       ]);
     }
     return contents;
-  }
+  },
 });

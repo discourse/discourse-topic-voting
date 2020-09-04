@@ -1,3 +1,4 @@
+import I18n from "I18n";
 import { createWidget } from "discourse/widgets/widget";
 import { iconNode } from "discourse-common/lib/icon-library";
 
@@ -14,5 +15,5 @@ export default createWidget("remove-vote", {
 
   click() {
     this.sendWidgetAction("removeVote");
-  }
+  },
 });
