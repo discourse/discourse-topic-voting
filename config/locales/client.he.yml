@@ -41,3 +41,12 @@ he:
       votes:
         title: "הצבעות"
         help: "נושאים עם הכי הרבה הצבעות"
+      my_votes:
+        title: "הצבעות שלי"
+        help: "נושאים שהצבעת עליהם"
+    search:
+      most_votes: "רוב ההצבעות"
+      advanced:
+        vote:
+          count:
+            label: "ספירת הצבעות מינימלית"
