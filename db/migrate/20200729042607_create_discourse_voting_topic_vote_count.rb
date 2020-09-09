@@ -14,6 +14,7 @@ class CreateDiscourseVotingTopicVoteCount < ActiveRecord::Migration[6.0]
       SELECT topic_id::integer, value::integer, created_at, updated_at
       FROM topic_custom_fields
       WHERE name = 'vote_count'
+      AND value <> ''
     SQL
   end
 
