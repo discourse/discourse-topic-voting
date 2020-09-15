@@ -84,12 +84,12 @@ export default createWidget("vote-button", {
       this.sendWidgetAction("addVote");
     }
     if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
-      $(".vote-options").toggle();
+      $(".vote-options").toggleClass("hidden");
     }
   },
 
   clickOutside() {
-    $(".vote-options").hide();
+    $(".vote-options").addClass("hidden");
     this.parentWidget.state.initialVote = false;
   },
 });
