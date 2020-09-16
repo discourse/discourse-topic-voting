@@ -301,20 +301,16 @@ after_initialize do
 
     if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
-        if user.topics_with_vote.pluck(:topic_id).include?(orig.id)
-          if user.topics_with_vote.pluck(:topic_id).include?(dest.id)
+        user_votes = user.topics_with_vote.pluck(:topic_id)
+        user_archived_votes = user.topics_with_archived_vote.pluck(:topic_id)
+
+        if user_votes.include?(orig.id) || user_archived_votes.include?(orig.id)
+          if user_votes.include?(dest.id) || user_archived_votes.include?(dest.id)
             duplicated_votes += 1
-            user.votes.destroy_by(topic_id: orig.id, archive: false)
+            user.votes.destroy_by(topic_id: orig.id)
           else
-            user.votes.find_by(topic_id: orig.id, archive: false).update!(topic_id: dest.id)
-            moved_votes += 1
-          end
-        elsif user.topics_with_archived_vote.pluck(:topic_id).include?(orig.id)
-          if user.topics_with_archived_vote.pluck(:topic_id).include?(dest.id)
-            duplicated_votes += 1
-            user.votes.destroy_by(topic_id: orig.id, user_id: user.id, archive: true)
-          else
-            user.votes.find_by(topic_id: orig.id, user_id: user.id, archive: true).update!(topic_id: dest.id)
+            archived = dest.closed ? true : false
+            user.votes.find_by(topic_id: orig.id, user_id: user.id).update!(topic_id: dest.id, archive: archived)
             moved_votes += 1
           end
         else

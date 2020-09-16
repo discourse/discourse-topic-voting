@@ -48,7 +48,7 @@ describe DiscourseVoting do
       DiscourseVoting::Vote.create!(user: users[2], topic: topic1)
       DiscourseVoting::Vote.create!(user: users[4], topic: topic0, archive: true)
       DiscourseVoting::Vote.create!(user: users[5], topic: topic0, archive: true)
-      DiscourseVoting::Vote.create!(user: users[5], topic: topic1, archive: true)
+      DiscourseVoting::Vote.create!(user: users[5], topic: topic1)
 
       [topic0, topic1].each { |t| t.update_vote_count }
     end
@@ -59,14 +59,21 @@ describe DiscourseVoting do
       users.each { |user| user.reload }
       expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
+
       expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
+
       expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
       expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
+
       expect(users[3].topics_with_vote.pluck(:topic_id)).to contain_exactly()
       expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[4].topics_with_vote.pluck(:topic_id)).to contain_exactly()
-      expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+
+      expect(users[4].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
+
+      expect(users[5].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[5].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly()
 
       expect(topic0.reload.vote_count).to eq(0)
       expect(topic1.reload.vote_count).to eq(5)
