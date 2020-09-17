@@ -309,8 +309,7 @@ after_initialize do
             duplicated_votes += 1
             user.votes.destroy_by(topic_id: orig.id)
           else
-            archived = dest.closed ? true : false
-            user.votes.find_by(topic_id: orig.id, user_id: user.id).update!(topic_id: dest.id, archive: archived)
+            user.votes.find_by(topic_id: orig.id, user_id: user.id).update!(topic_id: dest.id, archive: dest.closed)
             moved_votes += 1
           end
         else
