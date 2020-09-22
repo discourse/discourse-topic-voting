@@ -12,7 +12,7 @@ sv:
     voting:
       title: "Röstning"
       reached_limit: "Du har inga fler röster, ta bort en befintlig röst!"
-      list_votes: "Lista dina röster"
+      list_votes: "Visa en lista över dina röster"
       votes_nav_help: "ämnen med de flesta rösterna"
       voted: "Du röstade i detta ämne"
       allow_topic_voting: "Låt användare rösta om ämnen i denna kategori"
@@ -22,7 +22,7 @@ sv:
       voting_closed_title: "Stängd"
       voting_limit: "Begränsa"
       votes_left:
-        one: "Du har %{count}röst kvar, se <a href='%{path}'>dina röster</a>."
+        one: "Du har %{count} röst kvar, se <a href='%{path}'>dina röster</a>."
         other: "Du har %{count} röster kvar, se <a href='%{path}'>dina röster</a>."
       votes_left_button_title:
         one: "Du har %{count} röst kvar."
