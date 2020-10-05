@@ -40,6 +40,12 @@ export default createWidget("vote-count", {
   },
 
   click() {
+    if (!this.currentUser) {
+      this.sendWidgetAction("showLogin");
+      $.cookie("destination_url", window.location.href);
+      return;
+    }
+
     if (this.siteSettings.voting_show_who_voted && this.attrs.vote_count > 0) {
       if (this.state.whoVotedUsers === null) {
         return this.getWhoVoted();
