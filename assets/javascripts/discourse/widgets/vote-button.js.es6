@@ -26,33 +26,33 @@ export default createWidget("vote-button", {
     return buttonClass;
   },
 
-  html(attrs) {
-    let buttonTitle;
-
-    if (!this.currentUser) {
-      if (attrs.vote_count) {
-        buttonTitle = I18n.t("voting.anonymous_button", {
-          count: attrs.vote_count,
-        });
-      } else {
-        buttonTitle = I18n.t("voting.anonymous_button", { count: 1 });
-      }
-    } else {
+  buildButtonTitle(attrs) {
+    if (this.currentUser) {
       if (attrs.closed) {
-        buttonTitle = I18n.t("voting.voting_closed_title");
-      } else {
-        if (attrs.user_voted) {
-          buttonTitle = I18n.t("voting.voted_title");
-        } else {
-          if (this.currentUser && this.currentUser.votes_exceeded) {
-            buttonTitle = I18n.t("voting.voting_limit");
-          } else {
-            buttonTitle = I18n.t("voting.vote_title");
-          }
-        }
+        return I18n.t("voting.voting_closed_title");
       }
+
+      if (attrs.user_voted) {
+        return I18n.t("voting.voted_title");
+      }
+
+      if (this.currentUser.votes_exceeded) {
+        return I18n.t("voting.voting_limit");
+      }
+
+      return I18n.t("voting.vote_title");
     }
 
+    if (attrs.vote_count) {
+      return I18n.t("voting.anonymous_button", {
+        count: attrs.vote_count,
+      });
+    }
+
+    return I18n.t("voting.anonymous_button", { count: 1 });
+  },
+
+  html(attrs) {
     return h(
       "button",
       {
@@ -65,7 +65,7 @@ export default createWidget("vote-button", {
         },
         className: "btn btn-primary vote-button",
       },
-      buttonTitle
+      this.buildButtonTitle(attrs)
     );
   },
 
