@@ -26,7 +26,7 @@ export default createWidget("vote-button", {
     return buttonClass;
   },
 
-  buttonTitle(attrs) {
+  buildButtonTitle(attrs) {
     if (this.currentUser) {
       if (attrs.closed) {
         return I18n.t("voting.voting_closed_title");
@@ -65,7 +65,7 @@ export default createWidget("vote-button", {
         },
         className: "btn btn-primary vote-button",
       },
-      this.buttonTitle(attrs)
+      this.buildButtonTitle(attrs)
     );
   },
 
