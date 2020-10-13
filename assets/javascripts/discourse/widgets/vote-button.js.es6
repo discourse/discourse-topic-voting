@@ -6,7 +6,7 @@ export default createWidget("vote-button", {
   tagName: "div",
 
   buildClasses(attrs) {
-    var buttonClass = "";
+    let buttonClass = "";
     if (attrs.closed) {
       buttonClass = "voting-closed";
     } else {

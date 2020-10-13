@@ -19,9 +19,9 @@ export default createWidget("vote-box", {
   },
 
   html(attrs, state) {
-    var voteCount = this.attach("vote-count", attrs);
-    var voteButton = this.attach("vote-button", attrs);
-    var voteOptions = this.attach("vote-options", attrs);
+    let voteCount = this.attach("vote-count", attrs);
+    let voteButton = this.attach("vote-button", attrs);
+    let voteOptions = this.attach("vote-options", attrs);
     let contents = [voteCount, voteButton, voteOptions];
 
     if (state.votesAlert > 0) {
@@ -54,8 +54,8 @@ export default createWidget("vote-box", {
   },
 
   addVote() {
-    var topic = this.attrs;
-    var state = this.state;
+    let topic = this.attrs;
+    let state = this.state;
     return ajax("/voting/vote", {
       type: "POST",
       data: {
@@ -80,8 +80,8 @@ export default createWidget("vote-box", {
   },
 
   removeVote() {
-    var topic = this.attrs;
-    var state = this.state;
+    let topic = this.attrs;
+    let state = this.state;
     return ajax("/voting/unvote", {
       type: "POST",
       data: {
