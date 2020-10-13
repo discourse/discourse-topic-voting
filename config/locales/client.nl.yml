@@ -21,6 +21,15 @@ nl:
       voted_title: "Gestemd"
       voting_closed_title: "Gesloten"
       voting_limit: "Limiet"
+      votes_left:
+        one: "U heeft %{count} stem over, zie <a href='%{path}'>uw stemmen</a>."
+        other: "U heeft %{count} stemmen over, zie <a href='%{path}'>uw stemmen</a>."
+      votes_left_button_title:
+        one: "U heeft %{count} stem over."
+        other: "U heeft %{count} stemmen over."
+      votes:
+        one: "%{count} stem"
+        other: "%{count} stemmen"
       anonymous_button:
         one: "Stem"
         other: "Stemmen"
@@ -29,3 +38,12 @@ nl:
       votes:
         title: "Stemmen"
         help: "topics met de meeste stemmen"
+      my_votes:
+        title: "Mijn stemmen"
+        help: "onderwerpen waarover u heeft gestemd"
+    search:
+      most_votes: "Meeste stemmen"
+      advanced:
+        vote:
+          count:
+            label: "Minimum aantal stemmen"
