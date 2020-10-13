@@ -10,7 +10,7 @@ export default createWidget("vote-options", {
   },
 
   html(attrs) {
-    let contents = [];
+    var contents = [];
 
     if (attrs.user_voted) {
       contents.push(this.attach("remove-vote", attrs));

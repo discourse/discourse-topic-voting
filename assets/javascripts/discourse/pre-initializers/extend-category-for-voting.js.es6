@@ -14,7 +14,7 @@ function initialize(api) {
         return;
       }
 
-      let buffer = [];
+      var buffer = [];
 
       let title = "";
       if (topic.user_voted) {
