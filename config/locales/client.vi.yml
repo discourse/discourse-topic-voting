@@ -21,6 +21,12 @@ vi:
       voted_title: "Đã bình ch"
       voting_closed_title: "Đã "
       voting_limit: "Giới h"
+      votes_left:
+        other: "Bạn còn %{count} phiếu bầu, xem <a=href='%{path}'>phiếu bầu của bạn</a>"
+      votes_left_button_title:
+        other: "Bạn còn %{count} phiếu bầu"
+      votes:
+        other: "%{count} phiếu"
       anonymous_button:
         other: "Phiếu"
       remove_vote: "Xoá Bình Chọn<br>"
@@ -28,3 +34,12 @@ vi:
       votes:
         title: "Bình chọn"
         help: "chủ đề có nhiều bình chọn nhất"
+      my_votes:
+        title: "Phiếu của tôi"
+        help: "Những chủ đề bạn đã bình chọn"
+    search:
+      most_votes: "Bình chọn nhiều nhất"
+      advanced:
+        vote:
+          count:
+            label: "Điểm bình chọn ít nhất"
