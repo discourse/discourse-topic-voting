@@ -76,6 +76,6 @@ function whoVotedAvatars(user) {
     template: user.avatar_template,
     username: user.username,
     post_url: user.post_url,
-    url: getURL("/users/") + user.username.toLowerCase(),
+    url: getURL("/u/") + user.username.toLowerCase(),
   };
 }
