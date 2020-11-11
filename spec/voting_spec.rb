@@ -116,15 +116,18 @@ describe DiscourseVoting do
 
   context "when topic status is changed" do
     it "enqueues a job for releasing/reclaiming votes" do
-      DiscourseEvent.on(:topic_status_updated) do |topic|
+      blk = Proc.new do |topic|
         expect(topic).to be_instance_of(Topic)
       end
+      DiscourseEvent.on(:topic_status_updated, &blk)
 
       topic1.update_status('closed', true, Discourse.system_user)
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
 
       topic1.update_status('closed', false, Discourse.system_user)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+    ensure
+      DiscourseEvent.off(:topic_status_updated, &blk)
     end
 
     it 'creates notification that topic was completed' do
