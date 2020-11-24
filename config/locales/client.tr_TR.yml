@@ -21,6 +21,15 @@ tr_TR:
       voted_title: "Oylanmış"
       voting_closed_title: "Kapalı"
       voting_limit: "Sınır"
+      votes_left:
+        one: "%{count} oyunuz kaldı, <a href='%{path}'>oylarınızı</a> görün."
+        other: "%{count} oyunuz kaldı, <a href='%{path}'>oylarınızı</a> görün."
+      votes_left_button_title:
+        one: "%{count} oyunuz kaldı."
+        other: "%{count} oyunuz kaldı."
+      votes:
+        one: "%{count} oy"
+        other: "%{count} oy"
       anonymous_button:
         one: "Oy"
         other: "Oylar"
@@ -29,3 +38,12 @@ tr_TR:
       votes:
         title: "Oylar"
         help: "en çok oy alan konular"
+      my_votes:
+        title: "Oylarım"
+        help: "oy verdiğiniz konular"
+    search:
+      most_votes: "En Çok Oy"
+      advanced:
+        vote:
+          count:
+            label: "En Düşük Oy Sayısı"
