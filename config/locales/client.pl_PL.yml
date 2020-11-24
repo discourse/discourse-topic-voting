@@ -21,6 +21,21 @@ pl_PL:
       voted_title: "Głosów"
       voting_closed_title: "Zamknięto"
       voting_limit: "Limit"
+      votes_left:
+        one: "Pozostał Ci %{count} głos, zobacz <a href='%{path}'>swoje głosy</a>."
+        few: "Pozostały Ci %{count} głosy, zobacz <a href='%{path}'>swoje głosy</a>."
+        many: "Pozostało Ci %{count} głosów, zobacz <a href='%{path}'>swoje głosy</a>."
+        other: "Pozostało Ci %{count} głosów, zobacz <a href='%{path}'>swoje głosy</a>."
+      votes_left_button_title:
+        one: "Pozostał Ci %{count} głos."
+        few: "Pozostały Ci %{count} głosy."
+        many: "Pozostało Ci %{count} głosów."
+        other: "Zostało Ci %{count} głosów."
+      votes:
+        one: "%{count} głos"
+        few: "%{count} głosy"
+        many: "%{count} głosów"
+        other: "%{count} głosów"
       anonymous_button:
         one: "Głos"
         few: "Głosy"
@@ -31,3 +46,12 @@ pl_PL:
       votes:
         title: "Głosy"
         help: "tematy z największą liczbą głosów"
+      my_votes:
+        title: "Moje głosy"
+        help: "tematy, na które głosowałeś"
+    search:
+      most_votes: "Najwięcej głosów"
+      advanced:
+        vote:
+          count:
+            label: "Minimalna liczba głosów"
