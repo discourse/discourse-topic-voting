@@ -24,6 +24,9 @@ fr:
       votes_left:
         one: "Vous avez %{count} vote restant, consultez <a href='%{path}'>vos votes</a>."
         other: "Vous avez %{count} votes restants, consultez <a href='%{path}'>vos votes</a>."
+      votes_left_button_title:
+        one: "Il vous reste %{count} vote."
+        other: "Il vous reste %{count} votes."
       votes:
         one: "%{count} vote"
         other: "%{count} votes"
@@ -35,3 +38,12 @@ fr:
       votes:
         title: "Votes"
         help: "sujets les plus votés"
+      my_votes:
+        title: "Mes votes"
+        help: "sujets sur lesquels vous avez voté"
+    search:
+      most_votes: "Le plus de votes"
+      advanced:
+        vote:
+          count:
+            label: "Nombre minimum de votes"
