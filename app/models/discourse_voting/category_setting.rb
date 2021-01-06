@@ -38,3 +38,17 @@ module DiscourseVoting
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: discourse_voting_category_settings
+#
+#  id          :bigint           not null, primary key
+#  category_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_discourse_voting_category_settings_on_category_id  (category_id) UNIQUE
+#
