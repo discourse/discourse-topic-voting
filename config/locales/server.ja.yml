@@ -15,8 +15,3 @@ ja:
     voting_show_who_voted: 'ユーザーに誰が投票したか見ることができるようにしますか？'
     voting_show_votes_on_profile: 'ユーザーのアクティビティーフィードでユーザーの投票を見ることができるようにしますか？'
     voting_alert_votes_left: '多くの投票が放置された時通知する'
-  voting:
-    votes_moved:
-      other: "%{count} votes have been moved."
-    duplicated_votes:
-      other: "%{count} votes could not be moved because their users already voted in the other topic."

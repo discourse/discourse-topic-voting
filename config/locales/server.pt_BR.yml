@@ -15,10 +15,3 @@ pt_BR:
     voting_show_who_voted: 'Permitir que usuários vejam quem votou?'
     voting_show_votes_on_profile: 'Permitir que usuários vejam seus votos nos seus feeds de atividade?'
     voting_alert_votes_left: 'Alertar o usuário quando houver esta quantidade de votos restantes'
-  voting:
-    votes_moved:
-      one: "A vote has been moved."
-      other: "%{count} votes have been moved."
-    duplicated_votes:
-      one: "A vote could not be moved because the user already voted in the other topic."
-      other: "%{count} votes could not be moved because their users already voted in the other topic."
