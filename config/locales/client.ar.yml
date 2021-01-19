@@ -10,7 +10,6 @@ ar:
       sort_options:
         votes: "أصوات"
     voting:
-      title: "Voting"
       reached_limit: "لم يعد بإمكانك التصويت الآن، الرجاء حذف تصويت"
       list_votes: "قائمة تصويتاتك"
       votes_nav_help: "المواضيع الأكثر تصويتا"
@@ -21,45 +20,7 @@ ar:
       voted_title: "تم التصويت"
       voting_closed_title: "مغلق"
       voting_limit: "الحد"
-      votes_left:
-        zero: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
-        two: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-        few: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-        many: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-      votes_left_button_title:
-        zero: "You have %{count} votes left."
-        one: "You have %{count} vote left."
-        two: "You have %{count} votes left."
-        few: "You have %{count} votes left."
-        many: "You have %{count} votes left."
-        other: "You have %{count} votes left."
-      votes:
-        zero: "%{count} votes"
-        one: "%{count} vote"
-        two: "%{count} votes"
-        few: "%{count} votes"
-        many: "%{count} votes"
-        other: "%{count} votes"
-      anonymous_button:
-        zero: "Votes"
-        one: "Vote"
-        two: "Votes"
-        few: "Votes"
-        many: "Votes"
-        other: "Votes"
-      remove_vote: "Remove vote"
     filters:
       votes:
         title: "أصوات"
         help: "المواضيع الأكثر تصويتا"
-      my_votes:
-        title: "My Votes"
-        help: "topics you voted on"
-    search:
-      most_votes: "Most Votes"
-      advanced:
-        vote:
-          count:
-            label: "Minimum Vote Count"

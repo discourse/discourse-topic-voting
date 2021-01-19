@@ -10,7 +10,6 @@ sw:
       sort_options:
         votes: "Kura"
     voting:
-      title: "Voting"
       reached_limit: "Umetumia kura zako zote, toa kura moja uliyoitumia!"
       list_votes: "Orodha ya kura zako"
       votes_nav_help: "Mada zenye kura nyingi zaidi"
@@ -21,29 +20,7 @@ sw:
       voted_title: "Alio/Waliopiga Kura"
       voting_closed_title: "Imefungwa"
       voting_limit: "Kikomo"
-      votes_left:
-        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
-        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-      votes_left_button_title:
-        one: "You have %{count} vote left."
-        other: "You have %{count} votes left."
-      votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      anonymous_button:
-        one: "Vote"
-        other: "Votes"
-      remove_vote: "Remove vote"
     filters:
       votes:
         title: "Kura"
         help: "Mada zenye kura nyingi zaidi"
-      my_votes:
-        title: "My Votes"
-        help: "topics you voted on"
-    search:
-      most_votes: "Most Votes"
-      advanced:
-        vote:
-          count:
-            label: "Minimum Vote Count"

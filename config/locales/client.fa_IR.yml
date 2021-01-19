@@ -11,7 +11,6 @@ fa_IR:
         votes: "آرا"
     voting:
       title: "رأی دادن"
-      reached_limit: "You are out of votes, remove an existing vote!"
       list_votes: "آرای خود را فهرست کنید"
       votes_nav_help: "موضوعات با بیشترین آرا"
       voted: "شما به این موضوع رای داده اید"
@@ -21,12 +20,6 @@ fa_IR:
       voted_title: "رای داده شده"
       voting_closed_title: "بسته"
       voting_limit: "محدود کردن"
-      votes_left:
-        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
-        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-      votes_left_button_title:
-        one: "You have %{count} vote left."
-        other: "You have %{count} votes left."
       votes:
         one: "%{count} رای"
         other: "%{count} رای"
@@ -38,12 +31,3 @@ fa_IR:
       votes:
         title: "آرا"
         help: "موضوعات با بیشترین آرا"
-      my_votes:
-        title: "My Votes"
-        help: "topics you voted on"
-    search:
-      most_votes: "Most Votes"
-      advanced:
-        vote:
-          count:
-            label: "Minimum Vote Count"

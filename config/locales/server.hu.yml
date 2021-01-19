@@ -15,10 +15,3 @@ hu:
     voting_show_who_voted: 'Lehetővé teszi a felhasználók számára, hogy láthassák ki szavazott?'
     voting_show_votes_on_profile: 'Lehetővé teszi a felhasználók számára, hogy szavazatukat a tevékenységi hírcsatornaikban láthassák?'
     voting_alert_votes_left: 'Figyelmezteti a felhasználót amikor ennyi szavazata maradt'
-  voting:
-    votes_moved:
-      one: "A vote has been moved."
-      other: "%{count} votes have been moved."
-    duplicated_votes:
-      one: "A vote could not be moved because the user already voted in the other topic."
-      other: "%{count} votes could not be moved because their users already voted in the other topic."

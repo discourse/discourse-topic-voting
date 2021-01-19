@@ -26,11 +26,6 @@ ru:
         few: "У вас есть %{count} голоса, посмотрите <a href='%{path}'>ваши голоса</a> ."
         many: "У вас есть %{count} голосов, посмотрите <a href='%{path}'>ваши голоса</a> ."
         other: "У вас есть %{count} голосов, посмотрите <a href='%{path}'>ваши голоса</a> ."
-      votes_left_button_title:
-        one: "У вас осталось %{count} голосов."
-        few: "You have %{count} votes left."
-        many: "You have %{count} votes left."
-        other: "You have %{count} votes left."
       votes:
         one: "%{count} голоса"
         few: "%{count} голосов"

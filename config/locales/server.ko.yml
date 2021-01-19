@@ -15,8 +15,3 @@ ko:
     voting_show_who_voted: '사용자가 누가 투표를 했는지 볼 수 있도록 하시겠습니까?'
     voting_show_votes_on_profile: '사용자가 활동 피드에서 자신의 투표를 볼 수 있습니까?'
     voting_alert_votes_left: '이 많은 투표가 남아있을 때 사용자에게 경고'
-  voting:
-    votes_moved:
-      other: "%{count} votes have been moved."
-    duplicated_votes:
-      other: "%{count} votes could not be moved because their users already voted in the other topic."

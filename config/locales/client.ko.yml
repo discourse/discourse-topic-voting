@@ -21,12 +21,6 @@ ko:
       voted_title: "투표함"
       voting_closed_title: "닫힘"
       voting_limit: "한도"
-      votes_left:
-        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
-      votes_left_button_title:
-        other: "You have %{count} votes left."
-      votes:
-        other: "%{count} votes"
       anonymous_button:
         other: "투표"
       remove_vote: "투표 제거"
@@ -34,12 +28,3 @@ ko:
       votes:
         title: "투표"
         help: "가장 많은 표를 얻은 주제"
-      my_votes:
-        title: "My Votes"
-        help: "topics you voted on"
-    search:
-      most_votes: "Most Votes"
-      advanced:
-        vote:
-          count:
-            label: "Minimum Vote Count"
