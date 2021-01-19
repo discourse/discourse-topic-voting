@@ -21,6 +21,15 @@ ur:
       voted_title: "ووٹ کیا"
       voting_closed_title: "بند"
       voting_limit: "حد"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
+      votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
       anonymous_button:
         one: "ووٹ"
         other: "ووٹ"
@@ -29,3 +38,12 @@ ur:
       votes:
         title: "ووٹ"
         help: "سب سے زیادہ ووٹوں والے ٹاپک"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

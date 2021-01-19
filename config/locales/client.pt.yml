@@ -10,6 +10,7 @@ pt:
       sort_options:
         votes: "Votos"
     voting:
+      title: "Voting"
       reached_limit: "Já não tem votos, remover um voto existente!"
       list_votes: "Listar os seus votos"
       votes_nav_help: "tópicos mais votados"
@@ -23,6 +24,9 @@ pt:
       votes_left:
         one: "Resta-me %{count} voto, veja os <a href='%{path}'>seus votos</a>."
         other: "Restam-me %{count} votos, veja os <a href='%{path}'>seus votos</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
       votes:
         one: "%{count} voto"
         other: "%{count} votos"
@@ -34,3 +38,12 @@ pt:
       votes:
         title: "Votos"
         help: "tópicos mais votados"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

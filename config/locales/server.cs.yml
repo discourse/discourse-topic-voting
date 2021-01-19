@@ -15,3 +15,14 @@ cs:
     voting_show_who_voted: 'Povolit uživatelům zobrazit, kdo jak hlasoval?'
     voting_show_votes_on_profile: 'Povolit uživatelům zobrazit jejich hlasování ve feedu aktivit?'
     voting_alert_votes_left: 'Upozornit uživatele, když mu zbývá tolik hlasů'
+  voting:
+    votes_moved:
+      one: "A vote has been moved."
+      few: "%{count} votes have been moved."
+      many: "%{count} votes have been moved."
+      other: "%{count} votes have been moved."
+    duplicated_votes:
+      one: "A vote could not be moved because the user already voted in the other topic."
+      few: "%{count} votes could not be moved because their users already voted in the other topic."
+      many: "%{count} votes could not be moved because their users already voted in the other topic."
+      other: "%{count} votes could not be moved because their users already voted in the other topic."

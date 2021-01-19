@@ -21,6 +21,21 @@ sl:
       voted_title: "Glasovano"
       voting_closed_title: "Zaprta"
       voting_limit: "Omejitev"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        two: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        few: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        two: "You have %{count} votes left."
+        few: "You have %{count} votes left."
+        other: "You have %{count} votes left."
+      votes:
+        one: "%{count} vote"
+        two: "%{count} votes"
+        few: "%{count} votes"
+        other: "%{count} votes"
       anonymous_button:
         one: "Glas"
         two: "Glasova"
@@ -31,3 +46,12 @@ sl:
       votes:
         title: "Glasovi"
         help: "teme z največ glasovi"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

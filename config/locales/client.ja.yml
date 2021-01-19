@@ -10,12 +10,36 @@ ja:
       sort_options:
         votes: "投票"
     voting:
+      title: "Voting"
+      reached_limit: "You are out of votes, remove an existing vote!"
+      list_votes: "List your votes"
+      votes_nav_help: "topics with the most votes"
       voted: "あなたはこのトピックに投票しました"
+      allow_topic_voting: "Allow users to vote on topics in this category"
       vote_title: "投票"
       vote_title_plural: "投票"
       voted_title: "投票済み"
+      voting_closed_title: "Closed"
+      voting_limit: "Limit"
+      votes_left:
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        other: "You have %{count} votes left."
+      votes:
+        other: "%{count} votes"
       anonymous_button:
         other: "投票"
+      remove_vote: "Remove vote"
     filters:
       votes:
         title: "投票"
+        help: "topics with the most votes"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

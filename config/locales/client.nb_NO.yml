@@ -10,6 +10,7 @@ nb_NO:
       sort_options:
         votes: "Stemmer"
     voting:
+      title: "Voting"
       reached_limit: "Du har ikke flere stemmer igjen, fjern en eksisterende stemme."
       list_votes: "List opp dine stemmer"
       votes_nav_help: "emner med flest stemmer"
@@ -20,7 +21,29 @@ nb_NO:
       voted_title: "Stemt"
       voting_closed_title: "Lukket"
       voting_limit: "Grense"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
+      votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      anonymous_button:
+        one: "Vote"
+        other: "Votes"
+      remove_vote: "Remove vote"
     filters:
       votes:
         title: "Stemmer"
         help: "emner med flest stemmer"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

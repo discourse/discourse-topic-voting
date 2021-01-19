@@ -21,6 +21,12 @@ de:
       voted_title: "Voted"
       voting_closed_title: "Geschlossen"
       voting_limit: "Limit"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
       votes:
         one: "%{count} Abstimmung"
         other: "%{count} Stimmen"
@@ -32,3 +38,12 @@ de:
       votes:
         title: "Votes"
         help: "Themen mit den meisten Votes"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

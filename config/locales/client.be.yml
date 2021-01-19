@@ -21,6 +21,21 @@ be:
       voted_title: "Прагаласавана"
       voting_closed_title: "Закрыта"
       voting_limit: "Ліміт"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        few: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        many: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        few: "You have %{count} votes left."
+        many: "You have %{count} votes left."
+        other: "You have %{count} votes left."
+      votes:
+        one: "%{count} vote"
+        few: "%{count} votes"
+        many: "%{count} votes"
+        other: "%{count} votes"
       anonymous_button:
         one: "Голас"
         few: "Галасоў"
@@ -31,3 +46,12 @@ be:
       votes:
         title: "Галасоў"
         help: "тэмы з найбольшай кольскасцю галасоў"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"
