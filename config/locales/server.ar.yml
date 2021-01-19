@@ -15,3 +15,18 @@ ar:
     voting_show_who_voted: 'سماح الأعضاء من مشاهدة من قام بالتصويت؟'
     voting_show_votes_on_profile: 'سماح الأعضاء برؤية التصويتات في مسار النشاط؟'
     voting_alert_votes_left: 'تنبية عضو بأن هذا كثير من الاصوات'
+  voting:
+    votes_moved:
+      zero: "%{count} votes have been moved."
+      one: "A vote has been moved."
+      two: "%{count} votes have been moved."
+      few: "%{count} votes have been moved."
+      many: "%{count} votes have been moved."
+      other: "%{count} votes have been moved."
+    duplicated_votes:
+      zero: "%{count} votes could not be moved because their users already voted in the other topic."
+      one: "A vote could not be moved because the user already voted in the other topic."
+      two: "%{count} votes could not be moved because their users already voted in the other topic."
+      few: "%{count} votes could not be moved because their users already voted in the other topic."
+      many: "%{count} votes could not be moved because their users already voted in the other topic."
+      other: "%{count} votes could not be moved because their users already voted in the other topic."

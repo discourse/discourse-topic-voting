@@ -13,3 +13,12 @@ el:
     voting_tl3_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ3;'
     voting_tl4_vote_limit: 'Πόσες ενεργές ψήφοι επιτρέπονται σε χρήστες ΕΕ4;'
     voting_show_who_voted: 'Να επιτρέπεται σε χρήστες να βλέπουν ποιός ψήφισε;'
+    voting_show_votes_on_profile: 'Allow users to see their votes in their activity feed?'
+    voting_alert_votes_left: 'Alert user when this many votes are left'
+  voting:
+    votes_moved:
+      one: "A vote has been moved."
+      other: "%{count} votes have been moved."
+    duplicated_votes:
+      one: "A vote could not be moved because the user already voted in the other topic."
+      other: "%{count} votes could not be moved because their users already voted in the other topic."

@@ -26,6 +26,11 @@ he:
         two: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
         many: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
         other: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
+      votes_left_button_title:
+        one: "נותרה לך הצבעה %{count}."
+        two: "You have %{count} votes left."
+        many: "You have %{count} votes left."
+        other: "נותרו לך %{count} הצבעות."
       votes:
         one: "הצבעה %{count}"
         two: "%{count} הצבעות"

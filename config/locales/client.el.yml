@@ -24,6 +24,9 @@ el:
       votes_left:
         one: "Απομένουν %{count} ψήφοι, δείτε <a href='%{path}'>τις ψήφους σας</a>."
         other: "Απομένουν %{count} ψήφοι, δείτε <a href='%{path}'>τις ψήφους σας</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
       votes:
         one: "%{count} ψήφος"
         other: "%{count} ψήφοι"
@@ -35,3 +38,12 @@ el:
       votes:
         title: "Ψήφοι"
         help: "θέματα με τις περισσότερες ψήφους"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

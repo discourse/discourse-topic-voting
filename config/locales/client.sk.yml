@@ -10,11 +10,48 @@ sk:
       sort_options:
         votes: "Hlasy"
     voting:
+      title: "Voting"
+      reached_limit: "You are out of votes, remove an existing vote!"
+      list_votes: "List your votes"
+      votes_nav_help: "topics with the most votes"
+      voted: "You voted on this topic"
+      allow_topic_voting: "Allow users to vote on topics in this category"
       vote_title: "Hlas"
       vote_title_plural: "Hlasy"
       voted_title: "Odhlasované"
       voting_closed_title: "Hlasovanie ukončené"
       voting_limit: "Limit"
+      votes_left:
+        one: "You have %{count} vote left, see <a href='%{path}'>your votes</a>."
+        few: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        many: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+        other: "You have %{count} votes left, see <a href='%{path}'>your votes</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        few: "You have %{count} votes left."
+        many: "You have %{count} votes left."
+        other: "You have %{count} votes left."
+      votes:
+        one: "%{count} vote"
+        few: "%{count} votes"
+        many: "%{count} votes"
+        other: "%{count} votes"
+      anonymous_button:
+        one: "Vote"
+        few: "Votes"
+        many: "Votes"
+        other: "Votes"
+      remove_vote: "Remove vote"
     filters:
       votes:
         title: "Hlasy"
+        help: "topics with the most votes"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"

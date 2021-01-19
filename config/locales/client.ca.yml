@@ -24,6 +24,9 @@ ca:
       votes_left:
         one: "Us queda %{count} vot, mireu els <a href='%{path}'>vostres vots</a>."
         other: "Us queden %{count} vots, mireu els <a href='%{path}'>vostres vots</a>."
+      votes_left_button_title:
+        one: "You have %{count} vote left."
+        other: "You have %{count} votes left."
       votes:
         one: " %{count} vot"
         other: "%{count} vots"
@@ -35,3 +38,12 @@ ca:
       votes:
         title: "Vots"
         help: "temes amb més vots"
+      my_votes:
+        title: "My Votes"
+        help: "topics you voted on"
+    search:
+      most_votes: "Most Votes"
+      advanced:
+        vote:
+          count:
+            label: "Minimum Vote Count"
