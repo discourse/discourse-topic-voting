@@ -186,16 +186,22 @@ after_initialize do
 
     require_dependency 'list_controller'
     class ::ListController
+      skip_before_action :ensure_logged_in, only: %i[voted_by]
+
       def voted_by
-        unless SiteSetting.voting_show_votes_on_profile
-          render nothing: true, status: 404
+        if SiteSetting.voting_show_votes_on_profile
+          list_opts = build_topic_list_options
+          target_user = fetch_user_from_params(include_inactive: current_user.try(:staff?))
+          list = generate_list_for("voted_by", target_user, list_opts)
+          list.more_topics_url = url_for(construct_url_with(:next, list_opts))
+          list.prev_topics_url = url_for(construct_url_with(:prev, list_opts))
+          respond_with_list(list)
+        else
+          respond_to do |format|
+            format.html { render nothing: true, status: 404 }
+            format.json { render json: failed_json, status: 404 }
+          end
         end
-        list_opts = build_topic_list_options
-        target_user = fetch_user_from_params(include_inactive: current_user.try(:staff?))
-        list = generate_list_for("voted_by", target_user, list_opts)
-        list.more_topics_url = url_for(construct_url_with(:next, list_opts))
-        list.prev_topics_url = url_for(construct_url_with(:prev, list_opts))
-        respond_with_list(list)
       end
     end
 
