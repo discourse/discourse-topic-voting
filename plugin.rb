@@ -44,11 +44,11 @@ after_initialize do
       attributes :can_vote
 
       def include_can_vote?
-        object.post_number == 1 && object.topic && object.topic.can_vote?
+        object.post_number == 1
       end
 
       def can_vote
-        true
+        object.topic&.can_vote?
       end
     end
 
