@@ -112,7 +112,7 @@ after_initialize do
     # TODO: Remove if check once Discourse 2.6 is stable
     if respond_to?(:register_search_advanced_order)
       register_search_advanced_order(:votes) do |posts|
-        posts.reorder("COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = subquery.topic_id), 0) DESC")
+        posts.reorder("COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = topics.id), 0) DESC")
       end
     end
 
