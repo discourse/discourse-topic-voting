@@ -18,7 +18,7 @@ tr_TR:
       allow_topic_voting: "Kullanıcıların bu kategorideki konularda oy kullanmasına izin verilsin mi?"
       vote_title: "Oyla"
       vote_title_plural: "Oylar"
-      voted_title: "Oylanmış"
+      voted_title: "Oylandı"
       voting_closed_title: "Kapalı"
       voting_limit: "Sınır"
       votes_left:
@@ -33,7 +33,7 @@ tr_TR:
       anonymous_button:
         one: "Oy"
         other: "Oylar"
-      remove_vote: "Oyu geri al"
+      remove_vote: "Oyu kaldır"
     filters:
       votes:
         title: "Oylar"
