@@ -21,6 +21,15 @@ da:
       voted_title: "Stemte"
       voting_closed_title: "Lukket"
       voting_limit: "Begrænset"
+      votes_left:
+        one: "Du har %{count} stemme tilbage, se <a href='%{path}'>dine stemmer</a>."
+        other: "Du har %{count} stemmer tilbage, se <a href='%{path}'>dine stemmer</a>."
+      votes_left_button_title:
+        one: "Du har %{count} stemme tilbage."
+        other: "Du har %{count} stemmer tilbage."
+      votes:
+        one: "%{count} stemme"
+        other: "%{count} stemmer"
       anonymous_button:
         one: "Stemme"
         other: "Stemmer"
@@ -29,3 +38,12 @@ da:
       votes:
         title: "Stemmer"
         help: "emner med flest stemmer"
+      my_votes:
+        title: "Mine Stemmer"
+        help: "emner, du stemte på"
+    search:
+      most_votes: "Flest Stemmer"
+      advanced:
+        vote:
+          count:
+            label: "Minimum antal af stemmer"
