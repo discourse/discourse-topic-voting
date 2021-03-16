@@ -5,3 +5,20 @@
 # https://translate.discourse.org/
 
 da:
+  site_settings:
+    voting_enabled: 'Tillad brugere at stemme på emner?'
+    voting_tl0_vote_limit: 'Hvor mange aktive stemmer er TL0-brugere tilladt?'
+    voting_tl1_vote_limit: 'Hvor mange aktive stemmer er TL1-brugere tilladt?'
+    voting_tl2_vote_limit: 'Hvor mange aktive stemmer er TL2-brugere tilladt?'
+    voting_tl3_vote_limit: 'Hvor mange aktive stemmer er TL3-brugere tilladt?'
+    voting_tl4_vote_limit: 'Hvor mange aktive stemmer er TL4-brugere tilladt?'
+    voting_show_who_voted: 'Tillad brugere at se, hvem der har stemt?'
+    voting_show_votes_on_profile: 'Tillad brugere at se deres stemmer i deres aktivitetsfeed?'
+    voting_alert_votes_left: 'Advar bruger når så mange stemmer er tilbage'
+  voting:
+    votes_moved:
+      one: "En stemme er blevet flyttet."
+      other: "%{count} stemmer er blevet flyttet."
+    duplicated_votes:
+      one: "En stemme kunne ikke flyttes fordi brugeren allerede stemte i det andet emne."
+      other: "%{count} stemmer kunne ikke flyttes, fordi deres brugere allerede stemte i det andet emne."
