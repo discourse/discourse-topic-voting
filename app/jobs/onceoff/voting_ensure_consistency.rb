@@ -38,11 +38,7 @@ module Jobs
       # delete votes associated with no user
       DB.exec(<<~SQL)
         DELETE FROM discourse_voting_votes
-        WHERE user_id IN (
-          SELECT DISTINCT user_id FROM discourse_voting_votes
-          LEFT JOIN users ON discourse_voting_votes.user_id = users.id
-          WHERE users.id IS NULL
-        )
+        WHERE user_id NOT IN (SELECT id FROM users)
       SQL
 
       # delete votes associated with no topics
