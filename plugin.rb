@@ -301,6 +301,8 @@ after_initialize do
 
     if orig.who_voted.present? && orig.closed
       orig.who_voted.each do |user|
+        next if user.blank?
+
         user_votes = user.topics_with_vote.pluck(:topic_id)
         user_archived_votes = user.topics_with_archived_vote.pluck(:topic_id)
 
