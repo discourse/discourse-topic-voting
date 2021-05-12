@@ -7,13 +7,13 @@
 }
 
 .vote-count-wrapper {
-  border: 3px solid var(--primary-low, $primary-low);
+  border: 3px solid var(--primary-low);
 }
 
 .voting-wrapper.show-pointer .vote-count-wrapper:not(.no-votes) {
   cursor: pointer;
   &:hover {
-    background-color: var(--primary-low, $primary-low);
+    background-color: var(--primary-low);
   }
 }
 
@@ -43,13 +43,13 @@
   cursor: pointer;
   padding: 0.35em;
   &:hover {
-    background-color: var(--primary-low, $primary-low);
+    background-color: var(--primary-low);
   }
 }
 
 .vote-option.remove-vote .d-icon {
   margin-right: 0.35em;
-  color: var(--danger, $danger);
+  color: var(--danger);
 }
 
 .list-vote-count.voted {
