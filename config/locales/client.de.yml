@@ -32,3 +32,10 @@ de:
       votes:
         title: "Votes"
         help: "Themen mit den meisten Votes"
+      my_votes:
+        help: "Themen, über die Sie abgestimmt haben"
+    search:
+      advanced:
+        vote:
+          count:
+            label: "Mindeststimmzahl"
