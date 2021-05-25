@@ -6,5 +6,10 @@
 
 th:
   js:
+    category:
+      sort_options:
+        votes: "โหวต"
     voting:
+      title: "การโหวต"
+      reached_limit: "คุณใช้คะแนนโหวตหมดแล้ว ลบอันที่โหวตไปแล้วออกก่อน"
       voting_closed_title: "ปิด"
