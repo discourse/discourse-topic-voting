@@ -21,6 +21,9 @@ pt_BR:
       voted_title: "Votado"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
+      votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
       anonymous_button:
         one: "Voto"
         other: "Votos"
@@ -29,3 +32,12 @@ pt_BR:
       votes:
         title: "Votos"
         help: "tópicos com a maioria dos votos"
+      my_votes:
+        title: "Meus Votos"
+        help: "tópicos que você votou"
+    search:
+      most_votes: "Mais votados"
+      advanced:
+        vote:
+          count:
+            label: "Contagem Mínima de Votos"
