@@ -4,18 +4,18 @@ require 'rails_helper'
 
 describe DiscourseVoting do
 
-  let(:user0) { Fabricate(:user) }
-  let(:user1) { Fabricate(:user) }
-  let(:user2) { Fabricate(:user) }
-  let(:user3) { Fabricate(:user) }
-  let(:user4) { Fabricate(:user) }
-  let(:user5) { Fabricate(:user) }
+  let!(:user0) { Fabricate(:user) }
+  let!(:user1) { Fabricate(:user) }
+  let!(:user2) { Fabricate(:user) }
+  let!(:user3) { Fabricate(:user) }
+  let!(:user4) { Fabricate(:user) }
+  let!(:user5) { Fabricate(:user) }
 
   let(:category1) { Fabricate(:category) }
   let(:category2) { Fabricate(:category) }
 
-  let(:topic0) { Fabricate(:topic, category: category1) }
-  let(:topic1) { Fabricate(:topic, category: category2) }
+  let!(:topic0) { Fabricate(:topic, category: category1) }
+  let!(:topic1) { Fabricate(:topic, category: category2) }
 
   before do
     SiteSetting.voting_enabled = true
@@ -83,25 +83,24 @@ describe DiscourseVoting do
       expect(merged_post.raw).to include(I18n.t('voting.duplicated_votes', count: 2))
     end
 
-    # Disabling 2021-06-07, super flaky in builds
-    # it 'does not move votes when a single post is moved' do
-    #   topic0.move_posts(Discourse.system_user, topic0.posts[1, 2].map(&:id), destination_topic_id: topic1.id)
+    it 'does not move votes when not all posts are moved and the original topic does not get closed' do
+      topic0.move_posts(Discourse.system_user, [topic0.posts.order(:post_number).first.id], destination_topic_id: topic1.id)
 
-    #   users.each { |user| user.reload }
-    #   expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
-    #   expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-    #   expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id, topic1.id)
-    #   expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[3].topics_with_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[4].topics_with_vote.pluck(:topic_id)).to be_blank
-    #   expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
+      users.each { |user| user.reload }
+      expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
+      expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id, topic1.id)
+      expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[4].topics_with_vote.pluck(:topic_id)).to be_blank
+      expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
 
-    #   expect(topic0.reload.vote_count).to eq(4)
-    #   expect(topic1.reload.vote_count).to eq(3)
-    # end
+      expect(topic0.reload.vote_count).to eq(4)
+      expect(topic1.reload.vote_count).to eq(3)
+    end
   end
 
   context "when a user has an empty string as the votes custom field" do
