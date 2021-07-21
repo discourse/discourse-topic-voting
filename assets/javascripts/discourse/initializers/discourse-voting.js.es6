@@ -63,5 +63,9 @@ export default {
         });
       }
     });
+
+    withPluginApi("0.11.7", (api) => {
+      api.addSearchSuggestion("order:votes");
+    });
   },
 };
