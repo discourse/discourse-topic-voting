@@ -99,6 +99,9 @@ after_initialize do
     add_to_serializer(:topic_list_item, :vote_count) { object.vote_count }
     add_to_serializer(:topic_list_item, :can_vote) { object.can_vote? }
     add_to_serializer(:topic_list_item, :user_voted) { object.user_voted?(scope.user) if scope.user }
+    add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
+    add_to_serializer(:topic_list_item, :include_can_vote?) { SiteSetting.voting_enabled && object.regular? }
+    add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
     add_to_serializer(:basic_category, :can_vote, false) { SiteSetting.voting_enabled }
     add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
