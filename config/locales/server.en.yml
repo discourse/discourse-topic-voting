@@ -8,6 +8,8 @@ en:
     voting_tl4_vote_limit: 'How many active votes are TL4 users allowed?'
     voting_show_who_voted: 'Allow users to see who voted?'
     voting_show_votes_on_profile: 'Allow users to see their votes in their activity feed?'
+    voting_show_votes_on_homepage: 'Show vote list navigation item on homepage?'
+    voting_show_votes_before: 'Show vote list navgiation item before this navigation item'
     voting_alert_votes_left: 'Alert user when this many votes are left'
   voting:
     votes_moved:

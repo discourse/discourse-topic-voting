@@ -1,5 +1,6 @@
 import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { setDefaultHomepage } from "discourse/lib/utilities";
 import NavItem from "discourse/models/nav-item";
 
 export default {
@@ -18,11 +19,17 @@ export default {
           term: "order:votes",
         });
 
+        const topMenuItems = siteSettings.top_menu.split('|');
+        const votesBeforeNavItem = siteSettings.voting_show_votes_before;
+        if (topMenuItems.indexOf(votesBeforeNavItem) === 0) {
+          setDefaultHomepage('votes');
+        }
+
         api.addNavigationBarItem({
           name: "votes",
-          before: "top",
+          before: votesBeforeNavItem,
           customFilter: (category) => {
-            return category && category.can_vote;
+            return (!category && siteSettings.voting_show_votes_on_homepage) || (category && category.can_vote);
           },
           customHref: (category, args) => {
             const path = NavItem.pathFor("latest", args);

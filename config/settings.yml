@@ -10,6 +10,23 @@ plugins:
   voting_show_votes_on_profile:
     default: true
     client: true
+  voting_show_votes_on_homepage:
+    default: false
+    client: true
+  voting_show_votes_before:
+    default: top
+    client: true
+    type: enum
+    choices:
+      - latest
+      - new
+      - unread
+      - unseen
+      - top
+      - categories
+      - read
+      - posted
+      - bookmarks
   voting_tl0_vote_limit:
     default: 2
   voting_tl1_vote_limit:
