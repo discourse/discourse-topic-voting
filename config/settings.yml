@@ -13,7 +13,24 @@ plugins:
   voting_show_votes_on_homepage:
     default: false
     client: true
+  voting_show_my_votes_on_homepage:
+    default: false
+    client: true
   voting_show_votes_before:
+    default: top
+    client: true
+    type: enum
+    choices:
+      - latest
+      - new
+      - unread
+      - unseen
+      - top
+      - categories
+      - read
+      - posted
+      - bookmarks
+  voting_show_my_votes_before:
     default: top
     client: true
     type: enum

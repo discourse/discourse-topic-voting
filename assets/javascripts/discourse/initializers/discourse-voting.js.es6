@@ -5,7 +5,7 @@ import NavItem from "discourse/models/nav-item";
 
 export default {
   name: "discourse-voting",
-
+  after: "url-redirects",
   initialize() {
     withPluginApi("0.8.32", (api) => {
       const siteSettings = api.container.lookup("site-settings:main");
@@ -25,30 +25,21 @@ export default {
           setDefaultHomepage('votes');
         }
 
+        const showVotesOnHome = siteSettings.voting_show_votes_on_homepage;
         api.addNavigationBarItem({
           name: "votes",
           before: votesBeforeNavItem,
-          customFilter: (category) => {
-            return (!category && siteSettings.voting_show_votes_on_homepage) || (category && category.can_vote);
-          },
-          customHref: (category, args) => {
-            const path = NavItem.pathFor("latest", args);
-            return `${path}?order=votes`;
-          },
-          forceActive: (category, args, router) => {
-            const queryParams = router.currentRoute.queryParams;
-            return (
-              queryParams &&
-              Object.keys(queryParams).length === 1 &&
-              queryParams["order"] === "votes"
-            );
-          },
+          customFilter: (category) => ((!category && showVotesOnHome) || (category && category.can_vote)),
+          customHref: (category, args) => (category ? `${category.url}/l/votes` : '/votes')
         });
+
+        const myVotesBeforeNavItem = siteSettings.voting_show_my_votes_before;
+        const showMyVotesOnHome = siteSettings.voting_show_my_votes_on_homepage;
         api.addNavigationBarItem({
           name: "my_votes",
-          before: "top",
+          before: myVotesBeforeNavItem,
           customFilter: (category) => {
-            return category && category.can_vote && api.getCurrentUser();
+            return api.getCurrentUser() && (category ? category.can_vote : showMyVotesOnHome);
           },
           customHref: (category, args) => {
             const path = NavItem.pathFor("latest", args);
