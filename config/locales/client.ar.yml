@@ -8,19 +8,58 @@ ar:
   js:
     category:
       sort_options:
-        votes: "أصوات"
+        votes: "الأصوات"
     voting:
-      reached_limit: "لم يعد بإمكانك التصويت الآن، الرجاء حذف تصويت"
-      list_votes: "قائمة تصويتاتك"
-      votes_nav_help: "المواضيع الأكثر تصويتا"
-      voted: "لقد صوّت على هذا الموضوع"
-      allow_topic_voting: "السماح للمستخدمين بالتصويت على المواضيع في هاته الفئة"
-      vote_title: "صوّت"
-      vote_title_plural: "التصويتات"
+      title: "التصويت"
+      reached_limit: "لم يعُد بإمكانك التصويت الآن، يُرجى إزالة صوت حالي!"
+      list_votes: "قائمة بأصواتك"
+      votes_nav_help: "الموضوعات الأكثر تصويتًا"
+      voted: "لقد صوَّت على هذا الموضوع"
+      allow_topic_voting: "السماح للمستخدمين بالتصويت على الموضوعات في هذه الفئة"
+      vote_title: "الصوت"
+      vote_title_plural: "الأصوات"
       voted_title: "تم التصويت"
-      voting_closed_title: "مغلق"
+      voting_closed_title: "تم إغلاق التصويت"
       voting_limit: "الحد"
+      votes_left:
+        zero: "لديك %{count} صوت متبقٍ، اعرض <a href='%{path}'>أصواتك</a>."
+        one: "لديك صوت واحد (%{count}) متبقٍ، اعرض <a href='%{path}'>أصواتك</a>."
+        two: "لديك صوتان (%{count}) متبقيان، اعرض <a href='%{path}'>أصواتك</a>."
+        few: "لديك %{count} أصوات متبقية، اعرض <a href='%{path}'>أصواتك</a>."
+        many: "لديك %{count} صوتًا متبقيًا، اعرض <a href='%{path}'>أصواتك</a>."
+        other: "لديك %{count} صوت متبقٍ، اعرض <a href='%{path}'>أصواتك</a>."
+      votes_left_button_title:
+        zero: "لديك %{count} صوت متبقٍ."
+        one: "لديك صوت واحد (%{count}) متبقٍ."
+        two: "لديك صوتان (%{count}) متبقيان."
+        few: "لديك %{count} أصوات متبقية."
+        many: "لديك %{count} صوتًا متبقيًا."
+        other: "لديك %{count} صوت متبقٍ."
+      votes:
+        zero: "%{count} صوت"
+        one: "صوت واحد (%{count})"
+        two: "صوتان (%{count})"
+        few: "%{count} أصوات"
+        many: "%{count} صوتًا"
+        other: "%{count} صوت"
+      anonymous_button:
+        zero: "صوت"
+        one: "صوت واحد"
+        two: "صوتان"
+        few: "أصوات"
+        many: "صوتًا"
+        other: "صوت"
+      remove_vote: "إزالة الصوت"
     filters:
       votes:
-        title: "أصوات"
-        help: "المواضيع الأكثر تصويتا"
+        title: "الأصوات"
+        help: "الموضوعات الأكثر تصويتًا"
+      my_votes:
+        title: "أصواتي"
+        help: "الموضوعات التي صوَّت عليها"
+    search:
+      most_votes: "معظم الأصوات"
+      advanced:
+        vote:
+          count:
+            label: "أقل عدد من الأصوات"

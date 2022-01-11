@@ -6,18 +6,18 @@
 
 de:
   site_settings:
-    voting_enabled: 'Benutzern erlauben, für Themen zu voten?'
-    voting_tl0_vote_limit: 'Wie viele aktive Votes sind TL0-Benutzern erlaubt?'
-    voting_tl1_vote_limit: 'Wie viele aktive Votes sind TL1-Benutzern erlaubt?'
-    voting_tl2_vote_limit: 'Wie viele aktive Votes sind TL2-Benutzern erlaubt?'
-    voting_tl3_vote_limit: 'Wie viele aktive Votes sind TL3-Benutzern erlaubt?'
-    voting_tl4_vote_limit: 'Wie viele aktive Votes sind TL4-Benutzern erlaubt?'
-    voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer gevotet hat?'
-    voting_show_votes_on_profile: 'Benutzern erlauben, ihre Votes in ihrem Benutzerprofil einzusehen?'
-    voting_alert_votes_left: 'Benutzer benachrichten, wenn diese Anzahl von Votes verblieben sind'
+    voting_enabled: 'Benutzern erlauben, für Themen zu stimmen?'
+    voting_tl0_vote_limit: 'Wie viele aktive Stimmen sind für VS0-Benutzer erlaubt?'
+    voting_tl1_vote_limit: 'Wie viele aktive Stimmen sind für VS1-Benutzer erlaubt?'
+    voting_tl2_vote_limit: 'Wie viele aktive Stimmen sind für VS2-Benutzer erlaubt?'
+    voting_tl3_vote_limit: 'Wie viele aktive Stimmen sind für VS3-Benutzer erlaubt?'
+    voting_tl4_vote_limit: 'Wie viele aktive Stimmen sind für VS4-Benutzer erlaubt?'
+    voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer abgestimmt hat?'
+    voting_show_votes_on_profile: 'Benutzern erlauben, ihre Stimmen in ihrem Aktivitätsfeed zu sehen?'
+    voting_alert_votes_left: 'Benutzer benachrichtigen, wenn so viele Stimmen übrig sind'
   voting:
     votes_moved:
-      one: "Eine Stimme wurde verschoben"
+      one: "Eine Stimme wurde verschoben."
       other: "%{count} Stimmen wurden verschoben."
     duplicated_votes:
       one: "Eine Stimme konnte nicht verschoben werden, weil der Benutzer bereits in einem anderen Thema abgestimmt hat."

@@ -6,12 +6,17 @@
 
 ja:
   site_settings:
-    voting_enabled: 'ユーザーに投票を許可しますか？'
-    voting_tl0_vote_limit: '何個のアクティブな投票をTL0ユーザーに許可しますか？'
-    voting_tl1_vote_limit: '何個のアクティブな投票をTL1ユーザーに許可しますか？'
-    voting_tl2_vote_limit: '何個のアクティブな投票をTL2ユーザーに許可しますか？'
-    voting_tl3_vote_limit: '何個のアクティブな投票をTL3ユーザーに許可しますか？'
-    voting_tl4_vote_limit: '何個のアクティブな投票をTL4ユーザーに許可しますか？'
-    voting_show_who_voted: 'ユーザーに誰が投票したか見ることができるようにしますか？'
-    voting_show_votes_on_profile: 'ユーザーのアクティビティーフィードでユーザーの投票を見ることができるようにしますか？'
-    voting_alert_votes_left: '多くの投票が放置された時通知する'
+    voting_enabled: 'ユーザーがトピックに投票することを許可しますか？'
+    voting_tl0_vote_limit: 'いくつのアクティブ票数を TL0 ユーザーに許可しますか？'
+    voting_tl1_vote_limit: 'いくつのアクティブ票数を TL1 ユーザーに許可しますか？'
+    voting_tl2_vote_limit: 'いくつのアクティブ票数を TL2 ユーザーに許可しますか？'
+    voting_tl3_vote_limit: 'いくつのアクティブ票数を TL3 ユーザーに許可しますか？'
+    voting_tl4_vote_limit: 'いくつのアクティブ票数を TL4 ユーザーに許可しますか？'
+    voting_show_who_voted: 'ユーザーが投票者を閲覧することを許可しますか？'
+    voting_show_votes_on_profile: 'ユーザーがアクティビティフィードで投票を閲覧することを許可しますか？'
+    voting_alert_votes_left: '残りの票数がこの票数になったらユーザーに通知する'
+  voting:
+    votes_moved:
+      other: "%{count} 票が移動されました。"
+    duplicated_votes:
+      other: "ユーザーが別のトピックに投票済みであるため、%{count} 票を移動できませんでした。"
