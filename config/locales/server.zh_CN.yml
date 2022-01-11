@@ -6,17 +6,17 @@
 
 zh_CN:
   site_settings:
-    voting_enabled: '是否允许用户为话题投票？'
-    voting_tl0_vote_limit: '信用等级 0 的用户有多少次投票机会？'
-    voting_tl1_vote_limit: '信用等级 1 的用户有多少次投票机会？'
-    voting_tl2_vote_limit: '信用等级 2 的用户有多少次投票机会？'
-    voting_tl3_vote_limit: '信用等级 3 的用户有多少次投票机会？'
-    voting_tl4_vote_limit: '信用等级 4 的用户有多少次投票机会？'
-    voting_show_who_voted: '是否允许用户查看投票者？'
-    voting_show_votes_on_profile: '允许用户在活动信息中看到他们的投票？'
-    voting_alert_votes_left: '当投票机会还有多少时通知用户'
+    voting_enabled: '允许用户为话题投票？'
+    voting_tl0_vote_limit: '信任级别为 0 的用户有多少次投票机会？'
+    voting_tl1_vote_limit: '信任级别为 1 的用户有多少次投票机会？'
+    voting_tl2_vote_limit: '信任级别为 2 的用户有多少次投票机会？'
+    voting_tl3_vote_limit: '信任级别为 3 的用户有多少次投票机会？'
+    voting_tl4_vote_limit: '信任级别为 4 的用户有多少次投票机会？'
+    voting_show_who_voted: '允许用户查看投票者？'
+    voting_show_votes_on_profile: '允许用户在活动源中查看其投票？'
+    voting_alert_votes_left: '当投票机会还有此数值时通知用户'
   voting:
     votes_moved:
-      other: "%{count} 个投票被移动。"
+      other: "%{count} 个投票已被移动。"
     duplicated_votes:
       other: "%{count} 个投票无法移动，因为用户已在另一个话题中投票。"

@@ -10,10 +10,10 @@ fr:
       sort_options:
         votes: "Votes"
     voting:
-      title: "Votation"
+      title: "Vote"
       reached_limit: "Vous n'avez plus de votes disponibles, enlevez-en un !"
       list_votes: "Lister vos votes"
-      votes_nav_help: "sujets les plus votés"
+      votes_nav_help: "sujets ayant reçu le plus de votes"
       voted: "Vous avez voté pour ce sujet"
       allow_topic_voting: "Autoriser les utilisateurs à voter dans cette catégorie"
       vote_title: "Vote"
@@ -33,11 +33,11 @@ fr:
       anonymous_button:
         one: "Vote"
         other: "Votes"
-      remove_vote: "Retirer vote"
+      remove_vote: "Supprimer le vote"
     filters:
       votes:
         title: "Votes"
-        help: "sujets les plus votés"
+        help: "sujets ayant reçu le plus de votes"
       my_votes:
         title: "Mes votes"
         help: "sujets sur lesquels vous avez voté"
@@ -46,4 +46,4 @@ fr:
       advanced:
         vote:
           count:
-            label: "Nombre minimum de votes"
+            label: "Nombre minimal de votes"

@@ -11,18 +11,24 @@ de:
         votes: "Stimmen"
     voting:
       title: "Abstimmung"
-      reached_limit: "Dir sind die Votes ausgegangen, entferne einen vorhandenen Vote!"
-      list_votes: "Deine Votes auflisten"
-      votes_nav_help: "Themen mit den meisten Votes"
-      voted: "Du hast für dieses Thema gevotet"
-      allow_topic_voting: "Benutzern erlauben, für Themen in dieser Kategorie zu voten"
-      vote_title: "Vote"
-      vote_title_plural: "Votes"
-      voted_title: "Voted"
+      reached_limit: "Du hast keine Stimmen mehr. Entferne eine bestehende Stimme!"
+      list_votes: "Deine Stimmen auflisten"
+      votes_nav_help: "Themen mit den meisten Stimmen"
+      voted: "Du hast für dieses Thema gestimmt"
+      allow_topic_voting: "Benutzern erlauben, für Themen in dieser Kategorie zu stimmen"
+      vote_title: "Stimme"
+      vote_title_plural: "Stimmen"
+      voted_title: "Abgestimmt"
       voting_closed_title: "Geschlossen"
       voting_limit: "Limit"
+      votes_left:
+        one: "Du hast noch %{count} Stimme übrig, siehe <a href='%{path}'>deine Stimmen</a>."
+        other: "Du hast noch %{count} Stimmen übrig, siehe <a href='%{path}'>deine Stimmen</a>."
+      votes_left_button_title:
+        one: "Du hast noch %{count} Stimme übrig."
+        other: "Du hast noch %{count} Stimmen übrig."
       votes:
-        one: "%{count} Abstimmung"
+        one: "%{count} Stimme"
         other: "%{count} Stimmen"
       anonymous_button:
         one: "Stimme"
@@ -30,11 +36,13 @@ de:
       remove_vote: "Stimme entfernen"
     filters:
       votes:
-        title: "Votes"
-        help: "Themen mit den meisten Votes"
+        title: "Stimmen"
+        help: "Themen mit den meisten Stimmen"
       my_votes:
-        help: "Themen, über die Sie abgestimmt haben"
+        title: "Meine Stimmen"
+        help: "Themen, über die du abgestimmt hast"
     search:
+      most_votes: "Meiste Stimmen"
       advanced:
         vote:
           count:

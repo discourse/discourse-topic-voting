@@ -15,12 +15,18 @@ pt_BR:
       list_votes: "Mostrar seus votos"
       votes_nav_help: "tópicos com a maioria dos votos"
       voted: "Você votou neste tópico"
-      allow_topic_voting: "Permitir que usuários votem em tópicos desta categoria"
+      allow_topic_voting: "Permitir que usuários(as) votem em tópicos desta categoria"
       vote_title: "Votar"
       vote_title_plural: "Votos"
-      voted_title: "Votado"
+      voted_title: "Votou"
       voting_closed_title: "Fechado"
       voting_limit: "Limite"
+      votes_left:
+        one: "Você tem %{count} voto restante, veja <a href='%{path}'>seus votos</a>."
+        other: "Você tem %{count} votos restantes, veja <a href='%{path}'>seus votos</a>."
+      votes_left_button_title:
+        one: "Você tem %{count} voto restante."
+        other: "Você tem %{count} votos restantes."
       votes:
         one: "%{count} voto"
         other: "%{count} votos"
@@ -33,11 +39,11 @@ pt_BR:
         title: "Votos"
         help: "tópicos com a maioria dos votos"
       my_votes:
-        title: "Meus Votos"
-        help: "tópicos que você votou"
+        title: "Meus votos"
+        help: "tópicos em que você votou"
     search:
       most_votes: "Mais votados"
       advanced:
         vote:
           count:
-            label: "Contagem Mínima de Votos"
+            label: "Contagem mínima de votos"

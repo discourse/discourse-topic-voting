@@ -17,7 +17,7 @@ es:
     voting_alert_votes_left: 'Alertar al usuario cuando queda esta cantidad de votos'
   voting:
     votes_moved:
-      one: "Un voto se ha movido"
+      one: "Se ha movido un voto."
       other: "Se han movido %{count} votos."
     duplicated_votes:
       one: "No se pudo mover un voto porque el usuario ya votó en el otro tema."

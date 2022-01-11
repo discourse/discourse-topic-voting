@@ -10,20 +10,23 @@ it:
       sort_options:
         votes: "Voti"
     voting:
-      title: "Votare"
+      title: "Votazione"
       reached_limit: "Hai terminato i voti, rimuovi un voto esistente!"
       list_votes: "Elenca i tuoi voti"
       votes_nav_help: "argomenti con il maggior numero di voti"
       voted: "Hai votato su questo argomento"
       allow_topic_voting: "Permetti agli utenti di votare gli argomenti in questa categoria"
-      vote_title: "Vota"
+      vote_title: "Voto"
       vote_title_plural: "Voti"
       voted_title: "Votato"
       voting_closed_title: "Chiuso"
       voting_limit: "Limite"
       votes_left:
         one: "Hai ancora %{count} voto, vedi i <a href='%{path}'>tuoi voti</a>."
-        other: "Hai ancora %{count} voti, guarda i <a href='%{path}'>tuoi voti</a> ."
+        other: "Hai ancora %{count} voti, vedi i <a href='%{path}'>tuoi voti</a>."
+      votes_left_button_title:
+        one: "Hai ancora %{count} voto."
+        other: "Hai ancora %{count} voti."
       votes:
         one: "%{count} voto"
         other: "%{count} voti"
@@ -35,3 +38,12 @@ it:
       votes:
         title: "Voti"
         help: "argomenti con il maggior numero di voti"
+      my_votes:
+        title: "I miei voti"
+        help: "argomenti su cui hai votato"
+    search:
+      most_votes: "I più votati"
+      advanced:
+        vote:
+          count:
+            label: "Numero minimo di voti"

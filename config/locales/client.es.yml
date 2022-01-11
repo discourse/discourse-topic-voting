@@ -21,11 +21,29 @@ es:
       voted_title: "Votado"
       voting_closed_title: "Cerrado"
       voting_limit: "Límite"
+      votes_left:
+        one: "Te queda %{count} voto, consulta <a href='%{path}'>tus votos</a>."
+        other: "Te quedan %{count} votos, consulta <a href='%{path}'>tus votos</a>."
+      votes_left_button_title:
+        one: "Te queda %{count} voto."
+        other: "Te quedan %{count} votos."
+      votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
       anonymous_button:
         one: "Voto"
         other: "Votos"
-      remove_vote: "Quitar voto"
+      remove_vote: "Eliminar voto"
     filters:
       votes:
         title: "Votos"
         help: "temas con más votos"
+      my_votes:
+        title: "Mis votos"
+        help: "temas en los que has votado"
+    search:
+      most_votes: "Más votos"
+      advanced:
+        vote:
+          count:
+            label: "Número mínimo de votos"
