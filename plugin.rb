@@ -85,7 +85,7 @@ after_initialize do
           sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
           result = result
             .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
-            .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}")
+            .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}, topics.bumped_at DESC")
         end
 
         result
