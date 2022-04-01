@@ -24,7 +24,7 @@ export default UserTopicListRoute.extend({
       : I18n.t("voting.no_votes_title_others", { username: user.username });
 
     return {
-      title: title,
+      title,
       body: "",
     };
   },
