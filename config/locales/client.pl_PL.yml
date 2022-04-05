@@ -42,6 +42,8 @@ pl_PL:
         many: "Głosów"
         other: "Głosów"
       remove_vote: "Usuń głos"
+      no_votes_title_self: "Nie głosowałeś jeszcze na żaden temat"
+      no_votes_title_others: "%{username} nie zagłosował jeszcze na żaden temat"
     filters:
       votes:
         title: "Głosy"

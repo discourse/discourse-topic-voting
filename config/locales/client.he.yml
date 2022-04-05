@@ -26,6 +26,11 @@ he:
         two: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
         many: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
         other: "נותרו לרשותך %{count} הצבעות, להצגת ה<a href='%{path}'>הצבעות שלך</a>."
+      votes_left_button_title:
+        one: "נותרה לך הצבעה %{count}."
+        two: "נותרו לך %{count} הצבעות."
+        many: "נותרו לך %{count} הצבעות."
+        other: "נותרו לך %{count} הצבעות."
       votes:
         one: "הצבעה %{count}"
         two: "%{count} הצבעות"
@@ -37,6 +42,8 @@ he:
         many: "הצבעות"
         other: "הצבעות"
       remove_vote: "הסרת הצבעה"
+      no_votes_title_self: "עדיין לא הצבעת לאף נושא"
+      no_votes_title_others: "עדיין לא התקבלה הצבעה על נושא כלשהו מאת %{username}"
     filters:
       votes:
         title: "הצבעות"
