@@ -1,7 +1,7 @@
 export default {
   setupComponent(attrs, component) {
     let votingEnabled = attrs.category?.custom_fields?.discourse_voting_enabled;
-    this.set("votingEnabled", votingEnabled);
+    component.set("votingEnabled", votingEnabled);
   },
   actions: {
     updateVotingEnabled(value) {
