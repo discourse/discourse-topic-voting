@@ -2,7 +2,7 @@
 <section class="field">
   <div class="enable-topic-voting">
     <label class="checkbox-label">
-      {{input type="checkbox" click=(action "updateVotingEnabled" value="target.checked")}}
+      {{input type="checkbox" checked=votingEnabled click=(action "updateVotingEnabled" value="target.checked")}}
       {{i18n "voting.allow_topic_voting"}}
     </label>
   </div>
