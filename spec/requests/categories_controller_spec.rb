@@ -18,4 +18,11 @@ describe CategoriesController do
     }
     expect(Category.can_vote?(category.id)).to eq(true)
   end
+
+  it "disables voting correctly" do
+    put "/categories/#{category.id}.json", params: {
+      custom_fields: { "enable_topic_voting" => false }
+    }
+    expect(Category.can_vote?(category.id)).to eq(false)
+  end
 end
