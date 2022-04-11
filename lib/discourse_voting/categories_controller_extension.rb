@@ -3,7 +3,7 @@
 module DiscourseVoting
   module CategoriesControllerExtension
     def category_params
-      @vote_enabled ||= params[:custom_fields] && params[:custom_fields].delete(:enable_topic_voting) == "true"
+      @vote_enabled ||= !!ActiveRecord::Type::Boolean.new.cast(params[:custom_fields]&.delete(:enable_topic_voting))
       category_params = super
       if @vote_enabled
         category_params[:category_setting_attributes] = {}
