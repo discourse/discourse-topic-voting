@@ -34,6 +34,8 @@ sv:
         one: "Röst"
         other: "Röster"
       remove_vote: "Ta bort röst"
+      no_votes_title_self: "Du har inte röstat på något ämne ännu"
+      no_votes_title_others: "%{username} har inte röstat på något ämne ännu"
     filters:
       votes:
         title: "Röster"
