@@ -19,6 +19,15 @@ describe CategoriesController do
     expect(Category.can_vote?(category.id)).to eq(true)
   end
 
+  it "does not recreate database record" do
+    category_setting = DiscourseVoting::CategorySetting.create!(category: category)
+
+    put "/categories/#{category.id}.json", params: {
+      custom_fields: { "enable_topic_voting" => true }
+    }
+    expect(DiscourseVoting::CategorySetting.last.id).to eq(category_setting.id)
+  end
+
   it "disables voting correctly" do
     put "/categories/#{category.id}.json", params: {
       custom_fields: { "enable_topic_voting" => false }
