@@ -7,7 +7,6 @@ describe TopicQuery do
   fab!(:category1) { Fabricate(:category) }
   fab!(:topic0) { Fabricate(:topic, category: category1) }
   fab!(:topic1) { Fabricate(:topic, category: category1) }
-  fab!(:category_setting) { DiscourseVoting::CategorySetting.create!(category_id: category1) }
   fab!(:vote) { DiscourseVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id) }
   fab!(:topic_vote_count) { DiscourseVoting::TopicVoteCount.create!(topic_id: topic1.id, votes_count: 1) }
 
