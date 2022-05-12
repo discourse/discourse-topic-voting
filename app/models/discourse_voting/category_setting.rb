@@ -8,6 +8,8 @@ module DiscourseVoting
 
     before_create :unarchive_votes
     before_destroy :archive_votes
+    after_create :log_category_voting_enabled
+    after_destroy :log_category_voting_disabled
     after_save :reset_voting_cache
 
     def unarchive_votes
@@ -35,6 +37,24 @@ module DiscourseVoting
 
     def reset_voting_cache
       ::Category.reset_voting_cache
+    end
+
+    def log_category_voting_disabled
+      ::StaffActionLogger.new(Discourse.system_user).log_category_settings_change(
+        self.category,
+        { custom_fields: { enable_topic_voting: "false" } },
+        old_permissions: {},
+        old_custom_fields: { enable_topic_voting: "true" }
+      )
+    end
+
+    def log_category_voting_enabled
+      ::StaffActionLogger.new(Discourse.system_user).log_category_settings_change(
+        self.category,
+        { custom_fields: { enable_topic_voting: "true" } },
+        old_permissions: {},
+        old_custom_fields: { enable_topic_voting: "false" }
+      )
     end
   end
 end
