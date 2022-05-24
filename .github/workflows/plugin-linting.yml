@@ -6,15 +6,19 @@ on:
       - main
   pull_request:
 
+concurrency:
+  group: plugin-linting-${{ format('{0}-{1}', github.head_ref || github.run_number, github.job) }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: yarn
@@ -46,7 +50,7 @@ jobs:
 
       - name: Ember template lint
         if: ${{ always() }}
-        run: yarn ember-template-lint assets/javascripts
+        run: yarn ember-template-lint --no-error-on-unmatched-pattern assets/javascripts
 
       - name: Rubocop
         if: ${{ always() }}
