@@ -1,5 +1,6 @@
 import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import discourseComputed from "discourse-common/utils/decorators";
 
 function initialize(api) {
   api.addPostClassesCallback((post) => {
@@ -44,6 +45,19 @@ export default {
 
   initialize() {
     withPluginApi("0.8.4", (api) => initialize(api));
-    withPluginApi("0.8.30", (api) => api.addCategorySortCriteria("votes"));
+    withPluginApi("0.8.30", (api) => {
+      api.addCategorySortCriteria("votes");
+      api.modifyClass("component:edit-category-settings", {
+        pluginId: "discourse-voting",
+
+        @discourseComputed
+        availableViews() {
+          return [...this._super(...arguments), {
+            name: I18n.t("filters.votes.title"),
+            value: "votes"
+          }];
+        }
+      })
+    });
   },
 };
