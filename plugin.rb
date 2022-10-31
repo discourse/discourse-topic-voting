@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# name: discourse-voting
+# name: discourse-topic-voting
 # about: Adds the ability to vote on features in a specified category.
 # version: 0.5
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
-# url: https://github.com/discourse/discourse-voting
+# url: https://github.com/discourse/discourse-topic-voting
 
 register_asset "stylesheets/common/feature-voting.scss"
 register_asset "stylesheets/desktop/feature-voting.scss", :desktop
