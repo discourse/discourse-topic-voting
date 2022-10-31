@@ -8,26 +8,26 @@ describe Jobs::VotingEnsureConsistency do
     user2 = Fabricate(:user)
 
     no_vote_topic = Fabricate(:topic)
-    DiscourseVoting::TopicVoteCount.create!(topic: no_vote_topic, votes_count: 10)
+    DiscourseTopicVoting::TopicVoteCount.create!(topic: no_vote_topic, votes_count: 10)
 
     one_vote_topic = Fabricate(:topic)
-    DiscourseVoting::TopicVoteCount.create!(topic: one_vote_topic, votes_count: 10)
+    DiscourseTopicVoting::TopicVoteCount.create!(topic: one_vote_topic, votes_count: 10)
 
     two_vote_topic = Fabricate(:topic)
 
     # one vote
-    DiscourseVoting::Vote.create!(user: user, topic: one_vote_topic, archive: true)
+    DiscourseTopicVoting::Vote.create!(user: user, topic: one_vote_topic, archive: true)
 
     # two votes
-    DiscourseVoting::Vote.create!(user: user, topic: two_vote_topic, archive: true)
-    DiscourseVoting::Vote.create!(user: user2, topic: two_vote_topic)
+    DiscourseTopicVoting::Vote.create!(user: user, topic: two_vote_topic, archive: true)
+    DiscourseTopicVoting::Vote.create!(user: user2, topic: two_vote_topic)
 
     subject.execute_onceoff(nil)
 
     no_vote_topic.reload
 
-    expect(DiscourseVoting::Vote.where(user: user).pluck(:topic_id)).to eq([one_vote_topic.id, two_vote_topic.id])
-    expect(DiscourseVoting::Vote.where(user: user2).pluck(:topic_id)).to eq([two_vote_topic.id])
+    expect(DiscourseTopicVoting::Vote.where(user: user).pluck(:topic_id)).to eq([one_vote_topic.id, two_vote_topic.id])
+    expect(DiscourseTopicVoting::Vote.where(user: user2).pluck(:topic_id)).to eq([two_vote_topic.id])
 
     one_vote_topic.reload
     expect(one_vote_topic.topic_vote_count.votes_count).to eq(1)

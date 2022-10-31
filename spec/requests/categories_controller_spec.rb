@@ -20,12 +20,12 @@ describe CategoriesController do
   end
 
   it "does not recreate database record" do
-    category_setting = DiscourseVoting::CategorySetting.create!(category: category)
+    category_setting = DiscourseTopicVoting::CategorySetting.create!(category: category)
 
     put "/categories/#{category.id}.json", params: {
       custom_fields: { "enable_topic_voting" => true }
     }
-    expect(DiscourseVoting::CategorySetting.last.id).to eq(category_setting.id)
+    expect(DiscourseTopicVoting::CategorySetting.last.id).to eq(category_setting.id)
   end
 
   it "disables voting correctly" do

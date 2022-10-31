@@ -18,9 +18,9 @@ Discourse.filters.push(:votes)
 Discourse.anonymous_filters.push(:votes)
 
 after_initialize do
-  module ::DiscourseVoting
+  module ::DiscourseTopicVoting
     class Engine < ::Rails::Engine
-      isolate_namespace DiscourseVoting
+      isolate_namespace DiscourseTopicVoting
     end
   end
 
@@ -34,10 +34,10 @@ after_initialize do
   load File.expand_path('../lib/discourse_voting/user_extension.rb', __FILE__)
 
   reloadable_patch do |plugin|
-    CategoriesController.class_eval { prepend DiscourseVoting::CategoriesControllerExtension }
-    Category.class_eval { prepend DiscourseVoting::CategoryExtension }
-    Topic.class_eval { prepend DiscourseVoting::TopicExtension }
-    User.class_eval { prepend DiscourseVoting::UserExtension }
+    CategoriesController.class_eval { prepend DiscourseTopicVoting::CategoriesControllerExtension }
+    Category.class_eval { prepend DiscourseTopicVoting::CategoryExtension }
+    Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
+    User.class_eval { prepend DiscourseTopicVoting::UserExtension }
 
     require_dependency 'post_serializer'
     class ::PostSerializer
@@ -93,7 +93,7 @@ after_initialize do
     end
 
     add_to_serializer(:category, :custom_fields) do
-      object.custom_fields.merge(enable_topic_voting: DiscourseVoting::CategorySetting.find_by(category_id: object.id).present?)
+      object.custom_fields.merge(enable_topic_voting: DiscourseTopicVoting::CategorySetting.find_by(category_id: object.id).present?)
     end
 
     add_to_serializer(:topic_list_item, :vote_count, false) { object.vote_count }
@@ -117,7 +117,7 @@ after_initialize do
       def self.reset_voting_cache
         @allowed_voting_cache["allowed"] =
           begin
-            DiscourseVoting::CategorySetting.pluck(:category_id)
+            DiscourseTopicVoting::CategorySetting.pluck(:category_id)
           end
       end
 
@@ -229,7 +229,7 @@ after_initialize do
       class VoteRelease < ::Jobs::Base
         def execute(args)
           if topic = Topic.with_deleted.find_by(id: args[:topic_id])
-            votes = DiscourseVoting::Vote.where(topic_id: args[:topic_id])
+            votes = DiscourseTopicVoting::Vote.where(topic_id: args[:topic_id])
             votes.update_all(archive: true)
 
             topic.update_vote_count
@@ -254,7 +254,7 @@ after_initialize do
         def execute(args)
           if topic = Topic.with_deleted.find_by(id: args[:topic_id])
             ActiveRecord::Base.transaction do
-              DiscourseVoting::Vote.where(topic_id: args[:topic_id]).update_all(archive: false)
+              DiscourseTopicVoting::Vote.where(topic_id: args[:topic_id]).update_all(archive: false)
               topic.update_vote_count
             end
           end
@@ -285,7 +285,7 @@ after_initialize do
   DiscourseEvent.on(:post_edited) do |post, topic_changed|
     if topic_changed &&
         SiteSetting.voting_enabled &&
-        DiscourseVoting::Vote.exists?(topic_id: post.topic_id)
+        DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id)
       new_category_id = post.reload.topic.category_id
       if Category.can_vote?(new_category_id)
         Jobs.enqueue(:vote_reclaim, topic_id: post.topic_id)
@@ -334,14 +334,14 @@ after_initialize do
 
   require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_voting/votes_controller')
 
-  DiscourseVoting::Engine.routes.draw do
+  DiscourseTopicVoting::Engine.routes.draw do
     post 'vote' => 'votes#vote'
     post 'unvote' => 'votes#unvote'
     get 'who' => 'votes#who'
   end
 
   Discourse::Application.routes.append do
-    mount ::DiscourseVoting::Engine, at: "/voting"
+    mount ::DiscourseTopicVoting::Engine, at: "/voting"
     # USERNAME_ROUTE_FORMAT is deprecated but we may need to support it for older installs
     username_route_format = defined?(RouteFormat) ? RouteFormat.username : USERNAME_ROUTE_FORMAT
     get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: { username: username_route_format }

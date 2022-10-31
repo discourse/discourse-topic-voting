@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseVoting
+module DiscourseTopicVoting
   module TopicExtension
     def self.prepended(base)
       base.has_one :topic_vote_count, class_name: 'DiscourseVoting::TopicVoteCount', dependent: :destroy

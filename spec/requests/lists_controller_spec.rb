@@ -11,7 +11,7 @@ describe ListController do
   end
 
   it "allow anons to view votes" do
-    DiscourseVoting::Vote.create!(user: user, topic: topic)
+    DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
 
     get "/topics/voted-by/#{user.username}.json"
     topic_json = response.parsed_body.dig('topic_list', 'topics').first
@@ -20,7 +20,7 @@ describe ListController do
   end
 
   it "returns a 404 when we don't show votes on profiles" do
-    DiscourseVoting::Vote.create!(user: user, topic: topic)
+    DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
     SiteSetting.voting_show_votes_on_profile = false
 
     get "/topics/voted-by/#{user.username}.json"

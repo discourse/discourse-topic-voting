@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DiscourseVoting do
+describe DiscourseTopicVoting do
 
   let!(:user0) { Fabricate(:user) }
   let!(:user1) { Fabricate(:user) }
@@ -28,7 +28,7 @@ describe DiscourseVoting do
 
     expect(user0.reached_voting_limit?).to eq(false)
 
-    DiscourseVoting::Vote.create!(user: user0, topic: topic0)
+    DiscourseTopicVoting::Vote.create!(user: user0, topic: topic0)
 
     expect(user0.reached_voting_limit?).to eq(true)
   end
@@ -42,13 +42,13 @@ describe DiscourseVoting do
 
       # +user0+ votes +topic0+, +user1+ votes +topic1+ and +user2+ votes both
       # topics.
-      DiscourseVoting::Vote.create!(user: users[0], topic: topic0)
-      DiscourseVoting::Vote.create!(user: users[1], topic: topic1)
-      DiscourseVoting::Vote.create!(user: users[2], topic: topic0)
-      DiscourseVoting::Vote.create!(user: users[2], topic: topic1)
-      DiscourseVoting::Vote.create!(user: users[4], topic: topic0, archive: true)
-      DiscourseVoting::Vote.create!(user: users[5], topic: topic0, archive: true)
-      DiscourseVoting::Vote.create!(user: users[5], topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: users[0], topic: topic0)
+      DiscourseTopicVoting::Vote.create!(user: users[1], topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: users[2], topic: topic0)
+      DiscourseTopicVoting::Vote.create!(user: users[2], topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: users[4], topic: topic0, archive: true)
+      DiscourseTopicVoting::Vote.create!(user: users[5], topic: topic0, archive: true)
+      DiscourseTopicVoting::Vote.create!(user: users[5], topic: topic1)
 
       [topic0, topic1].each { |t| t.update_vote_count }
     end
@@ -132,7 +132,7 @@ describe DiscourseVoting do
 
     it 'creates notification that topic was completed' do
       Jobs.run_immediately!
-      DiscourseVoting::Vote.create!(user: user0, topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: user0, topic: topic1)
       expect { topic1.update_status('closed', true, user0) }.to change { user0.reload.notifications.count }.by(1)
       notification = user0.notifications.last
       expect(notification.topic_id).to eq(topic1.id)
@@ -143,7 +143,7 @@ describe DiscourseVoting do
   context "when a job is trashed and then recovered" do
     it "released the vote back to the user, then reclaims it on topic recovery" do
       Jobs.run_immediately!
-      DiscourseVoting::Vote.create!(user: user0, topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: user0, topic: topic1)
 
       topic1.reload.trash!
       expect(user0.reload.topics_with_vote.pluck(:topic_id)).to eq([])
@@ -160,15 +160,15 @@ describe DiscourseVoting do
     let(:post1) { Fabricate(:post, topic: topic1, post_number: 1) }
 
     before do
-      DiscourseVoting::CategorySetting.create!(category: category1)
+      DiscourseTopicVoting::CategorySetting.create!(category: category1)
       category1.save!
       Category.reset_voting_cache
     end
 
     it "enqueus a job to reclaim votes if voting is enabled for the new category" do
       user = post1.user
-      DiscourseVoting::Vote.create!(user: user, topic: post1.topic, archive: true)
-      DiscourseVoting::Vote.create!(user: user, topic_id: 456456, archive: true)
+      DiscourseTopicVoting::Vote.create!(user: user, topic: post1.topic, archive: true)
+      DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456456, archive: true)
 
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
       expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
@@ -182,8 +182,8 @@ describe DiscourseVoting do
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
       user = post0.user
-      DiscourseVoting::Vote.create!(user: user, topic: post0.topic)
-      DiscourseVoting::Vote.create!(user: user, topic_id: 456456)
+      DiscourseTopicVoting::Vote.create!(user: user, topic: post0.topic)
+      DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456456)
 
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
       expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
@@ -209,33 +209,33 @@ describe DiscourseVoting do
     let(:topic2) { Fabricate(:topic, category: category3) }
 
     before do
-      DiscourseVoting::CategorySetting.create!(category: category1)
+      DiscourseTopicVoting::CategorySetting.create!(category: category1)
 
-      DiscourseVoting::CategorySetting.create!(category: category2)
+      DiscourseTopicVoting::CategorySetting.create!(category: category2)
 
-      DiscourseVoting::CategorySetting.destroy_by(category: category3)
+      DiscourseTopicVoting::CategorySetting.destroy_by(category: category3)
 
-      DiscourseVoting::Vote.create(user: user0, topic: topic0)
-      DiscourseVoting::Vote.create(user: user0, topic: topic1)
-      DiscourseVoting::Vote.create(user: user0, topic: topic2, archive: true)
+      DiscourseTopicVoting::Vote.create(user: user0, topic: topic0)
+      DiscourseTopicVoting::Vote.create(user: user0, topic: topic1)
+      DiscourseTopicVoting::Vote.create(user: user0, topic: topic2, archive: true)
     end
 
     it "reclaims votes when voting is disabled on a category" do
-      DiscourseVoting::CategorySetting.destroy_by(category: category1)
+      DiscourseTopicVoting::CategorySetting.destroy_by(category: category1)
 
       user0.reload
 
-      expect(DiscourseVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic1.id)
-      expect(DiscourseVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to contain_exactly(topic0.id, topic2.id)
+      expect(DiscourseTopicVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic1.id)
+      expect(DiscourseTopicVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to contain_exactly(topic0.id, topic2.id)
     end
 
     it "restores votes when voting is enabled on a category" do
-      DiscourseVoting::CategorySetting.create!(category: category3)
+      DiscourseTopicVoting::CategorySetting.create!(category: category3)
 
       user0.reload
 
-      expect(DiscourseVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic0.id, topic1.id, topic2.id)
-      expect(DiscourseVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to eq([])
+      expect(DiscourseTopicVoting::Vote.where(user: user0, archive: false).map(&:topic_id)).to contain_exactly(topic0.id, topic1.id, topic2.id)
+      expect(DiscourseTopicVoting::Vote.where(user: user0, archive: true).map(&:topic_id)).to eq([])
     end
 
     it 'is not erroring when topic without category' do

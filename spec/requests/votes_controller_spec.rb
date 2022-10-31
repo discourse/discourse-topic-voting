@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-describe DiscourseVoting::VotesController do
+describe DiscourseTopicVoting::VotesController do
 
   let(:user) { Fabricate(:user) }
   let(:category) { Fabricate(:category) }
   let(:topic) { Fabricate(:topic, category_id: category.id) }
 
   before do
-    DiscourseVoting::CategorySetting.create!(category: category)
+    DiscourseTopicVoting::CategorySetting.create!(category: category)
     Category.reset_voting_cache
     SiteSetting.voting_show_who_voted = true
     SiteSetting.voting_enabled = true

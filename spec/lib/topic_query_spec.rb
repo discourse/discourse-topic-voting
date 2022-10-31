@@ -7,8 +7,8 @@ describe TopicQuery do
   fab!(:category1) { Fabricate(:category) }
   fab!(:topic0) { Fabricate(:topic, category: category1) }
   fab!(:topic1) { Fabricate(:topic, category: category1) }
-  fab!(:vote) { DiscourseVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id) }
-  fab!(:topic_vote_count) { DiscourseVoting::TopicVoteCount.create!(topic_id: topic1.id, votes_count: 1) }
+  fab!(:vote) { DiscourseTopicVoting::Vote.create!(topic_id: topic1.id, user_id: user0.id) }
+  fab!(:topic_vote_count) { DiscourseTopicVoting::TopicVoteCount.create!(topic_id: topic1.id, votes_count: 1) }
 
   before do
     SiteSetting.voting_enabled = true
@@ -25,7 +25,7 @@ describe TopicQuery do
 
   it "orders topic by bumped_at if votes are equal" do
     topic2 = Fabricate(:topic, category: category1, bumped_at: 2.hours.ago)
-    DiscourseVoting::TopicVoteCount.create!(topic_id: topic2.id, votes_count: 2)
+    DiscourseTopicVoting::TopicVoteCount.create!(topic_id: topic2.id, votes_count: 2)
     topic3 = Fabricate(:topic, category: category1, bumped_at: 3.hours.ago)
     topic4 = Fabricate(:topic, category: category1, bumped_at: 1.hour.ago)
 

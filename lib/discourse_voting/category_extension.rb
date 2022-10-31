@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseVoting
+module DiscourseTopicVoting
   module CategoryExtension
     def self.prepended(base)
       base.has_one :category_setting, class_name: 'DiscourseVoting::CategorySetting', dependent: :destroy
