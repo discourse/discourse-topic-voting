@@ -3,7 +3,7 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import NavItem from "discourse/models/nav-item";
 
 export default {
-  name: "discourse-voting",
+  name: "discourse-topic-voting",
 
   initialize() {
     withPluginApi("0.8.32", (api) => {

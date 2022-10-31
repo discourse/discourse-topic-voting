@@ -6,9 +6,9 @@
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://github.com/discourse/discourse-topic-voting
 
-register_asset "stylesheets/common/feature-voting.scss"
-register_asset "stylesheets/desktop/feature-voting.scss", :desktop
-register_asset "stylesheets/mobile/feature-voting.scss", :mobile
+register_asset "stylesheets/common/topic-voting.scss"
+register_asset "stylesheets/desktop/topic-voting.scss", :desktop
+register_asset "stylesheets/mobile/topic-voting.scss", :mobile
 
 enabled_site_setting :voting_enabled
 
@@ -25,13 +25,13 @@ after_initialize do
   end
 
   load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_voting/category_setting.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_voting/topic_vote_count.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_voting/vote.rb', __FILE__)
-  load File.expand_path('../lib/discourse_voting/categories_controller_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_voting/category_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_voting/topic_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_voting/user_extension.rb', __FILE__)
+  load File.expand_path('../app/models/discourse_topic_voting/category_setting.rb', __FILE__)
+  load File.expand_path('../app/models/discourse_topic_voting/topic_vote_count.rb', __FILE__)
+  load File.expand_path('../app/models/discourse_topic_voting/vote.rb', __FILE__)
+  load File.expand_path('../lib/discourse_topic_voting/categories_controller_extension.rb', __FILE__)
+  load File.expand_path('../lib/discourse_topic_voting/category_extension.rb', __FILE__)
+  load File.expand_path('../lib/discourse_topic_voting/topic_extension.rb', __FILE__)
+  load File.expand_path('../lib/discourse_topic_voting/user_extension.rb', __FILE__)
 
   reloadable_patch do |plugin|
     CategoriesController.class_eval { prepend DiscourseTopicVoting::CategoriesControllerExtension }
@@ -332,7 +332,7 @@ after_initialize do
     end
   end
 
-  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_voting/votes_controller')
+  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_topic_voting/votes_controller')
 
   DiscourseTopicVoting::Engine.routes.draw do
     post 'vote' => 'votes#vote'
