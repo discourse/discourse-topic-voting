@@ -9,7 +9,7 @@ el:
     category:
       sort_options:
         votes: "Ψήφοι"
-    voting:
+    topic_voting:
       title: "Ψηφοφορία"
       reached_limit: "Έχετε χρησιμοποιήσει όλες τις ψήφους σας, καταργήστε μια υπάρχουσα ψήφο!"
       list_votes: "Λίστα των ψήφων σας"

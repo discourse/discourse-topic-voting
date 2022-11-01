@@ -9,7 +9,7 @@ sk:
     category:
       sort_options:
         votes: "Hlasy"
-    voting:
+    topic_voting:
       vote_title: "Hlas"
       vote_title_plural: "Hlasy"
       voted_title: "Odhlasované"

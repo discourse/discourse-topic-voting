@@ -9,7 +9,7 @@ nb_NO:
     category:
       sort_options:
         votes: "Stemmer"
-    voting:
+    topic_voting:
       reached_limit: "Du har ikke flere stemmer igjen, fjern en eksisterende stemme."
       list_votes: "List opp dine stemmer"
       votes_nav_help: "emner med flest stemmer"

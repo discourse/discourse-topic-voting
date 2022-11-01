@@ -9,7 +9,7 @@ be:
     category:
       sort_options:
         votes: "Галасоў"
-    voting:
+    topic_voting:
       title: "Галасаванне"
       reached_limit: "Вы выкарысталі свае галасы, выдаліце адзін з іх для перагаласавання!"
       list_votes: "Спіс вашых галасаванняў"

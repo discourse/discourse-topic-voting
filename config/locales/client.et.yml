@@ -9,7 +9,7 @@ et:
     category:
       sort_options:
         votes: "HInnangud"
-    voting:
+    topic_voting:
       voted: "Sa hindasid seda teemat"
       vote_title: "Hinda"
       vote_title_plural: "HInnangud"

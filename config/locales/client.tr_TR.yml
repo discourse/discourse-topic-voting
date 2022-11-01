@@ -9,7 +9,7 @@ tr_TR:
     category:
       sort_options:
         votes: "Oylar"
-    voting:
+    topic_voting:
       title: "Oylama"
       reached_limit: "Oy hakkınız kalmadı, mevcut bir oyunuzu kaldırın!"
       list_votes: "Oylarınızı listeleyin"

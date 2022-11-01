@@ -9,7 +9,7 @@ ko:
     category:
       sort_options:
         votes: "투표"
-    voting:
+    topic_voting:
       title: "투표"
       reached_limit: "투표권이 없습니다. 기존 투표를 제거하십시오!"
       list_votes: "내 투표 목록"

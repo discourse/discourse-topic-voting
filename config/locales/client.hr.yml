@@ -9,7 +9,7 @@ hr:
     category:
       sort_options:
         votes: "Glasovi"
-    voting:
+    topic_voting:
       title: "Glasanje"
       reached_limit: "Ponestalo vam je glasova, uklonite postojeći glas!"
       list_votes: "Prikažite svoje glasove"

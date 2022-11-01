@@ -79,8 +79,8 @@ describe DiscourseTopicVoting do
       expect(topic1.reload.vote_count).to eq(5)
 
       merged_post = topic0.posts.find_by(action_code: 'split_topic')
-      expect(merged_post.raw).to include(I18n.t('voting.votes_moved', count: 2))
-      expect(merged_post.raw).to include(I18n.t('voting.duplicated_votes', count: 2))
+      expect(merged_post.raw).to include(I18n.t('topic_voting.votes_moved', count: 2))
+      expect(merged_post.raw).to include(I18n.t('topic_voting.duplicated_votes', count: 2))
     end
 
     it 'does not move votes when not all posts are moved and the original topic does not get closed' do

@@ -9,7 +9,7 @@ sv:
     category:
       sort_options:
         votes: "Röster"
-    voting:
+    topic_voting:
       title: "Röstning"
       reached_limit: "Du har inga fler röster, ta bort en befintlig röst!"
       list_votes: "Visa en lista över dina röster"

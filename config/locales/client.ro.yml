@@ -9,7 +9,7 @@ ro:
     category:
       sort_options:
         votes: "Evaluări"
-    voting:
+    topic_voting:
       title: "Evaluare"
       reached_limit: "Nu mai ai voturi, elimină un vot existent!"
       list_votes: "Listează-ți voturile"

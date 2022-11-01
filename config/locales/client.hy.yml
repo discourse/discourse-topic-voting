@@ -9,7 +9,7 @@ hy:
     category:
       sort_options:
         votes: "Քվեներ"
-    voting:
+    topic_voting:
       reached_limit: "Դուք գերազանցել եք քվեների քանակը, հեռացրեք որևէ գոյույթուն ունեցող քվե!"
       list_votes: "Ցուցակագրել Ձեր քվեները"
       votes_nav_help: "ամենաշատ քվեներով թեմաները"

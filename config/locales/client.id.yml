@@ -6,5 +6,5 @@
 
 id:
   js:
-    voting:
+    topic_voting:
       voting_closed_title: "Tertutup"

@@ -9,7 +9,7 @@ th:
     category:
       sort_options:
         votes: "โหวต"
-    voting:
+    topic_voting:
       title: "การโหวต"
       reached_limit: "คุณใช้คะแนนโหวตหมดแล้ว ลบอันที่โหวตไปแล้วออกก่อน"
       voting_closed_title: "ปิด"

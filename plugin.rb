@@ -325,8 +325,8 @@ after_initialize do
       dest.update_vote_count
 
       if moderator_post = orig.ordered_posts.where(action_code: 'split_topic').last
-        moderator_post.raw << "\n\n#{I18n.t('voting.votes_moved', count: moved_votes)}"
-        moderator_post.raw << " #{I18n.t('voting.duplicated_votes', count: duplicated_votes)}" if duplicated_votes > 0
+        moderator_post.raw << "\n\n#{I18n.t('topic_voting.votes_moved', count: moved_votes)}"
+        moderator_post.raw << " #{I18n.t('topic_voting.duplicated_votes', count: duplicated_votes)}" if duplicated_votes > 0
         moderator_post.save!
       end
     end

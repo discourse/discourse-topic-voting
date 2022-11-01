@@ -9,7 +9,7 @@ sl:
     category:
       sort_options:
         votes: "Glasov"
-    voting:
+    topic_voting:
       title: "Glasovanje"
       reached_limit: "Nimate več glasov, odstranite obstoječega!"
       list_votes: "Prikaži moje glasove"

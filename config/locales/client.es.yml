@@ -9,7 +9,7 @@ es:
     category:
       sort_options:
         votes: "Votos"
-    voting:
+    topic_voting:
       title: "Votación"
       reached_limit: "Se te acabaron los votos, ¡elimina un voto existente!"
       list_votes: "Lista de tus votos"

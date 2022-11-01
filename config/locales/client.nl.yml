@@ -9,7 +9,7 @@ nl:
     category:
       sort_options:
         votes: "Stemmen"
-    voting:
+    topic_voting:
       title: "Stemmen"
       reached_limit: "U hebt geen stemmen meer, verwijder een bestaande stem!"
       list_votes: "Uw stemmen weergeven"

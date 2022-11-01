@@ -9,7 +9,7 @@ zh_CN:
     category:
       sort_options:
         votes: "投票"
-    voting:
+    topic_voting:
       title: "投票"
       reached_limit: "您无法再投票了，请移除现有投票！"
       list_votes: "列出您的投票"

@@ -9,7 +9,7 @@ pl_PL:
     category:
       sort_options:
         votes: "Głosy"
-    voting:
+    topic_voting:
       title: "Głosowanie"
       reached_limit: "Oddałeś już maksymalną liczbę głosów!"
       list_votes: "Lista twoich głosów"
