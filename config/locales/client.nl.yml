@@ -10,7 +10,6 @@ nl:
       sort_options:
         votes: "Stemmen"
     topic_voting:
-      title: "Stemmen"
       reached_limit: "U hebt geen stemmen meer, verwijder een bestaande stem!"
       list_votes: "Uw stemmen weergeven"
       votes_nav_help: "topics met de meeste stemmen"

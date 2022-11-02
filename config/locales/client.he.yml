@@ -10,7 +10,6 @@ he:
       sort_options:
         votes: "הצבעות"
     topic_voting:
-      title: "הצבעה"
       reached_limit: "נגמרו לך ההצבעות, עליך להסיר הצבעה קיימת!"
       list_votes: "הצגת ההצבעות שלך"
       votes_nav_help: "נושאים עם הכי הרבה הצבעות"

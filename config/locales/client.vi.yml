@@ -10,14 +10,13 @@ vi:
       sort_options:
         votes: "Bình chọn"
     topic_voting:
-      title: "Bình chọn"
       reached_limit: "Bạn đã hết lượt bình chọn, hãy xóa lượt đang có của bạn"
       list_votes: "Liệt kê bình chọn của bạn"
       votes_nav_help: "chủ đề có nhiều bình chọn nhất"
       voted: "Bạn đã bình chọn cho chủ đề này"
       allow_topic_voting: "Cho phép người dùng bình chọn chủ đề trong chuyên mục này"
       vote_title: "Bình chọn"
-      vote_title_plural: "Bình ch"
+      vote_title_plural: "Bình chọn"
       voted_title: "Đã bình ch"
       voting_closed_title: "Đã "
       voting_limit: "Giới h"
@@ -26,7 +25,7 @@ vi:
       votes_left_button_title:
         other: "Bạn còn %{count} phiếu bầu"
       votes:
-        other: "%{count} phiếu"
+        other: "%{count} phiếu bầu"
       anonymous_button:
         other: "Phiếu"
       remove_vote: "Xoá Bình Chọn<br>"

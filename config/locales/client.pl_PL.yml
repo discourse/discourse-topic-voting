@@ -10,7 +10,6 @@ pl_PL:
       sort_options:
         votes: "Głosy"
     topic_voting:
-      title: "Głosowanie"
       reached_limit: "Oddałeś już maksymalną liczbę głosów!"
       list_votes: "Lista twoich głosów"
       votes_nav_help: "tematy z największą liczbą głosów"
@@ -38,9 +37,9 @@ pl_PL:
         other: "%{count} głosów"
       anonymous_button:
         one: "Głos"
-        few: "Głosy"
+        few: "Głosuj"
         many: "Głosów"
-        other: "Głosów"
+        other: "Głosuj"
       remove_vote: "Usuń głos"
       no_votes_title_self: "Nie głosowałeś jeszcze na żaden temat"
       no_votes_title_others: "%{username} nie zagłosował jeszcze na żaden temat"

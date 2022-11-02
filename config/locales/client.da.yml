@@ -10,7 +10,6 @@ da:
       sort_options:
         votes: "Stemmer"
     topic_voting:
-      title: "Stemmer"
       reached_limit: "Du kan ikke afgive flere stemmer, fjern venligst en og prøv igen!"
       list_votes: "Vis dine stemmer"
       votes_nav_help: "emner med flest stemmer"

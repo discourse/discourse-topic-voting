@@ -9,31 +9,6 @@ de:
     category:
       sort_options:
         votes: "Stimmen"
-    topic_voting:
-      title: "Abstimmung"
-      reached_limit: "Du hast keine Stimmen mehr. Entferne eine bestehende Stimme!"
-      list_votes: "Deine Stimmen auflisten"
-      votes_nav_help: "Themen mit den meisten Stimmen"
-      voted: "Du hast für dieses Thema gestimmt"
-      allow_topic_voting: "Benutzern erlauben, für Themen in dieser Kategorie zu stimmen"
-      vote_title: "Stimme"
-      vote_title_plural: "Stimmen"
-      voted_title: "Abgestimmt"
-      voting_closed_title: "Geschlossen"
-      voting_limit: "Limit"
-      votes_left:
-        one: "Du hast noch %{count} Stimme übrig, siehe <a href='%{path}'>deine Stimmen</a>."
-        other: "Du hast noch %{count} Stimmen übrig, siehe <a href='%{path}'>deine Stimmen</a>."
-      votes_left_button_title:
-        one: "Du hast noch %{count} Stimme übrig."
-        other: "Du hast noch %{count} Stimmen übrig."
-      votes:
-        one: "%{count} Stimme"
-        other: "%{count} Stimmen"
-      anonymous_button:
-        one: "Stimme"
-        other: "Stimmen"
-      remove_vote: "Stimme entfernen"
     filters:
       votes:
         title: "Stimmen"

@@ -10,7 +10,6 @@ ko:
       sort_options:
         votes: "투표"
     topic_voting:
-      title: "투표"
       reached_limit: "투표권이 없습니다. 기존 투표를 제거하십시오!"
       list_votes: "내 투표 목록"
       votes_nav_help: "가장 많은 표를 얻은 주제"
@@ -21,9 +20,11 @@ ko:
       voted_title: "투표함"
       voting_closed_title: "닫힘"
       voting_limit: "한도"
+      votes:
+        other: "%{count} 투표"
       anonymous_button:
         other: "투표"
-      remove_vote: "투표 제거"
+      remove_vote: "투표 삭제"
     filters:
       votes:
         title: "투표"

@@ -10,7 +10,6 @@ uk:
       sort_options:
         votes: "Голосів"
     topic_voting:
-      title: "Голосування"
       reached_limit: "У вас немає голосів, видаліть існуюче голосування!"
       list_votes: "Список своїх голосів"
       votes_nav_help: "теми з найбільшою кількістю голосів"
@@ -26,7 +25,7 @@ uk:
         few: "Голосів"
         many: "Голосів"
         other: "Голосів"
-      remove_vote: "Видалити голосування"
+      remove_vote: "Вилучити голос"
     filters:
       votes:
         title: "Голосів"

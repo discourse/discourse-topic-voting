@@ -20,6 +20,11 @@ cs:
       voted_title: "Odhlasováno"
       voting_closed_title: "Uzavřeno"
       voting_limit: "limit"
+      anonymous_button:
+        one: "Hlasovat"
+        few: "Hlasy"
+        many: "Hlasy"
+        other: "Hlasy"
     filters:
       votes:
         title: "Hlasy"

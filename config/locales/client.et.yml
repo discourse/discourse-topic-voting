@@ -15,6 +15,9 @@ et:
       vote_title_plural: "HInnangud"
       voting_closed_title: "Suletud"
       voting_limit: "Limiit"
+      anonymous_button:
+        one: "Hinda"
+        other: "HInnangud"
     filters:
       votes:
         title: "HInnangud"

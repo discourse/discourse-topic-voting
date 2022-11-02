@@ -5,3 +5,5 @@
 # https://translate.discourse.org/
 
 zh_TW:
+  site_settings:
+    voting_enabled: '允許使用者對話題投票？'

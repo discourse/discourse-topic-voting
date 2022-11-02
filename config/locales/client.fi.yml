@@ -9,31 +9,6 @@ fi:
     category:
       sort_options:
         votes: "Äänet"
-    topic_voting:
-      title: "Äänestys"
-      reached_limit: "Sinulla ei ole enempää ääniä, poista antamasi ääni!"
-      list_votes: "Kaikki antamasi äänet"
-      votes_nav_help: "ketjut, joilla on eniten ääniä"
-      voted: "Äänestit tätä ketjua"
-      allow_topic_voting: "Salli käyttäjien antaa ääniä ketjuille tällä alueella"
-      vote_title: "Ääni"
-      vote_title_plural: "Äänet"
-      voted_title: "Äänestit"
-      voting_closed_title: "Suljettu"
-      voting_limit: "Yläraja"
-      votes_left:
-        one: "Sinulla on %{count} ääni jäljellä, katso <a href='%{path}'>äänesi</a>."
-        other: "Sinulla on %{count} ääntä jäljellä, katso <a href='%{path}'>äänesi</a>."
-      votes_left_button_title:
-        one: "Sinulla on %{count} ääni jäljellä."
-        other: "Sinulla on %{count} ääntä jäljellä."
-      votes:
-        one: "%{count} ääni"
-        other: "%{count} ääntä"
-      anonymous_button:
-        one: "Ääni"
-        other: "Äänet"
-      remove_vote: "Poista ääni"
     filters:
       votes:
         title: "Äänet"

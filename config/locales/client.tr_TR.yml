@@ -10,7 +10,6 @@ tr_TR:
       sort_options:
         votes: "Oylar"
     topic_voting:
-      title: "Oylama"
       reached_limit: "Oy hakkınız kalmadı, mevcut bir oyunuzu kaldırın!"
       list_votes: "Oylarınızı listeleyin"
       votes_nav_help: "en çok oy alan konular"

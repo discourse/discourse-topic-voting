@@ -10,7 +10,6 @@ sv:
       sort_options:
         votes: "Röster"
     topic_voting:
-      title: "Röstning"
       reached_limit: "Du har inga fler röster, ta bort en befintlig röst!"
       list_votes: "Visa en lista över dina röster"
       votes_nav_help: "ämnen med de flesta rösterna"

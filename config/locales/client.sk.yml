@@ -15,6 +15,11 @@ sk:
       voted_title: "Odhlasované"
       voting_closed_title: "Hlasovanie ukončené"
       voting_limit: "Limit"
+      anonymous_button:
+        one: "Hlas"
+        few: "Hlasy"
+        many: "Hlasy"
+        other: "Hlasy"
     filters:
       votes:
         title: "Hlasy"
