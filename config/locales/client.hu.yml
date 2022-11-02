@@ -10,7 +10,6 @@ hu:
       sort_options:
         votes: "Szavazatok"
     topic_voting:
-      title: "Szavazás "
       reached_limit: "Kifogytál a szavazatokból, törölj egy korábbi szavazatot!"
       list_votes: "Szavazataid listázása"
       votes_nav_help: "legtöbb szavazatot kapott témák"
@@ -19,12 +18,12 @@ hu:
       vote_title: "Szavazás"
       vote_title_plural: "Szavazatok"
       voted_title: "Szavazott"
-      voting_closed_title: "Lezárva"
+      voting_closed_title: "Zárt"
       voting_limit: "Limit"
       anonymous_button:
         one: "szavazások "
         other: "Szavazások"
-      remove_vote: "szavazat törlése "
+      remove_vote: "Szavazat eltávolítása"
     filters:
       votes:
         title: "Szavazatok"

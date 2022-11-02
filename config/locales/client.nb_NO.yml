@@ -20,6 +20,9 @@ nb_NO:
       voted_title: "Stemt"
       voting_closed_title: "Lukket"
       voting_limit: "Grense"
+      anonymous_button:
+        one: "Stemme"
+        other: "Stemmer"
     filters:
       votes:
         title: "Stemmer"

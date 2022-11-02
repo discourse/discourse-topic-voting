@@ -10,6 +10,11 @@ th:
       sort_options:
         votes: "โหวต"
     topic_voting:
-      title: "การโหวต"
       reached_limit: "คุณใช้คะแนนโหวตหมดแล้ว ลบอันที่โหวตไปแล้วออกก่อน"
+      vote_title_plural: "โหวต"
       voting_closed_title: "ปิด"
+      anonymous_button:
+        other: "โหวต"
+    filters:
+      votes:
+        title: "โหวต"

@@ -10,10 +10,9 @@ ro:
       sort_options:
         votes: "Evaluări"
     topic_voting:
-      title: "Evaluare"
       reached_limit: "Nu mai ai voturi, elimină un vot existent!"
       list_votes: "Listează-ți voturile"
-      votes_nav_help: "subiecte cu cele mai multe voturi"
+      votes_nav_help: "subiecte cu cele mai multe evaluări"
       voted: "Ai evaluat acest subiect"
       allow_topic_voting: "Permite utilizatorilor să evalueze subiectele din această categorie"
       vote_title: "Evaluează"
@@ -34,10 +33,10 @@ ro:
         few: "%{count} voturi"
         other: "%{count} voturi"
       anonymous_button:
-        one: "Evaluare"
+        one: "Evaluează"
         few: "Evaluări"
         other: "Evaluări"
-      remove_vote: "Elimină evaluarea"
+      remove_vote: "Eliminați votul"
     filters:
       votes:
         title: "Evaluări"

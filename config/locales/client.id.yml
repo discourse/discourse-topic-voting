@@ -8,3 +8,5 @@ id:
   js:
     topic_voting:
       voting_closed_title: "Tertutup"
+      votes:
+        other: "%{count} suara"

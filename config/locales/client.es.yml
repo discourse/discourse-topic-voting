@@ -9,31 +9,6 @@ es:
     category:
       sort_options:
         votes: "Votos"
-    topic_voting:
-      title: "Votación"
-      reached_limit: "Se te acabaron los votos, ¡elimina un voto existente!"
-      list_votes: "Lista de tus votos"
-      votes_nav_help: "temas con más votos"
-      voted: "Votaste sobre este tema"
-      allow_topic_voting: "Permitir a los usuarios votar sobre temas en esta categoría"
-      vote_title: "Votar"
-      vote_title_plural: "Votos"
-      voted_title: "Votado"
-      voting_closed_title: "Cerrado"
-      voting_limit: "Límite"
-      votes_left:
-        one: "Te queda %{count} voto, consulta <a href='%{path}'>tus votos</a>."
-        other: "Te quedan %{count} votos, consulta <a href='%{path}'>tus votos</a>."
-      votes_left_button_title:
-        one: "Te queda %{count} voto."
-        other: "Te quedan %{count} votos."
-      votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      anonymous_button:
-        one: "Voto"
-        other: "Votos"
-      remove_vote: "Eliminar voto"
     filters:
       votes:
         title: "Votos"

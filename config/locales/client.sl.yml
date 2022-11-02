@@ -10,7 +10,6 @@ sl:
       sort_options:
         votes: "Glasov"
     topic_voting:
-      title: "Glasovanje"
       reached_limit: "Nimate več glasov, odstranite obstoječega!"
       list_votes: "Prikaži moje glasove"
       votes_nav_help: "teme z največ glasovi"
@@ -25,7 +24,7 @@ sl:
         one: "Glas"
         two: "Glasova"
         few: "Glasovi"
-        other: "Glasov"
+        other: "Glasovi"
       remove_vote: "Odstrani glas"
     filters:
       votes:

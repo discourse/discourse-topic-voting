@@ -9,3 +9,4 @@ lt:
     topic_voting:
       vote_title: "Balsuoti"
       voting_closed_title: "Uždaryta"
+      remove_vote: "Pašalinti balsą"

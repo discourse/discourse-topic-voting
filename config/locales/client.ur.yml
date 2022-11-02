@@ -10,7 +10,6 @@ ur:
       sort_options:
         votes: "ووٹ"
     topic_voting:
-      title: "ووٹنگ"
       reached_limit: "آپ کے ووٹ ختم ہو چکے ہیں، کسی موجودہ ووٹ کو ہٹا ئیں!"
       list_votes: "اپنے ووٹوں کی فہرست"
       votes_nav_help: "سب سے زیادہ ووٹوں والے ٹاپک"
@@ -24,7 +23,7 @@ ur:
       anonymous_button:
         one: "ووٹ"
         other: "ووٹ"
-      remove_vote: "ووٹ ہٹائیں"
+      remove_vote: "ووٹ ہٹا دیں"
     filters:
       votes:
         title: "ووٹ"

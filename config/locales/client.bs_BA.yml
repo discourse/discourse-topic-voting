@@ -10,7 +10,6 @@ bs_BA:
       sort_options:
         votes: "Glasovi"
     topic_voting:
-      title: "Glasanje"
       reached_limit: "Ostali ste bez glasova, odstrani postojeći glas!"
       list_votes: "Izlistaj svoje glasove"
       votes_nav_help: "teme s najviše glasova"
@@ -31,7 +30,7 @@ bs_BA:
         other: "Ostalo vam je %{count} glasova."
       votes:
         one: "%{count} glas"
-        few: "%{count} glasa"
+        few: "%{count} glasova"
         other: "%{count} glasova"
       anonymous_button:
         one: "Glas"

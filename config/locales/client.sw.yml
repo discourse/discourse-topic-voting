@@ -20,6 +20,9 @@ sw:
       voted_title: "Alio/Waliopiga Kura"
       voting_closed_title: "Imefungwa"
       voting_limit: "Kikomo"
+      anonymous_button:
+        one: "Piga kura"
+        other: "Kura"
     filters:
       votes:
         title: "Kura"

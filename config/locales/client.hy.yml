@@ -16,7 +16,7 @@ hy:
       voted: "Դուք քվեարկել եք այս թեմայում"
       allow_topic_voting: "Թույլատրել օգտատերերին քվեարկել այս կատեգորիայի թեմաներում"
       vote_title: "Քվեարկել"
-      vote_title_plural: "Քվե"
+      vote_title_plural: "Քվեներ"
       voted_title: "Քվեարկած"
       voting_closed_title: "Փակված է"
       voting_limit: "Սահմանափակում"
