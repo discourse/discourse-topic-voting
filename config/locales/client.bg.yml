@@ -6,6 +6,6 @@
 
 bg:
   js:
-    voting:
+    topic_voting:
       vote_title: "Гласуване"
       voting_closed_title: "Затворена"

@@ -8,7 +8,7 @@ describe PostSerializer do
   let(:topic) { Fabricate(:topic, category_id: category.id) }
 
   before do
-    DiscourseVoting::CategorySetting.create!(category: category)
+    DiscourseTopicVoting::CategorySetting.create!(category: category)
     Category.reset_voting_cache
     SiteSetting.voting_show_who_voted = true
     SiteSetting.voting_enabled = true

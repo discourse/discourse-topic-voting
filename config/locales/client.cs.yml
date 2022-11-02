@@ -9,7 +9,7 @@ cs:
     category:
       sort_options:
         votes: "Hlasy"
-    voting:
+    topic_voting:
       reached_limit: "Došly ti hlasy. Odeber si existující hlas."
       list_votes: "Seznam tvých hlasů"
       votes_nav_help: "témata s nejvíce hlasy"

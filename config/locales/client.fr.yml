@@ -9,7 +9,7 @@ fr:
     category:
       sort_options:
         votes: "Votes"
-    voting:
+    topic_voting:
       title: "Vote"
       reached_limit: "Vous n'avez plus de votes disponibles, enlevez-en un !"
       list_votes: "Lister vos votes"

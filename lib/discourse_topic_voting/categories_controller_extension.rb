@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseVoting
+module DiscourseTopicVoting
   module CategoriesControllerExtension
     def category_params
       @vote_enabled ||= !!ActiveRecord::Type::Boolean.new.cast(params[:custom_fields]&.delete(:enable_topic_voting))

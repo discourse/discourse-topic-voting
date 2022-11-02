@@ -29,27 +29,27 @@ export default createWidget("vote-button", {
   buildButtonTitle(attrs) {
     if (this.currentUser) {
       if (attrs.closed) {
-        return I18n.t("voting.voting_closed_title");
+        return I18n.t("topic_voting.voting_closed_title");
       }
 
       if (attrs.user_voted) {
-        return I18n.t("voting.voted_title");
+        return I18n.t("topic_voting.voted_title");
       }
 
       if (this.currentUser.votes_exceeded) {
-        return I18n.t("voting.voting_limit");
+        return I18n.t("topic_voting.voting_limit");
       }
 
-      return I18n.t("voting.vote_title");
+      return I18n.t("topic_voting.vote_title");
     }
 
     if (attrs.vote_count) {
-      return I18n.t("voting.anonymous_button", {
+      return I18n.t("topic_voting.anonymous_button", {
         count: attrs.vote_count,
       });
     }
 
-    return I18n.t("voting.anonymous_button", { count: 1 });
+    return I18n.t("topic_voting.anonymous_button", { count: 1 });
   },
 
   html(attrs) {
@@ -58,7 +58,7 @@ export default createWidget("vote-button", {
       {
         attributes: {
           title: this.currentUser
-            ? I18n.t("voting.votes_left_button_title", {
+            ? I18n.t("topic_voting.votes_left_button_title", {
                 count: this.currentUser.votes_left,
               })
             : "",

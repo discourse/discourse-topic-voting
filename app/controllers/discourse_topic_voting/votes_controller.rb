@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseVoting
+module DiscourseTopicVoting
   class VotesController < ::ApplicationController
     before_action :ensure_logged_in
 
@@ -23,7 +23,7 @@ module DiscourseVoting
 
       unless current_user.reached_voting_limit?
 
-        DiscourseVoting::Vote.find_or_create_by(user: current_user, topic_id: topic_id)
+        DiscourseTopicVoting::Vote.find_or_create_by(user: current_user, topic_id: topic_id)
 
         topic.update_vote_count
         voted = true
@@ -47,7 +47,7 @@ module DiscourseVoting
 
       guardian.ensure_can_see!(topic)
 
-      DiscourseVoting::Vote.destroy_by(user: current_user, topic_id: topic_id)
+      DiscourseTopicVoting::Vote.destroy_by(user: current_user, topic_id: topic_id)
 
       topic.update_vote_count
 

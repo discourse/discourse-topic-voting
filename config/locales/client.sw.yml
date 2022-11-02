@@ -9,7 +9,7 @@ sw:
     category:
       sort_options:
         votes: "Kura"
-    voting:
+    topic_voting:
       reached_limit: "Umetumia kura zako zote, toa kura moja uliyoitumia!"
       list_votes: "Orodha ya kura zako"
       votes_nav_help: "Mada zenye kura nyingi zaidi"

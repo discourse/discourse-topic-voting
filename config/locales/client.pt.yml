@@ -9,7 +9,7 @@ pt:
     category:
       sort_options:
         votes: "Votos"
-    voting:
+    topic_voting:
       reached_limit: "Já não tem votos, remover um voto existente!"
       list_votes: "Listar os seus votos"
       votes_nav_help: "tópicos mais votados"

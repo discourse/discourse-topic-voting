@@ -20,13 +20,13 @@ export default createWidget("vote-options", {
       !attrs.user_voted
     ) {
       contents.push([
-        h("div", I18n.t("voting.reached_limit")),
+        h("div", I18n.t("topic_voting.reached_limit")),
         h(
           "p",
           h(
             "a",
             { href: this.currentUser.get("path") + "/activity/votes" },
-            I18n.t("voting.list_votes")
+            I18n.t("topic_voting.list_votes")
           )
         ),
       ]);

@@ -9,7 +9,7 @@ ur:
     category:
       sort_options:
         votes: "ووٹ"
-    voting:
+    topic_voting:
       title: "ووٹنگ"
       reached_limit: "آپ کے ووٹ ختم ہو چکے ہیں، کسی موجودہ ووٹ کو ہٹا ئیں!"
       list_votes: "اپنے ووٹوں کی فہرست"

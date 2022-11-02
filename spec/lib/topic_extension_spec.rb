@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DiscourseVoting::TopicExtension do
+describe DiscourseTopicVoting::TopicExtension do
   let(:user) { Fabricate(:user) }
   let(:user2) { Fabricate(:user) }
 
@@ -22,15 +22,15 @@ describe DiscourseVoting::TopicExtension do
       expect(topic.reload.topic_vote_count.votes_count).to eq(0)
       expect(topic2.reload.topic_vote_count.votes_count).to eq(0)
 
-      DiscourseVoting::Vote.create!(user: user, topic: topic)
+      DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
       topic.update_vote_count
       topic2.update_vote_count
 
       expect(topic.reload.topic_vote_count.votes_count).to eq(1)
       expect(topic2.reload.topic_vote_count.votes_count).to eq(0)
 
-      DiscourseVoting::Vote.create!(user: user2, topic: topic)
-      DiscourseVoting::Vote.create!(user: user, topic: topic2)
+      DiscourseTopicVoting::Vote.create!(user: user2, topic: topic)
+      DiscourseTopicVoting::Vote.create!(user: user, topic: topic2)
       topic.update_vote_count
       topic2.update_vote_count
 

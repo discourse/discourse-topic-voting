@@ -27,7 +27,7 @@ export default createWidget("vote-box", {
     if (state.votesAlert > 0) {
       const html =
         "<div class='voting-popup-menu vote-options popup-menu'>" +
-        I18n.t("voting.votes_left", {
+        I18n.t("topic_voting.votes_left", {
           count: state.votesAlert,
           path: this.currentUser.get("path") + "/activity/votes",
         }) +

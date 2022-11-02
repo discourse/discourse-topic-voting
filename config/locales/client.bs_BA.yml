@@ -9,7 +9,7 @@ bs_BA:
     category:
       sort_options:
         votes: "Glasovi"
-    voting:
+    topic_voting:
       title: "Glasanje"
       reached_limit: "Ostali ste bez glasova, odstrani postojeći glas!"
       list_votes: "Izlistaj svoje glasove"

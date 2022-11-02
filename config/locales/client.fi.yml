@@ -9,7 +9,7 @@ fi:
     category:
       sort_options:
         votes: "Äänet"
-    voting:
+    topic_voting:
       title: "Äänestys"
       reached_limit: "Sinulla ei ole enempää ääniä, poista antamasi ääni!"
       list_votes: "Kaikki antamasi äänet"

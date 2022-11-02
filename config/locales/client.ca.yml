@@ -9,7 +9,7 @@ ca:
     category:
       sort_options:
         votes: "Vots"
-    voting:
+    topic_voting:
       title: "Votació"
       reached_limit: "Us heu quedat sense vots. Elimineu un vot existent."
       list_votes: "Llista els vots"

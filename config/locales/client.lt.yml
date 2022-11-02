@@ -6,6 +6,6 @@
 
 lt:
   js:
-    voting:
+    topic_voting:
       vote_title: "Balsuoti"
       voting_closed_title: "Uždaryta"

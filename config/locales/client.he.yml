@@ -9,7 +9,7 @@ he:
     category:
       sort_options:
         votes: "הצבעות"
-    voting:
+    topic_voting:
       title: "הצבעה"
       reached_limit: "נגמרו לך ההצבעות, עליך להסיר הצבעה קיימת!"
       list_votes: "הצגת ההצבעות שלך"

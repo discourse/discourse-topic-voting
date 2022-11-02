@@ -9,7 +9,7 @@ uk:
     category:
       sort_options:
         votes: "Голосів"
-    voting:
+    topic_voting:
       title: "Голосування"
       reached_limit: "У вас немає голосів, видаліть існуюче голосування!"
       list_votes: "Список своїх голосів"

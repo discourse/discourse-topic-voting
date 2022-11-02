@@ -18,7 +18,7 @@ function initialize(api) {
 
       let title = "";
       if (topic.user_voted) {
-        title = ` title='${I18n.t("voting.voted")}'`;
+        title = ` title='${I18n.t("topic_voting.voted")}'`;
       }
 
       let userVotedClass = topic.user_voted ? " voted" : "";
@@ -26,7 +26,7 @@ function initialize(api) {
         `<a href='${topic.url}' class='list-vote-count vote-count-${topic.vote_count} discourse-tag simple${userVotedClass}'${title}>`
       );
 
-      buffer.push(I18n.t("voting.votes", { count: topic.vote_count }));
+      buffer.push(I18n.t("topic_voting.votes", { count: topic.vote_count }));
       buffer.push("</a>");
 
       if (buffer.length > 0) {

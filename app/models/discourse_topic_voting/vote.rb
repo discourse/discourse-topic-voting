@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DiscourseVoting
+module DiscourseTopicVoting
   class Vote < ActiveRecord::Base
     self.table_name = 'discourse_voting_votes'
 

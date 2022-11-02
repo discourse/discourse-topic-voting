@@ -27,7 +27,7 @@ acceptance(
       await visit(`/u/${currentUser}/activity/votes`);
       assert.equal(
         query("div.empty-state span.empty-state-title").innerText,
-        I18n.t("voting.no_votes_title_self")
+        I18n.t("topic_voting.no_votes_title_self")
       );
     });
 
@@ -35,7 +35,7 @@ acceptance(
       await visit(`/u/${anotherUser}/activity/votes`);
       assert.equal(
         query("div.empty-state span.empty-state-title").innerText,
-        I18n.t("voting.no_votes_title_others", { username: anotherUser })
+        I18n.t("topic_voting.no_votes_title_others", { username: anotherUser })
       );
     });
   }

@@ -9,7 +9,7 @@ ja:
     category:
       sort_options:
         votes: "票数"
-    voting:
+    topic_voting:
       title: "投票"
       reached_limit: "票数が不足しています。既存の投票を削除してください！"
       list_votes: "投票をリスト"

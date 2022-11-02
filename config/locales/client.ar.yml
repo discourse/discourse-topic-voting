@@ -9,7 +9,7 @@ ar:
     category:
       sort_options:
         votes: "الأصوات"
-    voting:
+    topic_voting:
       title: "التصويت"
       reached_limit: "لم يعُد بإمكانك التصويت الآن، يُرجى إزالة صوت حالي!"
       list_votes: "قائمة بأصواتك"

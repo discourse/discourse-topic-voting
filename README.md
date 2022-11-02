@@ -1,4 +1,4 @@
-## Discourse Voting
+## Discourse Topic Voting
 
 Adds the ability for voting on a topic within a specified category.
 

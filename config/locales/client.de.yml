@@ -9,7 +9,7 @@ de:
     category:
       sort_options:
         votes: "Stimmen"
-    voting:
+    topic_voting:
       title: "Abstimmung"
       reached_limit: "Du hast keine Stimmen mehr. Entferne eine bestehende Stimme!"
       list_votes: "Deine Stimmen auflisten"

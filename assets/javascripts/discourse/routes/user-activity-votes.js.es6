@@ -20,8 +20,10 @@ export default UserTopicListRoute.extend({
   emptyState() {
     const user = this.modelFor("user");
     const title = this.isCurrentUser(user)
-      ? I18n.t("voting.no_votes_title_self")
-      : I18n.t("voting.no_votes_title_others", { username: user.username });
+      ? I18n.t("topic_voting.no_votes_title_self")
+      : I18n.t("topic_voting.no_votes_title_others", {
+          username: user.username,
+        });
 
     return {
       title,

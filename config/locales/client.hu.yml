@@ -9,7 +9,7 @@ hu:
     category:
       sort_options:
         votes: "Szavazatok"
-    voting:
+    topic_voting:
       title: "Szavazás "
       reached_limit: "Kifogytál a szavazatokból, törölj egy korábbi szavazatot!"
       list_votes: "Szavazataid listázása"

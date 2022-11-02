@@ -9,7 +9,7 @@ pt_BR:
     category:
       sort_options:
         votes: "Votos"
-    voting:
+    topic_voting:
       title: "Votação"
       reached_limit: "Você está sem votos, remova um voto existente!"
       list_votes: "Mostrar seus votos"

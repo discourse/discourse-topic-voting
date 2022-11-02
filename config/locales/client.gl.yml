@@ -9,7 +9,7 @@ gl:
     category:
       sort_options:
         votes: "Votos"
-    voting:
+    topic_voting:
       vote_title: "Votar"
       vote_title_plural: "Votos"
       voting_closed_title: "Pechado"
