@@ -10,6 +10,7 @@ fa_IR:
       sort_options:
         votes: "آرا"
     topic_voting:
+      title: "رای‌گیری موضوع"
       list_votes: "آرای خود را فهرست کنید"
       votes_nav_help: "موضوعات با بیشترین آرا"
       voted: "شما به این موضوع رای داده اید"
