@@ -33,7 +33,7 @@ after_initialize do
   load File.expand_path('../lib/discourse_topic_voting/topic_extension.rb', __FILE__)
   load File.expand_path('../lib/discourse_topic_voting/user_extension.rb', __FILE__)
 
-  reloadable_patch do |plugin|
+  reloadable_patch do
     CategoriesController.class_eval { prepend DiscourseTopicVoting::CategoriesControllerExtension }
     Category.class_eval { prepend DiscourseTopicVoting::CategoryExtension }
     Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
@@ -102,6 +102,8 @@ after_initialize do
     add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
     add_to_serializer(:topic_list_item, :include_can_vote?) { SiteSetting.voting_enabled && object.regular? }
     add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
+    # this always evaluates to true because
+    # include_can_vote? returns false if voting is not enabled
     add_to_serializer(:basic_category, :can_vote, false) { SiteSetting.voting_enabled }
     add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
