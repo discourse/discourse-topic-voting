@@ -9,35 +9,59 @@ describe TopicViewSerializer do
   let(:topic_view) { TopicView.new(topic, user) }
   let(:guardian) { Guardian.new(user) }
 
-  it 'returns false when voting disabled' do
-    SiteSetting.voting_enabled = false
-    DiscourseTopicVoting::CategorySetting.create!(category: category)
+  describe 'can_vote' do
+    it 'returns nil when voting disabled' do
+      SiteSetting.voting_enabled = false
+      DiscourseTopicVoting::CategorySetting.create!(category: category)
 
-    json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
 
-    expect(json[:can_vote]).to eq(false)
+      expect(json[:can_vote]).to eq(nil)
+    end
+
+    it 'returns false when topic not in category' do
+      SiteSetting.voting_enabled = true
+
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
+
+      expect(json[:can_vote]).to eq(false)
+    end
+
+    it 'returns false when voting disabled and topic not in category' do
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
+
+      expect(json[:can_vote]).to eq(false)
+    end
+
+    it 'returns true when voting enabled and topic in category' do
+      SiteSetting.voting_enabled = true
+      DiscourseTopicVoting::CategorySetting.create!(category: category)
+
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
+
+      expect(json[:can_vote]).to eq(true)
+    end
   end
 
-  it 'returns false when topic not in category' do
-    SiteSetting.voting_enabled = true
+  describe 'vote_count' do
+    it 'returns the topic vote counts' do
+      Fabricate(:topic_voting_vote_count, topic: topic, votes_count: 3)
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
 
-    json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
-
-    expect(json[:can_vote]).to eq(false)
+      expect(json[:vote_count]).to eq(3)
+    end
   end
 
-  it 'returns false when voting disabled and topic not in category' do
-    json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
+  describe 'user_voted' do
+    it 'returns true if the user has voted on the topic' do
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
 
-    expect(json[:can_vote]).to eq(false)
-  end
+      expect(json[:user_voted]).to eq(false)
 
-  it 'returns true when voting enabled and topic in category' do
-    SiteSetting.voting_enabled = true
-    DiscourseTopicVoting::CategorySetting.create!(category: category)
+      Fabricate(:topic_voting_votes, topic: topic, user: user)
+      json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
 
-    json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
-
-    expect(json[:can_vote]).to eq(true)
+      expect(json[:user_voted]).to eq(false)
+    end
   end
 end
