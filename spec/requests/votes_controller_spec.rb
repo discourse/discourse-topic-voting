@@ -23,7 +23,6 @@ describe DiscourseTopicVoting::VotesController do
   end
 
   it "can correctly show deal with voting workflow" do
-
     SiteSetting.public_send "voting_tl#{user.trust_level}_vote_limit=", 2
 
     post "/voting/vote.json", params: { topic_id: topic.id }
@@ -31,8 +30,8 @@ describe DiscourseTopicVoting::VotesController do
 
     post "/voting/vote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(403)
-    expect(topic.reload.vote_count).to eq(1)
-    expect(user.reload.vote_count).to eq(1)
+    expect(topic.reload.topic_topic_vote_count).to eq(1)
+    expect(user.reload.topic_vote_count).to eq(1)
 
     get "/voting/who.json", params: { topic_id: topic.id }
     expect(response.status).to eq(200)
@@ -44,7 +43,7 @@ describe DiscourseTopicVoting::VotesController do
     post "/voting/unvote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(200)
 
-    expect(topic.reload.vote_count).to eq(0)
-    expect(user.reload.vote_count).to eq(0)
+    expect(topic.reload.topic_topic_vote_count).to eq(0)
+    expect(user.reload.topic_vote_count).to eq(0)
   end
 end

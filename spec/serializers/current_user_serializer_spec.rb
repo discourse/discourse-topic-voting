@@ -14,9 +14,9 @@ RSpec.describe CurrentUserSerializer do
     SiteSetting.voting_enabled = false
     json = described_class.new(user1, scope: guardian, root: false).as_json
 
-    expect(json[:votes_exceeded]).to eq(nil)
-    expect(json[:vote_count]).to eq(nil)
-    expect(json[:votes_left]).to eq(nil)
+    expect(json[:topic_votes_exceeded]).to eq(nil)
+    expect(json[:topic_vote_count]).to eq(nil)
+    expect(json[:topic_votes_left]).to eq(nil)
   end
 
   describe 'votes_exceeded' do
@@ -27,7 +27,7 @@ RSpec.describe CurrentUserSerializer do
 
       json = described_class.new(user1, scope: guardian, root: false).as_json
 
-      expect(json[:votes_exceeded]).to eq(false)
+      expect(json[:topic_votes_exceeded]).to eq(false)
     end
 
     it 'returns true when hit voting limits' do
@@ -37,7 +37,7 @@ RSpec.describe CurrentUserSerializer do
 
       json = described_class.new(user1, scope: guardian, root: false).as_json
 
-      expect(json[:votes_exceeded]).to eq(true)
+      expect(json[:topic_votes_exceeded]).to eq(true)
     end
   end
 
@@ -47,19 +47,19 @@ RSpec.describe CurrentUserSerializer do
 
       json = described_class.new(user1, scope: guardian, root: false).as_json
 
-      expect(json[:votes_left]).to eq(3)
+      expect(json[:topic_votes_left]).to eq(3)
 
       Fabricate(:topic_voting_votes, user: user1, topic: topic1)
       Fabricate(:topic_voting_votes, user: user1, topic: topic2)
       Fabricate(:topic_voting_votes, user: user1, topic: topic3)
       json = described_class.new(user1, scope: guardian, root: false).as_json
 
-      expect(json[:votes_left]).to eq(0)
+      expect(json[:topic_votes_left]).to eq(0)
 
       Fabricate(:topic_voting_votes, user: user1, topic: topic4)
       json = described_class.new(user1, scope: guardian, root: false).as_json
 
-      expect(json[:votes_left]).to eq(0)
+      expect(json[:topic_votes_left]).to eq(0)
     end
   end
 end

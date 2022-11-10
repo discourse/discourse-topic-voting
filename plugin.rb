@@ -39,12 +39,12 @@ after_initialize do
     Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
     User.class_eval { prepend DiscourseTopicVoting::UserExtension }
 
-    add_to_serializer(:post, :can_vote, false) { object.topic&.can_vote? }
-    add_to_serializer(:post, :include_can_vote?) { SiteSetting.voting_enabled && object.post_number == 1 }
+    add_to_serializer(:post, :can_topic_vote, false) { object.topic&.can_topic_vote? }
+    add_to_serializer(:post, :include_can_topic_vote?) { SiteSetting.voting_enabled && object.post_number == 1 }
 
-    add_to_serializer(:topic_view, :can_vote) { object.topic.can_vote? }
-    add_to_serializer(:topic_view, :vote_count) { object.topic.vote_count }
-    add_to_serializer(:topic_view, :user_voted) { scope.user ? object.topic.user_voted?(scope.user) : false }
+    add_to_serializer(:topic_view, :can_topic_vote) { object.topic.can_topic_vote? }
+    add_to_serializer(:topic_view, :topic_vote_count) { object.topic.topic_topic_vote_count }
+    add_to_serializer(:topic_view, :user_topic_voted) { scope.user ? object.topic.user_topic_voted?(scope.user) : false }
 
     if TopicQuery.respond_to?(:results_filter_callbacks)
       TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
@@ -73,12 +73,12 @@ after_initialize do
       object.custom_fields.merge(enable_topic_voting: DiscourseTopicVoting::CategorySetting.find_by(category_id: object.id).present?)
     end
 
-    add_to_serializer(:topic_list_item, :vote_count, false) { object.vote_count }
-    add_to_serializer(:topic_list_item, :can_vote, false) { object.can_vote? }
-    add_to_serializer(:topic_list_item, :user_voted, false) { object.user_voted?(scope.user) if scope.user }
-    add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
-    add_to_serializer(:topic_list_item, :include_can_vote?) { SiteSetting.voting_enabled && object.regular? }
-    add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
+    add_to_serializer(:topic_list_item, :topic_vote_count, false) { object.topic_topic_vote_count }
+    add_to_serializer(:topic_list_item, :can_topic_vote, false) { object.can_topic_vote? }
+    add_to_serializer(:topic_list_item, :user_topic_voted, false) { object.user_topic_voted?(scope.user) if scope.user }
+    add_to_serializer(:topic_list_item, :include_topic_vote_count?) { object.can_topic_vote? }
+    add_to_serializer(:topic_list_item, :include_can_topic_vote?) { SiteSetting.voting_enabled && object.regular? }
+    add_to_serializer(:topic_list_item, :include_user_topic_voted?) { object.can_topic_vote? }
     add_to_serializer(:basic_category, :can_vote, false) { true }
     add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
@@ -119,34 +119,34 @@ after_initialize do
 
     require_dependency 'user'
     class ::User
-      def vote_count
-        topics_with_vote.length
+      def topic_vote_count
+        topics_with_topic_vote.length
       end
 
-      def alert_low_votes?
-        (vote_limit - vote_count) <= SiteSetting.voting_alert_votes_left
+      def alert_low_topic_votes?
+        (topic_vote_limit - topic_vote_count) <= SiteSetting.voting_alert_votes_left
       end
 
-      def topics_with_vote
+      def topics_with_topic_vote
         self.votes.where(archive: false)
       end
 
-      def topics_with_archived_vote
+      def topics_with_archived_topic_vote
         self.votes.where(archive: true)
       end
 
-      def reached_voting_limit?
-        vote_count >= vote_limit
+      def reached_topic_voting_limit?
+        topic_vote_count >= topic_vote_limit
       end
 
-      def vote_limit
+      def topic_vote_limit
         SiteSetting.public_send("voting_tl#{self.trust_level}_vote_limit")
       end
     end
 
-    add_to_serializer(:current_user, :votes_exceeded) { object.reached_voting_limit? }
-    add_to_serializer(:current_user, :votes_count) { object.vote_count }
-    add_to_serializer(:current_user, :votes_left) { [object.vote_limit - object.vote_count, 0].max }
+    add_to_serializer(:current_user, :topic_votes_exceeded) { object.reached_topic_voting_limit? }
+    add_to_serializer(:current_user, :topic_votes_count) { object.topic_vote_count }
+    add_to_serializer(:current_user, :topic_votes_left) { [object.topic_vote_limit - object.topic_vote_count, 0].max }
 
     require_dependency 'list_controller'
     class ::ListController
@@ -267,8 +267,8 @@ after_initialize do
       orig.who_voted.each do |user|
         next if user.blank?
 
-        user_votes = user.topics_with_vote.pluck(:topic_id)
-        user_archived_votes = user.topics_with_archived_vote.pluck(:topic_id)
+        user_votes = user.topics_with_topic_vote.pluck(:topic_id)
+        user_archived_votes = user.topics_with_archived_topic_vote.pluck(:topic_id)
 
         if user_votes.include?(orig.id) || user_archived_votes.include?(orig.id)
           if user_votes.include?(dest.id) || user_archived_votes.include?(dest.id)

@@ -26,11 +26,11 @@ describe DiscourseTopicVoting do
     SiteSetting.voting_tl1_vote_limit = 1
     user0.update!(trust_level: 1)
 
-    expect(user0.reached_voting_limit?).to eq(false)
+    expect(user0.reached_topic_voting_limit?).to eq(false)
 
     DiscourseTopicVoting::Vote.create!(user: user0, topic: topic0)
 
-    expect(user0.reached_voting_limit?).to eq(true)
+    expect(user0.reached_topic_voting_limit?).to eq(true)
   end
 
   context "with two topics" do
@@ -57,26 +57,26 @@ describe DiscourseTopicVoting do
       topic0.move_posts(Discourse.system_user, topic0.posts.pluck(:id), destination_topic_id: topic1.id)
 
       users.each { |user| user.reload }
-      expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[0].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[0].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[1].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[1].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[2].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[2].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(users[3].topics_with_vote.pluck(:topic_id)).to be_blank
-      expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(users[4].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[4].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[4].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(users[5].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[5].topics_with_archived_vote.pluck(:topic_id)).to be_blank
+      expect(users[5].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[5].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
 
-      expect(topic0.reload.vote_count).to eq(0)
-      expect(topic1.reload.vote_count).to eq(5)
+      expect(topic0.reload.topic_topic_vote_count).to eq(0)
+      expect(topic1.reload.topic_topic_vote_count).to eq(5)
 
       merged_post = topic0.posts.find_by(action_code: 'split_topic')
       expect(merged_post.raw).to include(I18n.t('topic_voting.votes_moved', count: 2))
@@ -87,19 +87,19 @@ describe DiscourseTopicVoting do
       topic0.move_posts(Discourse.system_user, [topic0.posts.order(:post_number).first.id], destination_topic_id: topic1.id)
 
       users.each { |user| user.reload }
-      expect(users[0].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
-      expect(users[0].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-      expect(users[1].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
-      expect(users[1].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-      expect(users[2].topics_with_vote.pluck(:topic_id)).to contain_exactly(topic0.id, topic1.id)
-      expect(users[2].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-      expect(users[3].topics_with_vote.pluck(:topic_id)).to be_blank
-      expect(users[3].topics_with_archived_vote.pluck(:topic_id)).to be_blank
-      expect(users[4].topics_with_vote.pluck(:topic_id)).to be_blank
-      expect(users[4].topics_with_archived_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
+      expect(users[0].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
+      expect(users[0].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[1].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic1.id)
+      expect(users[1].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[2].topics_with_topic_vote.pluck(:topic_id)).to contain_exactly(topic0.id, topic1.id)
+      expect(users[2].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[3].topics_with_archived_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[4].topics_with_topic_vote.pluck(:topic_id)).to be_blank
+      expect(users[4].topics_with_archived_topic_vote.pluck(:topic_id)).to contain_exactly(topic0.id)
 
-      expect(topic0.reload.vote_count).to eq(4)
-      expect(topic1.reload.vote_count).to eq(3)
+      expect(topic0.reload.topic_topic_vote_count).to eq(4)
+      expect(topic1.reload.topic_topic_vote_count).to eq(3)
     end
   end
 
@@ -109,8 +109,8 @@ describe DiscourseTopicVoting do
     end
 
     it "returns a vote count of zero" do
-      expect(user0.vote_count).to eq (0)
-      expect(user0.topics_with_archived_vote.pluck(:topic_id)).to eq ([])
+      expect(user0.topic_vote_count).to eq (0)
+      expect(user0.topics_with_archived_topic_vote.pluck(:topic_id)).to eq ([])
     end
   end
 
@@ -146,11 +146,11 @@ describe DiscourseTopicVoting do
       DiscourseTopicVoting::Vote.create!(user: user0, topic: topic1)
 
       topic1.reload.trash!
-      expect(user0.reload.topics_with_vote.pluck(:topic_id)).to eq([])
+      expect(user0.reload.topics_with_topic_vote.pluck(:topic_id)).to eq([])
       expect(user0.notifications.count).to eq(0)
 
       topic1.recover!
-      expect(user0.reload.topics_with_vote.pluck(:topic_id)).to eq([topic1.id])
+      expect(user0.reload.topics_with_topic_vote.pluck(:topic_id)).to eq([topic1.id])
     end
   end
 
@@ -176,8 +176,8 @@ describe DiscourseTopicVoting do
       Jobs::VoteReclaim.new.execute(topic_id: post1.topic_id)
       user.reload
 
-      expect(user.topics_with_vote.pluck(:topic_id)).to eq([post1.topic_id])
-      expect(user.topics_with_archived_vote.pluck(:topic_id)).to eq([456456])
+      expect(user.topics_with_topic_vote.pluck(:topic_id)).to eq([post1.topic_id])
+      expect(user.topics_with_archived_topic_vote.pluck(:topic_id)).to eq([456456])
     end
 
     it "enqueus a job to release votes if voting is disabled for the new category" do
@@ -191,8 +191,8 @@ describe DiscourseTopicVoting do
       Jobs::VoteRelease.new.execute(topic_id: post0.topic_id)
       user.reload
 
-      expect(user.topics_with_archived_vote.pluck(:topic_id)).to eq([post0.topic_id])
-      expect(user.topics_with_vote.pluck(:topic_id)).to eq([456456])
+      expect(user.topics_with_archived_topic_vote.pluck(:topic_id)).to eq([post0.topic_id])
+      expect(user.topics_with_topic_vote.pluck(:topic_id)).to eq([456456])
     end
 
     it "doesn't enqueue a job if the topic has no votes" do
@@ -240,7 +240,7 @@ describe DiscourseTopicVoting do
 
     it 'is not erroring when topic without category' do
       topic1.category.destroy
-      expect(topic1.reload.can_vote?).to be_falsey
+      expect(topic1.reload.can_topic_vote?).to be_falsey
     end
   end
 end

@@ -11,18 +11,18 @@ describe TopicListItemSerializer do
 
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
-    expect(json[:vote_count]).to eq nil
-    expect(json[:user_voted]).to eq nil
-    expect(json[:can_vote]).to eq nil
+    expect(json[:topic_vote_count]).to eq nil
+    expect(json[:user_topic_voted]).to eq nil
+    expect(json[:can_topic_vote]).to eq nil
   end
 
   it 'adds can_vote when enabled' do
     SiteSetting.voting_enabled = true
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
-    expect(json[:vote_count]).to eq nil
-    expect(json[:user_voted]).to eq nil
-    expect(json[:can_vote]).to eq false
+    expect(json[:topic_vote_count]).to eq nil
+    expect(json[:user_topic_voted]).to eq nil
+    expect(json[:can_topic_vote]).to eq false
   end
 
   it 'updates vote count to 0 when topic is votable' do
@@ -30,9 +30,9 @@ describe TopicListItemSerializer do
     DiscourseTopicVoting::CategorySetting.create!(category: category)
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
-    expect(json[:vote_count]).to eq 0
-    expect(json[:user_voted]).to eq false
-    expect(json[:can_vote]).to eq true
+    expect(json[:topic_vote_count]).to eq 0
+    expect(json[:user_topic_voted]).to eq false
+    expect(json[:can_topic_vote]).to eq true
   end
 
   it "returns all the values" do
@@ -42,8 +42,8 @@ describe TopicListItemSerializer do
     Fabricate(:topic_voting_vote_count, topic: topic)
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
-    expect(json[:vote_count]).to eq 1
-    expect(json[:user_voted]).to eq true
-    expect(json[:can_vote]).to eq true
+    expect(json[:topic_vote_count]).to eq 1
+    expect(json[:user_topic_voted]).to eq true
+    expect(json[:can_topic_vote]).to eq true
   end
 end

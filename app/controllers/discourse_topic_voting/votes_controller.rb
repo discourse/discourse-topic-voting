@@ -16,12 +16,12 @@ module DiscourseTopicVoting
       topic_id = params["topic_id"].to_i
       topic = Topic.find_by(id: topic_id)
 
-      raise Discourse::InvalidAccess if !topic.can_vote? || topic.user_voted?(current_user)
+      raise Discourse::InvalidAccess if !topic.can_topic_vote? || topic.user_topic_voted?(current_user)
       guardian.ensure_can_see!(topic)
 
       voted = false
 
-      unless current_user.reached_voting_limit?
+      unless current_user.reached_topic_voting_limit?
 
         DiscourseTopicVoting::Vote.find_or_create_by(user: current_user, topic_id: topic_id)
 
@@ -30,12 +30,12 @@ module DiscourseTopicVoting
       end
 
       obj = {
-        can_vote: !current_user.reached_voting_limit?,
-        vote_limit: current_user.vote_limit,
+        can_vote: !current_user.reached_topic_voting_limit?,
+        vote_limit: current_user.topic_vote_limit,
         vote_count: topic.topic_vote_count&.votes_count&.to_i,
         who_voted: who_voted(topic),
-        alert: current_user.alert_low_votes?,
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        alert: current_user.alert_low_topic_votes?,
+        votes_left: [(current_user.topic_vote_limit - current_user.topic_vote_count), 0].max
       }
 
       render json: obj, status: voted ? 200 : 403
@@ -52,11 +52,11 @@ module DiscourseTopicVoting
       topic.update_vote_count
 
       obj = {
-        can_vote: !current_user.reached_voting_limit?,
-        vote_limit: current_user.vote_limit,
+        can_vote: !current_user.reached_topic_voting_limit?,
+        vote_limit: current_user.topic_vote_limit,
         vote_count: topic.topic_vote_count&.votes_count&.to_i,
         who_voted: who_voted(topic),
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        votes_left: [(current_user.topic_vote_limit - current_user.vote_count), 0].max
       }
 
       render json: obj

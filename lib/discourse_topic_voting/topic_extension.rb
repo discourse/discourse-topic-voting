@@ -8,15 +8,18 @@ module DiscourseTopicVoting
       base.attribute :current_user_voted
     end
 
-    def can_vote?
-      @can_vote ||= SiteSetting.voting_enabled && regular? && Category.can_vote?(category_id) && category && category.topic_id != id
+    def can_topic_vote?
+      @can_topic_vote ||= SiteSetting.voting_enabled && regular? && Category.can_vote?(category_id) && category && category.topic_id != id
     end
 
-    def vote_count
+    # a little verbose but we have to call it this way as
+    # a topic has post votes, and
+    # a topic has_one :topic_vote_count
+    def topic_topic_vote_count
       self.topic_vote_count&.votes_count.to_i
     end
 
-    def user_voted?(user)
+    def user_topic_voted?(user)
       if self.current_user_voted
         self.current_user_voted == 1
       else

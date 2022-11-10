@@ -14,17 +14,17 @@ describe PostSerializer do
     SiteSetting.voting_enabled = true
   end
 
-  it "serializes can_vote for first posts only" do
+  it "serializes can_topic_vote for first posts only" do
     post = Fabricate(:post, topic: topic)
     json = PostSerializer.new(post, scope: Guardian.new(user), root: false).as_json
-    expect(json[:can_vote]).to eq(true)
+    expect(json[:can_topic_vote]).to eq(true)
 
     post = Fabricate(:post, topic: topic)
     json = PostSerializer.new(post, scope: Guardian.new(user), root: false).as_json
-    expect(json[:can_vote]).to eq(nil)
+    expect(json[:can_topic_vote]).to eq(nil)
 
     post = Fabricate(:post)
     json = PostSerializer.new(post, scope: Guardian.new(user), root: false).as_json
-    expect(json[:can_vote]).to eq(false)
+    expect(json[:can_topic_vote]).to eq(false)
   end
 end
