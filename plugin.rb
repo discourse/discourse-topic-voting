@@ -39,35 +39,12 @@ after_initialize do
     Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
     User.class_eval { prepend DiscourseTopicVoting::UserExtension }
 
-    require_dependency 'post_serializer'
-    class ::PostSerializer
-      attributes :can_vote
+    add_to_serializer(:post, :can_vote, false) { object.topic&.can_vote? }
+    add_to_serializer(:post, :include_can_vote?) { SiteSetting.voting_enabled && object.post_number == 1 }
 
-      def include_can_vote?
-        object.post_number == 1
-      end
-
-      def can_vote
-        object.topic&.can_vote?
-      end
-    end
-
-    require_dependency 'topic_view_serializer'
-    class ::TopicViewSerializer
-      attributes :can_vote, :vote_count, :user_voted
-
-      def can_vote
-        object.topic.can_vote?
-      end
-
-      def vote_count
-        object.topic.vote_count
-      end
-
-      def user_voted
-        scope.user ? object.topic.user_voted?(scope.user) : false
-      end
-    end
+    add_to_serializer(:topic_view, :can_vote) { object.topic.can_vote? }
+    add_to_serializer(:topic_view, :vote_count) { object.topic.vote_count }
+    add_to_serializer(:topic_view, :user_voted) { scope.user ? object.topic.user_voted?(scope.user) : false }
 
     if TopicQuery.respond_to?(:results_filter_callbacks)
       TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
@@ -102,9 +79,7 @@ after_initialize do
     add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
     add_to_serializer(:topic_list_item, :include_can_vote?) { SiteSetting.voting_enabled && object.regular? }
     add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
-    # this always evaluates to true because
-    # include_can_vote? returns false if voting is not enabled
-    add_to_serializer(:basic_category, :can_vote, false) { SiteSetting.voting_enabled }
+    add_to_serializer(:basic_category, :can_vote, false) { true }
     add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
     register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
@@ -169,22 +144,9 @@ after_initialize do
       end
     end
 
-    require_dependency 'current_user_serializer'
-    class ::CurrentUserSerializer
-      attributes :votes_exceeded,  :vote_count, :votes_left
-
-      def votes_exceeded
-        object.reached_voting_limit?
-      end
-
-      def vote_count
-        object.vote_count
-      end
-
-      def votes_left
-        [object.vote_limit - object.vote_count, 0].max
-      end
-    end
+    add_to_serializer(:current_user, :votes_exceeded) { object.reached_voting_limit? }
+    add_to_serializer(:current_user, :votes_count) { object.vote_count }
+    add_to_serializer(:current_user, :votes_left) { [object.vote_limit - object.vote_count, 0].max }
 
     require_dependency 'list_controller'
     class ::ListController
