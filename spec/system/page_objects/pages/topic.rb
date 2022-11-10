@@ -18,6 +18,7 @@ module TopicVotingTopic
 
   def remove_vote
     find('.remove-vote').click
+    self
   end
 
   def click_vote_popup_activity
