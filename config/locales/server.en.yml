@@ -9,7 +9,7 @@ en:
     voting_show_who_voted: 'Allow users to see who voted?'
     voting_show_votes_on_profile: 'Allow users to see their votes in their activity feed?'
     voting_alert_votes_left: 'Alert user when this many votes are left'
-  voting:
+  topic_voting:
     votes_moved:
       one: "A vote has been moved."
       other: "%{count} votes have been moved."
