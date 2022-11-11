@@ -15,7 +15,7 @@ ar:
     voting_show_who_voted: 'هل تريد السماح للأعضاء برؤية من صوَّتوا؟'
     voting_show_votes_on_profile: 'هل تريد السماح للأعضاء برؤية أصواتهم في موجز النشاط؟'
     voting_alert_votes_left: 'تنبيه المستخدم عندما يتبقى هذا العدد من الأصوات'
-  voting:
+  topic_voting:
     votes_moved:
       zero: "تم نقل %{count} صوت."
       one: "تم نقل صوت واحد."

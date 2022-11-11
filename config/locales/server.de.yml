@@ -15,7 +15,7 @@ de:
     voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer abgestimmt hat?'
     voting_show_votes_on_profile: 'Benutzern erlauben, ihre Stimmen in ihrem Aktivitätsfeed zu sehen?'
     voting_alert_votes_left: 'Benutzer benachrichtigen, wenn so viele Stimmen übrig sind'
-  voting:
+  topic_voting:
     votes_moved:
       one: "Eine Stimme wurde verschoben."
       other: "%{count} Stimmen wurden verschoben."
