@@ -13,7 +13,7 @@ RSpec.describe 'Voting', type: :system, js: true do
   fab!(:category_page) { PageObjects::Pages::Category.new }
   fab!(:topic_page) { PageObjects::Pages::Topic.new }
   fab!(:user_page) { PageObjects::Pages::User.new }
-  fab!(:admin_page) { PageObjects::Pages::Admin.new }
+  fab!(:admin_page) { PageObjects::Pages::AdminSettings.new }
 
   before do
     SiteSetting.voting_enabled = false
@@ -25,20 +25,17 @@ RSpec.describe 'Voting', type: :system, js: true do
   end
 
   it 'enables voting in category topics and votes' do
-    # on the fence about assertions within page objects
-    # but they do provide some readable "assertions"
-    # rather than
     category_page.visit(category1)
     expect(category_page).to have_no_css(category_page.votes)
 
     # enables voting
     admin_page
       .visit_filtered_plugin_setting('voting%20enabled')
-      .toggle_setting('Allow users to vote on topics?')
+      .toggle_setting('voting_enabled', 'Allow users to vote on topics?')
 
     category_page
       .visit_settings(category1)
-      .toggle_setting('Allow users to vote on topics in this category')
+      .toggle_setting('enable-topic-voting', 'Allow users to vote on topics in this category')
       .save_settings
       .back_to_category
 
@@ -61,8 +58,7 @@ RSpec.describe 'Voting', type: :system, js: true do
     find(".topic-list-body tr[data-topic-id=\"#{topic1.id}\"] a.raw-link").click
 
     # unvoting
-    topic_page.vote
-    find('.remove-vote').click
+    topic_page.remove_vote
     expect(topic_page.vote_count).to have_text('0')
   end
 end

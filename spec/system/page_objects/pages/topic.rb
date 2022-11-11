@@ -17,6 +17,7 @@ module TopicVotingTopic
   end
 
   def remove_vote
+    vote
     find('.remove-vote').click
     self
   end
