@@ -151,8 +151,8 @@ jobs:
         timeout-minutes: 10
 
       - name: Ember Build for System Tests
-          if: matrix.build_type == 'system'
-          run: bin/ember-cli --build
+        if: matrix.build_type == 'system'
+        run: bin/ember-cli --build
 
       - name: Plugin System Tests
         if: matrix.build_type == 'system'
