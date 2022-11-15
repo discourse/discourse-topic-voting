@@ -15,7 +15,7 @@ da:
     voting_show_who_voted: 'Tillad brugere at se, hvem der har stemt?'
     voting_show_votes_on_profile: 'Tillad brugere at se deres stemmer i deres aktivitetsfeed?'
     voting_alert_votes_left: 'Advar bruger når så mange stemmer er tilbage'
-  topic_voting:
+  voting:
     votes_moved:
       one: "En stemme er blevet flyttet."
       other: "%{count} stemmer er blevet flyttet."

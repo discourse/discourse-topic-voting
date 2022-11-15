@@ -15,7 +15,7 @@ pl_PL:
     voting_show_who_voted: 'Czy użytkownicy mają widzieć, kto głosował?'
     voting_show_votes_on_profile: 'Czy głosy mają być widoczne w aktywności w proflu użytkownika?'
     voting_alert_votes_left: 'Ostrzeż użytkownika, jesli pozostało mu tyle głosów'
-  topic_voting:
+  voting:
     votes_moved:
       one: "Głos został przesunięty."
       few: "%{count}głosy zostały przesunięte."

@@ -15,7 +15,7 @@ es:
     voting_show_who_voted: '¿Permitir a los usuarios ver quién votó?'
     voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su feed de actividad?'
     voting_alert_votes_left: 'Alertar al usuario cuando queda esta cantidad de votos'
-  topic_voting:
+  voting:
     votes_moved:
       one: "Se ha movido un voto."
       other: "Se han movido %{count} votos."
