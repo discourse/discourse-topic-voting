@@ -13,8 +13,8 @@ nl:
     voting_tl3_vote_limit: 'Hoeveel actieve stemmen mogen TL3-gebruikers hebben?'
     voting_tl4_vote_limit: 'Hoeveel actieve stemmen mogen TL4-gebruikers hebben?'
     voting_show_who_voted: 'Toestaan dat gebruikers kunnen zien wie er heeft gestemd?'
-    voting_show_votes_on_profile: 'Toestaan dat gebruikers hun stemmen in hun activiteitenfeed zien?'
-    voting_alert_votes_left: 'Gebruiker waarschuwen als zoveel stemmen over zijn'
+    voting_show_votes_on_profile: 'Toestaan dat gebruikers hun stemmen zien in hun activiteitfeed?'
+    voting_alert_votes_left: 'Gebruiker waarschuwen als zoveel stemmen resteren'
   voting:
     votes_moved:
       one: "Een stem is verplaatst."

@@ -10,10 +10,11 @@ nl:
       sort_options:
         votes: "Stemmen"
     topic_voting:
-      reached_limit: "U hebt geen stemmen meer, verwijder een bestaande stem!"
-      list_votes: "Uw stemmen weergeven"
+      title: "Stemmen over topics"
+      reached_limit: "Je hebt geen stemmen meer, verwijder een bestaande stem!"
+      list_votes: "Je stemmen weergeven"
       votes_nav_help: "topics met de meeste stemmen"
-      voted: "U hebt op dit topic gestemd"
+      voted: "Je hebt op dit topic gestemd"
       allow_topic_voting: "Gebruikers mogen op topics in deze categorie stemmen"
       vote_title: "Stem"
       vote_title_plural: "Stemmen"
@@ -21,11 +22,11 @@ nl:
       voting_closed_title: "Gesloten"
       voting_limit: "Limiet"
       votes_left:
-        one: "U heeft %{count} stem over, zie <a href='%{path}'>uw stemmen</a>."
-        other: "U heeft %{count} stemmen over, zie <a href='%{path}'>uw stemmen</a>."
+        one: "Je hebt nog %{count} stem, bekijk <a href='%{path}'>je stemmen</a>."
+        other: "Je hebt nog %{count} stemmen, bekijk <a href='%{path}'>je stemmen</a>."
       votes_left_button_title:
-        one: "U heeft %{count} stem over."
-        other: "U heeft %{count} stemmen over."
+        one: "Je hebt nog %{count} stem."
+        other: "Je hebt nog %{count} stemmen."
       votes:
         one: "%{count} stem"
         other: "%{count} stemmen"
@@ -33,16 +34,18 @@ nl:
         one: "Stem"
         other: "Stemmen"
       remove_vote: "Stem verwijderen"
+      no_votes_title_self: "Je hebt nog niet gestemd op topics"
+      no_votes_title_others: "%{username} heeft nog niet gestemd op topics"
     filters:
       votes:
         title: "Stemmen"
         help: "topics met de meeste stemmen"
       my_votes:
         title: "Mijn stemmen"
-        help: "onderwerpen waarover u heeft gestemd"
+        help: "topics waarop je hebt gestemd"
     search:
       most_votes: "Meeste stemmen"
       advanced:
         vote:
           count:
-            label: "Minimum aantal stemmen"
+            label: "Minimaal aantal stemmen"
