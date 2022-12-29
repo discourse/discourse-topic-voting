@@ -2,7 +2,7 @@
 
 module DiscourseTopicVoting
   class TopicVoteCount < ActiveRecord::Base
-    self.table_name = 'discourse_voting_topic_vote_count'
+    self.table_name = "discourse_voting_topic_vote_count"
 
     belongs_to :topic
   end

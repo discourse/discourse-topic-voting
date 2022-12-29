@@ -24,14 +24,17 @@ after_initialize do
     end
   end
 
-  load File.expand_path('../app/jobs/onceoff/voting_ensure_consistency.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_topic_voting/category_setting.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_topic_voting/topic_vote_count.rb', __FILE__)
-  load File.expand_path('../app/models/discourse_topic_voting/vote.rb', __FILE__)
-  load File.expand_path('../lib/discourse_topic_voting/categories_controller_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_topic_voting/category_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_topic_voting/topic_extension.rb', __FILE__)
-  load File.expand_path('../lib/discourse_topic_voting/user_extension.rb', __FILE__)
+  load File.expand_path("../app/jobs/onceoff/voting_ensure_consistency.rb", __FILE__)
+  load File.expand_path("../app/models/discourse_topic_voting/category_setting.rb", __FILE__)
+  load File.expand_path("../app/models/discourse_topic_voting/topic_vote_count.rb", __FILE__)
+  load File.expand_path("../app/models/discourse_topic_voting/vote.rb", __FILE__)
+  load File.expand_path(
+         "../lib/discourse_topic_voting/categories_controller_extension.rb",
+         __FILE__,
+       )
+  load File.expand_path("../lib/discourse_topic_voting/category_extension.rb", __FILE__)
+  load File.expand_path("../lib/discourse_topic_voting/topic_extension.rb", __FILE__)
+  load File.expand_path("../lib/discourse_topic_voting/user_extension.rb", __FILE__)
 
   reloadable_patch do
     CategoriesController.class_eval { prepend DiscourseTopicVoting::CategoriesControllerExtension }
@@ -40,62 +43,86 @@ after_initialize do
     User.class_eval { prepend DiscourseTopicVoting::UserExtension }
 
     add_to_serializer(:post, :can_vote, false) { object.topic&.can_vote? }
-    add_to_serializer(:post, :include_can_vote?) { SiteSetting.voting_enabled && object.post_number == 1 }
+    add_to_serializer(:post, :include_can_vote?) do
+      SiteSetting.voting_enabled && object.post_number == 1
+    end
 
     add_to_serializer(:topic_view, :can_vote) { object.topic.can_vote? }
     add_to_serializer(:topic_view, :vote_count) { object.topic.vote_count }
-    add_to_serializer(:topic_view, :user_voted) { scope.user ? object.topic.user_voted?(scope.user) : false }
+    add_to_serializer(:topic_view, :user_voted) do
+      scope.user ? object.topic.user_voted?(scope.user) : false
+    end
 
     if TopicQuery.respond_to?(:results_filter_callbacks)
-      TopicQuery.results_filter_callbacks << ->(_type, result, user, options) {
+      TopicQuery.results_filter_callbacks << ->(_type, result, user, options) do
         result = result.includes(:topic_vote_count)
 
         if user
-          result = result.select("topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted")
+          result =
+            result.select(
+              "topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted",
+            )
 
           if options[:state] == "my_votes"
-            result = result.joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}")
+            result =
+              result.joins(
+                "INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}",
+              )
           end
         end
 
         if options[:order] == "votes"
           sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
-          result = result
-            .joins("LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id")
-            .reorder("COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}, topics.bumped_at DESC")
+          result =
+            result.joins(
+              "LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id",
+            ).reorder(
+              "COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}, topics.bumped_at DESC",
+            )
         end
 
         result
-      }
+      end
     end
 
     add_to_serializer(:category, :custom_fields) do
-      object.custom_fields.merge(enable_topic_voting: DiscourseTopicVoting::CategorySetting.find_by(category_id: object.id).present?)
+      object.custom_fields.merge(
+        enable_topic_voting:
+          DiscourseTopicVoting::CategorySetting.find_by(category_id: object.id).present?,
+      )
     end
 
     add_to_serializer(:topic_list_item, :vote_count, false) { object.vote_count }
     add_to_serializer(:topic_list_item, :can_vote, false) { object.can_vote? }
-    add_to_serializer(:topic_list_item, :user_voted, false) { object.user_voted?(scope.user) if scope.user }
+    add_to_serializer(:topic_list_item, :user_voted, false) do
+      object.user_voted?(scope.user) if scope.user
+    end
     add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
-    add_to_serializer(:topic_list_item, :include_can_vote?) { SiteSetting.voting_enabled && object.regular? }
+    add_to_serializer(:topic_list_item, :include_can_vote?) do
+      SiteSetting.voting_enabled && object.regular?
+    end
     add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
     add_to_serializer(:basic_category, :can_vote, false) { true }
     add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
 
     register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
-      posts.where("(SELECT votes_count FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?", match.to_i)
+      posts.where(
+        "(SELECT votes_count FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?",
+        match.to_i,
+      )
     end
 
     register_search_advanced_order(:votes) do |posts|
-      posts.reorder("COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = topics.id), 0) DESC")
+      posts.reorder(
+        "COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = topics.id), 0) DESC",
+      )
     end
 
     class ::Category
       def self.reset_voting_cache
-        @allowed_voting_cache["allowed"] =
-          begin
-            DiscourseTopicVoting::CategorySetting.pluck(:category_id)
-          end
+        @allowed_voting_cache["allowed"] = begin
+          DiscourseTopicVoting::CategorySetting.pluck(:category_id)
+        end
       end
 
       @allowed_voting_cache = DistributedCache.new("allowed_voting")
@@ -112,12 +139,13 @@ after_initialize do
       after_save :reset_voting_cache
 
       protected
+
       def reset_voting_cache
         ::Category.reset_voting_cache
       end
     end
 
-    require_dependency 'user'
+    require_dependency "user"
     class ::User
       def vote_count
         topics_with_vote.length
@@ -148,7 +176,7 @@ after_initialize do
     add_to_serializer(:current_user, :votes_count) { object.vote_count }
     add_to_serializer(:current_user, :votes_left) { [object.vote_limit - object.vote_count, 0].max }
 
-    require_dependency 'list_controller'
+    require_dependency "list_controller"
     class ::ListController
       skip_before_action :ensure_logged_in, only: %i[voted_by]
 
@@ -169,27 +197,27 @@ after_initialize do
       end
     end
 
-    require_dependency 'topic_query'
+    require_dependency "topic_query"
     class ::TopicQuery
       def list_voted_by(user)
         create_list(:user_topics) do |topics|
-          topics
-            .joins("INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id")
-            .where("discourse_voting_votes.user_id = ?", user.id)
+          topics.joins(
+            "INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id",
+          ).where("discourse_voting_votes.user_id = ?", user.id)
         end
       end
 
       def list_votes
         create_list(:votes, unordered: true) do |topics|
-          topics.joins("LEFT JOIN discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id")
-            .order("COALESCE(dvtvc.votes_count,'0')::integer DESC, topics.bumped_at DESC")
+          topics.joins(
+            "LEFT JOIN discourse_voting_topic_vote_count dvtvc ON dvtvc.topic_id = topics.id",
+          ).order("COALESCE(dvtvc.votes_count,'0')::integer DESC, topics.bumped_at DESC")
         end
       end
     end
 
     require_dependency "jobs/base"
     module ::Jobs
-
       class VoteRelease < ::Jobs::Base
         def execute(args)
           if topic = Topic.with_deleted.find_by(id: args[:topic_id])
@@ -201,15 +229,15 @@ after_initialize do
             return if args[:trashed]
 
             votes.find_each do |vote|
-              Notification.create!(user_id: vote.user_id,
-                                   notification_type: Notification.types[:votes_released],
-                                   topic_id: vote.topic_id,
-                                   data: { message: "votes_released",
-                                           title: "votes_released" }.to_json)
-            rescue
+              Notification.create!(
+                user_id: vote.user_id,
+                notification_type: Notification.types[:votes_released],
+                topic_id: vote.topic_id,
+                data: { message: "votes_released", title: "votes_released" }.to_json,
+              )
+            rescue StandardError
               # If one notifcation crash, inform others
             end
-
           end
         end
       end
@@ -224,22 +252,23 @@ after_initialize do
           end
         end
       end
-
     end
   end
 
   DiscourseEvent.on(:topic_status_updated) do |topic, status, enabled|
-    if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == true
+    if (status == "closed" || status == "autoclosed" || status == "archived") && enabled == true
       Jobs.enqueue(:vote_release, topic_id: topic.id)
     end
 
-    if (status == 'closed' || status == 'autoclosed' || status == 'archived') && enabled == false
+    if (status == "closed" || status == "autoclosed" || status == "archived") && enabled == false
       Jobs.enqueue(:vote_reclaim, topic_id: topic.id)
     end
   end
 
   DiscourseEvent.on(:topic_trashed) do |topic|
-    Jobs.enqueue(:vote_release, topic_id: topic.id, trashed: true) if !topic.closed && !topic.archived
+    if !topic.closed && !topic.archived
+      Jobs.enqueue(:vote_release, topic_id: topic.id, trashed: true)
+    end
   end
 
   DiscourseEvent.on(:topic_recovered) do |topic|
@@ -247,9 +276,8 @@ after_initialize do
   end
 
   DiscourseEvent.on(:post_edited) do |post, topic_changed|
-    if topic_changed &&
-        SiteSetting.voting_enabled &&
-        DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id)
+    if topic_changed && SiteSetting.voting_enabled &&
+         DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id)
       new_category_id = post.reload.topic.category_id
       if Category.can_vote?(new_category_id)
         Jobs.enqueue(:vote_reclaim, topic_id: post.topic_id)
@@ -275,7 +303,10 @@ after_initialize do
             duplicated_votes += 1
             user.votes.destroy_by(topic_id: orig.id)
           else
-            user.votes.find_by(topic_id: orig.id, user_id: user.id).update!(topic_id: dest.id, archive: dest.closed)
+            user
+              .votes
+              .find_by(topic_id: orig.id, user_id: user.id)
+              .update!(topic_id: dest.id, archive: dest.closed)
             moved_votes += 1
           end
         else
@@ -288,26 +319,34 @@ after_initialize do
       orig.update_vote_count
       dest.update_vote_count
 
-      if moderator_post = orig.ordered_posts.where(action_code: 'split_topic').last
-        moderator_post.raw << "\n\n#{I18n.t('topic_voting.votes_moved', count: moved_votes)}"
-        moderator_post.raw << " #{I18n.t('topic_voting.duplicated_votes', count: duplicated_votes)}" if duplicated_votes > 0
+      if moderator_post = orig.ordered_posts.where(action_code: "split_topic").last
+        moderator_post.raw << "\n\n#{I18n.t("topic_voting.votes_moved", count: moved_votes)}"
+        if duplicated_votes > 0
+          moderator_post.raw << " #{I18n.t("topic_voting.duplicated_votes", count: duplicated_votes)}"
+        end
         moderator_post.save!
       end
     end
   end
 
-  require File.expand_path(File.dirname(__FILE__) + '/app/controllers/discourse_topic_voting/votes_controller')
+  require File.expand_path(
+            File.dirname(__FILE__) + "/app/controllers/discourse_topic_voting/votes_controller",
+          )
 
   DiscourseTopicVoting::Engine.routes.draw do
-    post 'vote' => 'votes#vote'
-    post 'unvote' => 'votes#unvote'
-    get 'who' => 'votes#who'
+    post "vote" => "votes#vote"
+    post "unvote" => "votes#unvote"
+    get "who" => "votes#who"
   end
 
   Discourse::Application.routes.append do
     mount ::DiscourseTopicVoting::Engine, at: "/voting"
     # USERNAME_ROUTE_FORMAT is deprecated but we may need to support it for older installs
     username_route_format = defined?(RouteFormat) ? RouteFormat.username : USERNAME_ROUTE_FORMAT
-    get "topics/voted-by/:username" => "list#voted_by", as: "voted_by", constraints: { username: username_route_format }
+    get "topics/voted-by/:username" => "list#voted_by",
+        :as => "voted_by",
+        :constraints => {
+          username: username_route_format,
+        }
   end
 end

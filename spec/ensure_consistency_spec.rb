@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe Jobs::VotingEnsureConsistency do
   it "ensures consistency" do
@@ -26,8 +26,12 @@ describe Jobs::VotingEnsureConsistency do
 
     no_vote_topic.reload
 
-    expect(DiscourseTopicVoting::Vote.where(user: user).pluck(:topic_id)).to eq([one_vote_topic.id, two_vote_topic.id])
-    expect(DiscourseTopicVoting::Vote.where(user: user2).pluck(:topic_id)).to eq([two_vote_topic.id])
+    expect(DiscourseTopicVoting::Vote.where(user: user).pluck(:topic_id)).to eq(
+      [one_vote_topic.id, two_vote_topic.id],
+    )
+    expect(DiscourseTopicVoting::Vote.where(user: user2).pluck(:topic_id)).to eq(
+      [two_vote_topic.id],
+    )
 
     one_vote_topic.reload
     expect(one_vote_topic.topic_vote_count.votes_count).to eq(1)

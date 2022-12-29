@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe SearchController do
   fab!(:user) { Fabricate(:user) }
@@ -12,12 +12,12 @@ describe SearchController do
 
   fab!(:post_1) do
     SearchIndexer.enable
-    Fabricate(:post, topic: topic, raw: 'this is an awesome topic')
+    Fabricate(:post, topic: topic, raw: "this is an awesome topic")
   end
 
   fab!(:post_2) do
     SearchIndexer.enable
-    Fabricate(:post, topic: topic_2, raw: 'this is an awesome topic')
+    Fabricate(:post, topic: topic_2, raw: "this is an awesome topic")
   end
 
   before do
@@ -26,22 +26,19 @@ describe SearchController do
     sign_in(user)
   end
 
-  it 'can search for posts ordered by votes' do
+  it "can search for posts ordered by votes" do
     post "/voting/vote.json", params: { topic_id: post_2.topic_id }
 
     expect(response.status).to eq(200)
 
-    get "/search/query.json", params: {
-      term: 'awesome order:votes',
-    }
+    get "/search/query.json", params: { term: "awesome order:votes" }
 
     expect(response.status).to eq(200)
 
     data = response.parsed_body
 
-    expect(data['posts'].length).to eq(2)
-    expect(data['posts'][0]['id']).to eq(post_2.id)
-    expect(data['posts'][1]['id']).to eq(post_1.id)
+    expect(data["posts"].length).to eq(2)
+    expect(data["posts"][0]["id"]).to eq(post_2.id)
+    expect(data["posts"][1]["id"]).to eq(post_1.id)
   end
-
 end

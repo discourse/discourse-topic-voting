@@ -10,7 +10,7 @@ RSpec.describe CurrentUserSerializer do
   let(:topic3) { Fabricate(:topic, category_id: category.id) }
   let(:topic4) { Fabricate(:topic, category_id: category.id) }
 
-  it 'does not return attributes related to voting if disabled' do
+  it "does not return attributes related to voting if disabled" do
     SiteSetting.voting_enabled = false
     json = described_class.new(user1, scope: guardian, root: false).as_json
 
@@ -19,8 +19,8 @@ RSpec.describe CurrentUserSerializer do
     expect(json[:votes_left]).to eq(nil)
   end
 
-  describe 'votes_exceeded' do
-    it 'returns false when within voting limits' do
+  describe "votes_exceeded" do
+    it "returns false when within voting limits" do
       SiteSetting.voting_enabled = true
       SiteSetting.voting_tl3_vote_limit = 1
       Fabricate(:topic_voting_votes, user: user2, topic: topic1)
@@ -30,7 +30,7 @@ RSpec.describe CurrentUserSerializer do
       expect(json[:votes_exceeded]).to eq(false)
     end
 
-    it 'returns true when hit voting limits' do
+    it "returns true when hit voting limits" do
       SiteSetting.voting_enabled = true
       SiteSetting.voting_tl3_vote_limit = 1
       Fabricate(:topic_voting_votes, user: user1, topic: topic1)
@@ -41,8 +41,8 @@ RSpec.describe CurrentUserSerializer do
     end
   end
 
-  describe 'votes_left' do
-    it 'returns the number of votes the user has left' do
+  describe "votes_left" do
+    it "returns the number of votes the user has left" do
       SiteSetting.voting_tl3_vote_limit = 3
 
       json = described_class.new(user1, scope: guardian, root: false).as_json

@@ -4,26 +4,26 @@ module TopicVotingTopic
   include ::RSpec::Matchers
 
   def vote_count
-    find('.voting .vote-count')
+    find(".voting .vote-count")
   end
 
   def vote_popup
-    find('.voting-popup-menu')
+    find(".voting-popup-menu")
   end
 
   def vote
-    find('button.vote-button').click
+    find("button.vote-button").click
     self
   end
 
   def remove_vote
     vote
-    find('.remove-vote').click
+    find(".remove-vote").click
     self
   end
 
   def click_vote_popup_activity
-    find('.voting-popup-menu a').click
+    find(".voting-popup-menu a").click
   end
 end
 

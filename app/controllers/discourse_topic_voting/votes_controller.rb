@@ -22,7 +22,6 @@ module DiscourseTopicVoting
       voted = false
 
       unless current_user.reached_voting_limit?
-
         DiscourseTopicVoting::Vote.find_or_create_by(user: current_user, topic_id: topic_id)
 
         topic.update_vote_count
@@ -35,7 +34,7 @@ module DiscourseTopicVoting
         vote_count: topic.topic_vote_count&.votes_count&.to_i,
         who_voted: who_voted(topic),
         alert: current_user.alert_low_votes?,
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max,
       }
 
       render json: obj, status: voted ? 200 : 403
@@ -56,7 +55,7 @@ module DiscourseTopicVoting
         vote_limit: current_user.vote_limit,
         vote_count: topic.topic_vote_count&.votes_count&.to_i,
         who_voted: who_voted(topic),
-        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max
+        votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max,
       }
 
       render json: obj
@@ -67,8 +66,11 @@ module DiscourseTopicVoting
     def who_voted(topic)
       return nil unless SiteSetting.voting_show_who_voted
 
-      ActiveModel::ArraySerializer.new(topic.who_voted, scope: guardian, each_serializer: BasicUserSerializer)
+      ActiveModel::ArraySerializer.new(
+        topic.who_voted,
+        scope: guardian,
+        each_serializer: BasicUserSerializer,
+      )
     end
-
   end
 end

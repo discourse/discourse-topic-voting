@@ -8,7 +8,7 @@ class CreateDiscourseVotingVotes < ActiveRecord::Migration[6.0]
       t.boolean :archive, default: false
       t.timestamps
     end
-    add_index :discourse_voting_votes, [:user_id, :topic_id], unique: true
+    add_index :discourse_voting_votes, %i[user_id topic_id], unique: true
 
     DB.exec <<~SQL
       INSERT INTO discourse_voting_votes(topic_id, user_id, archive, created_at, updated_at)
