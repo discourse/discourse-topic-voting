@@ -3,13 +3,17 @@
 module DiscourseTopicVoting
   module TopicExtension
     def self.prepended(base)
-      base.has_one :topic_vote_count, class_name: 'DiscourseTopicVoting::TopicVoteCount', dependent: :destroy
-      base.has_many :votes, class_name: 'DiscourseTopicVoting::Vote', dependent: :destroy
+      base.has_one :topic_vote_count,
+                   class_name: "DiscourseTopicVoting::TopicVoteCount",
+                   dependent: :destroy
+      base.has_many :votes, class_name: "DiscourseTopicVoting::Vote", dependent: :destroy
       base.attribute :current_user_voted
     end
 
     def can_vote?
-      @can_vote ||= SiteSetting.voting_enabled && regular? && Category.can_vote?(category_id) && category && category.topic_id != id
+      @can_vote ||=
+        SiteSetting.voting_enabled && regular? && Category.can_vote?(category_id) && category &&
+          category.topic_id != id
     end
 
     def vote_count

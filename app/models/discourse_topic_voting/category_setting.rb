@@ -2,7 +2,7 @@
 
 module DiscourseTopicVoting
   class CategorySetting < ActiveRecord::Base
-    self.table_name = 'discourse_voting_category_settings'
+    self.table_name = "discourse_voting_category_settings"
 
     belongs_to :category
 
@@ -43,8 +43,11 @@ module DiscourseTopicVoting
       ::StaffActionLogger.new(Discourse.system_user).log_category_settings_change(
         self.category,
         { custom_fields: { enable_topic_voting: "false" } },
-        old_permissions: {},
-        old_custom_fields: { enable_topic_voting: "true" }
+        old_permissions: {
+        },
+        old_custom_fields: {
+          enable_topic_voting: "true",
+        },
       )
     end
 
@@ -52,8 +55,11 @@ module DiscourseTopicVoting
       ::StaffActionLogger.new(Discourse.system_user).log_category_settings_change(
         self.category,
         { custom_fields: { enable_topic_voting: "true" } },
-        old_permissions: {},
-        old_custom_fields: { enable_topic_voting: "false" }
+        old_permissions: {
+        },
+        old_custom_fields: {
+          enable_topic_voting: "false",
+        },
       )
     end
   end

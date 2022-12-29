@@ -14,7 +14,7 @@ jobs:
   build:
     name: ${{ matrix.build_type }}
     runs-on: ubuntu-latest
-    container: discourse/discourse_test:slim${{ (matrix.build_type == 'frontend' || matrix.build_type == 'system') && '-browsers' || '' }}
+    container: discourse/discourse_test:slim${{ startsWith(matrix.build_type, 'frontend') && '-browsers' || '' }}
     timeout-minutes: 30
 
     env:
@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
 
       matrix:
-        build_type: ['backend', 'frontend', 'system']
+        build_type: ["backend", "frontend"]
 
     steps:
       - uses: actions/checkout@v3
@@ -80,7 +80,7 @@ jobs:
 
       - name: Get yarn cache directory
         id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - name: Yarn cache
         uses: actions/cache@v3
@@ -130,7 +130,7 @@ jobs:
         shell: bash
         run: |
           if [ 0 -lt $(find plugins/${{ github.event.repository.name }}/spec -type f -name "*.rb" 2> /dev/null | wc -l) ]; then
-            echo "::set-output name=files_exist::true"
+            echo "files_exist=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Plugin RSpec
@@ -142,25 +142,10 @@ jobs:
         shell: bash
         run: |
           if [ 0 -lt $(find plugins/${{ github.event.repository.name }}/test/javascripts -type f \( -name "*.js" -or -name "*.es6" \) 2> /dev/null | wc -l) ]; then
-            echo "::set-output name=files_exist::true"
+            echo "files_exist=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Plugin QUnit
         if: matrix.build_type == 'frontend' && steps.check_qunit.outputs.files_exist == 'true'
         run: QUNIT_EMBER_CLI=1 bundle exec rake plugin:qunit['${{ github.event.repository.name }}','1200000']
         timeout-minutes: 10
-
-      - name: Ember Build for System Tests
-        if: matrix.build_type == 'system'
-        run: bin/ember-cli --build
-
-      - name: Plugin System Tests
-        if: matrix.build_type == 'system'
-        run: LOAD_PLUGINS=1 bin/system_rspec plugins/*/spec/system
-
-      - name: Upload failed system test screenshots
-        uses: actions/upload-artifact@v3
-        if: matrix.build_type == 'system' && failure()
-        with:
-          name: failed-system-test-screenshots
-          path: tmp/screenshots/*.png

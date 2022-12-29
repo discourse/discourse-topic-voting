@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe DiscourseTopicVoting::TopicExtension do
   let(:user) { Fabricate(:user) }
@@ -14,8 +14,8 @@ describe DiscourseTopicVoting::TopicExtension do
     SiteSetting.voting_show_who_voted = true
   end
 
-  describe '#update_vote_count' do
-    it 'upserts topic votes count' do
+  describe "#update_vote_count" do
+    it "upserts topic votes count" do
       topic.update_vote_count
       topic2.update_vote_count
 

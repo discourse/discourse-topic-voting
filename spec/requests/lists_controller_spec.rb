@@ -1,22 +1,20 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe ListController do
   fab!(:user) { Fabricate(:user) }
   fab!(:topic) { Fabricate(:topic) }
   # "topics/voted-by/:username"
-  before do
-    SiteSetting.voting_enabled = true
-  end
+  before { SiteSetting.voting_enabled = true }
 
   it "allow anons to view votes" do
     DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
 
     get "/topics/voted-by/#{user.username}.json"
-    topic_json = response.parsed_body.dig('topic_list', 'topics').first
+    topic_json = response.parsed_body.dig("topic_list", "topics").first
 
-    expect(topic_json['id']).to eq(topic.id)
+    expect(topic_json["id"]).to eq(topic.id)
   end
 
   it "returns a 404 when we don't show votes on profiles" do

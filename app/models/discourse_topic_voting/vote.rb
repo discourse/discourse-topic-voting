@@ -2,7 +2,7 @@
 
 module DiscourseTopicVoting
   class Vote < ActiveRecord::Base
-    self.table_name = 'discourse_voting_votes'
+    self.table_name = "discourse_voting_votes"
 
     belongs_to :user
     belongs_to :topic

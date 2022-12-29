@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe DiscourseTopicVoting::VotesController do
-
   let(:user) { Fabricate(:user) }
   let(:category) { Fabricate(:category) }
   let(:topic) { Fabricate(:topic, category_id: category.id) }
@@ -23,7 +22,6 @@ describe DiscourseTopicVoting::VotesController do
   end
 
   it "can correctly show deal with voting workflow" do
-
     SiteSetting.public_send "voting_tl#{user.trust_level}_vote_limit=", 2
 
     post "/voting/vote.json", params: { topic_id: topic.id }
@@ -38,7 +36,7 @@ describe DiscourseTopicVoting::VotesController do
     expect(response.status).to eq(200)
     json = JSON.parse(response.body)
     expect(json.length).to eq(1)
-    expect(json.first.keys.sort).to eq(["avatar_template", "id", "name", "username"])
+    expect(json.first.keys.sort).to eq(%w[avatar_template id name username])
     expect(json.first["id"]).to eq(user.id)
 
     post "/voting/unvote.json", params: { topic_id: topic.id }

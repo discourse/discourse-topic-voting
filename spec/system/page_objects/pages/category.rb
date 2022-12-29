@@ -4,7 +4,7 @@ module TopicVotingCategory
   include ::RSpec::Matchers
 
   def votes
-    '.nav-item_votes.votes'
+    ".nav-item_votes.votes"
   end
 
   def topic_with_vote_count(vote_count)
