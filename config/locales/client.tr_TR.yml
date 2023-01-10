@@ -10,6 +10,7 @@ tr_TR:
       sort_options:
         votes: "Oylar"
     topic_voting:
+      title: "Konu Oylama"
       reached_limit: "Oy hakkınız kalmadı, mevcut bir oyunuzu kaldırın!"
       list_votes: "Oylarınızı listeleyin"
       votes_nav_help: "en çok oy alan konular"
@@ -33,6 +34,8 @@ tr_TR:
         one: "Oy"
         other: "Oylar"
       remove_vote: "Oyu kaldır"
+      no_votes_title_self: "Henüz hiçbir konu için oy kullanmadınız"
+      no_votes_title_others: "%{username} henüz herhangi bir konu için oy kullanmadı"
     filters:
       votes:
         title: "Oylar"
