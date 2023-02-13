@@ -255,7 +255,7 @@ after_initialize do
     end
   end
 
-  DiscourseEvent.on(:topic_status_updated) do |topic, status, enabled|
+  on(:topic_status_updated) do |topic, status, enabled|
     if (status == "closed" || status == "autoclosed" || status == "archived") && enabled == true
       Jobs.enqueue(:vote_release, topic_id: topic.id)
     end
@@ -265,17 +265,17 @@ after_initialize do
     end
   end
 
-  DiscourseEvent.on(:topic_trashed) do |topic|
+  on(:topic_trashed) do |topic|
     if !topic.closed && !topic.archived
       Jobs.enqueue(:vote_release, topic_id: topic.id, trashed: true)
     end
   end
 
-  DiscourseEvent.on(:topic_recovered) do |topic|
+  on(:topic_recovered) do |topic|
     Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
   end
 
-  DiscourseEvent.on(:post_edited) do |post, topic_changed|
+  on(:post_edited) do |post, topic_changed|
     if topic_changed && SiteSetting.voting_enabled &&
          DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id)
       new_category_id = post.reload.topic.category_id
@@ -287,7 +287,7 @@ after_initialize do
     end
   end
 
-  DiscourseEvent.on(:topic_merged) do |orig, dest|
+  on(:topic_merged) do |orig, dest|
     moved_votes = 0
     duplicated_votes = 0
 
