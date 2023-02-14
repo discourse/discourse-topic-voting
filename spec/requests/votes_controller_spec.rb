@@ -18,7 +18,7 @@ describe DiscourseTopicVoting::VotesController do
   it "does not allow voting if voting is not enabled" do
     SiteSetting.voting_enabled = false
     post "/voting/vote.json", params: { topic_id: topic.id }
-    expect(response.status).to eq(403)
+    expect(response.status).to eq(404)
   end
 
   it "can correctly show deal with voting workflow" do
