@@ -8,11 +8,11 @@ module DiscourseTopicVoting
 
       category_params = super
 
-      if @vote_enabled && !@category&.category_setting
-        category_params[:category_setting_attributes] = {}
-      elsif !@vote_enabled && @category&.category_setting
-        category_params[:category_setting_attributes] = {
-          id: @category.category_setting.id,
+      if @vote_enabled && !@category&.discourse_topic_voting_category_setting
+        category_params[:discourse_topic_voting_category_setting_attributes] = {}
+      elsif !@vote_enabled && @category&.discourse_topic_voting_category_setting
+        category_params[:discourse_topic_voting_category_setting_attributes] = {
+          id: @category.discourse_topic_voting_category_setting.id,
           _destroy: "1",
         }
       end

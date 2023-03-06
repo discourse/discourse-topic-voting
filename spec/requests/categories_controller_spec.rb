@@ -19,6 +19,7 @@ describe CategoriesController do
             "enable_topic_voting" => true,
           },
         }
+
     expect(Category.can_vote?(category.id)).to eq(true)
   end
 
