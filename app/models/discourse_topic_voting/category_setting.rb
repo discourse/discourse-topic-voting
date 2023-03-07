@@ -4,7 +4,7 @@ module DiscourseTopicVoting
   class CategorySetting < ActiveRecord::Base
     self.table_name = "discourse_voting_category_settings"
 
-    belongs_to :category
+    belongs_to :category, inverse_of: :discourse_topic_voting_category_setting
 
     before_create :unarchive_votes
     before_destroy :archive_votes
