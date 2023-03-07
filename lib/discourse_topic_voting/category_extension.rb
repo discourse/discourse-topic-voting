@@ -4,18 +4,20 @@ module DiscourseTopicVoting
   module CategoryExtension
     def self.prepended(base)
       base.class_eval do
-        has_one :category_setting,
+        has_one :discourse_topic_voting_category_setting,
                 class_name: "DiscourseTopicVoting::CategorySetting",
                 dependent: :destroy
 
-        accepts_nested_attributes_for :category_setting, allow_destroy: true
+        accepts_nested_attributes_for :discourse_topic_voting_category_setting, allow_destroy: true
 
         after_save :reset_voting_cache
 
         @allowed_voting_cache = DistributedCache.new("allowed_voting")
 
         def self.reset_voting_cache
-          @allowed_voting_cache["allowed"] = CategorySetting.pluck(:category_id)
+          @allowed_voting_cache["allowed"] = DiscourseTopicVoting::CategorySetting.pluck(
+            :category_id,
+          )
         end
 
         def self.can_vote?(category_id)
