@@ -94,7 +94,9 @@ after_initialize do
     end
   end
 
-  add_to_serializer(:category, :custom_fields) do
+  add_to_serializer(:category, :custom_fields, false) do
+    return object.custom_fields if !SiteSetting.voting_enabled
+
     object.custom_fields.merge(
       enable_topic_voting:
         DiscourseTopicVoting::CategorySetting.find_by(category_id: object.id).present?,
