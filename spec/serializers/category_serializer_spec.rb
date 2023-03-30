@@ -18,6 +18,6 @@ describe CategorySerializer do
 
     json = CategorySerializer.new(category, root: false).as_json
 
-    expect(json[:custom_fields]).to eq({ enable_topic_voting: true })
+    expect(json[:custom_fields]).to eq({ "enable_topic_voting" => false })
   end
 end
