@@ -51,9 +51,8 @@ after_initialize do
     User.class_eval { prepend DiscourseTopicVoting::UserExtension }
   end
 
-  add_to_serializer(:post, :can_vote, false) { object.topic&.can_vote? }
-  add_to_serializer(:post, :include_can_vote?) do
-    SiteSetting.voting_enabled && object.post_number == 1
+  add_to_serializer(:post, :can_vote, include_condition: -> { object.post_number == 1 }) do
+    object.topic&.can_vote?
   end
 
   add_to_serializer(:topic_view, :can_vote) { object.topic.can_vote? }
@@ -103,18 +102,20 @@ after_initialize do
     )
   end
 
-  add_to_serializer(:topic_list_item, :vote_count, false) { object.vote_count }
-  add_to_serializer(:topic_list_item, :can_vote, false) { object.can_vote? }
-  add_to_serializer(:topic_list_item, :user_voted, false) do
+  add_to_serializer(:topic_list_item, :vote_count, include_condition: -> { object.can_vote? }) do
+    object.vote_count
+  end
+  add_to_serializer(:topic_list_item, :can_vote, include_condition: -> { object.regular? }) do
+    object.can_vote?
+  end
+  add_to_serializer(:topic_list_item, :user_voted, include_condition: -> { object.can_vote? }) do
     object.user_voted?(scope.user) if scope.user
   end
-  add_to_serializer(:topic_list_item, :include_vote_count?) { object.can_vote? }
-  add_to_serializer(:topic_list_item, :include_can_vote?) do
-    SiteSetting.voting_enabled && object.regular?
-  end
-  add_to_serializer(:topic_list_item, :include_user_voted?) { object.can_vote? }
-  add_to_serializer(:basic_category, :can_vote, false) { true }
-  add_to_serializer(:basic_category, :include_can_vote?) { Category.can_vote?(object.id) }
+  add_to_serializer(
+    :basic_category,
+    :can_vote,
+    include_condition: -> { Category.can_vote?(object.id) },
+  ) { true }
 
   register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
     posts.where(
