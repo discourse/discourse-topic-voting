@@ -15,7 +15,7 @@ tr_TR:
     voting_show_who_voted: 'Kullanıcıların kimin oy verdiğini görmesine izin verilsin mi?'
     voting_show_votes_on_profile: 'Kullanıcıların oylarını aktivite akışlarında görmelerine izin verilsin mi?'
     voting_alert_votes_left: 'Şu kadar oy kaldığında kullanıcıyı uyar:'
-  voting:
+  topic_voting:
     votes_moved:
       one: "Bir oy taşındı."
       other: "%{count} oy taşındı."

@@ -15,7 +15,7 @@ zh_TW:
     voting_show_who_voted: '允許使用者可看見有誰投票？'
     voting_show_votes_on_profile: '是否允許使用者可在活動摘要中看見他們的投票？'
     voting_alert_votes_left: '當剩餘這些票數時提醒使用者'
-  voting:
+  topic_voting:
     votes_moved:
       other: "%{count} 投票已被搬移。"
     duplicated_votes:

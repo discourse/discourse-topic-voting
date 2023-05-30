@@ -15,14 +15,14 @@ pl_PL:
     voting_show_who_voted: 'Czy użytkownicy mają widzieć, kto głosował?'
     voting_show_votes_on_profile: 'Czy głosy mają być widoczne w aktywności w proflu użytkownika?'
     voting_alert_votes_left: 'Ostrzeż użytkownika, jesli pozostało mu tyle głosów'
-  voting:
+  topic_voting:
     votes_moved:
-      one: "Głos został przesunięty."
-      few: "%{count}głosy zostały przesunięte."
-      many: "%{count}głosy zostały przesunięte."
-      other: "%{count}głosów zostało przesuniętych."
+      one: "Głos został przeniesiony."
+      few: "%{count} głosy zostały przeniesione."
+      many: "%{count} głosów zostało przeniesionych."
+      other: "%{count} głosów zostało przeniesionych."
     duplicated_votes:
-      one: "Głos nie mógł zostać przesunięty, ponieważ użytkownik zagłosował już w innym temacie."
-      few: "%{count}głosy nie mogły zostać przesunięte, ponieważ użytkownicy zagłosowali już w innym temacie."
-      many: "%{count}głosów nie mogły zostać przesunięte, ponieważ użytkownicy zagłosowali już w innym temacie."
-      other: "%{count}nie mogło zostać przesuniętych, ponieważ użytkownicy zagłosowali już w innym temacie."
+      one: "Głos nie mógł zostać przeniesiony, ponieważ użytkownik zagłosował już w innym temacie."
+      few: "%{count} głosy nie mogły zostać przeniesione, ponieważ użytkownicy zagłosowali już w innym temacie."
+      many: "%{count} głosów nie mogło zostać przeniesionych, ponieważ użytkownicy zagłosowali już w innym temacie."
+      other: "%{count} głosów nie mogło zostać przeniesionych, ponieważ użytkownicy zagłosowali już w innym temacie."
