@@ -10,6 +10,7 @@ pl_PL:
       sort_options:
         votes: "Głosy"
     topic_voting:
+      title: "Głosowanie na temat"
       reached_limit: "Oddałeś już maksymalną liczbę głosów!"
       list_votes: "Lista twoich głosów"
       votes_nav_help: "tematy z największą liczbą głosów"

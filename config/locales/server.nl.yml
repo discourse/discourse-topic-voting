@@ -15,7 +15,7 @@ nl:
     voting_show_who_voted: 'Toestaan dat gebruikers kunnen zien wie er heeft gestemd?'
     voting_show_votes_on_profile: 'Toestaan dat gebruikers hun stemmen zien in hun activiteitfeed?'
     voting_alert_votes_left: 'Gebruiker waarschuwen als zoveel stemmen resteren'
-  voting:
+  topic_voting:
     votes_moved:
       one: "Een stem is verplaatst."
       other: "%{count} stemmen zijn verplaatst."
