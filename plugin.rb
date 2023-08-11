@@ -40,6 +40,7 @@ after_initialize do
     lib/discourse_topic_voting/topic_extension.rb
     lib/discourse_topic_voting/topic_query_extension.rb
     lib/discourse_topic_voting/user_extension.rb
+    lib/discourse_topic_voting/web_hook_extension.rb
   ].each { |path| require_relative path }
 
   reloadable_patch do
@@ -49,6 +50,7 @@ after_initialize do
     Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
     TopicQuery.class_eval { prepend DiscourseTopicVoting::TopicQueryExtension }
     User.class_eval { prepend DiscourseTopicVoting::UserExtension }
+    WebHook.class_eval { prepend DiscourseTopicVoting::WebHookExtension }
   end
 
   add_to_serializer(:post, :can_vote, include_condition: -> { object.post_number == 1 }) do
