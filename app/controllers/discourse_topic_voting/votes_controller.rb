@@ -39,6 +39,11 @@ module DiscourseTopicVoting
         votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max,
       }
 
+      if WebHook.active_web_hooks(:topic_voting).exists?
+        payload = { topic_id: topic_id, voter_id: current_user.id, vote_count: obj[:vote_count] }
+        WebHook.enqueue_topic_voting_hooks(:topic_upvote, topic, payload.to_json)
+      end
+
       render json: obj, status: voted ? 200 : 403
     end
 

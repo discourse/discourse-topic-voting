@@ -43,3 +43,8 @@ en:
         vote:
           count:
             label: "Minimum Vote Count"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Topic Voting Event"
+          details: "When a topic receives an upvote"

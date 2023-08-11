@@ -45,4 +45,17 @@ describe DiscourseTopicVoting::VotesController do
     expect(topic.reload.vote_count).to eq(0)
     expect(user.reload.vote_count).to eq(0)
   end
+
+  it "triggers a topic_upvote webhook when voting" do
+    Fabricate(:topic_voting_web_hook)
+    post "/voting/vote.json", params: { topic_id: topic.id }
+    expect(response.status).to eq(200)
+
+    job_args = Jobs::EmitWebHookEvent.jobs[0]["args"].first
+    expect(job_args["event_name"]).to eq("topic_upvote")
+    payload = JSON.parse(job_args["payload"])
+    expect(payload["topic_id"]).to eq(topic.id)
+    expect(payload["voter_id"]).to eq(user.id)
+    expect(payload["vote_count"]).to eq(1)
+  end
 end
