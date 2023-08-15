@@ -55,6 +55,7 @@ describe DiscourseTopicVoting::VotesController do
     expect(job_args["event_name"]).to eq("topic_upvote")
     payload = JSON.parse(job_args["payload"])
     expect(payload["topic_id"]).to eq(topic.id)
+    expect(payload["topic_slug"]).to eq(topic.slug)
     expect(payload["voter_id"]).to eq(user.id)
     expect(payload["vote_count"]).to eq(1)
   end
