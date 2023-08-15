@@ -49,3 +49,8 @@ tr_TR:
         vote:
           count:
             label: "En Düşük Oy Sayısı"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Konu Oylama Etkinliği"
+          details: "Bir konu olumlu oy aldığında"

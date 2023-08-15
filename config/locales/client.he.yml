@@ -57,3 +57,8 @@ he:
         vote:
           count:
             label: "ספירת הצבעות מינימלית"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "אירוע הצבעה בנושא"
+          details: "כשהוא מקבל הצבעה חיובית"

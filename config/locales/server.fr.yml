@@ -20,5 +20,5 @@ fr:
       one: "Un vote a été déplacé."
       other: "%{count} votes ont été déplacés."
     duplicated_votes:
-      one: "Un vote n'a pas pu être déplacé car l'utilisateur a déjà voté dans l'autre sujet."
-      other: "%{count} votes n'ont pas pu être déplacés car leurs utilisateurs ont déjà voté dans l'autre sujet."
+      one: "Un vote n'a pas pu être déplacé, car l'utilisateur a déjà voté dans l'autre sujet."
+      other: "%{count} votes n'ont pas pu être déplacés, car leurs utilisateurs ont déjà voté dans l'autre sujet."

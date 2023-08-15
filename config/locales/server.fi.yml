@@ -20,5 +20,5 @@ fi:
       one: "Ääni siirrettiin."
       other: "%{count} ääntä siirrettiin."
     duplicated_votes:
-      one: "Ääntä ei voitu siirtää, koska käyttäjä on jo äänestänyt toista ketjua."
-      other: "%{count} ääntä ei voitu siirtää, koska ne antaneet käyttäjät ovat jo äänestäneet toista ketjua."
+      one: "Ääntä ei voitu siirtää, koska käyttäjä on jo äänestänyt toisessa ketjussa."
+      other: "%{count} ääntä ei voitu siirtää, koska ne antaneet käyttäjät ovat jo äänestäneet toisessa ketjussa."
