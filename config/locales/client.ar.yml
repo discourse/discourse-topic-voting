@@ -65,3 +65,8 @@ ar:
         vote:
           count:
             label: "أقل عدد من الأصوات"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "حدث التصويت على موضوع"
+          details: "عندما يتلقى أحد الموضوعات تصويتًا إيجابيًا"

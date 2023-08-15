@@ -49,3 +49,8 @@ pt_BR:
         vote:
           count:
             label: "Contagem mínima de votos"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Evento de votação no tópico"
+          details: "Quando um tópico recebe um voto a favor"

@@ -49,3 +49,8 @@ es:
         vote:
           count:
             label: "Número mínimo de votos"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Evento de votación de tema"
+          details: "Cuando un tema recibe un voto a favor"

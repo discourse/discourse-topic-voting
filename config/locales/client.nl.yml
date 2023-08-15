@@ -49,3 +49,8 @@ nl:
         vote:
           count:
             label: "Minimaal aantal stemmen"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Topicstemgebeurtenis"
+          details: "Wanneer een topic omhoog wordt gestemd"

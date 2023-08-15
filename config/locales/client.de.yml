@@ -49,3 +49,8 @@ de:
         vote:
           count:
             label: "Mindeststimmzahl"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Themenabstimmungsevent"
+          details: "Wenn ein Thema eine positive Stimme erhält"
