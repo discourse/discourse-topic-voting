@@ -40,7 +40,12 @@ module DiscourseTopicVoting
       }
 
       if WebHook.active_web_hooks(:topic_voting).exists?
-        payload = { topic_id: topic_id, voter_id: current_user.id, vote_count: obj[:vote_count] }
+        payload = {
+          topic_id: topic_id,
+          topic_slug: topic.slug,
+          voter_id: current_user.id,
+          vote_count: obj[:vote_count],
+        }
         WebHook.enqueue_topic_voting_hooks(:topic_upvote, topic, payload.to_json)
       end
 
