@@ -39,7 +39,7 @@ module DiscourseTopicVoting
         votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max,
       }
 
-      if WebHook.active_web_hooks(:topic_voting).exists?
+      if WebHook.active_web_hooks(:topic_upvote).exists?
         payload = {
           topic_id: topic_id,
           topic_slug: topic.slug,
@@ -70,7 +70,7 @@ module DiscourseTopicVoting
         votes_left: [(current_user.vote_limit - current_user.vote_count), 0].max,
       }
 
-      if WebHook.active_web_hooks(:topic_voting).exists?
+      if WebHook.active_web_hooks(:topic_unvote).exists?
         payload = {
           topic_id: topic_id,
           topic_slug: topic.slug,

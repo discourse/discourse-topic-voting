@@ -45,6 +45,7 @@ en:
             label: "Minimum Vote Count"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "Topic Voting Event"
-          details: "When a user votes or unvotes on a topic"
+        voting_event:
+          group_name: "Topic Voting Event"
+          topic_upvote: "When a user votes on a topic"
+          topic_unvote: "When a user unvotes on a topic"

@@ -5,7 +5,7 @@ module DiscourseTopicVoting
     def self.prepended(base)
       base.class_eval do
         def self.enqueue_topic_voting_hooks(event, topic, payload)
-          if active_web_hooks("topic_voting").exists?
+          if active_web_hooks(event).exists?
             WebHook.enqueue_hooks(
               :topic_voting,
               event,
