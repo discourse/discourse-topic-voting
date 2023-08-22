@@ -57,3 +57,8 @@ ru:
         vote:
           count:
             label: "Минимальное количество голосов"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Событие голосования по теме"
+          details: "При получении голоса темой"
