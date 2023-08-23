@@ -46,3 +46,8 @@ da:
         vote:
           count:
             label: "Minimum antal af stemmer"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Emne Afstemningshændelse"
+          details: "Når et emne modtager en upvote"
