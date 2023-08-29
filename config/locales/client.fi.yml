@@ -49,3 +49,8 @@ fi:
         vote:
           count:
             label: "Vähimmäisäänimäärä"
+    admin:
+      web_hooks:
+        topic_voting_event:
+          name: "Ketjunäänestystapahtuma"
+          details: "Kun ketju saa äänen"
