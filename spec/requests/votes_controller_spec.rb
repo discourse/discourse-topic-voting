@@ -59,4 +59,17 @@ describe DiscourseTopicVoting::VotesController do
     expect(payload["voter_id"]).to eq(user.id)
     expect(payload["vote_count"]).to eq(1)
   end
+
+  it "triggers a topic_unvote webhook when unvoting" do
+    Fabricate(:topic_voting_web_hook)
+    post "/voting/unvote.json", params: { topic_id: topic.id }
+    expect(response.status).to eq(200)
+    job_args = Jobs::EmitWebHookEvent.jobs[0]["args"].first
+    expect(job_args["event_name"]).to eq("topic_unvote")
+    payload = JSON.parse(job_args["payload"])
+    expect(payload["topic_id"]).to eq(topic.id)
+    expect(payload["topic_slug"]).to eq(topic.slug)
+    expect(payload["voter_id"]).to eq(user.id)
+    expect(payload["vote_count"]).to eq(0)
+  end
 end
