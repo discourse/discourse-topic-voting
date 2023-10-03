@@ -50,4 +50,3 @@ da:
       web_hooks:
         topic_voting_event:
           name: "Emne Afstemningshændelse"
-          details: "Når et emne modtager en upvote"

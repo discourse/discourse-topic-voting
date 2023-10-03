@@ -69,4 +69,3 @@ ar:
       web_hooks:
         topic_voting_event:
           name: "حدث التصويت على موضوع"
-          details: "عندما يتلقى أحد الموضوعات تصويتًا إيجابيًا"

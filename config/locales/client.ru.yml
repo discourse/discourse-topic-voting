@@ -61,4 +61,3 @@ ru:
       web_hooks:
         topic_voting_event:
           name: "Событие голосования по теме"
-          details: "При получении голоса темой"

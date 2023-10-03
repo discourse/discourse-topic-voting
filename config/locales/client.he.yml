@@ -61,4 +61,4 @@ he:
       web_hooks:
         topic_voting_event:
           name: "אירוע הצבעה בנושא"
-          details: "כשהוא מקבל הצבעה חיובית"
+          details: "כשמתקבלת או נמשכת הצבעה על נושא"

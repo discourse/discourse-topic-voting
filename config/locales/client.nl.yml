@@ -53,4 +53,3 @@ nl:
       web_hooks:
         topic_voting_event:
           name: "Topicstemgebeurtenis"
-          details: "Wanneer een topic omhoog wordt gestemd"
