@@ -53,4 +53,3 @@ fr:
       web_hooks:
         topic_voting_event:
           name: "Événement de vote du sujet"
-          details: "Lorsqu'un sujet reçoit un vote positif"

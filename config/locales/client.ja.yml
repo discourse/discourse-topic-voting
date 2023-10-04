@@ -49,4 +49,3 @@ ja:
       web_hooks:
         topic_voting_event:
           name: "トピック投票イベント"
-          details: "トピックが賛成票を受け取ったとき"

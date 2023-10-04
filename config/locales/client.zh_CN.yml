@@ -49,4 +49,3 @@ zh_CN:
       web_hooks:
         topic_voting_event:
           name: "话题投票活动"
-          details: "当一个话题获得赞成票时"

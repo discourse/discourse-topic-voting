@@ -61,4 +61,3 @@ pl_PL:
       web_hooks:
         topic_voting_event:
           name: "Wydarzenie głosowania na temat"
-          details: "Gdy temat otrzyma głos"

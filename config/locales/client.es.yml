@@ -53,4 +53,3 @@ es:
       web_hooks:
         topic_voting_event:
           name: "Evento de votación de tema"
-          details: "Cuando un tema recibe un voto a favor"
