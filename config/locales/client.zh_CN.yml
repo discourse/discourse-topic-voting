@@ -47,5 +47,5 @@ zh_CN:
             label: "最小投票数"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "话题投票活动"
+        voting_event:
+          group_name: "话题投票活动"

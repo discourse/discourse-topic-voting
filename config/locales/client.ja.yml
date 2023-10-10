@@ -47,5 +47,5 @@ ja:
             label: "最低票数"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "トピック投票イベント"
+        voting_event:
+          group_name: "トピック投票イベント"

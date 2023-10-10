@@ -48,5 +48,5 @@ da:
             label: "Minimum antal af stemmer"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "Emne Afstemningshændelse"
+        voting_event:
+          group_name: "Emne Afstemningshændelse"
