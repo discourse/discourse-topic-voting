@@ -51,5 +51,5 @@ it:
             label: "Numero minimo di voti"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "Evento di votazione dell'argomento"
+        voting_event:
+          group_name: "Evento di votazione dell'argomento"

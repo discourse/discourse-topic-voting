@@ -67,5 +67,5 @@ ar:
             label: "أقل عدد من الأصوات"
     admin:
       web_hooks:
-        topic_voting_event:
-          name: "حدث التصويت على موضوع"
+        voting_event:
+          group_name: "حدث التصويت على موضوع"
