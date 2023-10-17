@@ -61,3 +61,5 @@ he:
       web_hooks:
         voting_event:
           group_name: "אירוע הצבעה בנושא"
+          topic_upvote: "כשמשתמש מצביע לנושא"
+          topic_unvote: "כשמשתמש מבטל הצבעה לנושא"
