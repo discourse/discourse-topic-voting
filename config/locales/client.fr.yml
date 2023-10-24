@@ -16,7 +16,7 @@ fr:
       votes_nav_help: "sujets ayant reçu le plus de votes"
       voted: "Vous avez voté pour ce sujet"
       allow_topic_voting: "Autoriser les utilisateurs à voter dans cette catégorie"
-      vote_title: "Vote"
+      vote_title: "Voter"
       vote_title_plural: "Votes"
       voted_title: "Voté"
       voting_closed_title: "Fermé"
@@ -53,3 +53,5 @@ fr:
       web_hooks:
         voting_event:
           group_name: "Événement de vote du sujet"
+          topic_upvote: "Lorsqu'un utilisateur vote sur un sujet"
+          topic_unvote: "Lorsqu'un utilisateur retire son vote pour un sujet"
