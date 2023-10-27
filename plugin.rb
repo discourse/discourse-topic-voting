@@ -95,7 +95,7 @@ after_initialize do
     end
   end
 
-  add_to_serializer(:category, :custom_fields, false) do
+  add_to_serializer(:category, :custom_fields, respect_plugin_enabled: false) do
     return object.custom_fields if !SiteSetting.voting_enabled
 
     object.custom_fields.merge(
