@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # name: discourse-topic-voting
-# about: Adds the ability to vote on features in a specified category.
+# about: Adds the ability to vote on topics in a specified category.
+# meta_topic_id: 40121
 # version: 0.5
 # author: Joe Buhlig joebuhlig.com, Sam Saffron
 # url: https://github.com/discourse/discourse-topic-voting
