@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe Jobs::VotingEnsureConsistency do
+  subject(:job) { described_class.new }
+
   it "ensures consistency" do
     user = Fabricate(:user)
     user2 = Fabricate(:user)
@@ -22,7 +24,7 @@ describe Jobs::VotingEnsureConsistency do
     DiscourseTopicVoting::Vote.create!(user: user, topic: two_vote_topic, archive: true)
     DiscourseTopicVoting::Vote.create!(user: user2, topic: two_vote_topic)
 
-    subject.execute_onceoff(nil)
+    job.execute_onceoff(nil)
 
     no_vote_topic.reload
 
