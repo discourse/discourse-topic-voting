@@ -138,12 +138,16 @@ after_initialize do
   add_to_serializer(:current_user, :votes_left) { [object.vote_limit - object.vote_count, 0].max }
 
   on(:topic_status_updated) do |topic, status, enabled|
-    if (status == "closed" || status == "autoclosed" || status == "archived") && enabled == true
-      Jobs.enqueue(:vote_release, topic_id: topic.id)
-    end
+    next if topic.trashed?
+    next unless %w[closed autoclosed archived].include?(status)
 
-    if (status == "closed" || status == "autoclosed" || status == "archived") && enabled == false
-      Jobs.enqueue(:vote_reclaim, topic_id: topic.id)
+    if enabled
+      Jobs.enqueue(:vote_release, topic_id: topic.id)
+    else
+      is_closing_unarchived = %w[closed autoclosed].include?(status) && !topic.archived
+      is_archiving_open = status == "archived" && !topic.closed
+
+      Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if is_closing_unarchived || is_archiving_open
     end
   end
 
@@ -157,9 +161,10 @@ after_initialize do
     Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
   end
 
-  on(:post_edited) do |post, topic_changed|
-    if topic_changed && SiteSetting.voting_enabled &&
-         DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id)
+  on(:post_edited) do |post, _, revisor|
+    if SiteSetting.voting_enabled && revisor.topic_diff.has_key?("category_id") &&
+         DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id) && !post.topic.closed &&
+         !post.topic.archived && !post.topic.trashed?
       new_category_id = post.reload.topic.category_id
       if Category.can_vote?(new_category_id)
         Jobs.enqueue(:vote_reclaim, topic_id: post.topic_id)

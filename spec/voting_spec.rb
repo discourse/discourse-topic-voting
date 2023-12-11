@@ -133,6 +133,36 @@ describe DiscourseTopicVoting do
       DiscourseEvent.off(:topic_status_updated, &blk)
     end
 
+    it "doesn't enqueue a job for reclaiming votes if the topic is deleted" do
+      topic1.update_status("closed", true, Discourse.system_user)
+      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+
+      topic1.trash!
+
+      topic1.update_status("closed", false, Discourse.system_user)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "doesn't enqueue a job for reclaiming votes when opening an archived topic" do
+      topic1.update_status("closed", true, Discourse.system_user)
+      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+
+      topic1.update_status("archived", true, Discourse.system_user)
+
+      topic1.update_status("closed", false, Discourse.system_user)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "doesn't enqueue a job for reclaiming votes when un-archiving a closed topic" do
+      topic1.update_status("archived", true, Discourse.system_user)
+      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+
+      topic1.update_status("closed", true, Discourse.system_user)
+
+      topic1.update_status("archived", false, Discourse.system_user)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
     it "creates notification that topic was completed" do
       Jobs.run_immediately!
       DiscourseTopicVoting::Vote.create!(user: user0, topic: topic1)
@@ -145,7 +175,7 @@ describe DiscourseTopicVoting do
     end
   end
 
-  context "when a job is trashed and then recovered" do
+  context "when a topic is trashed and then recovered" do
     it "released the vote back to the user, then reclaims it on topic recovery" do
       Jobs.run_immediately!
       DiscourseTopicVoting::Vote.create!(user: user0, topic: topic1)
@@ -170,7 +200,7 @@ describe DiscourseTopicVoting do
       Category.reset_voting_cache
     end
 
-    it "enqueus a job to reclaim votes if voting is enabled for the new category" do
+    it "enqueues a job to reclaim votes if voting is enabled for the new category" do
       user = post1.user
       DiscourseTopicVoting::Vote.create!(user: user, topic: post1.topic, archive: true)
       DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456, archive: true)
@@ -185,7 +215,37 @@ describe DiscourseTopicVoting do
       expect(user.topics_with_archived_vote.pluck(:topic_id)).to eq([456_456])
     end
 
-    it "enqueus a job to release votes if voting is disabled for the new category" do
+    it "doesn't enqueue a job to reclaim votes if category not changed" do
+      user = post1.user
+      DiscourseTopicVoting::Vote.create!(user: user, topic: post0.topic, archive: true)
+      DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456, archive: true)
+
+      PostRevisor.new(post0).revise!(admin, title: "Updated #{post0.topic.title}")
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "doesn't enqueue a job to reclaim votes if topic is closed" do
+      DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
+      post1.topic.update_status("closed", true, Discourse.system_user)
+      PostRevisor.new(post1).revise!(admin, category_id: category1.id)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "doesn't enqueue a job to reclaim votes if topic is archived" do
+      DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
+      post1.topic.update_status("archived", true, Discourse.system_user)
+      PostRevisor.new(post1).revise!(admin, category_id: category1.id)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "doesn't enqueue a job to reclaim votes if topic is trashed" do
+      DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
+      post1.topic.trash!
+      PostRevisor.new(post1).revise!(admin, category_id: category1.id)
+      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+    end
+
+    it "enqueues a job to release votes if voting is disabled for the new category" do
       user = post0.user
       DiscourseTopicVoting::Vote.create!(user: user, topic: post0.topic)
       DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456)
