@@ -96,6 +96,7 @@ after_initialize do
     end
   end
 
+  register_category_custom_field_type("enable_topic_voting", :boolean)
   add_to_serializer(:category, :custom_fields, respect_plugin_enabled: false) do
     return object.custom_fields if !SiteSetting.voting_enabled
 
