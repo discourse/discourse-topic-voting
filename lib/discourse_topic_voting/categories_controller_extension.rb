@@ -4,7 +4,7 @@ module DiscourseTopicVoting
   module CategoriesControllerExtension
     def category_params
       @vote_enabled ||=
-        !!ActiveRecord::Type::Boolean.new.cast(params[:custom_fields][:enable_topic_voting])
+        !!ActiveRecord::Type::Boolean.new.cast(params&.[](:custom_fields)&.[](:enable_topic_voting))
 
       category_params = super
 
