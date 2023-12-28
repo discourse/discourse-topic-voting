@@ -44,4 +44,9 @@ describe CategoriesController do
         }
     expect(Category.can_vote?(category.id)).to eq(false)
   end
+
+  it "works fine when `custom_fields` isn't passed " do
+    put "/categories/#{category.id}.json", params: {hello: "world"}
+    expect(response.status).to eq(200)
+  end
 end
