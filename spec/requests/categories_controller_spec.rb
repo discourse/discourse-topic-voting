@@ -46,7 +46,7 @@ describe CategoriesController do
   end
 
   it "works fine when `custom_fields` isn't passed " do
-    put "/categories/#{category.id}.json", params: {hello: "world"}
+    put "/categories/#{category.id}.json", params: { hello: "world" }
     expect(response.status).to eq(200)
   end
 end
