@@ -61,3 +61,5 @@ pl_PL:
       web_hooks:
         voting_event:
           group_name: "Wydarzenie głosowania na temat"
+          topic_upvote: "Gdy użytkownik głosuje na dany temat"
+          topic_unvote: "Kiedy użytkownik cofa głos na temat"
