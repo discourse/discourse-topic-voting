@@ -114,8 +114,8 @@ describe DiscourseTopicVoting do
     before { user0.votes.delete_all }
 
     it "returns a vote count of zero" do
-      expect(user0.vote_count).to eq (0)
-      expect(user0.topics_with_archived_vote.pluck(:topic_id)).to eq ([])
+      expect(user0.vote_count).to eq(0)
+      expect(user0.topics_with_archived_vote.pluck(:topic_id)).to eq([])
     end
   end
 

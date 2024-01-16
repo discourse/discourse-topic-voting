@@ -1,7 +1,8 @@
-import { createWidget } from "discourse/widgets/widget";
-import getURL from "discourse-common/lib/get-url";
+import $ from "jquery";
 import { h } from "virtual-dom";
 import { ajax } from "discourse/lib/ajax";
+import { createWidget } from "discourse/widgets/widget";
+import getURL from "discourse-common/lib/get-url";
 
 export default createWidget("vote-count", {
   tagName: "div.vote-count-wrapper",

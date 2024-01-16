@@ -1,13 +1,13 @@
-import I18n from "I18n";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import NavItem from "discourse/models/nav-item";
+import I18n from "I18n";
 
 export default {
   name: "discourse-topic-voting",
 
   initialize() {
     withPluginApi("0.8.32", (api) => {
-      const siteSettings = api.container.lookup("site-settings:main");
+      const siteSettings = api.container.lookup("service:site-settings");
       if (siteSettings.voting_enabled) {
         const pageSearchController = api.container.lookup(
           "controller:full-page-search"
@@ -60,7 +60,7 @@ export default {
     });
 
     withPluginApi("0.11.7", (api) => {
-      const siteSettings = api.container.lookup("site-settings:main");
+      const siteSettings = api.container.lookup("service:site-settings");
       if (siteSettings.voting_enabled) {
         api.addSearchSuggestion("order:votes");
       }
