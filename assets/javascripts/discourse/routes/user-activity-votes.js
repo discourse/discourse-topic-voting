@@ -1,5 +1,5 @@
-import UserTopicListRoute from "discourse/routes/user-topic-list";
 import UserAction from "discourse/models/user-action";
+import UserTopicListRoute from "discourse/routes/user-topic-list";
 import I18n from "I18n";
 
 export default UserTopicListRoute.extend({

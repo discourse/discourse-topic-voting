@@ -1,6 +1,7 @@
-import I18n from "I18n";
-import { createWidget } from "discourse/widgets/widget";
+import $ from "jquery";
 import { h } from "virtual-dom";
+import { createWidget } from "discourse/widgets/widget";
+import I18n from "I18n";
 
 export default createWidget("vote-button", {
   tagName: "div",

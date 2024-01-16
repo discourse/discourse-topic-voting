@@ -1,8 +1,8 @@
-import I18n from "I18n";
-import { createWidget } from "discourse/widgets/widget";
 import { ajax } from "discourse/lib/ajax";
-import RawHtml from "discourse/widgets/raw-html";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import RawHtml from "discourse/widgets/raw-html";
+import { createWidget } from "discourse/widgets/widget";
+import I18n from "I18n";
 
 export default createWidget("vote-box", {
   tagName: "div.voting-wrapper",
