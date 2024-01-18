@@ -223,6 +223,10 @@ after_initialize do
     get "who" => "votes#who"
   end
 
+  Discourse::Application.routes.prepend do
+    get "c/*category_slug_path_with_id/l/votes.rss" => "list#votes_feed", :format => :rss
+  end
+
   Discourse::Application.routes.append do
     mount ::DiscourseTopicVoting::Engine, at: "/voting"
 

@@ -4,8 +4,8 @@ module DiscourseTopicVoting
   module ListControllerExtension
     def self.prepended(base)
       base.class_eval do
-        before_action :ensure_discourse_topic_voting, only: %i[voted_by]
-        skip_before_action :ensure_logged_in, only: %i[voted_by]
+        before_action :ensure_discourse_topic_voting, only: %i[voted_by, votes_feed]
+        skip_before_action :ensure_logged_in, only: %i[voted_by, votes_feed]
       end
     end
 
@@ -16,6 +16,15 @@ module DiscourseTopicVoting
       list.more_topics_url = url_for(construct_url_with(:next, list_opts))
       list.prev_topics_url = url_for(construct_url_with(:prev, list_opts))
       respond_with_list(list)
+    end
+
+    def votes_feed
+      category_slug_path_with_id = params.require(:category_slug_path_with_id)
+
+      @category = Category.find_by_slug_path_with_id(category_slug_path_with_id)
+      @topic_list = TopicQuery.new(current_user, { category: @category.id }).list_votes
+
+      render "list", formats: [:rss]
     end
 
     protected
