@@ -25,4 +25,32 @@ describe ListController do
 
     expect(response.status).to eq(404)
   end
+
+  context "in a category" do
+    fab!(:category1) { Fabricate(:category) }
+    fab!(:category2) { Fabricate(:category) }
+    fab!(:topic1) do
+      Fabricate(:topic, category: category1, title: "Topic in votes-enabled category 1")
+    end
+    fab!(:topic2) do
+      Fabricate(:topic, category: category2, title: "Topic in votes-enabled category 2")
+    end
+
+    before do
+      DiscourseTopicVoting::CategorySetting.create!(category: category1)
+      DiscourseTopicVoting::CategorySetting.create!(category: category2)
+    end
+
+    it "allows anons to view votes RSS feed" do
+      DiscourseTopicVoting::Vote.create!(user: user, topic: topic1)
+      DiscourseTopicVoting::Vote.create!(user: user, topic: topic2)
+
+      get "/c/#{category2.slug}/#{category2.id}/l/votes.rss"
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include(topic2.title)
+      # ensure we don't include votes from other categories
+      expect(response.body).not_to include(topic1.title)
+    end
+  end
 end
