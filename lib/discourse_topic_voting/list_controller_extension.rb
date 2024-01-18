@@ -4,8 +4,8 @@ module DiscourseTopicVoting
   module ListControllerExtension
     def self.prepended(base)
       base.class_eval do
-        before_action :ensure_discourse_topic_voting, only: %i[voted_by, votes_feed]
-        skip_before_action :ensure_logged_in, only: %i[voted_by, votes_feed]
+        before_action :ensure_discourse_topic_voting, only: %i[voted_by votes_feed]
+        skip_before_action :ensure_logged_in, only: %i[voted_by votes_feed]
       end
     end
 
