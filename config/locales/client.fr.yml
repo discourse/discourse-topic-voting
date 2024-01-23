@@ -54,4 +54,4 @@ fr:
         voting_event:
           group_name: "Événement de vote du sujet"
           topic_upvote: "Lorsqu'un utilisateur vote sur un sujet"
-          topic_unvote: "Lorsqu'un utilisateur retire son vote pour un sujet"
+          topic_unvote: "Lorsqu'un utilisateur retire son vote sur un sujet"

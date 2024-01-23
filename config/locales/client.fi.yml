@@ -53,3 +53,5 @@ fi:
       web_hooks:
         voting_event:
           group_name: "Ketjunäänestystapahtuma"
+          topic_upvote: "Kun käyttäjä äänestää ketjua"
+          topic_unvote: "Kun käyttäjä poistaa äänen ketjulta"

@@ -52,4 +52,6 @@ de:
     admin:
       web_hooks:
         voting_event:
-          group_name: "Themenabstimmungsevent"
+          group_name: "Themenabstimmungsereignis"
+          topic_upvote: "Wenn ein Benutzer über ein Thema abstimmt"
+          topic_unvote: "Wenn ein Benutzer seine Stimme für ein Thema zurücknimmt"
