@@ -48,4 +48,6 @@ zh_CN:
     admin:
       web_hooks:
         voting_event:
-          group_name: "话题投票活动"
+          group_name: "话题投票事件"
+          topic_upvote: "当用户对某个话题投票时"
+          topic_unvote: "当用户对某个话题取消投票时"

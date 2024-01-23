@@ -49,3 +49,5 @@ ja:
       web_hooks:
         voting_event:
           group_name: "トピック投票イベント"
+          topic_upvote: "ユーザーがトピックに投票するとき"
+          topic_unvote: "ユーザーがトピックへの投票を取り消すとき"

@@ -53,3 +53,5 @@ nl:
       web_hooks:
         voting_event:
           group_name: "Topicstemgebeurtenis"
+          topic_upvote: "Wanneer een gebruiker stemt bij een topic"
+          topic_unvote: "Wanneer een gebruiker een stem bij een topic intrekt"

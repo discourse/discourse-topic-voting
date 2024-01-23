@@ -53,3 +53,5 @@ es:
       web_hooks:
         voting_event:
           group_name: "Evento de votación de tema"
+          topic_upvote: "Cuando un usuario vota sobre un tema"
+          topic_unvote: "Cuando un usuario cancela el voto sobre un tema"

@@ -53,3 +53,5 @@ tr_TR:
       web_hooks:
         voting_event:
           group_name: "Konu Oylama Etkinliği"
+          topic_upvote: "Bir kullanıcı bir konuya oy verdiğinde"
+          topic_unvote: "Bir kullanıcı bir konuya ilişkin oyu iptal ettiğinde"
