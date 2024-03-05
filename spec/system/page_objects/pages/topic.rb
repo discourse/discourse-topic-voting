@@ -27,4 +27,4 @@ module TopicVotingTopic
   end
 end
 
-PageObjects::Pages::Topic.class_eval { include TopicVotingTopic }
+PageObjects::Pages::Topic.include(TopicVotingTopic)

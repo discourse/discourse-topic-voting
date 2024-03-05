@@ -3,8 +3,8 @@
 require "rails_helper"
 
 describe ListController do
-  fab!(:user) { Fabricate(:user) }
-  fab!(:topic) { Fabricate(:topic) }
+  fab!(:user)
+  fab!(:topic)
   # "topics/voted-by/:username"
   before { SiteSetting.voting_enabled = true }
 

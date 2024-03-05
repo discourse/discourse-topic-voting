@@ -4,7 +4,7 @@ RSpec.describe CurrentUserSerializer do
   fab!(:user1) { Fabricate(:user, trust_level: 3) }
   let(:user2) { Fabricate(:user) }
   fab!(:guardian) { Guardian.new(user1) }
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
   fab!(:topic1) { Fabricate(:topic, category_id: category.id) }
   let(:topic2) { Fabricate(:topic, category_id: category.id) }
   let(:topic3) { Fabricate(:topic, category_id: category.id) }

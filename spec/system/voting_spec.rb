@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe "Voting", type: :system, js: true do
-  fab!(:user) { Fabricate(:user) }
-  fab!(:admin) { Fabricate(:admin) }
+  fab!(:user)
+  fab!(:admin)
   fab!(:category1) { Fabricate(:category) }
   fab!(:category2) { Fabricate(:category) }
   fab!(:topic1) { Fabricate(:topic, category: category1) }

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe CategoriesController do
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
   fab!(:topic) { Fabricate(:topic, category: category) }
   fab!(:admin) { Fabricate(:user, admin: true) }
 
