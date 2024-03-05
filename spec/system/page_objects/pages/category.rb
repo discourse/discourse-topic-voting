@@ -16,4 +16,4 @@ module TopicVotingCategory
   end
 end
 
-PageObjects::Pages::Category.class_eval { include TopicVotingCategory }
+PageObjects::Pages::Category.include(TopicVotingCategory)

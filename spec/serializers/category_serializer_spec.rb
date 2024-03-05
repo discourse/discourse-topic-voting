@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe CategorySerializer do
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
 
   it "does not return enable_topic_voting voting disabled" do
     SiteSetting.voting_enabled = false

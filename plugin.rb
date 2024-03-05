@@ -45,13 +45,13 @@ after_initialize do
   ].each { |path| require_relative path }
 
   reloadable_patch do
-    CategoriesController.class_eval { prepend DiscourseTopicVoting::CategoriesControllerExtension }
-    Category.class_eval { prepend DiscourseTopicVoting::CategoryExtension }
-    ListController.class_eval { prepend DiscourseTopicVoting::ListControllerExtension }
-    Topic.class_eval { prepend DiscourseTopicVoting::TopicExtension }
-    TopicQuery.class_eval { prepend DiscourseTopicVoting::TopicQueryExtension }
-    User.class_eval { prepend DiscourseTopicVoting::UserExtension }
-    WebHook.class_eval { prepend DiscourseTopicVoting::WebHookExtension }
+    CategoriesController.prepend(DiscourseTopicVoting::CategoriesControllerExtension)
+    Category.prepend(DiscourseTopicVoting::CategoryExtension)
+    ListController.prepend(DiscourseTopicVoting::ListControllerExtension)
+    Topic.prepend(DiscourseTopicVoting::TopicExtension)
+    TopicQuery.prepend(DiscourseTopicVoting::TopicQueryExtension)
+    User.prepend(DiscourseTopicVoting::UserExtension)
+    WebHook.prepend(DiscourseTopicVoting::WebHookExtension)
   end
 
   add_to_serializer(:post, :can_vote, include_condition: -> { object.post_number == 1 }) do

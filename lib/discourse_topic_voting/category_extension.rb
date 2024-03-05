@@ -2,29 +2,29 @@
 
 module DiscourseTopicVoting
   module CategoryExtension
-    def self.prepended(base)
-      base.class_eval do
-        has_one :discourse_topic_voting_category_setting,
-                class_name: "DiscourseTopicVoting::CategorySetting",
-                dependent: :destroy
+    extend ActiveSupport::Concern
 
-        accepts_nested_attributes_for :discourse_topic_voting_category_setting, allow_destroy: true
+    prepended do
+      has_one :discourse_topic_voting_category_setting,
+              class_name: "DiscourseTopicVoting::CategorySetting",
+              dependent: :destroy
 
-        after_save :reset_voting_cache
+      accepts_nested_attributes_for :discourse_topic_voting_category_setting, allow_destroy: true
 
-        @allowed_voting_cache = DistributedCache.new("allowed_voting")
+      after_save :reset_voting_cache, if: -> { SiteSetting.voting_enabled? }
 
-        def self.reset_voting_cache
-          @allowed_voting_cache["allowed"] = DiscourseTopicVoting::CategorySetting.pluck(
-            :category_id,
-          )
-        end
+      @allowed_voting_cache = DistributedCache.new("allowed_voting")
+    end
 
-        def self.can_vote?(category_id)
-          return false if !SiteSetting.voting_enabled
+    class_methods do
+      def reset_voting_cache
+        @allowed_voting_cache["allowed"] = DiscourseTopicVoting::CategorySetting.pluck(:category_id)
+      end
 
-          (@allowed_voting_cache["allowed"] || reset_voting_cache).include?(category_id)
-        end
+      def can_vote?(category_id)
+        return false if !SiteSetting.voting_enabled
+
+        (@allowed_voting_cache["allowed"] || reset_voting_cache).include?(category_id)
       end
     end
 

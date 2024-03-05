@@ -3,9 +3,9 @@
 require "rails_helper"
 
 describe SearchController do
-  fab!(:user) { Fabricate(:user) }
+  fab!(:user)
 
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
 
   fab!(:topic) { Fabricate(:topic, category: category) }
   fab!(:topic_2) { Fabricate(:topic, category: category) }

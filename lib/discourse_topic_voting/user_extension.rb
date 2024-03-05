@@ -2,11 +2,9 @@
 
 module DiscourseTopicVoting
   module UserExtension
-    def self.prepended(base)
-      base.class_eval do
-        has_many :votes, class_name: "DiscourseTopicVoting::Vote", dependent: :destroy
-      end
-    end
+    extend ActiveSupport::Concern
+
+    prepended { has_many :votes, class_name: "DiscourseTopicVoting::Vote", dependent: :destroy }
 
     def vote_count
       topics_with_vote.length
