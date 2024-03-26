@@ -2,7 +2,7 @@
 
 RSpec.describe "Voting", type: :system, js: true do
   fab!(:user)
-  fab!(:admin)
+  fab!(:admin) { Fabricate(:admin, trust_level: TrustLevel[4]) }
   fab!(:category1) { Fabricate(:category) }
   fab!(:category2) { Fabricate(:category) }
   fab!(:topic1) { Fabricate(:topic, category: category1) }
@@ -48,7 +48,7 @@ RSpec.describe "Voting", type: :system, js: true do
 
     expect(topic_page.vote_count).to have_text("0")
     topic_page.vote
-    expect(topic_page.vote_popup).to have_text("You have 3 votes left, see your votes")
+    expect(topic_page.vote_popup).to have_text("You have 9 votes left, see your votes")
     expect(topic_page.vote_count).to have_text("1")
     topic_page.click_vote_popup_activity
 
