@@ -173,8 +173,9 @@ after_initialize do
     moved_votes = 0
     duplicated_votes = 0
 
-    if orig.who_voted.present? && orig.closed
-      orig.who_voted.each do |user|
+    who_voted = orig.votes.map(&:user)
+    if who_voted.present? && orig.closed
+      who_voted.each do |user|
         next if user.blank?
 
         user_votes = user.topics_with_vote.pluck(:topic_id)
