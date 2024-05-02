@@ -36,6 +36,9 @@ describe DiscourseTopicVoting do
     let(:users) { [user0, user1, user2, user3, user4, user5] }
 
     before do
+      # ensure merging votes works regardless of voters' visibility
+      SiteSetting.voting_show_who_voted = false
+
       Fabricate(:post, topic: topic0, user: user0)
       Fabricate(:post, topic: topic0, user: user0)
 
