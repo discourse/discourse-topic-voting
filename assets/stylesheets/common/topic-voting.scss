@@ -25,8 +25,7 @@
 }
 
 .title-voting {
-  // matches core title-wrapper padding
-  padding-top: 14px;
+  margin-top: 0.33em;
   position: relative;
 }
 
@@ -72,9 +71,10 @@
 
 .voting-popup-menu {
   position: absolute;
-  left: 80px;
-  // matches core title-wrapper padding
-  top: 14px;
+  left: 90px;
+  top: 0;
+  padding: 0.5em;
+  line-height: var(--line-height-medium);
   z-index: z("usercard") - 1;
   cursor: initial;
   // voter avatars
