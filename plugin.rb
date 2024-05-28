@@ -140,7 +140,7 @@ after_initialize do
 
   on(:topic_status_updated) do |topic, status, enabled|
     next if topic.trashed?
-    next unless %w[closed autoclosed archived].include?(status)
+    next if %w[closed autoclosed archived].exclude?(status)
 
     if enabled
       Jobs.enqueue(:vote_release, topic_id: topic.id)
