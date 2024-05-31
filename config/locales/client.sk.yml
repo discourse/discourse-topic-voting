@@ -20,6 +20,7 @@ sk:
         few: "Hlasy"
         many: "Hlasy"
         other: "Hlasy"
+      remove_vote: "Odstrániť hlas"
     filters:
       votes:
         title: "Hlasy"

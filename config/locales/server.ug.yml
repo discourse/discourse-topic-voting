@@ -4,10 +4,4 @@
 # To work with us on translations, join this project:
 # https://translate.discourse.org/
 
-id:
-  js:
-    topic_voting:
-      vote_title: "Pilih"
-      voting_closed_title: "Tertutup"
-      votes:
-        other: "%{count} suara"
+ug:

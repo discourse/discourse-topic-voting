@@ -8,3 +8,4 @@ te:
   js:
     topic_voting:
       vote_title: "వోటు"
+      voting_closed_title: "మూసివేయబడినవి"
