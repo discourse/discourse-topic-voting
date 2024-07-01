@@ -13,7 +13,7 @@ RSpec.describe "Voting", type: :system, js: true do
   fab!(:category_page) { PageObjects::Pages::Category.new }
   fab!(:topic_page) { PageObjects::Pages::Topic.new }
   fab!(:user_page) { PageObjects::Pages::User.new }
-  fab!(:admin_page) { PageObjects::Pages::AdminSettings.new }
+  fab!(:admin_page) { PageObjects::Pages::AdminSiteSettings.new }
 
   before do
     SiteSetting.voting_enabled = false
