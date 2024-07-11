@@ -128,42 +128,52 @@ describe DiscourseTopicVoting do
       DiscourseEvent.on(:topic_status_updated, &blk)
 
       topic1.update_status("closed", true, Discourse.system_user)
-      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(
+        topic1.id,
+      )
 
       topic1.update_status("closed", false, Discourse.system_user)
-      expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(
+        topic1.id,
+      )
     ensure
       DiscourseEvent.off(:topic_status_updated, &blk)
     end
 
     it "doesn't enqueue a job for reclaiming votes if the topic is deleted" do
       topic1.update_status("closed", true, Discourse.system_user)
-      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(
+        topic1.id,
+      )
 
       topic1.trash!
 
       topic1.update_status("closed", false, Discourse.system_user)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "doesn't enqueue a job for reclaiming votes when opening an archived topic" do
       topic1.update_status("closed", true, Discourse.system_user)
-      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(
+        topic1.id,
+      )
 
       topic1.update_status("archived", true, Discourse.system_user)
 
       topic1.update_status("closed", false, Discourse.system_user)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "doesn't enqueue a job for reclaiming votes when un-archiving a closed topic" do
       topic1.update_status("archived", true, Discourse.system_user)
-      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(topic1.id)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(
+        topic1.id,
+      )
 
       topic1.update_status("closed", true, Discourse.system_user)
 
       topic1.update_status("archived", false, Discourse.system_user)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "creates notification that topic was completed" do
@@ -209,9 +219,11 @@ describe DiscourseTopicVoting do
       DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456, archive: true)
 
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
-      expect(Jobs::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(post1.reload.topic_id)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.first["args"].first["topic_id"]).to eq(
+        post1.reload.topic_id,
+      )
 
-      Jobs::VoteReclaim.new.execute(topic_id: post1.topic_id)
+      Jobs::DiscourseTopicVoting::VoteReclaim.new.execute(topic_id: post1.topic_id)
       user.reload
 
       expect(user.topics_with_vote.pluck(:topic_id)).to eq([post1.topic_id])
@@ -224,28 +236,28 @@ describe DiscourseTopicVoting do
       DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456, archive: true)
 
       PostRevisor.new(post0).revise!(admin, title: "Updated #{post0.topic.title}")
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "doesn't enqueue a job to reclaim votes if topic is closed" do
       DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
       post1.topic.update_status("closed", true, Discourse.system_user)
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "doesn't enqueue a job to reclaim votes if topic is archived" do
       DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
       post1.topic.update_status("archived", true, Discourse.system_user)
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "doesn't enqueue a job to reclaim votes if topic is trashed" do
       DiscourseTopicVoting::Vote.create!(user: post1.user, topic: post1.topic, archive: true)
       post1.topic.trash!
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
-      expect(Jobs::VoteReclaim.jobs.length).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.length).to eq(0)
     end
 
     it "enqueues a job to release votes if voting is disabled for the new category" do
@@ -254,9 +266,11 @@ describe DiscourseTopicVoting do
       DiscourseTopicVoting::Vote.create!(user: user, topic_id: 456_456)
 
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
-      expect(Jobs::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(post0.reload.topic_id)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.first["args"].first["topic_id"]).to eq(
+        post0.reload.topic_id,
+      )
 
-      Jobs::VoteRelease.new.execute(topic_id: post0.topic_id)
+      Jobs::DiscourseTopicVoting::VoteRelease.new.execute(topic_id: post0.topic_id)
       user.reload
 
       expect(user.topics_with_archived_vote.pluck(:topic_id)).to eq([post0.topic_id])
@@ -265,10 +279,10 @@ describe DiscourseTopicVoting do
 
     it "doesn't enqueue a job if the topic has no votes" do
       PostRevisor.new(post0).revise!(admin, category_id: category2.id)
-      expect(Jobs::VoteRelease.jobs.size).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteRelease.jobs.size).to eq(0)
 
       PostRevisor.new(post1).revise!(admin, category_id: category1.id)
-      expect(Jobs::VoteReclaim.jobs.size).to eq(0)
+      expect(Jobs::DiscourseTopicVoting::VoteReclaim.jobs.size).to eq(0)
     end
   end
 

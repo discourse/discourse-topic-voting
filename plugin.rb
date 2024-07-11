@@ -18,32 +18,13 @@ Discourse.anonymous_top_menu_items.push(:votes)
 Discourse.filters.push(:votes)
 Discourse.anonymous_filters.push(:votes)
 
+module ::DiscourseTopicVoting
+  PLUGIN_NAME = "discourse-topic-voting"
+end
+
+require_relative "lib/discourse_topic_voting/engine"
+
 after_initialize do
-  module ::DiscourseTopicVoting
-    PLUGIN_NAME = "discourse-topic-voting"
-
-    class Engine < ::Rails::Engine
-      isolate_namespace DiscourseTopicVoting
-    end
-  end
-
-  %w[
-    app/controllers/discourse_topic_voting/votes_controller.rb
-    app/jobs/onceoff/voting_ensure_consistency.rb
-    app/jobs/regular/vote_reclaim.rb
-    app/jobs/regular/vote_release.rb
-    app/models/discourse_topic_voting/category_setting.rb
-    app/models/discourse_topic_voting/topic_vote_count.rb
-    app/models/discourse_topic_voting/vote.rb
-    lib/discourse_topic_voting/categories_controller_extension.rb
-    lib/discourse_topic_voting/category_extension.rb
-    lib/discourse_topic_voting/list_controller_extension.rb
-    lib/discourse_topic_voting/topic_extension.rb
-    lib/discourse_topic_voting/topic_query_extension.rb
-    lib/discourse_topic_voting/user_extension.rb
-    lib/discourse_topic_voting/web_hook_extension.rb
-  ].each { |path| require_relative path }
-
   reloadable_patch do
     CategoriesController.prepend(DiscourseTopicVoting::CategoriesControllerExtension)
     Category.prepend(DiscourseTopicVoting::CategoryExtension)
@@ -143,23 +124,27 @@ after_initialize do
     next if %w[closed autoclosed archived].exclude?(status)
 
     if enabled
-      Jobs.enqueue(:vote_release, topic_id: topic.id)
+      Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteRelease, topic_id: topic.id)
     else
       is_closing_unarchived = %w[closed autoclosed].include?(status) && !topic.archived
       is_archiving_open = status == "archived" && !topic.closed
 
-      Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if is_closing_unarchived || is_archiving_open
+      if is_closing_unarchived || is_archiving_open
+        Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteReclaim, topic_id: topic.id)
+      end
     end
   end
 
   on(:topic_trashed) do |topic|
     if !topic.closed && !topic.archived
-      Jobs.enqueue(:vote_release, topic_id: topic.id, trashed: true)
+      Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteRelease, topic_id: topic.id, trashed: true)
     end
   end
 
   on(:topic_recovered) do |topic|
-    Jobs.enqueue(:vote_reclaim, topic_id: topic.id) if !topic.closed && !topic.archived
+    if !topic.closed && !topic.archived
+      Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteReclaim, topic_id: topic.id)
+    end
   end
 
   on(:post_edited) do |post, _, revisor|
@@ -168,9 +153,9 @@ after_initialize do
          !post.topic.archived && !post.topic.trashed?
       new_category_id = post.reload.topic.category_id
       if Category.can_vote?(new_category_id)
-        Jobs.enqueue(:vote_reclaim, topic_id: post.topic_id)
+        Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteReclaim, topic_id: post.topic_id)
       else
-        Jobs.enqueue(:vote_release, topic_id: post.topic_id)
+        Jobs.enqueue(Jobs::DiscourseTopicVoting::VoteRelease, topic_id: post.topic_id)
       end
     end
   end
@@ -216,12 +201,6 @@ after_initialize do
         moderator_post.save!
       end
     end
-  end
-
-  DiscourseTopicVoting::Engine.routes.draw do
-    post "vote" => "votes#vote"
-    post "unvote" => "votes#unvote"
-    get "who" => "votes#who"
   end
 
   Discourse::Application.routes.prepend do
