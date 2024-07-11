@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require Rails.root.join(
+          "plugins/discourse-topic-voting/db/post_migrate/20200817111111_ensure_consistency.rb",
+        )
 
-describe Jobs::VotingEnsureConsistency do
-  subject(:job) { described_class.new }
-
+describe EnsureConsistency do
   it "ensures consistency" do
     user = Fabricate(:user)
     user2 = Fabricate(:user)
@@ -24,7 +25,7 @@ describe Jobs::VotingEnsureConsistency do
     DiscourseTopicVoting::Vote.create!(user: user, topic: two_vote_topic, archive: true)
     DiscourseTopicVoting::Vote.create!(user: user2, topic: two_vote_topic)
 
-    job.execute_onceoff(nil)
+    EnsureConsistency.new.up
 
     no_vote_topic.reload
 
