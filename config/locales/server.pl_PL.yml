@@ -6,15 +6,15 @@
 
 pl_PL:
   site_settings:
-    voting_enabled: 'Pozwolić użytkownikom głosować na tematy?'
-    voting_tl0_vote_limit: 'Ile głosów mogą oddać użytkownicy TL0?'
-    voting_tl1_vote_limit: 'Ile głosów mogą oddać użytkownicy TL1?'
-    voting_tl2_vote_limit: 'Ile głosów mogą oddać użytkownicy TL2?'
-    voting_tl3_vote_limit: 'Ile głosów mogą oddać użytkownicy TL3?'
-    voting_tl4_vote_limit: 'Ile głosów mogą oddać użytkownicy TL4?'
-    voting_show_who_voted: 'Czy użytkownicy mają widzieć, kto głosował?'
-    voting_show_votes_on_profile: 'Czy głosy mają być widoczne w aktywności w proflu użytkownika?'
-    voting_alert_votes_left: 'Ostrzeż użytkownika, jesli pozostało mu tyle głosów'
+    topic_voting_enabled: 'Pozwolić użytkownikom głosować na tematy?'
+    topic_voting_tl0_vote_limit: 'Ile głosów mogą oddać użytkownicy TL0?'
+    topic_voting_tl1_vote_limit: 'Ile głosów mogą oddać użytkownicy TL1?'
+    topic_voting_tl2_vote_limit: 'Ile głosów mogą oddać użytkownicy TL2?'
+    topic_voting_tl3_vote_limit: 'Ile głosów mogą oddać użytkownicy TL3?'
+    topic_voting_tl4_vote_limit: 'Ile głosów mogą oddać użytkownicy TL4?'
+    topic_voting_show_who_voted: 'Czy użytkownicy mają widzieć, kto głosował?'
+    topic_voting_show_votes_on_profile: 'Czy głosy mają być widoczne w aktywności w proflu użytkownika?'
+    topic_voting_alert_votes_left: 'Ostrzeż użytkownika, jesli pozostało mu tyle głosów'
   topic_voting:
     votes_moved:
       one: "Głos został przeniesiony."

@@ -86,7 +86,7 @@ module DiscourseTopicVoting
     protected
 
     def who_voted(topic)
-      return nil unless SiteSetting.voting_show_who_voted
+      return nil unless SiteSetting.topic_voting_show_who_voted
 
       ActiveModel::ArraySerializer.new(
         topic.who_voted,

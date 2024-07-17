@@ -11,7 +11,7 @@ register_asset "stylesheets/common/topic-voting.scss"
 register_asset "stylesheets/desktop/topic-voting.scss", :desktop
 register_asset "stylesheets/mobile/topic-voting.scss", :mobile
 
-enabled_site_setting :voting_enabled
+enabled_site_setting :topic_voting_enabled
 
 Discourse.top_menu_items.push(:votes)
 Discourse.anonymous_top_menu_items.push(:votes)
@@ -52,13 +52,13 @@ after_initialize do
       if user
         result =
           result.select(
-            "topics.*, COALESCE((SELECT 1 FROM discourse_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted",
+            "topics.*, COALESCE((SELECT 1 FROM topic_voting_votes WHERE user_id = #{user.id} AND topic_id = topics.id), 0) AS current_user_voted",
           )
 
         if options[:state] == "my_votes"
           result =
             result.joins(
-              "INNER JOIN discourse_voting_votes ON discourse_voting_votes.topic_id = topics.id AND discourse_voting_votes.user_id = #{user.id}",
+              "INNER JOIN topic_voting_votes ON topic_voting_votes.topic_id = topics.id AND topic_voting_votes.user_id = #{user.id}",
             )
         end
       end
@@ -67,9 +67,9 @@ after_initialize do
         sort_dir = (options[:ascending] == "true") ? "ASC" : "DESC"
         result =
           result.joins(
-            "LEFT JOIN discourse_voting_topic_vote_count ON discourse_voting_topic_vote_count.topic_id = topics.id",
+            "LEFT JOIN topic_voting_topic_vote_count ON topic_voting_topic_vote_count.topic_id = topics.id",
           ).reorder(
-            "COALESCE(discourse_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}, topics.bumped_at DESC",
+            "COALESCE(topic_voting_topic_vote_count.votes_count,'0')::integer #{sort_dir}, topics.bumped_at DESC",
           )
       end
 
@@ -79,7 +79,7 @@ after_initialize do
 
   register_category_custom_field_type("enable_topic_voting", :boolean)
   add_to_serializer(:category, :custom_fields, respect_plugin_enabled: false) do
-    return object.custom_fields if !SiteSetting.voting_enabled
+    return object.custom_fields if !SiteSetting.topic_voting_enabled
 
     object.custom_fields.merge(
       enable_topic_voting:
@@ -104,14 +104,14 @@ after_initialize do
 
   register_search_advanced_filter(/^min_vote_count:(\d+)$/) do |posts, match|
     posts.where(
-      "(SELECT votes_count FROM discourse_voting_topic_vote_count WHERE discourse_voting_topic_vote_count.topic_id = posts.topic_id) >= ?",
+      "(SELECT votes_count FROM topic_voting_topic_vote_count WHERE topic_voting_topic_vote_count.topic_id = posts.topic_id) >= ?",
       match.to_i,
     )
   end
 
   register_search_advanced_order(:votes) do |posts|
     posts.reorder(
-      "COALESCE((SELECT dvtvc.votes_count FROM discourse_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = topics.id), 0) DESC",
+      "COALESCE((SELECT dvtvc.votes_count FROM topic_voting_topic_vote_count dvtvc WHERE dvtvc.topic_id = topics.id), 0) DESC",
     )
   end
 
@@ -148,7 +148,7 @@ after_initialize do
   end
 
   on(:post_edited) do |post, _, revisor|
-    if SiteSetting.voting_enabled && revisor.topic_diff.has_key?("category_id") &&
+    if SiteSetting.topic_voting_enabled && revisor.topic_diff.has_key?("category_id") &&
          DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id) && !post.topic.closed &&
          !post.topic.archived && !post.topic.trashed?
       new_category_id = post.reload.topic.category_id

@@ -6,15 +6,15 @@
 
 pt_BR:
   site_settings:
-    voting_enabled: 'Permitir que usuários(as) votem nos tópicos?'
-    voting_tl0_vote_limit: 'Quantos votos ativos de usuários(as) NC0 são permitidos?'
-    voting_tl1_vote_limit: 'Quantos votos ativos de usuários(as) NC1 são permitidos?'
-    voting_tl2_vote_limit: 'Quantos votos ativos de usuários(as) NC2 são permitidos?'
-    voting_tl3_vote_limit: 'Quantos votos ativos de usuários(as) NC3 são permitidos?'
-    voting_tl4_vote_limit: 'Quantos votos ativos de usuários(as) NC4 são permitidos?'
-    voting_show_who_voted: 'Permitir que usuários(as) vejam quem votou?'
-    voting_show_votes_on_profile: 'Permitir que usuários(as) vejam seus votos nos seus feeds de atividade?'
-    voting_alert_votes_left: 'Alertar usuário(a) quando houver esta quantidade de votos restantes'
+    topic_voting_enabled: 'Permitir que usuários(as) votem nos tópicos?'
+    topic_voting_tl0_vote_limit: 'Quantos votos ativos de usuários(as) NC0 são permitidos?'
+    topic_voting_tl1_vote_limit: 'Quantos votos ativos de usuários(as) NC1 são permitidos?'
+    topic_voting_tl2_vote_limit: 'Quantos votos ativos de usuários(as) NC2 são permitidos?'
+    topic_voting_tl3_vote_limit: 'Quantos votos ativos de usuários(as) NC3 são permitidos?'
+    topic_voting_tl4_vote_limit: 'Quantos votos ativos de usuários(as) NC4 são permitidos?'
+    topic_voting_show_who_voted: 'Permitir que usuários(as) vejam quem votou?'
+    topic_voting_show_votes_on_profile: 'Permitir que usuários(as) vejam seus votos nos seus feeds de atividade?'
+    topic_voting_alert_votes_left: 'Alertar usuário(a) quando houver esta quantidade de votos restantes'
   topic_voting:
     votes_moved:
       one: "Um voto foi movido."

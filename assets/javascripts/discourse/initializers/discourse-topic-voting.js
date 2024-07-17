@@ -8,7 +8,7 @@ export default {
   initialize() {
     withPluginApi("0.8.32", (api) => {
       const siteSettings = api.container.lookup("service:site-settings");
-      if (siteSettings.voting_enabled) {
+      if (siteSettings.topic_voting_enabled) {
         const pageSearchController = api.container.lookup(
           "controller:full-page-search"
         );
@@ -61,7 +61,7 @@ export default {
 
     withPluginApi("0.11.7", (api) => {
       const siteSettings = api.container.lookup("service:site-settings");
-      if (siteSettings.voting_enabled) {
+      if (siteSettings.topic_voting_enabled) {
         api.addSearchSuggestion("order:votes");
       }
     });

@@ -30,7 +30,7 @@ module DiscourseTopicVoting
     protected
 
     def ensure_discourse_topic_voting
-      if !SiteSetting.voting_enabled || !SiteSetting.voting_show_votes_on_profile
+      if !SiteSetting.topic_voting_enabled || !SiteSetting.topic_voting_show_votes_on_profile
         raise Discourse::NotFound
       end
     end

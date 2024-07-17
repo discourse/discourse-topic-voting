@@ -6,7 +6,7 @@ describe BasicCategorySerializer do
   fab!(:category)
 
   it "does not return can_vote when voting disabled" do
-    SiteSetting.voting_enabled = false
+    SiteSetting.topic_voting_enabled = false
 
     json = BasicCategorySerializer.new(category, root: false).as_json
 
@@ -14,7 +14,7 @@ describe BasicCategorySerializer do
   end
 
   it "does not return can_vote when voting disabled" do
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     DiscourseTopicVoting::CategorySetting.create!(category: category)
 
     json = BasicCategorySerializer.new(category, root: false).as_json

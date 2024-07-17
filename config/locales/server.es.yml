@@ -6,15 +6,15 @@
 
 es:
   site_settings:
-    voting_enabled: '¿Permitir a los usuarios votar sobre temas?'
-    voting_tl0_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC0?'
-    voting_tl1_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC1?'
-    voting_tl2_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC2?'
-    voting_tl3_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC3?'
-    voting_tl4_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC4?'
-    voting_show_who_voted: '¿Permitir a los usuarios ver quién votó?'
-    voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su feed de actividad?'
-    voting_alert_votes_left: 'Alertar al usuario cuando queda esta cantidad de votos'
+    topic_voting_enabled: '¿Permitir a los usuarios votar sobre temas?'
+    topic_voting_tl0_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC0?'
+    topic_voting_tl1_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC1?'
+    topic_voting_tl2_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC2?'
+    topic_voting_tl3_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC3?'
+    topic_voting_tl4_vote_limit: '¿Cuántos votos activos tienen permitidos los usuarios de NC4?'
+    topic_voting_show_who_voted: '¿Permitir a los usuarios ver quién votó?'
+    topic_voting_show_votes_on_profile: '¿Permitir a los usuarios ver sus votos en su feed de actividad?'
+    topic_voting_alert_votes_left: 'Alertar al usuario cuando queda esta cantidad de votos'
   topic_voting:
     votes_moved:
       one: "Se ha movido un voto."

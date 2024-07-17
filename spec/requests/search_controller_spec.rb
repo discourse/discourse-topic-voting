@@ -22,7 +22,7 @@ describe SearchController do
 
   before do
     DiscourseTopicVoting::CategorySetting.create!(category: category)
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     sign_in(user)
   end
 

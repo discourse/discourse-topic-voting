@@ -6,15 +6,15 @@
 
 de:
   site_settings:
-    voting_enabled: 'Benutzern erlauben, für Themen zu stimmen?'
-    voting_tl0_vote_limit: 'Wie viele aktive Stimmen sind für VS0-Benutzer erlaubt?'
-    voting_tl1_vote_limit: 'Wie viele aktive Stimmen sind für VS1-Benutzer erlaubt?'
-    voting_tl2_vote_limit: 'Wie viele aktive Stimmen sind für VS2-Benutzer erlaubt?'
-    voting_tl3_vote_limit: 'Wie viele aktive Stimmen sind für VS3-Benutzer erlaubt?'
-    voting_tl4_vote_limit: 'Wie viele aktive Stimmen sind für VS4-Benutzer erlaubt?'
-    voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer abgestimmt hat?'
-    voting_show_votes_on_profile: 'Benutzern erlauben, ihre Stimmen in ihrem Aktivitätsfeed zu sehen?'
-    voting_alert_votes_left: 'Benutzer benachrichtigen, wenn so viele Stimmen übrig sind'
+    topic_voting_enabled: 'Benutzern erlauben, für Themen zu stimmen?'
+    topic_voting_tl0_vote_limit: 'Wie viele aktive Stimmen sind für VS0-Benutzer erlaubt?'
+    topic_voting_tl1_vote_limit: 'Wie viele aktive Stimmen sind für VS1-Benutzer erlaubt?'
+    topic_voting_tl2_vote_limit: 'Wie viele aktive Stimmen sind für VS2-Benutzer erlaubt?'
+    topic_voting_tl3_vote_limit: 'Wie viele aktive Stimmen sind für VS3-Benutzer erlaubt?'
+    topic_voting_tl4_vote_limit: 'Wie viele aktive Stimmen sind für VS4-Benutzer erlaubt?'
+    topic_voting_show_who_voted: 'Benutzern erlauben, zu sehen, wer abgestimmt hat?'
+    topic_voting_show_votes_on_profile: 'Benutzern erlauben, ihre Stimmen in ihrem Aktivitätsfeed zu sehen?'
+    topic_voting_alert_votes_left: 'Benutzer benachrichtigen, wenn so viele Stimmen übrig sind'
   topic_voting:
     votes_moved:
       one: "Eine Stimme wurde verschoben."

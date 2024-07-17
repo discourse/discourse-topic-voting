@@ -10,8 +10,8 @@ describe PostSerializer do
   before do
     DiscourseTopicVoting::CategorySetting.create!(category: category)
     Category.reset_voting_cache
-    SiteSetting.voting_show_who_voted = true
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_show_who_voted = true
+    SiteSetting.topic_voting_enabled = true
   end
 
   it "serializes can_vote for first posts only" do

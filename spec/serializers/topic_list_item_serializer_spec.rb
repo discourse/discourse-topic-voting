@@ -7,7 +7,7 @@ describe TopicListItemSerializer do
   let(:guardian) { Guardian.new(user) }
 
   it "excludes properties when voting disabled" do
-    SiteSetting.voting_enabled = false
+    SiteSetting.topic_voting_enabled = false
 
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
@@ -17,7 +17,7 @@ describe TopicListItemSerializer do
   end
 
   it "adds can_vote when enabled" do
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
     expect(json[:vote_count]).to eq nil
@@ -26,7 +26,7 @@ describe TopicListItemSerializer do
   end
 
   it "updates vote count to 0 when topic is votable" do
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     DiscourseTopicVoting::CategorySetting.create!(category: category)
     json = TopicListItemSerializer.new(topic, scope: guardian, root: false).as_json
 
@@ -36,7 +36,7 @@ describe TopicListItemSerializer do
   end
 
   it "returns all the values" do
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     DiscourseTopicVoting::CategorySetting.create!(category: category)
     Fabricate(:topic_voting_votes, user: user, topic: topic)
     Fabricate(:topic_voting_vote_count, topic: topic)

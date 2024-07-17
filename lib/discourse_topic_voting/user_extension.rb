@@ -11,7 +11,7 @@ module DiscourseTopicVoting
     end
 
     def alert_low_votes?
-      (vote_limit - vote_count) <= SiteSetting.voting_alert_votes_left
+      (vote_limit - vote_count) <= SiteSetting.topic_voting_alert_votes_left
     end
 
     def topics_with_vote
@@ -27,7 +27,7 @@ module DiscourseTopicVoting
     end
 
     def vote_limit
-      SiteSetting.public_send("voting_tl#{self.trust_level}_vote_limit")
+      SiteSetting.public_send("topic_voting_tl#{self.trust_level}_vote_limit")
     end
   end
 end
