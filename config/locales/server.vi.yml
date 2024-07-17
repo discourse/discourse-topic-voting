@@ -6,15 +6,15 @@
 
 vi:
   site_settings:
-    voting_enabled: 'Cho phép người dùng bình chọn chủ đề?<br>'
-    voting_tl0_vote_limit: 'Người dùng TL0 được phép sử dụng bao nhiêu phiếu bình chọn?'
-    voting_tl1_vote_limit: 'Người dùng TL1 được phép sử dụng bao nhiêu phiếu bình chọn?'
-    voting_tl2_vote_limit: 'Người dùng TL2 được phép sử dụng bao nhiêu phiếu bình chọn?'
-    voting_tl3_vote_limit: 'Người dùng TL3 được phép sử dụng bao nhiêu phiếu bình chọn?'
-    voting_tl4_vote_limit: 'Người dùng TL4 được phép sử dụng bao nhiêu phiếu bình chọn?'
-    voting_show_who_voted: 'Cho phép người dùng xem ai đã bình chọn?'
-    voting_show_votes_on_profile: 'Cho phép người dùng xem phiếu bình chọn của họ trong luồng hoạt động của họ?'
-    voting_alert_votes_left: 'Thông báo cho người dùng khi số phiếu bình chọn còn lại'
+    topic_voting_enabled: 'Cho phép người dùng bình chọn chủ đề?<br>'
+    topic_voting_tl0_vote_limit: 'Người dùng TL0 được phép sử dụng bao nhiêu phiếu bình chọn?'
+    topic_voting_tl1_vote_limit: 'Người dùng TL1 được phép sử dụng bao nhiêu phiếu bình chọn?'
+    topic_voting_tl2_vote_limit: 'Người dùng TL2 được phép sử dụng bao nhiêu phiếu bình chọn?'
+    topic_voting_tl3_vote_limit: 'Người dùng TL3 được phép sử dụng bao nhiêu phiếu bình chọn?'
+    topic_voting_tl4_vote_limit: 'Người dùng TL4 được phép sử dụng bao nhiêu phiếu bình chọn?'
+    topic_voting_show_who_voted: 'Cho phép người dùng xem ai đã bình chọn?'
+    topic_voting_show_votes_on_profile: 'Cho phép người dùng xem phiếu bình chọn của họ trong luồng hoạt động của họ?'
+    topic_voting_alert_votes_left: 'Thông báo cho người dùng khi số phiếu bình chọn còn lại'
   topic_voting:
     votes_moved:
       other: "%{count} phiếu bình chọn đã được chuyển."

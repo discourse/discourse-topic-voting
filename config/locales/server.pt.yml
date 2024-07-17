@@ -6,15 +6,15 @@
 
 pt:
   site_settings:
-    voting_enabled: 'Permitir que os utilizadores votem em tópicos?'
-    voting_tl0_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL0?'
-    voting_tl1_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL1?'
-    voting_tl2_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL2?'
-    voting_tl3_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL3?'
-    voting_tl4_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL4?'
-    voting_show_who_voted: 'Permitir aos utilizadores ver quem votou?'
-    voting_show_votes_on_profile: 'Permitir aos utilizadores ver os seus votos na lista de actividade?'
-    voting_alert_votes_left: 'Alertar o utilizador quando faltarem estes votos'
+    topic_voting_enabled: 'Permitir que os utilizadores votem em tópicos?'
+    topic_voting_tl0_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL0?'
+    topic_voting_tl1_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL1?'
+    topic_voting_tl2_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL2?'
+    topic_voting_tl3_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL3?'
+    topic_voting_tl4_vote_limit: 'Quantos votos activos são permitidos aos utilizadores TL4?'
+    topic_voting_show_who_voted: 'Permitir aos utilizadores ver quem votou?'
+    topic_voting_show_votes_on_profile: 'Permitir aos utilizadores ver os seus votos na lista de actividade?'
+    topic_voting_alert_votes_left: 'Alertar o utilizador quando faltarem estes votos'
   topic_voting:
     votes_moved:
       one: "Foi movido um voto."

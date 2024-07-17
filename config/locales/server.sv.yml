@@ -6,15 +6,15 @@
 
 sv:
   site_settings:
-    voting_enabled: 'Vill du tillåta användaromröstning på ämnen?'
-    voting_tl0_vote_limit: 'Hur många röster är tillgängliga för FN0-användare?'
-    voting_tl1_vote_limit: 'Hur många röster är tillgängliga för FN1-användare?'
-    voting_tl2_vote_limit: 'Hur många röster är tillgängliga för FN2-användare?'
-    voting_tl3_vote_limit: 'Hur många röster är tillgängliga för FN3-användare?'
-    voting_tl4_vote_limit: 'Hur många röster är tillgängliga för FN4-användare?'
-    voting_show_who_voted: 'Ska användare tillåtas se vem som har röstat?'
-    voting_show_votes_on_profile: 'Ska användare tillåtas se sina röstningar i aktivitetsflödet?'
-    voting_alert_votes_left: 'Uppmärksamma användaren när antalet röster kvar är'
+    topic_voting_enabled: 'Vill du tillåta användaromröstning på ämnen?'
+    topic_voting_tl0_vote_limit: 'Hur många röster är tillgängliga för FN0-användare?'
+    topic_voting_tl1_vote_limit: 'Hur många röster är tillgängliga för FN1-användare?'
+    topic_voting_tl2_vote_limit: 'Hur många röster är tillgängliga för FN2-användare?'
+    topic_voting_tl3_vote_limit: 'Hur många röster är tillgängliga för FN3-användare?'
+    topic_voting_tl4_vote_limit: 'Hur många röster är tillgängliga för FN4-användare?'
+    topic_voting_show_who_voted: 'Ska användare tillåtas se vem som har röstat?'
+    topic_voting_show_votes_on_profile: 'Ska användare tillåtas se sina röstningar i aktivitetsflödet?'
+    topic_voting_alert_votes_left: 'Uppmärksamma användaren när antalet röster kvar är'
   topic_voting:
     votes_moved:
       one: "En röst har flyttats."

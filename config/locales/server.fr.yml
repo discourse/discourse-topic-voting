@@ -6,15 +6,15 @@
 
 fr:
   site_settings:
-    voting_enabled: 'Autoriser les utilisateurs à voter pour les sujets ?'
-    voting_tl0_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 0 ont-ils droit ?'
-    voting_tl1_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 1 ont-ils droit ?'
-    voting_tl2_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 2 ont-ils droit ?'
-    voting_tl3_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 3 ont-ils droit ?'
-    voting_tl4_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 4 ont-ils droit ?'
-    voting_show_who_voted: 'Permettre aux utilisateurs de voir qui a voté ?'
-    voting_show_votes_on_profile: 'Permettre aux utilisateurs de voir leurs votes dans leur flux d''activité ?'
-    voting_alert_votes_left: 'Avertir les utilisateurs quand il leur reste ce nombre de votes ?'
+    topic_voting_enabled: 'Autoriser les utilisateurs à voter pour les sujets ?'
+    topic_voting_tl0_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 0 ont-ils droit ?'
+    topic_voting_tl1_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 1 ont-ils droit ?'
+    topic_voting_tl2_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 2 ont-ils droit ?'
+    topic_voting_tl3_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 3 ont-ils droit ?'
+    topic_voting_tl4_vote_limit: 'À combien de votes les utilisateurs de niveau de confiance 4 ont-ils droit ?'
+    topic_voting_show_who_voted: 'Permettre aux utilisateurs de voir qui a voté ?'
+    topic_voting_show_votes_on_profile: 'Permettre aux utilisateurs de voir leurs votes dans leur flux d''activité ?'
+    topic_voting_alert_votes_left: 'Avertir les utilisateurs quand il leur reste ce nombre de votes ?'
   topic_voting:
     votes_moved:
       one: "Un vote a été déplacé."

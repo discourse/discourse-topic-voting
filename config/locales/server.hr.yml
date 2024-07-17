@@ -6,12 +6,12 @@
 
 hr:
   site_settings:
-    voting_enabled: 'Dopusti korisnicima da glasaju na temama?'
-    voting_tl0_vote_limit: 'Koliko aktivnih glasova je dopušteno TL0 korisnicima?'
-    voting_tl1_vote_limit: 'Koliko aktivnih glasova je dopušteno TL1 korisnicima?'
-    voting_tl2_vote_limit: 'Koliko aktivnih glasova je dopušteno TL2 korisnicima?'
-    voting_tl3_vote_limit: 'Koliko aktivnih glasova je dopušteno TL3 korisnicima?'
-    voting_tl4_vote_limit: 'Koliko aktivnih glasova je dopušteno TL4 korisnicima?'
-    voting_show_who_voted: 'Dopusti korisnicima da vide tko je glasao?'
-    voting_show_votes_on_profile: 'Dopusti korisnicima da vide svoje glasove u njihovim listama aktivnosti?'
-    voting_alert_votes_left: 'Obavijesti korisnika kada je preostalo ovoliko glasova'
+    topic_voting_enabled: 'Dopusti korisnicima da glasaju na temama?'
+    topic_voting_tl0_vote_limit: 'Koliko aktivnih glasova je dopušteno TL0 korisnicima?'
+    topic_voting_tl1_vote_limit: 'Koliko aktivnih glasova je dopušteno TL1 korisnicima?'
+    topic_voting_tl2_vote_limit: 'Koliko aktivnih glasova je dopušteno TL2 korisnicima?'
+    topic_voting_tl3_vote_limit: 'Koliko aktivnih glasova je dopušteno TL3 korisnicima?'
+    topic_voting_tl4_vote_limit: 'Koliko aktivnih glasova je dopušteno TL4 korisnicima?'
+    topic_voting_show_who_voted: 'Dopusti korisnicima da vide tko je glasao?'
+    topic_voting_show_votes_on_profile: 'Dopusti korisnicima da vide svoje glasove u njihovim listama aktivnosti?'
+    topic_voting_alert_votes_left: 'Obavijesti korisnika kada je preostalo ovoliko glasova'

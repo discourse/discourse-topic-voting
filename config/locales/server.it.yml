@@ -6,15 +6,15 @@
 
 it:
   site_settings:
-    voting_enabled: 'Consentire agli utenti di votare sugli argomenti?'
-    voting_tl0_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 0?'
-    voting_tl1_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 1?'
-    voting_tl2_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 2?'
-    voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 3?'
-    voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 4?'
-    voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
-    voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nei feed delle attività?'
-    voting_alert_votes_left: 'Avverti l''utente quando gli rimane questo numero di voti'
+    topic_voting_enabled: 'Consentire agli utenti di votare sugli argomenti?'
+    topic_voting_tl0_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 0?'
+    topic_voting_tl1_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 1?'
+    topic_voting_tl2_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 2?'
+    topic_voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 3?'
+    topic_voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 4?'
+    topic_voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
+    topic_voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nei feed delle attività?'
+    topic_voting_alert_votes_left: 'Avverti l''utente quando gli rimane questo numero di voti'
   topic_voting:
     votes_moved:
       one: "Un voto è stato spostato."

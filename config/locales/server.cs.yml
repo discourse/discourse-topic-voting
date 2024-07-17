@@ -6,15 +6,15 @@
 
 cs:
   site_settings:
-    voting_enabled: 'Povolit uživatelům hlasovat o tématech?'
-    voting_tl0_vote_limit: 'Kolik aktivních hlasů povolit TL0 uživatelům?'
-    voting_tl1_vote_limit: 'Kolik aktivních hlasů povolit TL1 uživatelům?'
-    voting_tl2_vote_limit: 'Kolik aktivních hlasů povolit TL2 uživatelům?'
-    voting_tl3_vote_limit: 'Kolik aktivních hlasů povolit TL3 uživatelům?'
-    voting_tl4_vote_limit: 'Kolik aktivních hlasů povolit TL4 uživatelům?'
-    voting_show_who_voted: 'Povolit uživatelům zobrazit, kdo hlasoval?'
-    voting_show_votes_on_profile: 'Povolit uživatelům zobrazit jejich hlasování ve přehledu aktivit?'
-    voting_alert_votes_left: 'Upozornit uživatele, když mu zbývá tolik hlasů'
+    topic_voting_enabled: 'Povolit uživatelům hlasovat o tématech?'
+    topic_voting_tl0_vote_limit: 'Kolik aktivních hlasů povolit TL0 uživatelům?'
+    topic_voting_tl1_vote_limit: 'Kolik aktivních hlasů povolit TL1 uživatelům?'
+    topic_voting_tl2_vote_limit: 'Kolik aktivních hlasů povolit TL2 uživatelům?'
+    topic_voting_tl3_vote_limit: 'Kolik aktivních hlasů povolit TL3 uživatelům?'
+    topic_voting_tl4_vote_limit: 'Kolik aktivních hlasů povolit TL4 uživatelům?'
+    topic_voting_show_who_voted: 'Povolit uživatelům zobrazit, kdo hlasoval?'
+    topic_voting_show_votes_on_profile: 'Povolit uživatelům zobrazit jejich hlasování ve přehledu aktivit?'
+    topic_voting_alert_votes_left: 'Upozornit uživatele, když mu zbývá tolik hlasů'
   topic_voting:
     votes_moved:
       one: "Hlas byl přesunut."

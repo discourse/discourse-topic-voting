@@ -6,15 +6,15 @@
 
 fi:
   site_settings:
-    voting_enabled: 'Sallitaanko käyttäjien antaa ääniä ketjuille?'
-    voting_tl0_vote_limit: 'Kuinka monta aktiivista ääntä lt0-käyttäjällä voi olla?'
-    voting_tl1_vote_limit: 'Kuinka monta aktiivista ääntä lt1-käyttäjällä voi olla?'
-    voting_tl2_vote_limit: 'Kuinka monta aktiivista ääntä lt2-käyttäjällä voi olla?'
-    voting_tl3_vote_limit: 'Kuinka monta aktiivista ääntä lt3-käyttäjällä voi olla?'
-    voting_tl4_vote_limit: 'Kuinka monta aktiivista ääntä lt4-käyttäjällä voi olla?'
-    voting_show_who_voted: 'Sallitaanko käyttäjien nähdä, ketkä ovat äänestäneet?'
-    voting_show_votes_on_profile: 'Sallitaanko käyttäjien nähdä äänensä toimintasyötteessä?'
-    voting_alert_votes_left: 'Ilmoita käyttäjälle, kun näin monta ääntä on jäljellä'
+    topic_voting_enabled: 'Sallitaanko käyttäjien antaa ääniä ketjuille?'
+    topic_voting_tl0_vote_limit: 'Kuinka monta aktiivista ääntä lt0-käyttäjällä voi olla?'
+    topic_voting_tl1_vote_limit: 'Kuinka monta aktiivista ääntä lt1-käyttäjällä voi olla?'
+    topic_voting_tl2_vote_limit: 'Kuinka monta aktiivista ääntä lt2-käyttäjällä voi olla?'
+    topic_voting_tl3_vote_limit: 'Kuinka monta aktiivista ääntä lt3-käyttäjällä voi olla?'
+    topic_voting_tl4_vote_limit: 'Kuinka monta aktiivista ääntä lt4-käyttäjällä voi olla?'
+    topic_voting_show_who_voted: 'Sallitaanko käyttäjien nähdä, ketkä ovat äänestäneet?'
+    topic_voting_show_votes_on_profile: 'Sallitaanko käyttäjien nähdä äänensä toimintasyötteessä?'
+    topic_voting_alert_votes_left: 'Ilmoita käyttäjälle, kun näin monta ääntä on jäljellä'
   topic_voting:
     votes_moved:
       one: "Ääni siirrettiin."
