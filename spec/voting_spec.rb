@@ -17,12 +17,12 @@ describe DiscourseTopicVoting do
   let!(:topic1) { Fabricate(:topic, category: category2) }
 
   before do
-    SiteSetting.voting_enabled = true
-    SiteSetting.voting_show_who_voted = true
+    SiteSetting.topic_voting_enabled = true
+    SiteSetting.topic_voting_show_who_voted = true
   end
 
   it "doesn't allow users to vote more than they are allowed" do
-    SiteSetting.voting_tl1_vote_limit = 1
+    SiteSetting.topic_voting_tl1_vote_limit = 1
     user0.update!(trust_level: 1)
 
     expect(user0.reached_voting_limit?).to eq(false)
@@ -37,7 +37,7 @@ describe DiscourseTopicVoting do
 
     before do
       # ensure merging votes works regardless of voters' visibility
-      SiteSetting.voting_show_who_voted = false
+      SiteSetting.topic_voting_show_who_voted = false
 
       Fabricate(:post, topic: topic0, user: user0)
       Fabricate(:post, topic: topic0, user: user0)

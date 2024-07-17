@@ -11,7 +11,7 @@ register_asset "stylesheets/common/topic-voting.scss"
 register_asset "stylesheets/desktop/topic-voting.scss", :desktop
 register_asset "stylesheets/mobile/topic-voting.scss", :mobile
 
-enabled_site_setting :voting_enabled
+enabled_site_setting :topic_voting_enabled
 
 Discourse.top_menu_items.push(:votes)
 Discourse.anonymous_top_menu_items.push(:votes)
@@ -79,7 +79,7 @@ after_initialize do
 
   register_category_custom_field_type("enable_topic_voting", :boolean)
   add_to_serializer(:category, :custom_fields, respect_plugin_enabled: false) do
-    return object.custom_fields if !SiteSetting.voting_enabled
+    return object.custom_fields if !SiteSetting.topic_voting_enabled
 
     object.custom_fields.merge(
       enable_topic_voting:
@@ -148,7 +148,7 @@ after_initialize do
   end
 
   on(:post_edited) do |post, _, revisor|
-    if SiteSetting.voting_enabled && revisor.topic_diff.has_key?("category_id") &&
+    if SiteSetting.topic_voting_enabled && revisor.topic_diff.has_key?("category_id") &&
          DiscourseTopicVoting::Vote.exists?(topic_id: post.topic_id) && !post.topic.closed &&
          !post.topic.archived && !post.topic.trashed?
       new_category_id = post.reload.topic.category_id

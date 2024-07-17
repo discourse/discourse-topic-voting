@@ -15,7 +15,7 @@ module DiscourseTopicVoting
 
     def can_vote?
       @can_vote ||=
-        SiteSetting.voting_enabled && regular? && Category.can_vote?(category_id) && category &&
+        SiteSetting.topic_voting_enabled && regular? && Category.can_vote?(category_id) && category &&
           category.topic_id != id
     end
 
@@ -47,7 +47,7 @@ module DiscourseTopicVoting
     end
 
     def who_voted
-      return if !SiteSetting.voting_show_who_voted
+      return if !SiteSetting.topic_voting_show_who_voted
 
       self.votes.map(&:user)
     end

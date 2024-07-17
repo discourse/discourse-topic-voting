@@ -13,8 +13,8 @@ describe TopicQuery do
   end
 
   before do
-    SiteSetting.voting_enabled = true
-    SiteSetting.voting_show_who_voted = true
+    SiteSetting.topic_voting_enabled = true
+    SiteSetting.topic_voting_show_who_voted = true
   end
 
   it "order topic by votes" do

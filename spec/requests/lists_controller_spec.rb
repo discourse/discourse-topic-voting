@@ -6,7 +6,7 @@ describe ListController do
   fab!(:user)
   fab!(:topic)
   # "topics/voted-by/:username"
-  before { SiteSetting.voting_enabled = true }
+  before { SiteSetting.topic_voting_enabled = true }
 
   it "allow anons to view votes" do
     DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
@@ -19,7 +19,7 @@ describe ListController do
 
   it "returns a 404 when we don't show votes on profiles" do
     DiscourseTopicVoting::Vote.create!(user: user, topic: topic)
-    SiteSetting.voting_show_votes_on_profile = false
+    SiteSetting.topic_voting_show_votes_on_profile = false
 
     get "/topics/voted-by/#{user.username}.json"
 

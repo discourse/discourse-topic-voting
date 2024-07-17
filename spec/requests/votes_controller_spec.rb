@@ -10,19 +10,19 @@ describe DiscourseTopicVoting::VotesController do
   before do
     DiscourseTopicVoting::CategorySetting.create!(category: category)
     Category.reset_voting_cache
-    SiteSetting.voting_show_who_voted = true
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_show_who_voted = true
+    SiteSetting.topic_voting_enabled = true
     sign_in(user)
   end
 
   it "does not allow voting if voting is not enabled" do
-    SiteSetting.voting_enabled = false
+    SiteSetting.topic_voting_enabled = false
     post "/voting/vote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(404)
   end
 
   it "can correctly show deal with voting workflow" do
-    SiteSetting.public_send "voting_tl#{user.trust_level}_vote_limit=", 2
+    SiteSetting.public_send "topic_voting_tl#{user.trust_level}_vote_limit=", 2
 
     post "/voting/vote.json", params: { topic_id: topic.id }
     expect(response.status).to eq(200)

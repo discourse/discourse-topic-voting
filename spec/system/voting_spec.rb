@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Voting", type: :system, js: true do
+RSpec.describe "Topic voting", type: :system, js: true do
   fab!(:user)
   fab!(:admin) { Fabricate(:admin, trust_level: TrustLevel[4]) }
   fab!(:category1) { Fabricate(:category) }
@@ -16,7 +16,7 @@ RSpec.describe "Voting", type: :system, js: true do
   fab!(:admin_page) { PageObjects::Pages::AdminSiteSettings.new }
 
   before do
-    SiteSetting.voting_enabled = false
+    SiteSetting.topic_voting_enabled = false
 
     admin.activate
     user.activate
@@ -29,8 +29,8 @@ RSpec.describe "Voting", type: :system, js: true do
     expect(category_page).to have_no_css(category_page.votes)
 
     # enables voting
-    admin_page.visit_filtered_plugin_setting("voting%20enabled").toggle_setting(
-      "voting_enabled",
+    admin_page.visit_filtered_plugin_setting("topic%20voting%20enabled").toggle_setting(
+      "topic_voting_enabled",
       "Allow users to vote on topics?",
     )
 

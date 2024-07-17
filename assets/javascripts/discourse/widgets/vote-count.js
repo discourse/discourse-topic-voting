@@ -22,7 +22,7 @@ export default createWidget("vote-count", {
     let voteCount = h("div.vote-count", attrs.vote_count.toString());
     let whoVoted = null;
     if (
-      this.siteSettings.voting_show_who_voted &&
+      this.siteSettings.topic_voting_show_who_voted &&
       this.state.whoVotedUsers &&
       this.state.whoVotedUsers.length > 0
     ) {
@@ -47,7 +47,10 @@ export default createWidget("vote-count", {
       return;
     }
 
-    if (this.siteSettings.voting_show_who_voted && this.attrs.vote_count > 0) {
+    if (
+      this.siteSettings.topic_voting_show_who_voted &&
+      this.attrs.vote_count > 0
+    ) {
       if (this.state.whoVotedUsers === null) {
         return this.getWhoVoted();
       } else {

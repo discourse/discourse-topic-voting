@@ -9,7 +9,7 @@ export default createWidget("vote-box", {
   buildKey: () => "vote-box",
 
   buildClasses() {
-    if (this.siteSettings.voting_show_who_voted) {
+    if (this.siteSettings.topic_voting_show_who_voted) {
       return "show-pointer";
     }
   },

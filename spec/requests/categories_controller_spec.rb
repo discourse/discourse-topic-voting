@@ -8,7 +8,7 @@ describe CategoriesController do
   fab!(:admin) { Fabricate(:user, admin: true) }
 
   before do
-    SiteSetting.voting_enabled = true
+    SiteSetting.topic_voting_enabled = true
     sign_in(admin)
   end
 

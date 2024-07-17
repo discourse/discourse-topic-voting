@@ -10,8 +10,8 @@ describe DiscourseTopicVoting::TopicExtension do
   let(:topic2) { Fabricate(:topic) }
 
   before do
-    SiteSetting.voting_enabled = true
-    SiteSetting.voting_show_who_voted = true
+    SiteSetting.topic_voting_enabled = true
+    SiteSetting.topic_voting_show_who_voted = true
   end
 
   describe "#update_vote_count" do

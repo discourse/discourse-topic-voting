@@ -11,7 +11,7 @@ describe TopicViewSerializer do
 
   describe "can_vote" do
     it "returns nil when voting disabled" do
-      SiteSetting.voting_enabled = false
+      SiteSetting.topic_voting_enabled = false
       DiscourseTopicVoting::CategorySetting.create!(category: category)
 
       json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
@@ -20,7 +20,7 @@ describe TopicViewSerializer do
     end
 
     it "returns false when topic not in category" do
-      SiteSetting.voting_enabled = true
+      SiteSetting.topic_voting_enabled = true
 
       json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json
 
@@ -34,7 +34,7 @@ describe TopicViewSerializer do
     end
 
     it "returns true when voting enabled and topic in category" do
-      SiteSetting.voting_enabled = true
+      SiteSetting.topic_voting_enabled = true
       DiscourseTopicVoting::CategorySetting.create!(category: category)
 
       json = TopicViewSerializer.new(topic_view, scope: guardian, root: false).as_json

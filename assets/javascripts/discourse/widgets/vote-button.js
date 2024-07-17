@@ -21,7 +21,7 @@ export default createWidget("vote-button", {
         }
       }
     }
-    if (this.siteSettings.voting_show_who_voted) {
+    if (this.siteSettings.topic_voting_show_who_voted) {
       buttonClass += " show-pointer";
     }
     return buttonClass;
