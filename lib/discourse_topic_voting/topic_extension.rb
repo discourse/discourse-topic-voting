@@ -35,14 +35,14 @@ module DiscourseTopicVoting
       count = self.votes.count
 
       DB.exec(<<~SQL, topic_id: self.id, votes_count: count)
-        INSERT INTO discourse_voting_topic_vote_count
+        INSERT INTO topic_voting_topic_vote_count
         (topic_id, votes_count, created_at, updated_at)
         VALUES
         (:topic_id, :votes_count, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
         ON CONFLICT (topic_id) DO UPDATE SET
           votes_count = :votes_count,
           updated_at = CURRENT_TIMESTAMP
-          WHERE discourse_voting_topic_vote_count.topic_id = :topic_id
+          WHERE topic_voting_topic_vote_count.topic_id = :topic_id
       SQL
     end
 

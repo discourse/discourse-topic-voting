@@ -2,7 +2,7 @@
 
 module DiscourseTopicVoting
   class TopicVoteCount < ActiveRecord::Base
-    self.table_name = "discourse_voting_topic_vote_count"
+    self.table_name = "topic_voting_topic_vote_count"
 
     belongs_to :topic
   end
@@ -10,7 +10,7 @@ end
 
 # == Schema Information
 #
-# Table name: discourse_voting_topic_vote_count
+# Table name: topic_voting_topic_vote_count
 #
 #  id          :bigint           not null, primary key
 #  topic_id    :integer
@@ -20,5 +20,5 @@ end
 #
 # Indexes
 #
-#  index_discourse_voting_topic_vote_count_on_topic_id  (topic_id) UNIQUE
+#  index_topic_voting_topic_vote_count_on_topic_id  (topic_id) UNIQUE
 #
