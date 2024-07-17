@@ -18,13 +18,9 @@ class RenameVotingTables < ActiveRecord::Migration[7.0]
       SQL
 
       execute <<~SQL
-        ALTER SEQUENCE discourse_voting_topic_vote_count_id_seq
-        RENAME TO topic_voting_topic_vote_count_id_seq
-      SQL
-
-      execute <<~SQL
-        ALTER SEQUENCE topic_voting_topic_vote_count_id_seq
-        OWNED BY topic_voting_topic_vote_count.id
+        ALTER TABLE topic_voting_topic_vote_count
+        ALTER COLUMN id
+        SET DEFAULT nextval('discourse_voting_topic_vote_count_id_seq')
       SQL
 
       add_index :topic_voting_topic_vote_count, :topic_id, unique: true
@@ -44,16 +40,10 @@ class RenameVotingTables < ActiveRecord::Migration[7.0]
       SQL
 
       execute <<~SQL
-        ALTER SEQUENCE discourse_voting_votes_id_seq
-        RENAME TO topic_voting_votes_id_seq
+        ALTER TABLE topic_voting_votes
+        ALTER COLUMN id
+        SET DEFAULT nextval('discourse_voting_votes_id_seq')
       SQL
-
-      execute <<~SQL
-        ALTER SEQUENCE topic_voting_votes_id_seq
-        OWNED BY topic_voting_votes.id
-      SQL
-
-      add_index :topic_voting_votes, %i[user_id topic_id], unique: true
     end
 
     unless table_exists?(:topic_voting_category_settings)
@@ -70,16 +60,10 @@ class RenameVotingTables < ActiveRecord::Migration[7.0]
       SQL
 
       execute <<~SQL
-        ALTER SEQUENCE discourse_voting_category_settings_id_seq
-        RENAME TO topic_voting_category_settings_id_seq
+        ALTER TABLE topic_voting_category_settings
+        ALTER COLUMN id
+        SET DEFAULT nextval('discourse_voting_category_settings_id_seq')
       SQL
-
-      execute <<~SQL
-        ALTER SEQUENCE topic_voting_category_settings_id_seq
-        OWNED BY topic_voting_category_settings.id
-      SQL
-
-      add_index :topic_voting_category_settings, :category_id, unique: true
     end
   end
 
