@@ -15,8 +15,8 @@ module DiscourseTopicVoting
 
     def can_vote?
       @can_vote ||=
-        SiteSetting.topic_voting_enabled && regular? && Category.can_vote?(category_id) && category &&
-          category.topic_id != id
+        SiteSetting.topic_voting_enabled && regular? && Category.can_vote?(category_id) &&
+          category && category.topic_id != id
     end
 
     def vote_count
