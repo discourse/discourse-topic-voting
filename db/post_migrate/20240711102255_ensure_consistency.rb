@@ -24,12 +24,6 @@ class EnsureConsistency < ActiveRecord::Migration[7.0]
             dvv1.archive = dvv2.archive
     SQL
 
-    # delete votes associated with no user
-    DB.exec(<<~SQL)
-      DELETE FROM topic_voting_votes
-      WHERE user_id NOT IN (SELECT id FROM users)
-    SQL
-
     # delete votes associated with no topics
     DB.exec(<<~SQL)
       DELETE FROM topic_voting_votes
