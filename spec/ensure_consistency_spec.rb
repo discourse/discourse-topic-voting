@@ -23,7 +23,7 @@ describe EnsureConsistency do
 
     # two votes
     DiscourseTopicVoting::Vote.create!(user: user, topic: two_vote_topic, archive: true)
-    DiscourseTopicVoting::Vote.create!(user: user2, topic: two_vote_topic)
+    second_vote = DiscourseTopicVoting::Vote.create!(user: user2, topic: two_vote_topic)
 
     EnsureConsistency.new.up
 
@@ -41,5 +41,8 @@ describe EnsureConsistency do
 
     two_vote_topic.reload
     expect(two_vote_topic.topic_vote_count.votes_count).to eq(2)
+
+    user2.destroy
+    expect { second_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
