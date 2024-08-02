@@ -42,7 +42,14 @@ describe EnsureConsistency do
     two_vote_topic.reload
     expect(two_vote_topic.topic_vote_count.votes_count).to eq(2)
 
+    # ensure deleted user has their vote deleted
     user2.destroy
     expect { second_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+
+    # ensure no topic vote counts if topic doesn't exist
+    topic_to_delete = Fabricate(:topic)
+    topic_vote_count = DiscourseTopicVoting::TopicVoteCount.create!(topic: topic_to_delete, votes_count: 10)
+    topic_to_delete.destroy
+    expect { topic_vote_count.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
