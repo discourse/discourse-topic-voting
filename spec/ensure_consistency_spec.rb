@@ -48,7 +48,8 @@ describe EnsureConsistency do
 
     # ensure no topic vote counts if topic doesn't exist
     topic_to_delete = Fabricate(:topic)
-    topic_vote_count = DiscourseTopicVoting::TopicVoteCount.create!(topic: topic_to_delete, votes_count: 10)
+    topic_vote_count =
+      DiscourseTopicVoting::TopicVoteCount.create!(topic: topic_to_delete, votes_count: 10)
     topic_to_delete.destroy
     expect { topic_vote_count.reload }.to raise_error(ActiveRecord::RecordNotFound)
   end
