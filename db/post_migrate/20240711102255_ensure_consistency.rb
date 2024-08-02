@@ -52,17 +52,6 @@ class EnsureConsistency < ActiveRecord::Migration[7.0]
       SELECT '0', id, now(), now() FROM missing_ids
     SQL
 
-    # remove all superflous vote count custom fields
-    DB.exec(<<~SQL)
-      DELETE FROM topic_voting_topic_vote_count
-      WHERE topic_id IN (
-        SELECT t1.id FROM topics t1
-        LEFT JOIN topic_voting_votes dvv
-          ON dvv.topic_id = t1.id
-        WHERE dvv.id IS NULL
-      )
-    SQL
-
     # correct topics vote counts
     DB.exec(<<~SQL)
       UPDATE topic_voting_topic_vote_count dvtvc
