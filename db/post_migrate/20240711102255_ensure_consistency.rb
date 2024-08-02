@@ -27,7 +27,9 @@ class EnsureConsistency < ActiveRecord::Migration[7.0]
     # delete votes associated with no user
     DB.exec(<<~SQL)
       DELETE FROM topic_voting_votes
-      WHERE user_id NOT IN (SELECT id FROM users)
+      USING topic_voting_votes tvv
+      LEFT JOIN users u ON tvv.user_id = u.id
+      WHERE u.id IS NULL;
     SQL
 
     # delete votes associated with no topics
