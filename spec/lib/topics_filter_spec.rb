@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe TopicsFilter do
-  describe "when extending order:{col}" do
+  describe "adding order:votes to DiscoursePluginRegistry.custom_filter_mappings" do
     fab!(:topic_high) { Fabricate(:topic_voting_vote_count, votes_count: 10).topic }
     fab!(:topic_med) { Fabricate(:topic_voting_vote_count, votes_count: 5).topic }
     fab!(:topic_low) { Fabricate(:topic_voting_vote_count, votes_count: 1).topic }
