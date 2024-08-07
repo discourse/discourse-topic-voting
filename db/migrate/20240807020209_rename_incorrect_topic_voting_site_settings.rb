@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameTopicVotingSiteSettings < ActiveRecord::Migration[7.0]
+class RenameIncorrectTopicVotingSiteSettings < ActiveRecord::Migration[7.0]
   def up
     execute "UPDATE site_settings SET name = 'topic_voting_alert_votes_left' WHERE name = 'voting_alert_votes_left'"
     execute "UPDATE site_settings SET name = 'topic_voting_enabled' WHERE name = 'voting_enabled'"
