@@ -121,7 +121,9 @@ after_initialize do
 
   filter_order_votes = ->(scope, order_direction) do
     scope = scope.joins(:topic_vote_count)
-    scope.order("topic_voting_topic_vote_count.votes_count #{order_direction}")
+    scope.order(
+      "COALESCE(topic_voting_topic_vote_count.votes_count, 0)::integer #{order_direction}",
+    )
   end
 
   add_filter_custom_filter("order:votes", &filter_order_votes)
