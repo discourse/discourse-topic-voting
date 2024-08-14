@@ -1,5 +1,6 @@
 import { h } from "virtual-dom";
 import cookie from "discourse/lib/cookie";
+import { applyBehaviorTransformer } from "discourse/lib/transformer";
 import { createWidget } from "discourse/widgets/widget";
 import I18n from "I18n";
 
@@ -71,24 +72,26 @@ export default createWidget("vote-button", {
   },
 
   click() {
-    if (!this.currentUser) {
-      this.sendWidgetAction("showLogin");
-      cookie("destination_url", window.location.href, { path: "/" });
-      return;
-    }
-    if (
-      !this.attrs.closed &&
-      this.parentWidget.state.allowClick &&
-      !this.attrs.user_voted &&
-      !this.currentUser.votes_exceeded
-    ) {
-      this.parentWidget.state.allowClick = false;
-      this.parentWidget.state.initialVote = true;
-      this.sendWidgetAction("addVote");
-    }
-    if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
-      document.querySelector(".vote-options").classList.toggle("hidden");
-    }
+    applyBehaviorTransformer("topic-vote-button-click", () => {
+      if (!this.currentUser) {
+        this.sendWidgetAction("showLogin");
+        cookie("destination_url", window.location.href, { path: "/" });
+        return;
+      }
+      if (
+        !this.attrs.closed &&
+        this.parentWidget.state.allowClick &&
+        !this.attrs.user_voted &&
+        !this.currentUser.votes_exceeded
+      ) {
+        this.parentWidget.state.allowClick = false;
+        this.parentWidget.state.initialVote = true;
+        this.sendWidgetAction("addVote");
+      }
+      if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
+        document.querySelector(".vote-options").classList.toggle("hidden");
+      }
+    });
   },
 
   clickOutside() {
