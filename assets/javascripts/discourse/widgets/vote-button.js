@@ -87,7 +87,6 @@ export default createWidget("vote-button", {
       this.sendWidgetAction("addVote");
     }
     if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
-      console.log("foo");
       document.querySelector(".vote-options").classList.toggle("hidden");
     }
   },
