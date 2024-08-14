@@ -1,5 +1,5 @@
-import $ from "jquery";
 import { h } from "virtual-dom";
+import cookie from "discourse/lib/cookie";
 import { createWidget } from "discourse/widgets/widget";
 import I18n from "I18n";
 
@@ -73,7 +73,7 @@ export default createWidget("vote-button", {
   click() {
     if (!this.currentUser) {
       this.sendWidgetAction("showLogin");
-      $.cookie("destination_url", window.location.href);
+      cookie("destination_url", window.location.href, { path: "/" });
       return;
     }
     if (
@@ -87,12 +87,13 @@ export default createWidget("vote-button", {
       this.sendWidgetAction("addVote");
     }
     if (this.attrs.user_voted || this.currentUser.votes_exceeded) {
-      $(".vote-options").toggleClass("hidden");
+      console.log("foo");
+      document.querySelector(".vote-options").classList.toggle("hidden");
     }
   },
 
   clickOutside() {
-    $(".vote-options").addClass("hidden");
+    document.querySelector(".vote-options").classList.add("hidden");
     this.parentWidget.state.initialVote = false;
   },
 });
