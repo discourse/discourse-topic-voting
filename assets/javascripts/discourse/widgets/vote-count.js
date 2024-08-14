@@ -1,6 +1,6 @@
-import $ from "jquery";
 import { h } from "virtual-dom";
 import { ajax } from "discourse/lib/ajax";
+import cookie from "discourse/lib/cookie";
 import { createWidget } from "discourse/widgets/widget";
 import getURL from "discourse-common/lib/get-url";
 
@@ -43,7 +43,7 @@ export default createWidget("vote-count", {
   click() {
     if (!this.currentUser) {
       this.sendWidgetAction("showLogin");
-      $.cookie("destination_url", window.location.href);
+      cookie("destination_url", window.location.href, { path: "/" });
       return;
     }
 
@@ -54,13 +54,18 @@ export default createWidget("vote-count", {
       if (this.state.whoVotedUsers === null) {
         return this.getWhoVoted();
       } else {
-        $(".who-voted").toggle();
+        const whoVotedElement = document.querySelector(".who-voted");
+        whoVotedElement.style.display =
+          whoVotedElement.style.display === "none" ? "block" : "none";
       }
     }
   },
 
   clickOutside() {
-    $(".who-voted").hide();
+    const whoVotedElement = document.querySelector(".who-voted");
+    if (whoVotedElement) {
+      whoVotedElement.style.display = "none";
+    }
   },
 
   getWhoVoted() {
