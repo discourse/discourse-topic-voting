@@ -10,7 +10,8 @@ el:
       sort_options:
         votes: "Ψήφοι"
     topic_voting:
-      reached_limit: "Έχετε χρησιμοποιήσει όλες τις ψήφους σας, καταργήστε μια υπάρχουσα ψήφο!"
+      title: "Ψηφοφορία Θέματος"
+      reached_limit: "Έχετε χρησιμοποιήσει όλες τις ψήφους σας, αφαιρέστε μια υπάρχουσα ψήφο!"
       list_votes: "Λίστα των ψήφων σας"
       votes_nav_help: "θέματα με τις περισσότερες ψήφους"
       voted: "Ψηφίσατε για αυτό το θέμα"
@@ -18,11 +19,14 @@ el:
       vote_title: "Ψήφος"
       vote_title_plural: "Ψήφοι"
       voted_title: "Ψήφισα"
-      voting_closed_title: "Κλειστό"
+      voting_closed_title: "Κλειστή"
       voting_limit: "Όριο"
       votes_left:
-        one: "Απομένουν %{count} ψήφοι, δείτε <a href='%{path}'>τις ψήφους σας</a>."
+        one: "Απομένει %{count} ψήφος, δείτε <a href='%{path}'>τις ψήφους σας</a>."
         other: "Απομένουν %{count} ψήφοι, δείτε <a href='%{path}'>τις ψήφους σας</a>."
+      votes_left_button_title:
+        one: "Έχετε %{count} ψήφο ακόμη."
+        other: "Έχετε %{count} ψήφους ακόμη."
       votes:
         one: "%{count} ψήφος"
         other: "%{count} ψήφοι"
@@ -30,7 +34,24 @@ el:
         one: "Ψήφος"
         other: "Ψήφοι"
       remove_vote: "Αφαίρεση ψήφου"
+      no_votes_title_self: "Δεν έχετε ψηφίσει σε κανένα θέμα ακόμα"
+      no_votes_title_others: "Ο χρήστης %{username} δεν έχει ψηφίσει σε κανένα θέμα ακόμα"
     filters:
       votes:
         title: "Ψήφοι"
         help: "θέματα με τις περισσότερες ψήφους"
+      my_votes:
+        title: "Οι Ψήφοι Μου"
+        help: "θέματα στα οποία ψηφίσατε"
+    search:
+      most_votes: "Περισσότερες Ψήφοι"
+      advanced:
+        vote:
+          count:
+            label: "Ελάχιστος Αριθμός Ψήφων"
+    admin:
+      web_hooks:
+        voting_event:
+          group_name: "Εκδήλωση Ψηφοφορίας Θέματος"
+          topic_upvote: "Όταν ένας χρήστης ψηφίζει σε ένα θέμα"
+          topic_unvote: "Όταν ένας χρήστης αφαιρεί την ψήφο του σε ένα θέμα"
