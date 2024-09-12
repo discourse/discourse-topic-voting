@@ -36,7 +36,7 @@ describe DiscourseTopicVoting::VotesController do
     expect(response.status).to eq(200)
     json = JSON.parse(response.body)
     expect(json.length).to eq(1)
-    expect(json.first.keys.sort).to eq(%w[avatar_template id name username])
+    expect(json.first.keys.sort).to eq(%w[avatar_dominant_color avatar_template id name username])
     expect(json.first["id"]).to eq(user.id)
 
     post "/voting/unvote.json", params: { topic_id: topic.id }
