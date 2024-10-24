@@ -21,4 +21,5 @@ end
 # Indexes
 #
 #  index_topic_voting_topic_vote_count_on_topic_id  (topic_id) UNIQUE
+#  topic_voting_topic_vote_count_topic_id_idx       (topic_id) UNIQUE
 #

@@ -22,5 +22,5 @@ end
 #
 # Indexes
 #
-#  index_topic_voting_votes_on_user_id_and_topic_id  (user_id,topic_id) UNIQUE
+#  topic_voting_votes_user_id_topic_id_idx  (user_id,topic_id) UNIQUE
 #
