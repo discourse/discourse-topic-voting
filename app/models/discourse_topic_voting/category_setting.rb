@@ -50,5 +50,5 @@ end
 #
 # Indexes
 #
-#  index_topic_voting_category_settings_on_category_id  (category_id) UNIQUE
+#  topic_voting_category_settings_category_id_idx  (category_id) UNIQUE
 #
