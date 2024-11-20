@@ -1,11 +1,11 @@
-{{#if model.can_vote}}
-  {{#if model.postStream.loaded}}
-    {{#if model.postStream.firstPostPresent}}
+{{#if this.model.can_vote}}
+  {{#if this.model.postStream.loaded}}
+    {{#if this.model.postStream.firstPostPresent}}
       <div class="voting title-voting">
         {{! template-lint-disable no-capital-arguments }}
         <MountWidget
           @widget="vote-box"
-          @args={{model}}
+          @args={{this.model}}
           @showLogin={{route-action "showLogin"}}
         />
       </div>
