@@ -2,8 +2,8 @@ import UserAction from "discourse/models/user-action";
 import UserTopicListRoute from "discourse/routes/user-topic-list";
 import I18n from "I18n";
 
-export default UserTopicListRoute.extend({
-  userActionType: UserAction.TYPES.topics,
+export default class UserActivityVotes extends UserTopicListRoute {
+  userActionType = UserAction.TYPES.topics;
 
   model() {
     return this.store
@@ -15,7 +15,7 @@ export default UserTopicListRoute.extend({
         model.set("emptyState", this.emptyState());
         return model;
       });
-  },
+  }
 
   emptyState() {
     const user = this.modelFor("user");
@@ -29,5 +29,5 @@ export default UserTopicListRoute.extend({
       title,
       body: "",
     };
-  },
-});
+  }
+}
