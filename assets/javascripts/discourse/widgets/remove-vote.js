@@ -10,7 +10,7 @@ export default createWidget("remove-vote", {
   },
 
   html() {
-    return [iconNode("times"), I18n.t("topic_voting.remove_vote")];
+    return [iconNode("xmark"), I18n.t("topic_voting.remove_vote")];
   },
 
   click() {
