@@ -13,7 +13,7 @@ it:
     topic_voting_tl3_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 3?'
     topic_voting_tl4_vote_limit: 'Quanti voti attivi sono consentiti agli utenti con livello di affidabilità 4?'
     topic_voting_show_who_voted: 'Consentire agli utenti di vedere chi ha votato?'
-    topic_voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nei feed delle attività?'
+    topic_voting_show_votes_on_profile: 'Consentire agli utenti di vedere i propri voti nei feed attività?'
     topic_voting_alert_votes_left: 'Avverti l''utente quando gli rimane questo numero di voti'
   topic_voting:
     votes_moved:
