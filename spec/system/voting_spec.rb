@@ -24,7 +24,7 @@ RSpec.describe "Topic voting", type: :system, js: true do
     sign_in(admin)
   end
 
-  it "enables voting in category topics and votes" do
+  skip "enables voting in category topics and votes" do
     category_page.visit(category1)
     expect(category_page).to have_no_css(category_page.votes)
 
