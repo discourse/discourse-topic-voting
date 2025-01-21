@@ -18,7 +18,7 @@ cs:
       allow_topic_voting: "Povolit uživatelům hlasovat pro témata v této kategorii"
       vote_title: "Hlasovat"
       vote_title_plural: "Hlasy"
-      voted_title: "Odhlasováno"
+      voted_title: "Hlasováno"
       voting_closed_title: "Uzavřeno"
       voting_limit: "limit"
       votes_left:
