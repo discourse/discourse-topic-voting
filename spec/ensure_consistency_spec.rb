@@ -2,7 +2,7 @@
 
 require "rails_helper"
 require Rails.root.join(
-          "plugins/discourse-topic-voting/db/post_migrate/20240711102255_ensure_consistency.rb",
+          "plugins/discourse-topic-voting/db/migrate/20240711102255_ensure_consistency.rb",
         )
 
 describe EnsureConsistency do
