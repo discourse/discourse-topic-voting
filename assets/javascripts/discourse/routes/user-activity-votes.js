@@ -1,6 +1,6 @@
 import UserAction from "discourse/models/user-action";
 import UserTopicListRoute from "discourse/routes/user-topic-list";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default class UserActivityVotes extends UserTopicListRoute {
   userActionType = UserAction.TYPES.topics;
@@ -20,8 +20,8 @@ export default class UserActivityVotes extends UserTopicListRoute {
   emptyState() {
     const user = this.modelFor("user");
     const title = this.isCurrentUser(user)
-      ? I18n.t("topic_voting.no_votes_title_self")
-      : I18n.t("topic_voting.no_votes_title_others", {
+      ? i18n("topic_voting.no_votes_title_self")
+      : i18n("topic_voting.no_votes_title_others", {
           username: user.username,
         });
 

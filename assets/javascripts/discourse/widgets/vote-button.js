@@ -2,7 +2,7 @@ import { h } from "virtual-dom";
 import cookie from "discourse/lib/cookie";
 import { applyBehaviorTransformer } from "discourse/lib/transformer";
 import { createWidget } from "discourse/widgets/widget";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default createWidget("vote-button", {
   tagName: "div",
@@ -31,27 +31,27 @@ export default createWidget("vote-button", {
   buildButtonTitle(attrs) {
     if (this.currentUser) {
       if (attrs.closed) {
-        return I18n.t("topic_voting.voting_closed_title");
+        return i18n("topic_voting.voting_closed_title");
       }
 
       if (attrs.user_voted) {
-        return I18n.t("topic_voting.voted_title");
+        return i18n("topic_voting.voted_title");
       }
 
       if (this.currentUser.votes_exceeded) {
-        return I18n.t("topic_voting.voting_limit");
+        return i18n("topic_voting.voting_limit");
       }
 
-      return I18n.t("topic_voting.vote_title");
+      return i18n("topic_voting.vote_title");
     }
 
     if (attrs.vote_count) {
-      return I18n.t("topic_voting.anonymous_button", {
+      return i18n("topic_voting.anonymous_button", {
         count: attrs.vote_count,
       });
     }
 
-    return I18n.t("topic_voting.anonymous_button", { count: 1 });
+    return i18n("topic_voting.anonymous_button", { count: 1 });
   },
 
   html(attrs) {
@@ -60,7 +60,7 @@ export default createWidget("vote-button", {
       {
         attributes: {
           title: this.currentUser
-            ? I18n.t("topic_voting.votes_left_button_title", {
+            ? i18n("topic_voting.votes_left_button_title", {
                 count: this.currentUser.votes_left,
               })
             : "",

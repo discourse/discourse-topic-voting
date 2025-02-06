@@ -2,7 +2,7 @@ import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import RawHtml from "discourse/widgets/raw-html";
 import { createWidget } from "discourse/widgets/widget";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default createWidget("vote-box", {
   tagName: "div.voting-wrapper",
@@ -27,7 +27,7 @@ export default createWidget("vote-box", {
     if (state.votesAlert > 0) {
       const html =
         "<div class='voting-popup-menu vote-options popup-menu'>" +
-        I18n.t("topic_voting.votes_left", {
+        i18n("topic_voting.votes_left", {
           count: state.votesAlert,
           path: this.currentUser.get("path") + "/activity/votes",
         }) +
