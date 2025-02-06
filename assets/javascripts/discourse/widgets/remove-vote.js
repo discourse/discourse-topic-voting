@@ -1,6 +1,6 @@
+import { iconNode } from "discourse/lib/icon-library";
 import { createWidget } from "discourse/widgets/widget";
-import { iconNode } from "discourse-common/lib/icon-library";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default createWidget("remove-vote", {
   tagName: "div.remove-vote",
@@ -10,7 +10,7 @@ export default createWidget("remove-vote", {
   },
 
   html() {
-    return [iconNode("xmark"), I18n.t("topic_voting.remove_vote")];
+    return [iconNode("xmark"), i18n("topic_voting.remove_vote")];
   },
 
   click() {

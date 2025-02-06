@@ -1,6 +1,6 @@
 import { h } from "virtual-dom";
 import { createWidget } from "discourse/widgets/widget";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default createWidget("vote-options", {
   tagName: "div.vote-options",
@@ -20,13 +20,13 @@ export default createWidget("vote-options", {
       !attrs.user_voted
     ) {
       contents.push([
-        h("div", I18n.t("topic_voting.reached_limit")),
+        h("div", i18n("topic_voting.reached_limit")),
         h(
           "p",
           h(
             "a",
             { href: this.currentUser.get("path") + "/activity/votes" },
-            I18n.t("topic_voting.list_votes")
+            i18n("topic_voting.list_votes")
           )
         ),
       ]);

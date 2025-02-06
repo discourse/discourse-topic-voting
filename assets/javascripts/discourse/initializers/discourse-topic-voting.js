@@ -1,6 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import NavItem from "discourse/models/nav-item";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default {
   name: "discourse-topic-voting",
@@ -13,7 +13,7 @@ export default {
           "controller:full-page-search"
         );
         pageSearchController.sortOrders.pushObject({
-          name: I18n.t("search.most_votes"),
+          name: i18n("search.most_votes"),
           id: 5,
           term: "order:votes",
         });
