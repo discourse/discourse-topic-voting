@@ -65,5 +65,19 @@ export default {
         api.addSearchSuggestion("order:votes");
       }
     });
+
+    withPluginApi("2.1.0", (api) => {
+      api.registerValueTransformer(
+        "category-available-views",
+        ({ value, context }) => {
+          if (context.customFields.enable_topic_voting) {
+            value.push({
+              name: i18n("filters.votes.title"),
+              value: "votes",
+            });
+          }
+        }
+      );
+    });
   },
 };
