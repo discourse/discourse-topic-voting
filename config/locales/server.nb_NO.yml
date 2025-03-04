@@ -1,10 +1,4 @@
-# WARNING: Never edit this file.
-# It will be overwritten when translations are pulled from Crowdin.
-#
-# To work with us on translations, join this project:
-# https://translate.discourse.org/
-
-nb_NO:
+nb:
   site_settings:
     topic_voting_enabled: 'Tillat brukere å stemme på emner?'
     topic_voting_tl0_vote_limit: 'Hvor mange aktive stemmer er tillatt for brukere med TL0?'
