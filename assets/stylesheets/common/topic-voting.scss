@@ -4,29 +4,30 @@
   max-width: 10%;
   box-sizing: border-box;
   float: left;
-}
+  margin-top: 0.33em;
+  position: relative;
 
-.vote-count-wrapper {
-  border: 3px solid var(--primary-low);
-}
-
-.voting-wrapper.show-pointer .vote-count-wrapper:not(.no-votes) {
-  cursor: pointer;
-  &:hover {
-    background-color: var(--primary-low);
+  .rtl & {
+    float: right;
+    padding-right: 0;
+    padding-left: 0.75em;
   }
 }
 
 .vote-count-wrapper {
+  border: 3px solid var(--primary-low);
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.title-voting {
-  margin-top: 0.33em;
-  position: relative;
+.voting-wrapper.show-pointer .vote-count-wrapper:not(.no-votes) {
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-low);
+  }
 }
 
 .vote-button {
@@ -41,6 +42,7 @@
 .vote-option {
   cursor: pointer;
   padding: 0.35em;
+
   &:hover {
     background-color: var(--primary-low);
   }
@@ -77,6 +79,7 @@
   line-height: var(--line-height-medium);
   z-index: z("usercard") - 1;
   cursor: initial;
+
   // voter avatars
   .regular-votes {
     display: flex;
@@ -84,18 +87,7 @@
     align-items: center;
     justify-content: center;
   }
-}
 
-// TEMP: RTL overrides
-.title-voting {
-  .rtl & {
-    float: right;
-    padding-right: 0;
-    padding-left: 0.75em;
-  }
-}
-
-.voting-popup-menu {
   .rtl & {
     left: unset;
     right: 80px;
