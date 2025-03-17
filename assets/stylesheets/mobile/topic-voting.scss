@@ -3,6 +3,10 @@
   float: none;
   max-width: none;
   text-align: inherit;
+
+  .rtl & {
+    float: none;
+  }
 }
 
 .voting-wrapper {
@@ -13,6 +17,7 @@
 .vote-count-wrapper {
   min-width: 70px;
   box-sizing: border-box;
+
   // match button height
   min-height: 30px;
 }
@@ -22,23 +27,14 @@
   margin-left: 0.5em;
   margin-top: 0;
   white-space: nowrap;
-}
 
-.voting-popup-menu {
-  width: calc(100vw - 100px);
-  // 80px left positioning + 20px .wrap padding
-}
-
-// TEMP: RTL overrides
-.title-voting {
-  .rtl & {
-    float: none;
-  }
-}
-
-.vote-button {
   .rtl & {
     margin-left: 0;
     margin-right: 0.5em;
   }
+}
+
+.voting-popup-menu {
+  // 80px left positioning + 20px .wrap padding
+  width: calc(100vw - 100px);
 }
