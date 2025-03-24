@@ -119,9 +119,8 @@ after_initialize do
   add_to_serializer(:current_user, :votes_count) { object.vote_count }
   add_to_serializer(:current_user, :votes_left) { [object.vote_limit - object.vote_count, 0].max }
 
-  filter_order_votes = ->(scope, order_direction) do
-    scope = scope.joins(:topic_vote_count)
-    scope.order(
+  filter_order_votes = ->(scope, order_direction, _guardian) do
+    scope.joins(:topic_vote_count).order(
       "COALESCE(topic_voting_topic_vote_count.votes_count, 0)::integer #{order_direction}",
     )
   end
