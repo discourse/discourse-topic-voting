@@ -7,7 +7,7 @@ function initialize(api) {
       return ["voting-post"];
     }
   });
-  api.includePostAttributes("can_vote");
+  api.addTrackedPostProperties("can_vote");
   api.addTagsHtmlCallback(
     (topic) => {
       if (!topic.can_vote) {
