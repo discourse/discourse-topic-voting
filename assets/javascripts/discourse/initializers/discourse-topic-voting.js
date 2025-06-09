@@ -6,7 +6,7 @@ export default {
   name: "discourse-topic-voting",
 
   initialize() {
-    withPluginApi("0.8.32", (api) => {
+    withPluginApi((api) => {
       const siteSettings = api.container.lookup("service:site-settings");
       if (siteSettings.topic_voting_enabled) {
         const pageSearchController = api.container.lookup(
@@ -57,16 +57,11 @@ export default {
           },
         });
       }
-    });
 
-    withPluginApi("0.11.7", (api) => {
-      const siteSettings = api.container.lookup("service:site-settings");
       if (siteSettings.topic_voting_enabled) {
         api.addSearchSuggestion("order:votes");
       }
-    });
 
-    withPluginApi("2.1.0", (api) => {
       api.registerValueTransformer(
         "category-available-views",
         ({ value, context }) => {
