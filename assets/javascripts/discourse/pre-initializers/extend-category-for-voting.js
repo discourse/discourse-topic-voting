@@ -1,3 +1,4 @@
+import { tracked } from "@glimmer/tracking";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { i18n } from "discourse-i18n";
 
@@ -34,6 +35,23 @@ function initialize(api) {
       }
     },
     { priority: -100 }
+  );
+
+  api.modifyClass(
+    "model:topic",
+    (Superclass) =>
+      class extends Superclass {
+        @tracked vote_count;
+        @tracked user_voted;
+      }
+  );
+  api.modifyClass(
+    "model:user",
+    (Superclass) =>
+      class extends Superclass {
+        @tracked votes_exceeded;
+        @tracked votes_left;
+      }
   );
 }
 
