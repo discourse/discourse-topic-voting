@@ -1,5 +1,5 @@
 import { visit } from "@ember/test-helpers";
-import { skip } from "qunit";
+import { test } from "qunit";
 import { acceptance, query } from "discourse/tests/helpers/qunit-helpers";
 import { i18n } from "discourse-i18n";
 
@@ -23,20 +23,18 @@ acceptance(
       });
     });
 
-    /* disabled temporarily for core updates https://github.com/discourse/discourse/pull/33455 */
-
-    skip("When looking at the own activity page", async function (assert) {
+    test("When looking at the own activity page", async function (assert) {
       await visit(`/u/${currentUser}/activity/votes`);
       assert.equal(
-        query("div.empty-state span.empty-state-title").innerText,
+        query(".empty-state .empty-state__title").innerText,
         i18n("topic_voting.no_votes_title_self")
       );
     });
 
-    skip("When looking at another user's activity page", async function (assert) {
+    test("When looking at another user's activity page", async function (assert) {
       await visit(`/u/${anotherUser}/activity/votes`);
       assert.equal(
-        query("div.empty-state span.empty-state-title").innerText,
+        query(".empty-state .empty-state__title").innerText,
         i18n("topic_voting.no_votes_title_others", { username: anotherUser })
       );
     });
