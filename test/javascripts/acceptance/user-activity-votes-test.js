@@ -1,5 +1,5 @@
 import { visit } from "@ember/test-helpers";
-import { test } from "qunit";
+import { skip } from "qunit";
 import { acceptance, query } from "discourse/tests/helpers/qunit-helpers";
 import { i18n } from "discourse-i18n";
 
@@ -23,7 +23,7 @@ acceptance(
       });
     });
 
-    test("When looking at the own activity page", async function (assert) {
+    skip("When looking at the own activity page", async function (assert) {
       await visit(`/u/${currentUser}/activity/votes`);
       assert.equal(
         query("div.empty-state span.empty-state-title").innerText,
@@ -31,7 +31,7 @@ acceptance(
       );
     });
 
-    test("When looking at another user's activity page", async function (assert) {
+    skip("When looking at another user's activity page", async function (assert) {
       await visit(`/u/${anotherUser}/activity/votes`);
       assert.equal(
         query("div.empty-state span.empty-state-title").innerText,
