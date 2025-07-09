@@ -23,6 +23,8 @@ acceptance(
       });
     });
 
+    /* disabled temporarily for core updates https://github.com/discourse/discourse/pull/33455 */
+
     skip("When looking at the own activity page", async function (assert) {
       await visit(`/u/${currentUser}/activity/votes`);
       assert.equal(
